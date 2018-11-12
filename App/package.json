@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "This project is about creating a dating website.",
   "main": "index.js",
-
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gde-pass/Matcha.git"
@@ -21,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/gde-pass/Matcha/issues"
   },
-  "homepage": "https://github.com/gde-pass/Matcha#readme"
+  "homepage": "https://github.com/gde-pass/Matcha#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
