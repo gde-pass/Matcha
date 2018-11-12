@@ -1,0 +1,22 @@
+{
+  "name": "matcha",
+  "version": "0.0.0",
+  "description": "This project is about creating a dating website.",
+  "main": "index.js",
+  "scripts": {
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gde-pass/Matcha.git"
+  },
+  "keywords": [
+    "Matcha"
+  ],
+  "author": "gde-pass",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gde-pass/Matcha/issues"
+  },
+  "homepage": "https://github.com/gde-pass/Matcha#readme"
+}
