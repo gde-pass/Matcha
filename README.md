@@ -121,6 +121,7 @@ When two users are connected, they must be able to “chat” in real time. How 
 a new message is received.
 
 ## Notifications
+
 A user must be notified in real time6 of the following events:
 
 * The user received a “like”.
@@ -144,6 +145,7 @@ If you need inspiration here are some ideas:
 * Create an interactive map of the users (which implies a more precise GPS localisation via JavaScript).
 
 ### Eliminatory instructions
+
 * Your code cannot produce any errors, warnings or notices either from the server or the client side in the web console.
 * Anything not specifically authorized is forbidden.
 * Finally, the slightest security breach will give you 0. You must at least manage what is indicated in the general instructions, ie NOT have plain text passwords
@@ -190,7 +192,8 @@ eval $(docker-machine env Matcha)
 docker-compose up --build
 ```
 
-6. Here we go ! You can now visit http://192.168.99.100:8080 !
+6. Here we go ! You can now visit [Matcha](http://192.168.99.100:8080) !
 
 ## Difficulty
-This project is evaluated as a T2.
+
+This project is evaluated as a **T2**.
