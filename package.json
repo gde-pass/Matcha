@@ -2,7 +2,7 @@
   "name": "matcha",
   "version": "0.0.1",
   "description": "This project is about creating a dating website.",
-  "main": "index.js",
+  "main": "config/server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gde-pass/Matcha.git"

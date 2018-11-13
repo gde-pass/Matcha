@@ -1,12 +1,17 @@
-"use strict";
-
 const express = require('express');
+const passport = require('passport');
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
+
 const app = express();
+app.use(session({
+    store: new RedisStore({
+        url: config.redisStore.url
+    }),
+    secret: config.redisStore.secret,
+    resave: false,
+    saveUninitialized: false
+}));
 
-app.get('/', function (req, res) {
-    res.send('Hello World!');
-});
-
-app.listen(3000, function () {
-    console.log('Listening on port 3000!')
-});
+app.use(passport.initialize());
+app.use(passport.session());
