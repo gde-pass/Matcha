@@ -1,13 +1,22 @@
-var express = require('express');
-var app = express();
+"use strict";
+
+const express = require('express');
+const app = express();
+const fs = require('fs');
+const port = 8080;
+
+const io = require('socket.io').listen(app.listen(port));
 
 app.get('/', function (req, res) {
-    res.send('Hello World');
+    res.writeHead(200, {"Content-Type": "text/html"});
+    res.write(fs.readFileSync("../app/public/views/index.html"));
+    res.end();
 });
 
-var server = app.listen(8081, function () {
-    var host = "127.0.0.1";
-    var port = server.address().port;
+app.use(express.static(__dirname + '/app/public'));
+console.log("Matcha is running at http://localhost:" + port);
 
-    console.log("Example app listening at http://%s:%s", host, port)
-});
+io.sockets.on("connection", function (socket) {
+
+
+})

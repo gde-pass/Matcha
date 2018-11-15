@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description"
+          content="This project is about creating a dating website.
+                   You will need to create an app allowing two potential lovers to meet,
+                   from the registration to the final encounter.">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Matcha</title>
+</head>
+<body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" language="JavaScript">
+    const socket = io.connect(window.location.host);
+
+    socket.emit('New_Client');
+</script>
+</body>
+</html>
