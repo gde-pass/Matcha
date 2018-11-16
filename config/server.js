@@ -20,13 +20,12 @@ const pool = mysql.createPool({
     acquireTimeout: 10000
 });
 
-const init_db = require('./app/database/init.js');
+const init_db = require('./database/init.js');
 
 const io = require('socket.io').listen(app.listen(portAPP, host, function (err) {
     if (err) throw err;
     console.log("Matcha is running at http://%s:%s", host, portAPP);
 }));
-
 
 init_db.db_init_tables(pool, host, portSQL);
 
@@ -34,12 +33,6 @@ app.get('/', function (req, res) {
     res.writeHead(200, {"Content-Type": "text/html"});
     res.write(fs.readFileSync("../app/public/views/index.html"));
     res.end();
-});
-
-
-io.sockets.on("connection", function (socket) {
-
-
 });
 
 module.exports = {

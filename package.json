@@ -2,7 +2,7 @@
   "name": "matcha",
   "version": "0.0.1",
   "description": "This project is about creating a dating website.",
-  "main": "server.js",
+  "main": "config/server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gde-pass/Matcha.git"
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/gde-pass/Matcha#readme",
   "dependencies": {
+    "bootstrap": "^4.1.3",
     "express": "^4.16.4",
     "mysql": "^2.16.0",
     "socket.io": "^2.1.1"

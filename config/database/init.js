@@ -1,7 +1,8 @@
 "use strict";
+
 function db_init_table_user(pool) {
 
-    const sql = "CREATE TABLE Users (" +
+    const sql = "CREATE TABLE IF NOT EXISTS Users (" +
         "  `user_id` INT UNSIGNED  NOT NULL AUTO_INCREMENT," +
         "  `email` VARCHAR(254) NOT NULL," +
         "  `first_name` VARCHAR(255) NOT NULL," +
@@ -15,7 +16,6 @@ function db_init_table_user(pool) {
 
     pool.query(sql, function (err) {
         if (err) throw err;
-        console.log("Table `Users` created !");
     });
 }
 
@@ -29,8 +29,6 @@ function db_init_tables(pool, host, portSQL) {
         db_init_table_user(pool);
     });
 }
-
-
 
 module.exports = {
     db_init_tables: db_init_tables
