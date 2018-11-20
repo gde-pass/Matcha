@@ -2,6 +2,7 @@
 
 const express = require('express');
 const app = express();
+app.use(express.static('public'));
 const mysql = require('mysql');
 const fs = require('fs');
 const portAPP = 8080;
@@ -30,6 +31,6 @@ const io = require('socket.io').listen(app.listen(portAPP, host, function (err) 
     console.log("Matcha is running at http://%s:%s !", host, portAPP);
 }));
 
-const routes = require('./routes')(app, fs);
+const routes = require('./routes')(app, fs, io);
 
 

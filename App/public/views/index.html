@@ -1,25 +1,26 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="description"
-          content="This project is about creating a dating website.
-                   You will need to create an app allowing two potential lovers to meet,
-                   from the registration to the final encounter.">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Matcha</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="../css/cover.css">
+
 </head>
 <body>
 
+<div id="clickmoi" class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+    <div class="w3-display-topleft w3-padding-large w3-xlarge">
 
-
-<script src="/socket.io/socket.io.js"></script>
-<script type="text/javascript" language="JavaScript">
-    const socket = io.connect(window.location.host);
-
-    socket.emit('New_Client');
-</script>
+    </div>
+    <div class="w3-display-middle">
+        <h1 class="w3-jumbo w3-animate-top">MATCHA</h1>
+        <img id="logo" src="../assets/img/logo.png">
+        <p class="w3-large w3-center">For the real match !</p>
+    </div>
+</div>
+<script src="../js/cover.js" language="JavaScript"></script>
 </body>
 </html>
