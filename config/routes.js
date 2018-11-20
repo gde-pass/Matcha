@@ -8,12 +8,6 @@ module.exports = function(app, fs) {
         res.end();
     });
 
-    app.get("/sign-in", function (req, res) {
-        res.writeHead(200, {"Content-Type": "text/html"});
-        res.write(fs.readFileSync("../app/public/views/sign-in.html"));
-        res.end();
-    });
-
     app.use(function(req, res){
         res.writeHead(404, {"Content-Type": "text/html"});
         res.write(fs.readFileSync("../app/public/views/404.html"));
