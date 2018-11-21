@@ -33,5 +33,3 @@ function eventFire(el, etype){
         el.dispatchEvent(evObj);
     }
 }
-
-eventFire(document.getElementById('initBT'), 'click');

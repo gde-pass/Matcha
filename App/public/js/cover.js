@@ -1,4 +1,9 @@
 document.getElementById("clickmoi").addEventListener("click", ClickOnCover);
 function ClickOnCover() {
-    window.location = "/sign-in";
+    document.getElementById("clickmoi").hidden = true;
+    document.getElementById("logmoi").hidden = false;
+    eventFire(document.getElementById('initBT'), 'click');
+    document.body.style.cursor = "default";
 }
+
+

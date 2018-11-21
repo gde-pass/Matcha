@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <link rel="stylesheet" href="../css/cover.css">
+    <link id="remove" rel="stylesheet" href="../css/cover.css">
+    <link rel="stylesheet" href="../css/sign-in.css">
 
 </head>
 <body>
-
+<!--====== COVER ======-->
 <div id="clickmoi" class="bgimg w3-display-container w3-animate-opacity w3-text-white">
     <div class="w3-display-topleft w3-padding-large w3-xlarge">
 
@@ -21,6 +22,66 @@
         <p class="w3-large w3-center">For the real match !</p>
     </div>
 </div>
+<!--====== /COVER ======-->
+<!--====== LOGIN ======-->
+<div class="cotn_principal" id="logmoi" hidden>
+    <div class="cont_centrar">
+
+        <div class="cont_login">
+            <div class="cont_info_log_sign_up">
+                <div class="col_md_login">
+                    <div class="cont_ba_opcitiy">
+
+                        <h2>LOGIN</h2>
+                        <p>Glad to see you again !</p>
+                        <button id="initBT" class="btn_login" onclick="cambiar_login()">LOGIN</button>
+                    </div>
+                </div>
+                <div class="col_md_sign_up">
+                    <div class="cont_ba_opcitiy">
+
+                        <h2>SIGN UP</h2>
+                        <p>Your match is waiting for you !</p>
+                        <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="cont_back_info">
+                <div class="cont_img_back_grey">
+                    <img src="../assets/img/background-sign-in.jpg" alt="" />
+                </div>
+
+            </div>
+            <div class="cont_forms" >
+                <div class="cont_img_back_">
+                    <img src="../assets/img/background-sign-in.jpg" alt="" />
+                </div>
+                <div class="cont_form_login">
+                    <h2>LOGIN</h2>
+                    <input type="text" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
+                </div>
+
+                <div class="cont_form_sign_up">
+                    <h2>SIGN UP</h2>
+                    <input type="text" placeholder="Email" />
+                    <input type="text" placeholder="User" />
+                    <input type="password" placeholder="Password" />
+                    <input type="password" placeholder="Confirm Password" />
+                    <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--====== /LOGIN ======-->
 <script src="../js/cover.js" language="JavaScript"></script>
+<script src="../js/sign-in.js" language="JavaScript"></script>
 </body>
 </html>
