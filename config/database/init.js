@@ -20,11 +20,11 @@ function db_init_table_user(pool) {
 }
 
 
-function db_init_tables(pool, host, portSQL) {
+function db_init_tables(pool, hostSQL, portSQL) {
 
     pool.query('SELECT 1', function (err) {
         if (err) throw err;
-        console.log("Connected to the server mysql at http://%s:%s !", host, portSQL);
+        console.log("Connected to the server mysql at http://%s:%s !", hostSQL, portSQL);
 
         db_init_table_user(pool);
     });

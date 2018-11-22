@@ -1,6 +1,6 @@
 {
   "name": "matcha",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "This project is about creating a dating website.",
   "main": "config/server.js",
   "repository": {
