@@ -1,0 +1,239 @@
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
+
+body {
+
+}
+
+#container {
+    min-height: 100%;
+    background: url('../assets/img/cover.jpg') center;
+    background-size: cover;
+}
+
+.frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    height: 400px;
+    margin-top: -200px;
+    margin-left: -200px;
+    border-radius: 2px;
+    box-shadow: 4px 8px 16px 0 rgba(0,0,0,0.1);
+    overflow: hidden;
+    background: #2c3e50;
+    color: #333;
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #354A5F;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.circleTwo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 4px solid #354A5F;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.mail {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    fill: none;
+    stroke: white;
+    width: 121px;
+    height: 71px;
+}
+
+.plane {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -34%);
+    fill: none;
+    stroke: white;
+    width: 121px;
+    height: 105px;
+    opacity: 0;
+}
+
+.container {
+    position: absolute;
+    top: 84%;
+    width: 100%;
+}
+
+input {
+    transform: translateX(-2000px);
+}
+
+input:checked ~ .circle {
+    animation: circle 1s forwards ease-in-out;
+}
+
+input:checked ~ .circleTwo {
+    animation: circleTwo 1s forwards .4s ease-in-out;
+}
+
+input:checked ~ .mail {
+    animation: letter 1s forwards .5s;
+}
+
+input:checked ~ .plane {
+    animation: plane 1s forwards 1.5s;
+}
+
+input:checked ~ .container .button {
+    animation: label 1s forwards 2.5s;
+}
+
+input:checked ~ .container .reset {
+    animation: reset 1s forwards 3.5s;
+}
+
+label {
+    background-color: #ecf0f1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 30px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+label:hover {
+    background-color: #1abc9c;
+    color: white;
+}
+
+.reset {
+    opacity: 0;
+    z-index: -1;
+}
+
+
+@keyframes circle {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    20% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+}
+
+@keyframes circleTwo {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(0);
+    }
+}
+
+@keyframes letter {
+    0% {
+        stroke-dasharray: 150 300;
+    }
+    100% {
+        stroke-dasharray: 0 300;
+    }
+}
+
+@keyframes plane {
+    0% {
+        stroke-dasharray: 0 300;
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1);
+        stroke-dasharray: 320 300;
+        opacity: 1;
+    }
+    100% {
+        transform: translate(200px, -200px) scale(0);
+        stroke-dasharray: 320 300;
+        opacity: 1;
+    }
+}
+
+@keyframes label {
+    0% {
+        color: transparent;
+        background-color: #1abc9c;
+    }
+    50% {
+        width: 25px;
+        padding: 10px;
+        line-height: unset;
+        border-radius: 50%;
+    }
+    60% {
+        width: 25px;
+        padding: 15px;
+        line-height: unset;
+        border-radius: 50%;
+    }
+    70% {
+        width: 0;
+        padding: 0;
+        line-height: 0;
+    }
+    100% {
+        color: transparent;
+        width: 0;
+        padding: 0;
+        line-height: 0;
+        border-radius: 50%;
+        background-color: #1abc9c;
+    }
+}
+
+@keyframes reset {
+    0% {
+        opacity: 0;
+        z-index: 1;
+    }
+    100% {
+        opacity: 1;
+        z-index: 1;
+    }
+}
+
+#text {
+    background-color: #1abc9c;
+    color: white;
+    position: fixed;
+    width: 310px;
+    height: 45px;
+    cursor: default;
+    white-space: normal;
+    border-radius: inherit;
+    padding: 65px;
+    font-size: 17px;
+    font-weight: bolder;
+}
