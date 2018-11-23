@@ -1,3 +1,5 @@
+const regx_email = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
+
 function cambiar_login() {
     document.querySelector('.cont_forms').className = "cont_forms cont_forms_active_login";
     document.querySelector('.cont_form_login').style.display = "block";
@@ -28,8 +30,9 @@ function eventFire(el, etype){
     if (el.fireEvent) {
         el.fireEvent('on' + etype);
     } else {
-        var evObj = document.createEvent('Events');
+        let evObj = document.createEvent('Events');
         evObj.initEvent(etype, true, false);
         el.dispatchEvent(evObj);
     }
 }
+

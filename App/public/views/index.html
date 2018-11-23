@@ -54,27 +54,32 @@
                 </div>
 
             </div>
+
             <div class="cont_forms" >
-                <div class="cont_img_back_">
-                    <img src="../assets/img/background-sign-in.jpg" alt="" />
-                </div>
-                <div class="cont_form_login">
-                    <h2>LOGIN</h2>
-                    <input type="text" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
-                </div>
+                <form action="./login_signin/index.html" method="post">
+                    <div class="cont_img_back_">
+                        <img src="../assets/img/background-sign-in.jpg" alt="" />
+                    </div>
+                    <div class="cont_form_login">
+                        <h2>LOGIN</h2>
+                        <input type="email" id="login_email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" minlength="3" maxlength="254" placeholder="Email">
+                        <p id="test" hidden >bite</p>
+                        <input type="password" name="password" required minlength="6" maxlength="20" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" placeholder="Password">
+                        <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
+                    </div>
+                </form>
+                <form action="./login_signin/index.html" method="post">
+                    <div class="cont_form_sign_up">
+                        <h2>SIGN UP</h2>
 
-                <div class="cont_form_sign_up">
-                    <h2>SIGN UP</h2>
-                    <input type="text" placeholder="Email" />
-                    <input type="text" placeholder="User" />
-                    <input type="password" placeholder="Password" />
-                    <input type="password" placeholder="Confirm Password" />
-                    <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
+                        <input type="email" id="sign_up_email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" minlength="3" maxlength="254" placeholder="Email">
+                        <input type="text" name="user" required pattern="^[0-9a-zA-Z'-]+$" minlength="2" maxlength="30" placeholder="User">
+                        <input type="password" name="password" required minlength="6" maxlength="20" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" placeholder="Password">
+                        <input type="password" name="confirm_password" required minlength="6" maxlength="20" pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" placeholder="Confirm Password">
+                        <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
 
-                </div>
-
+                    </div>
+                </form>
             </div>
 
         </div>
@@ -82,6 +87,7 @@
 </div>
 <!--====== /LOGIN ======-->
 <script src="../js/cover.js" language="JavaScript"></script>
-<script src="../js/sign-in.js" language="JavaScript"></script>
+<script src="../js/login_signup.js" language="JavaScript"></script>
+<script src="../js/instant_validation.js" language="JavaScript"></script>
 </body>
 </html>
