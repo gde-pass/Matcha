@@ -1,16 +1,6 @@
-
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300);
-
-body {
-
+body,html {
+    margin: auto;
 }
-
-#container {
-    min-height: 100%;
-    background: url('../assets/img/cover.jpg') center;
-    background-size: cover;
-}
-
 .frame {
     position: absolute;
     top: 50%;
@@ -20,9 +10,8 @@ body {
     margin-top: -200px;
     margin-left: -200px;
     border-radius: 2px;
-    box-shadow: 4px 8px 16px 0 rgba(0,0,0,0.1);
+    box-shadow: 8px 12px 16px 0 rgba(0,0,0,0.3);
     overflow: hidden;
-    background: #2c3e50;
     color: #333;
     font-family: 'Open Sans', Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -34,7 +23,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #354A5F;
+    background-color: #1abc9c;
     border-radius: 50%;
     width: 200px;
     height: 200px;
@@ -45,7 +34,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 4px solid #354A5F;
+    border: 3px solid white;
     border-radius: 50%;
     width: 200px;
     height: 200px;
@@ -76,7 +65,7 @@ body {
 
 .container {
     position: absolute;
-    top: 84%;
+    top: 90%;
     width: 100%;
 }
 
@@ -121,6 +110,8 @@ label {
     border-radius: 30px;
     white-space: nowrap;
     cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
 }
 
 label:hover {
@@ -157,26 +148,26 @@ label:hover {
 
 @keyframes letter {
     0% {
-        stroke-dasharray: 150 300;
+        stroke-dasharray: 150, 300;
     }
     100% {
-        stroke-dasharray: 0 300;
+        stroke-dasharray: 0, 300;
     }
 }
 
 @keyframes plane {
     0% {
-        stroke-dasharray: 0 300;
+        stroke-dasharray: 0, 300;
         opacity: 1;
     }
     50% {
         transform: translate(-50%, -50%) scale(1);
-        stroke-dasharray: 320 300;
+        stroke-dasharray: 320, 300;
         opacity: 1;
     }
     100% {
         transform: translate(200px, -200px) scale(0);
-        stroke-dasharray: 320 300;
+        stroke-dasharray: 320, 300;
         opacity: 1;
     }
 }
@@ -228,12 +219,13 @@ label:hover {
     background-color: #1abc9c;
     color: white;
     position: fixed;
-    width: 310px;
+    width: 510px;
     height: 45px;
     cursor: default;
     white-space: normal;
-    border-radius: inherit;
+    border-radius: 2px;
     padding: 65px;
     font-size: 17px;
     font-weight: bolder;
+    box-shadow: 4px 5px 6px 0 rgba(0,0,0,0.3);
 }
