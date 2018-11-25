@@ -1,5 +1,3 @@
-const regx_email = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$";
-
 function cambiar_login() {
     document.querySelector('.cont_forms').className = "cont_forms cont_forms_active_login";
     document.querySelector('.cont_form_login').style.display = "block";
@@ -36,3 +34,8 @@ function eventFire(el, etype){
     }
 }
 
+document.getElementById("clickmoi").addEventListener("click", initSocket);
+function initSocket() {
+    const socket = io.connect('http://localhost:8080');
+
+}
