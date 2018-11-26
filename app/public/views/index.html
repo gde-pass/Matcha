@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link id="remove" rel="stylesheet" href="../css/cover.css">
     <link rel="stylesheet" href="../css/sign-in.css">
-
 </head>
 <body>
 <!--====== COVER ======-->
@@ -75,13 +74,13 @@
                     <input type="email" id="sign_up_email" name="email" required
                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" minlength="3" maxlength="254"
                            placeholder="Email">
-                    <input type="text" name="user" required pattern="^[0-9a-zA-Z'-]+$" minlength="2" maxlength="30"
+                    <input type="text" id="sign_up_user" name="user" required pattern="^[0-9a-zA-Z'-]+$" minlength="2" maxlength="30"
                            placeholder="User">
-                    <input type="password" name="password" required minlength="6" maxlength="20"
+                    <input type="password" id="sign_up_password" name="password" required minlength="6" maxlength="20"
                            pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" placeholder="Password">
-                    <input type="password" name="confirm_password" required minlength="6" maxlength="20"
+                    <input type="password" id="sign_up_confirm_password" name="confirm_password" required minlength="6" maxlength="20"
                            pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" placeholder="Confirm Password">
-                    <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
+                    <button id="subscribeButton" class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
 
                 </div>
             </div>
@@ -90,6 +89,7 @@
     </div>
 </div>
 <!--====== /LOGIN ======-->
+<script src="../js/sweetalert2.all.js"></script>
 <script src="http://localhost:8080/socket.io/socket.io.js" language="JavaScript"></script>
 <script src="../js/cover.js" language="JavaScript"></script>
 <script src="../js/login_signup.js" language="JavaScript"></script>
