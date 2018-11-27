@@ -2,8 +2,10 @@
 
 module.exports = function(io)
 {
-    io.sockets.on('connection', function (socket)
+    io.on('connection', function (socket)
     {
-        console.log("ZIZI");
+       socket.on('subscribe', function (NewUser) {
+         console.log(NewUser);
+       })
     });
 };

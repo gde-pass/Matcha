@@ -1,3 +1,5 @@
+const socket = io.connect('http://localhost:8080');
+
 function cambiar_login() {
     document.querySelector('.cont_forms').className = "cont_forms cont_forms_active_login";
     document.querySelector('.cont_form_login').style.display = "block";
@@ -32,14 +34,6 @@ function eventFire(el, etype){
     }
 }
 
-document.getElementById("clickmoi").addEventListener("click", initSocket);
-function initSocket() {
-    const socket = io.connect('http://localhost:8080');
-
-    document.getElementById("subscribeButton").addEventListener("click", subscribe);
-}
-
-
 function fill_array(NewUser) {
     NewUser.push(document.getElementById("sign_up_email").value);
     NewUser.push(document.getElementById("sign_up_user").value);
@@ -72,7 +66,7 @@ function check_patterns(NewUser) {
         swal({
             type: 'error',
             title: 'Invalid password !',
-            html: 'Your password must contain a <b>special character</b>, a <b>number</b>, a <b>capital</b> letter and a <b>minimal</b> letter',
+            html: 'Your password must contain a <b>number</b>, a <b>capital</b> letter and a <b>minimal</b> letter',
 
         });
         return (false);
@@ -80,7 +74,7 @@ function check_patterns(NewUser) {
         swal({
             type: 'error',
             title: 'Invalid password !',
-            html: 'Your password must contain a <b>special character</b>, a <b>number</b>, a <b>capital</b> letter and a <b>minimal</b> letter',
+            html: 'Your password must contain a <b>number</b>, a <b>capital</b> letter and a <b>minimal</b> letter',
         });
         return (false);
     }
@@ -152,11 +146,20 @@ function check_lenght(NewUser) {
     return (true);
 }
 
+document.getElementById("subscribeButton").addEventListener("click", subscribe);
 function subscribe() {
     let NewUser = [];
     NewUser = fill_array(NewUser);
+
     if (check_lenght(NewUser)) {
         check_patterns(NewUser);
+    } else if (NewUser[2] !== NewUser[3]) {
+        swal({
+            type: 'error',
+            title: 'Your passwords do not match',
+        });
+    } else {
+        socket.emit("subscribe", NewUser);
     }
-
+    //socket.emit("subscribe", NewUser);
 }
