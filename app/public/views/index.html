@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <link id="remove" rel="stylesheet" href="../css/cover.css">
+    <link rel="stylesheet" href="../css/cover.css">
     <link rel="stylesheet" href="../css/sign-in.css">
 </head>
 <body>
@@ -60,26 +60,17 @@
                 </div>
                 <div class="cont_form_login">
                     <h2>LOGIN</h2>
-                    <input type="email" id="login_email" name="email" required
-                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" minlength="3" maxlength="254"
-                           placeholder="Email">
-                    <p id="test" hidden>bite</p>
-                    <input type="password" name="password" required minlength="6" maxlength="20"
-                           pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" placeholder="Password">
-                    <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
+                    <input type="email" id="login_email" name="email" minlength="3" maxlength="254" placeholder="Email">
+                    <input type="password" id="login_password" name="password" minlength="6" maxlength="20" placeholder="Password">
+                    <button id="loginButton" class="btn_login" onclick="cambiar_login()">LOGIN</button>
                 </div>
                 <div class="cont_form_sign_up">
                     <h2>SIGN UP</h2>
 
-                    <input type="email" id="sign_up_email" name="email" required
-                           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" minlength="3" maxlength="254"
-                           placeholder="Email">
-                    <input type="text" id="sign_up_user" name="user" required pattern="^[0-9a-zA-Z'-]+$" minlength="2" maxlength="30"
-                           placeholder="User">
-                    <input type="password" id="sign_up_password" name="password" required minlength="6" maxlength="20"
-                           pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" placeholder="Password">
-                    <input type="password" id="sign_up_confirm_password" name="confirm_password" required minlength="6" maxlength="20"
-                           pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" placeholder="Confirm Password">
+                    <input type="email" id="sign_up_email" name="email" minlength="3" maxlength="254" placeholder="Email">
+                    <input type="text" id="sign_up_user" name="user" minlength="2" maxlength="50" placeholder="User">
+                    <input type="password" id="sign_up_password" name="password" minlength="6" maxlength="20" placeholder="Password">
+                    <input type="password" id="sign_up_confirm_password" name="confirm_password" minlength="6" maxlength="20" placeholder="Confirm Password">
                     <button id="subscribeButton" class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
 
                 </div>
