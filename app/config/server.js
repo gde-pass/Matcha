@@ -37,5 +37,6 @@ const io = require('socket.io').listen(app.listen(portAPP, hostAPP, function (er
 require('./routes')(app, fs);
 require('./socketsIO')(io);
 
+module.exports.pool = pool;
 
 

@@ -313,7 +313,8 @@ background text
 }
 
 .cont_form_sign_up > h2 {
-    margin-top: 12px;
+    margin-top: 5px;
+    margin-bottom: 0;
     font-weight: 400;
     color: #757575;
 }

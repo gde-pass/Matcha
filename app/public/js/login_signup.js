@@ -1,5 +1,7 @@
 const socket = io.connect('http://localhost:8080');
 
+// ============ FRONT EVENTS ===========
+
 function cambiar_login() {
     document.querySelector('.cont_forms').className = "cont_forms cont_forms_active_login";
     document.querySelector('.cont_form_login').style.display = "block";
@@ -34,89 +36,31 @@ function eventFire(el, etype){
     }
 }
 
-function check_email_length(value) {
+// ============ /FRONT EVENTS ===========
 
-    if (value.length === 0) {
-        swal({
-            type: 'error',
-            title: 'Oops',
-            text: 'You forgot to fill the email field ...',
-        });
-        return (false);
-    } else if (value.length > 254 || value.length < 3) {
-        swal({
-            type: 'error',
-            title: value + ' have a invalid length',
-            text: 'The length of your email should be between 3 and 254',
-        });
-        return (false);
-    }
-    return (true);
-}
-
-function check_user_length(value) {
-
-    if (value.length === 0) {
-        swal({
-            type: 'error',
-            title: 'Oops',
-            text: 'You forgot to fill the user field ...',
-        });
-        return (false);
-    } else if (value.length > 50 || value.length < 2) {
-        swal({
-            type: 'error',
-            title: value + ' have a invalid length',
-            text: 'The length of your username should be between 2 and 50',
-        });
-        return (false);
-    }
-    return (true);
-}
-
-function check_password_length(value) {
-
-    if (value.length === 0) {
-        swal({
-            type: 'error',
-            title: 'Oops',
-            text: 'You forgot to fill the password field ...',
-        });
-        return (false);
-    } else if (value.length < 6 || value.length > 20) {
-        swal({
-            type: 'error',
-            title: 'Your password have a invalid length',
-            text: 'The length of your password should be between 6 and 20',
-        });
-        return (false);
-    }
-    return (true);
-}
+// =========== CHECK FUNCTIONS ===========
 
 function check_email_pattern(value) {
     const emailRegex = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
 
-    if (!value.match(emailRegex)) {
-        swal({
-            type: 'error',
-            title: value + ' is not a valid email',
-            html: 'Please use a correct email syntax: <b>`exemple@domain.com`</b>',
-        });
+    if (value.length === 0) {
+        return (false);
+    } else if (value.length > 254 || value.length < 3) {
+        return (false);
+    } else if (!value.match(emailRegex)) {
         return (false);
     }
     return (true);
 }
 
 function check_user_pattern(value) {
-    const userRegex = new RegExp("^[0-9a-zA-Z-]+$");
+    const userRegex = new RegExp("^[0-9a-zA-Z]+$");
 
-    if (!value.match(userRegex)) {
-        swal({
-            type: 'error',
-            title: value + ' is not a valid user',
-            html: 'Please only use <b>letters</b>, <b>numbers</b> and <b>hyphen</b>',
-        });
+    if (value.length === 0) {
+        return (false);
+    } else if (value.length > 15 || value.length < 2) {
+        return (false);
+    } else if (!value.match(userRegex)) {
         return (false);
     }
     return (true);
@@ -125,12 +69,11 @@ function check_user_pattern(value) {
 function check_password_pattern(value) {
     const passwordRegex = new RegExp("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})");
 
-    if (!value.match(passwordRegex)) {
-        swal({
-            type: 'error',
-            title: 'Your password is not a valid',
-            html: 'Your password must contain a <b>number</b>, a <b>capital</b> letter and a <b>minimal</b> letter',
-        });
+    if (value.length === 0) {
+        return (false);
+    } else if (value.length < 6 || value.length > 20) {
+        return (false);
+    } else if (!value.match(passwordRegex)) {
         return (false);
     }
     return (true);
@@ -138,41 +81,35 @@ function check_password_pattern(value) {
 
 function check_password_match(password1, password2) {
     if (password1 !== password2) {
-        swal({
-            type: 'error',
-            title: 'Your passwords do not match',
-        });
         return (false);
-    } else if (password1.length === 0|| password2.length === 0) {
-        swal({
-            type: 'error',
-            title: 'Your must set a password !',
-        });
+    } else if (password1.length === 0 || password2.length === 0) {
         return (false);
     } else {
         return (true);
     }
 }
 
-document.getElementById("sign_up_email").addEventListener("focusout", function (socket) {
+// ============ SIGN UP EVENTS ===========
 
-    if (check_email_length(this.value) && check_email_pattern(this.value)) {
-        // CHECK_EMAIL_VALIDITY ON DB with SOCKET.IO
-        this.style.borderColor = null;
-        this.style.borderStyle = null;
+document.getElementById("sign_up_email").addEventListener("focusout", function () {
+
+    if (check_email_pattern(this.value)) {
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
+        socket.emit('focusOutEmailSignUp', this.value);
     }
     else {
         this.style.borderColor = "red";
         this.style.borderStyle = "inset";
     }
+
 });
 
-document.getElementById("sign_up_user").addEventListener("focusout", function (socket) {
+document.getElementById("sign_up_user").addEventListener("focusout", function () {
 
-    if (check_user_length(this.value) && check_user_pattern(this.value)) {
-        // CHECK_User_VALIDITY ON DB with SOCKET.IO
-        this.style.borderColor = null;
-        this.style.borderStyle = null;
+    if (check_user_pattern(this.value)) {
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
     }
     else {
         this.style.borderColor = "red";
@@ -182,9 +119,9 @@ document.getElementById("sign_up_user").addEventListener("focusout", function (s
 
 document.getElementById("sign_up_password").addEventListener("focusout", function () {
 
-    if (check_password_length(this.value) && check_password_pattern(this.value)) {
-        this.style.borderColor = null;
-        this.style.borderStyle = null;
+    if (check_password_pattern(this.value)) {
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
     }
     else {
         this.style.borderColor = "red";
@@ -197,19 +134,23 @@ document.getElementById("sign_up_confirm_password").addEventListener("focusout",
     let password = document.getElementById("sign_up_password").value;
 
     if (check_password_match(this.value, password)) {
-        this.style.borderColor = null;
-        this.style.borderStyle = null;
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
     } else {
         this.style.borderColor = "red";
         this.style.borderStyle = "inset";
     }
 });
 
+// ============ /SIGN UP EVENTS ===========
+
+// ============ LOGIN EVENTS ===========
+
 document.getElementById("login_password").addEventListener("focusout", function () {
 
-    if (check_password_length(this.value) && check_password_pattern(this.value)) {
-        this.style.borderColor = null;
-        this.style.borderStyle = null;
+    if (check_password_pattern(this.value)) {
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
     }
     else {
         this.style.borderColor = "red";
@@ -217,18 +158,22 @@ document.getElementById("login_password").addEventListener("focusout", function 
     }
 });
 
-document.getElementById("login_email").addEventListener("focusout", function (socket) {
+document.getElementById("login_email").addEventListener("focusout", function () {
 
-    if (check_email_length(this.value) && check_email_pattern(this.value)) {
-        // CHECK_EMAIL_VALIDITY ON DB with SOCKET.IO
-        this.style.borderColor = null;
-        this.style.borderStyle = null;
+    if (check_email_pattern(this.value)) {
+        socket.emit('focusOutEmailLogIn', this.value);
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
     }
     else {
         this.style.borderColor = "red";
         this.style.borderStyle = "inset";
     }
 });
+
+// ============ /LOGIN EVENTS ===========
+
+// ============= BUTTONS =============
 
 document.getElementById("subscribeButton").addEventListener("click", function () {
     let email = document.getElementById("sign_up_email").value;
@@ -236,9 +181,9 @@ document.getElementById("subscribeButton").addEventListener("click", function ()
     let password = document.getElementById("sign_up_password").value;
     let confirm_password = document.getElementById("sign_up_confirm_password").value;
 
-    if (check_email_pattern(email) && check_email_length(email) &&
-        check_user_pattern(user) && check_user_length(user) &&
-        check_password_length(password) && check_password_length(password) &&
+    if (check_email_pattern(email) &&
+        check_user_pattern(user) &&
+        check_password_pattern(password) &&
         check_password_match(password, confirm_password)) {
 
         socket.emit("subscribe", {
@@ -247,10 +192,37 @@ document.getElementById("subscribeButton").addEventListener("click", function ()
             password: password,
             confirm_password: confirm_password
         });
-    } else {
+
+    } else if (!check_email_pattern(email)) {
+        document.getElementById("sign_up_email").style.borderColor = "red";
+        document.getElementById("sign_up_email").style.borderStyle = "inset";
         swal({
             type: 'error',
-            title: 'You must fill each fields !',
+            title: '"' + email + '" is not a valid email',
+            html: 'Please use a correct email syntax: <b>`exemple@domain.com`</b>',
+        });
+    } else if (!check_user_pattern(user)) {
+        document.getElementById("sign_up_user").style.borderColor = "red";
+        document.getElementById("sign_up_user").style.borderStyle = "inset";
+        swal({
+            type: 'error',
+            title: '"' + user + '" is not a valid username',
+            html: 'Your username must contain between <b>2</b> and <b>15</b> characters with <b>alphabet</b> and <b>numbers</b> only.'
+        });
+    } else if (!check_password_pattern(password)) {
+        document.getElementById("sign_up_password").style.borderColor = "red";
+        document.getElementById("sign_up_password").style.borderStyle = "inset";
+        swal({
+            type: 'error',
+            title: 'Your password is not valid',
+            html: 'Your password must contain between <b>6</b> and <b>20 characters<b/> with a <b>number</b>, a <b>capital</b> letter and a <b>minimal</b> letter'
+        });
+    } else if (!check_password_match(password, confirm_password)) {
+        document.getElementById("sign_up_confirm_password").style.borderColor = "red";
+        document.getElementById("sign_up_confirm_password").style.borderStyle = "inset";
+        swal({
+            type: 'error',
+            title: 'Your passwords do not match !'
         });
     }
 });
@@ -259,17 +231,41 @@ document.getElementById("loginButton").addEventListener("click", function () {
     let email = document.getElementById("login_email").value;
     let password = document.getElementById("login_password").value;
 
-    if (check_email_pattern(email) && check_email_length(email) &&
-        check_password_length(password) && check_password_length(password)) {
+    if (check_email_pattern(email) && check_password_pattern(password)) {
 
         socket.emit("login", {
             email: email,
             password: password,
         });
-    } else {
+    } else if (!check_email_pattern(email)) {
         swal({
             type: 'error',
-            title: 'You must fill each fields !',
+            title: '"' + email + '" is not a valid email',
+            html: 'Please use a correct email syntax: <b>`exemple@domain.com`</b>',
+        });
+    } else if (!check_password_pattern(password)) {
+        swal({
+            type: 'error',
+            title: 'Your password is not valid',
+            html: 'Your password must contain between <b>6</b> and <b>20 characters<b/> with a <b>number</b>, a <b>capital</b> letter and a <b>minimal</b> letter'
         });
     }
 });
+
+// ============= /BUTTONS =============
+
+// ============ SOCKET EVENTS =============
+
+socket.on('focusOutEmailSignUpFalse', function (email) {
+    document.getElementById("sign_up_email").style.borderColor = "red";
+    document.getElementById("sign_up_email").style.borderStyle = "inset";
+
+    swal({
+        type: 'error',
+        title: 'Email already existed',
+        text: email + " is already taken !"
+    });
+
+});
+
+// ============ /SOCKET EVENTS =============

@@ -189,10 +189,15 @@ eval $(docker-machine env Matcha)
 5. Execute the [docker-compose](https://docs.docker.com/compose/) file in the Docker folder
 
 ```bash
-docker-compose up --build
+docker-compose up -e COMPOSE_TLS_VERSION=TLSv1_2 --build 
 ```
 
-6. Here we go ! You can now visit [Matcha](http://192.168.99.100:8080) !
+6. Start the node server locate in Matcha/app/config/server.js
+```bash
+node server.js
+```
+
+7. Here we go ! You can now visit [Matcha](http://127.0.0.1:8080) !
 
 ## Difficulty
 
