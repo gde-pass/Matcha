@@ -1,6 +1,6 @@
 "use strict";
 
-function db_init_table_user(pool) {
+function DbInitTableUser(pool) {
 
     const sql = "CREATE TABLE IF NOT EXISTS Users (" +
         "  `user_id` INT UNSIGNED  NOT NULL AUTO_INCREMENT," +
@@ -20,16 +20,16 @@ function db_init_table_user(pool) {
 }
 
 
-function db_init_tables(pool, hostSQL, portSQL) {
+function DbInitTables(pool, hostSQL, portSQL) {
 
-    pool.query('SELECT 1', function (err) {
+    pool.query("SELECT 1", function (err) {
         if (err) throw err;
         console.log("Connected to the server mysql at http://%s:%s !", hostSQL, portSQL);
 
-        db_init_table_user(pool);
+        DbInitTableUser(pool);
     });
 }
 
 module.exports = {
-    db_init_tables: db_init_tables
+    DbInitTables: DbInitTables
 };

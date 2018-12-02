@@ -1,36 +1,36 @@
-const socket = io.connect('http://localhost:8080');
+const socket = io.connect("http://localhost:8080");
 
 // ============ FRONT EVENTS ===========
 
 function cambiar_login() {
-    document.querySelector('.cont_forms').className = "cont_forms cont_forms_active_login";
-    document.querySelector('.cont_form_login').style.display = "block";
-    document.querySelector('.cont_form_sign_up').style.opacity = "0";
+    document.querySelector(".cont_forms").className = "cont_forms cont_forms_active_login";
+    document.querySelector(".cont_form_login").style.display = "block";
+    document.querySelector(".cont_form_sign_up").style.opacity = "0";
 
-    setTimeout(function(){  document.querySelector('.cont_form_login').style.opacity = "1"; },400);
+    setTimeout(function(){  document.querySelector(".cont_form_login").style.opacity = "1"; },400);
 
     setTimeout(function(){
-        document.querySelector('.cont_form_sign_up').style.display = "none";
+        document.querySelector(".cont_form_sign_up").style.display = "none";
     },200);
 }
 
 function cambiar_sign_up() {
-    document.querySelector('.cont_forms').className = "cont_forms cont_forms_active_sign_up";
-    document.querySelector('.cont_form_sign_up').style.display = "block";
-    document.querySelector('.cont_form_login').style.opacity = "0";
+    document.querySelector(".cont_forms").className = "cont_forms cont_forms_active_sign_up";
+    document.querySelector(".cont_form_sign_up").style.display = "block";
+    document.querySelector(".cont_form_login").style.opacity = "0";
 
-    setTimeout(function(){  document.querySelector('.cont_form_sign_up').style.opacity = "1";
+    setTimeout(function(){  document.querySelector(".cont_form_sign_up").style.opacity = "1";
     },100);
 
-    setTimeout(function(){   document.querySelector('.cont_form_login').style.display = "none";
+    setTimeout(function(){   document.querySelector(".cont_form_login").style.display = "none";
     },400);
 }
 
 function eventFire(el, etype){
     if (el.fireEvent) {
-         el.fireEvent('on' + etype);
+         el.fireEvent("on" + etype);
     } else {
-        let evObj = document.createEvent('Events');
+        let evObj = document.createEvent("Events");
         evObj.initEvent(etype, true, false);
         el.dispatchEvent(evObj);
     }
@@ -40,7 +40,10 @@ function eventFire(el, etype){
 
 // =========== CHECK FUNCTIONS ===========
 
-function check_email_pattern(value) {
+/**
+ * @return {boolean}
+ */
+function CheckEmailPattern(value) {
     const emailRegex = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
 
     if (value.length === 0) {
@@ -53,7 +56,10 @@ function check_email_pattern(value) {
     return (true);
 }
 
-function check_user_pattern(value) {
+/**
+ * @return {boolean}
+ */
+function CheckUserPattern(value) {
     const userRegex = new RegExp("^[0-9a-zA-Z]+$");
 
     if (value.length === 0) {
@@ -66,7 +72,10 @@ function check_user_pattern(value) {
     return (true);
 }
 
-function check_password_pattern(value) {
+/**
+ * @return {boolean}
+ */
+function CheckPasswordPattern(value) {
     const passwordRegex = new RegExp("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})");
 
     if (value.length === 0) {
@@ -79,7 +88,10 @@ function check_password_pattern(value) {
     return (true);
 }
 
-function check_password_match(password1, password2) {
+/**
+ * @return {boolean}
+ */
+function CheckPasswordMatch(password1, password2) {
     if (password1 !== password2) {
         return (false);
     } else if (password1.length === 0 || password2.length === 0) {
@@ -93,10 +105,10 @@ function check_password_match(password1, password2) {
 
 document.getElementById("sign_up_email").addEventListener("focusout", function () {
 
-    if (check_email_pattern(this.value)) {
+    if (CheckEmailPattern(this.value)) {
         this.style.borderColor = "green";
         this.style.borderStyle = "solid";
-        socket.emit('focusOutEmailSignUp', this.value);
+        socket.emit("focusOutEmailSignUp", this.value);
     }
     else {
         this.style.borderColor = "red";
@@ -107,7 +119,7 @@ document.getElementById("sign_up_email").addEventListener("focusout", function (
 
 document.getElementById("sign_up_user").addEventListener("focusout", function () {
 
-    if (check_user_pattern(this.value)) {
+    if (CheckUserPattern(this.value)) {
         this.style.borderColor = "green";
         this.style.borderStyle = "solid";
     }
@@ -119,7 +131,7 @@ document.getElementById("sign_up_user").addEventListener("focusout", function ()
 
 document.getElementById("sign_up_password").addEventListener("focusout", function () {
 
-    if (check_password_pattern(this.value)) {
+    if (CheckPasswordPattern(this.value)) {
         this.style.borderColor = "green";
         this.style.borderStyle = "solid";
     }
@@ -133,7 +145,7 @@ document.getElementById("sign_up_confirm_password").addEventListener("focusout",
 
     let password = document.getElementById("sign_up_password").value;
 
-    if (check_password_match(this.value, password)) {
+    if (CheckPasswordMatch(this.value, password)) {
         this.style.borderColor = "green";
         this.style.borderStyle = "solid";
     } else {
@@ -148,7 +160,7 @@ document.getElementById("sign_up_confirm_password").addEventListener("focusout",
 
 document.getElementById("login_password").addEventListener("focusout", function () {
 
-    if (check_password_pattern(this.value)) {
+    if (CheckPasswordPattern(this.value)) {
         this.style.borderColor = "green";
         this.style.borderStyle = "solid";
     }
@@ -160,8 +172,8 @@ document.getElementById("login_password").addEventListener("focusout", function 
 
 document.getElementById("login_email").addEventListener("focusout", function () {
 
-    if (check_email_pattern(this.value)) {
-        socket.emit('focusOutEmailLogIn', this.value);
+    if (CheckEmailPattern(this.value)) {
+        socket.emit("focusOutEmailLogIn", this.value);
         this.style.borderColor = "green";
         this.style.borderStyle = "solid";
     }
@@ -181,10 +193,10 @@ document.getElementById("subscribeButton").addEventListener("click", function ()
     let password = document.getElementById("sign_up_password").value;
     let confirm_password = document.getElementById("sign_up_confirm_password").value;
 
-    if (check_email_pattern(email) &&
-        check_user_pattern(user) &&
-        check_password_pattern(password) &&
-        check_password_match(password, confirm_password)) {
+    if (CheckEmailPattern(email) &&
+        CheckUserPattern(user) &&
+        CheckPasswordPattern(password) &&
+        CheckPasswordMatch(password, confirm_password)) {
 
         socket.emit("subscribe", {
             email: email,
@@ -193,36 +205,36 @@ document.getElementById("subscribeButton").addEventListener("click", function ()
             confirm_password: confirm_password
         });
 
-    } else if (!check_email_pattern(email)) {
+    } else if (!CheckEmailPattern(email)) {
         document.getElementById("sign_up_email").style.borderColor = "red";
         document.getElementById("sign_up_email").style.borderStyle = "inset";
         swal({
-            type: 'error',
-            title: '"' + email + '" is not a valid email',
-            html: 'Please use a correct email syntax: <b>`exemple@domain.com`</b>',
+            type: "error",
+            title: "`" + email + "` is not a valid email",
+            html: "Please use a correct email syntax: <b>`exemple@domain.com`</b>",
         });
-    } else if (!check_user_pattern(user)) {
+    } else if (!CheckUserPattern(user)) {
         document.getElementById("sign_up_user").style.borderColor = "red";
         document.getElementById("sign_up_user").style.borderStyle = "inset";
         swal({
-            type: 'error',
-            title: '"' + user + '" is not a valid username',
-            html: 'Your username must contain between <b>2</b> and <b>15</b> characters with <b>alphabet</b> and <b>numbers</b> only.'
+            type: "error",
+            title: "`" + user + "` is not a valid username",
+            html: "Your username must contain between <b>2</b> and <b>15</b> characters with <b>alphabet</b> and <b>numbers</b> only."
         });
-    } else if (!check_password_pattern(password)) {
+    } else if (!CheckPasswordPattern(password)) {
         document.getElementById("sign_up_password").style.borderColor = "red";
         document.getElementById("sign_up_password").style.borderStyle = "inset";
         swal({
-            type: 'error',
-            title: 'Your password is not valid',
-            html: 'Your password must contain between <b>6</b> and <b>20 characters<b/> with a <b>number</b>, a <b>capital</b> letter and a <b>minimal</b> letter'
+            type: "error",
+            title: "Your password is not valid",
+            html: "Your password must contain between <b>6</b> and <b>20 characters<b/> with a <b>number</b>, a <b>capital</b> letter and a <b>minimal</b> letter"
         });
-    } else if (!check_password_match(password, confirm_password)) {
+    } else if (!CheckPasswordMatch(password, confirm_password)) {
         document.getElementById("sign_up_confirm_password").style.borderColor = "red";
         document.getElementById("sign_up_confirm_password").style.borderStyle = "inset";
         swal({
-            type: 'error',
-            title: 'Your passwords do not match !'
+            type: "error",
+            title: "Your passwords do not match !"
         });
     }
 });
@@ -231,23 +243,23 @@ document.getElementById("loginButton").addEventListener("click", function () {
     let email = document.getElementById("login_email").value;
     let password = document.getElementById("login_password").value;
 
-    if (check_email_pattern(email) && check_password_pattern(password)) {
+    if (CheckEmailPattern(email) && CheckPasswordPattern(password)) {
 
         socket.emit("login", {
             email: email,
             password: password,
         });
-    } else if (!check_email_pattern(email)) {
+    } else if (!CheckEmailPattern(email)) {
         swal({
-            type: 'error',
-            title: '"' + email + '" is not a valid email',
-            html: 'Please use a correct email syntax: <b>`exemple@domain.com`</b>',
+            type: "error",
+            title: "`" + email + "` is not a valid email",
+            html: "Please use a correct email syntax: <b>`exemple@domain.com`</b>",
         });
-    } else if (!check_password_pattern(password)) {
+    } else if (!CheckPasswordPattern(password)) {
         swal({
-            type: 'error',
-            title: 'Your password is not valid',
-            html: 'Your password must contain between <b>6</b> and <b>20 characters<b/> with a <b>number</b>, a <b>capital</b> letter and a <b>minimal</b> letter'
+            type: "error",
+            title: "Your password is not valid",
+            html: "Your password must contain between <b>6</b> and <b>20 characters<b/> with a <b>number</b>, a <b>capital</b> letter and a <b>minimal</b> letter"
         });
     }
 });
@@ -256,13 +268,13 @@ document.getElementById("loginButton").addEventListener("click", function () {
 
 // ============ SOCKET EVENTS =============
 
-socket.on('focusOutEmailSignUpFalse', function (email) {
+socket.on("focusOutEmailSignUpFalse", function (email) {
     document.getElementById("sign_up_email").style.borderColor = "red";
     document.getElementById("sign_up_email").style.borderStyle = "inset";
 
     swal({
-        type: 'error',
-        title: 'Email already existed',
+        type: "error",
+        title: "Email already existed",
         text: email + " is already taken !"
     });
 
