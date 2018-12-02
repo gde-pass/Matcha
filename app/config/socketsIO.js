@@ -23,9 +23,9 @@ module.exports = function(io)
         socket.on("focusOutEmailSignUp", async function (email) {
 
             if (validator.isEmail(email) && !validator.isEmpty(email) &&
-                validator.isLowercase(email) && check.CheckEmailPattern(email)) {
+                validator.isLowercase(email) && check.checkEmailPattern(email)) {
 
-                if (await check.CheckEmailValidity(email, db.pool) === false) {
+                if (await check.checkEmailValidity(email, db.pool) === false) {
                     socket.emit("focusOutEmailSignUpFalse", email);
                 }
             }

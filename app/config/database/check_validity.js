@@ -3,7 +3,7 @@
 /**
  * @return {boolean}
  */
-function CheckEmailPattern(email) {
+function checkEmailPattern(email) {
     const emailRegex = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
 
     if (!email.match(emailRegex) || email.length > 254 || email.length < 3) {
@@ -12,7 +12,7 @@ function CheckEmailPattern(email) {
     return (true);
 }
 
-// function CheckUserPattern(user) {
+// function checkUserPattern(user) {
 //     const userRegex = new RegExp("^[0-9a-zA-Z]+$");
 //
 //     if (!user.match(userRegex) || user.length > 15 || user.length < 2) {
@@ -24,7 +24,7 @@ function CheckEmailPattern(email) {
 /**
  * @return {boolean}
  */
-async function CheckEmailValidity(email, pool) {
+async function checkEmailValidity(email, pool) {
 
     const util = require("util");
     let sql = "SELECT `email` FROM Users WHERE `email`= ?;";
@@ -44,6 +44,6 @@ async function CheckEmailValidity(email, pool) {
 }
 
 module.exports = {
-    CheckEmailValidity: CheckEmailValidity,
-    CheckEmailPattern: CheckEmailPattern,
+    checkEmailValidity: checkEmailValidity,
+    checkEmailPattern: checkEmailPattern,
 };

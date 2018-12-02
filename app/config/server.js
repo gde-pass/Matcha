@@ -25,8 +25,8 @@ const pool = mysql.createPool({
     acquireTimeout: 10000
 });
 
-const init_db = require("./database/init.js");
-init_db.DbInitTables(pool, hostSQL, portSQL);
+const initDb = require("./database/init.js");
+initDb.dbInitTables(pool, hostSQL, portSQL);
 // --------- \\
 
 const io = require("socket.io").listen(app.listen(portAPP, hostAPP, function (err) {

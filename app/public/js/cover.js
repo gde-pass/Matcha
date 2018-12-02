@@ -1,5 +1,5 @@
-document.getElementById("clickmoi").addEventListener("click", ClickOnCover);
-function ClickOnCover() {
+document.getElementById("clickmoi").addEventListener("click", clickOnCover);
+function clickOnCover() {
     document.getElementById("clickmoi").hidden = true;
     document.getElementById("logmoi").hidden = false;
     eventFire(document.getElementById("initBT"), "click");

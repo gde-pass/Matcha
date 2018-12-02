@@ -20,7 +20,7 @@ function DbInitTableUser(pool) {
 }
 
 
-function DbInitTables(pool, hostSQL, portSQL) {
+function dbInitTables(pool, hostSQL, portSQL) {
 
     pool.query("SELECT 1", function (err) {
         if (err) throw err;
@@ -31,5 +31,5 @@ function DbInitTables(pool, hostSQL, portSQL) {
 }
 
 module.exports = {
-    DbInitTables: DbInitTables
+    dbInitTables: dbInitTables
 };
