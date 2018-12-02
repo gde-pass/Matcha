@@ -1,5 +1,7 @@
 # Matcha
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/806e5df34d2c4ca6bac52a06b0b54bbd)](https://app.codacy.com/app/gde-pass/Matcha?utm_source=github.com&utm_medium=referral&utm_content=gde-pass/Matcha&utm_campaign=Badge_Grade_Dashboard)
+
 ## Introduction
 
 This project is about creating a dating website.
