@@ -46,14 +46,12 @@ function eventFire(el, etype) {
 function checkEmailPattern(value) {
     const emailRegex = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
 
-    if (value.length === 0) {
+    if (value.length === 0 || value.length > 254 ||
+        value.length < 3 || !value.match(emailRegex)) {
         return (false);
-    } else if (value.length > 254 || value.length < 3) {
-        return (false);
-    } else if (!value.match(emailRegex)) {
-        return (false);
+    } else {
+        return (true);
     }
-    return (true);
 }
 
 /**
@@ -62,14 +60,12 @@ function checkEmailPattern(value) {
 function checkUserPattern(value) {
     const userRegex = new RegExp("^[0-9a-zA-Z]+$");
 
-    if (value.length === 0) {
+    if (value.length === 0 || value.length > 15 ||
+        value.length < 2 || !value.match(userRegex)) {
         return (false);
-    } else if (value.length > 15 || value.length < 2) {
-        return (false);
-    } else if (!value.match(userRegex)) {
-        return (false);
+    } else {
+        return (true);
     }
-    return (true);
 }
 
 /**
@@ -78,23 +74,19 @@ function checkUserPattern(value) {
 function checkPasswordPattern(value) {
     const passwordRegex = new RegExp("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})");
 
-    if (value.length === 0) {
+    if (value.length === 0 || value.length < 6 ||
+        value.length > 20 || !value.match(passwordRegex)) {
         return (false);
-    } else if (value.length < 6 || value.length > 20) {
-        return (false);
-    } else if (!value.match(passwordRegex)) {
-        return (false);
+    } else {
+        return (true);
     }
-    return (true);
 }
 
 /**
  * @return {boolean}
  */
 function checkPasswordMatch(password1, password2) {
-    if (password1 !== password2) {
-        return (false);
-    } else if (password1.length === 0 || password2.length === 0) {
+    if (password1 !== password2 || password1.length === 0 || password2.length === 0) {
         return (false);
     } else {
         return (true);
@@ -191,18 +183,18 @@ document.getElementById("subscribeButton").addEventListener("click", function ()
     let email = document.getElementById("sign_up_email").value;
     let user = document.getElementById("sign_up_user").value;
     let password = document.getElementById("sign_up_password").value;
-    let confirm_password = document.getElementById("sign_up_confirm_password").value;
+    let confirmPassword = document.getElementById("sign_up_confirm_password").value;
 
     if (checkEmailPattern(email) &&
         checkUserPattern(user) &&
         checkPasswordPattern(password) &&
-        checkPasswordMatch(password, confirm_password)) {
+        checkPasswordMatch(password, confirmPassword)) {
 
         socket.emit("subscribe", {
             email: email,
             user: user,
             password: password,
-            confirm_password: confirm_password
+            confirmPassword: confirmPassword
         });
 
     } else if (!checkEmailPattern(email)) {
@@ -229,7 +221,7 @@ document.getElementById("subscribeButton").addEventListener("click", function ()
             title: "Your password is not valid",
             html: "Your password must contain between <b>6</b> and <b>20 characters<b/> with a <b>number</b>, a <b>capital</b> letter and a <b>minimal</b> letter"
         });
-    } else if (!checkPasswordMatch(password, confirm_password)) {
+    } else if (!checkPasswordMatch(password, confirmPassword)) {
         document.getElementById("sign_up_confirm_password").style.borderColor = "red";
         document.getElementById("sign_up_confirm_password").style.borderStyle = "inset";
         swal({
