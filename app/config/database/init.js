@@ -1,6 +1,6 @@
 "use strict";
 
-function DbInitTableUser(pool) {
+function dbInitTableUser(pool) {
 
     const sql = "CREATE TABLE IF NOT EXISTS Users (" +
         "  `user_id` INT UNSIGNED  NOT NULL AUTO_INCREMENT," +
@@ -8,7 +8,7 @@ function DbInitTableUser(pool) {
         "  `first_name` VARCHAR(255) NOT NULL," +
         "  `last_name` VARCHAR(255) NOT NULL," +
         "  `display_name` VARCHAR(15) NOT NULL," +
-        "  `password` CHAR(128) NOT NULL," +
+        "  `password` VARCHAR(60) NOT NULL," +
         "  `checked` BOOLEAN NOT NULL DEFAULT FALSE," +
         "  PRIMARY KEY (user_id)," +
         "  UNIQUE INDEX (email)" +
@@ -26,7 +26,7 @@ function dbInitTables(pool, hostSQL, portSQL) {
         if (err) throw err;
         console.log("Connected to the server mysql at http://%s:%s !", hostSQL, portSQL);
 
-        DbInitTableUser(pool);
+        dbInitTableUser(pool);
     });
 }
 

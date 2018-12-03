@@ -272,4 +272,13 @@ socket.on("focusOutEmailSignUpFalse", function (email) {
 
 });
 
+socket.on("subscribeError", function () {
+    swal({
+        type: "error",
+        title: "Oops ...",
+        text: "A error occurred"
+    });
+});
+
+
 // ============ /SOCKET EVENTS =============

@@ -2,18 +2,20 @@
 
 const check = require("./database/check_validity.js");
 const db = require("./server.js");
+const dbUser = require("./database/user.js");
 const validator = require("validator");
 
 module.exports = function(io)
 {
     io.on("connection", function (socket)
     {
-        socket.on("subscribe", function (data) {
-            console.log(data);
-            // if (check.CheckNewUser(data)) {
-            //     let sql = "";
-            //     db.pool.query(sql, []);
-            // }
+        socket.on("subscribe", async function (data) {
+            if (await check.CheckNewUser(data, db.pool)) {
+                dbUser.dbInsertNewUser(data);
+            } else {
+                console.log("error somewhere");
+                socket.emit("subscribeError");
+            }
         });
 
         socket.on("login", function (data) {
