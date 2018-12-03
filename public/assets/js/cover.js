@@ -5,5 +5,3 @@ function clickOnCover() {
     eventFire(document.getElementById("initBT"), "click");
     document.body.style.cursor = "default";
 }
-
-

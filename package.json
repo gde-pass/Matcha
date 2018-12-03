@@ -2,7 +2,10 @@
   "name": "matcha",
   "version": "0.0.3",
   "description": "This project is about creating a dating website.",
-  "main": "app/config/server.js",
+  "main": "app/server.js",
+  "scripts": {
+    "start": "nodemon -e 'js' server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gde-pass/Matcha.git"
@@ -24,9 +27,13 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
     "fs": "0.0.1-security",
     "mysql": "^2.16.0",
+    "nodemon": "^1.18.7",
+    "path": "^0.12.7",
     "socket.io": "^2.1.1",
     "validator": "^10.9.0"
   }

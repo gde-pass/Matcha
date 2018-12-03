@@ -1,16 +1,16 @@
 "use strict";
 
-const check = require("./database/check_validity.js");
-const db = require("./server.js");
-const dbUser = require("./database/user.js");
+const check = require("../database/check_validity.js");
 const validator = require("validator");
+const dbUser = require("../database/user.js");
+let db = require('../database/database');
 
 module.exports = function(io)
 {
     io.on("connection", function (socket)
     {
         socket.on("subscribe", async function (data) {
-            if (await check.CheckNewUser(data, db.pool)) {
+            if (await check.CheckNewUser(data, db)) {
                 dbUser.dbInsertNewUser(data);
             } else {
                 console.log("error somewhere");
@@ -27,7 +27,7 @@ module.exports = function(io)
             if (validator.isEmail(email) && !validator.isEmpty(email) &&
                 validator.isLowercase(email) && check.checkEmailPattern(email)) {
 
-                if (await check.checkEmailValidity(email, db.pool) === false) {
+                if (await check.checkEmailValidity(email, db) === false) {
                     socket.emit("focusOutEmailSignUpFalse", email);
                 }
             }

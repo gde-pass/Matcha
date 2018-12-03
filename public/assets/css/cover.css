@@ -5,7 +5,7 @@ body, html {
 }
 .bgimg {
     min-height: 100%;
-    background: url('../assets/img/cover.jpg') center;
+    background: url('../img/cover.jpg') center;
     background-size: cover;
 }
 

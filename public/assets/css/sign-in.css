@@ -15,7 +15,7 @@
     height: 100%;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfd8dc', endColorstr='#b0bec5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     min-height: 100%;
-    background: url('../assets/img/cover.jpg') center;
+    background: url('../img/cover.jpg') center;
     background-size: cover;
 }
 

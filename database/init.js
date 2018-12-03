@@ -1,6 +1,6 @@
 "use strict";
 
-function dbInitTableUser(pool) {
+function dbInitTableUser(conn) {
 
     const sql = "CREATE TABLE IF NOT EXISTS Users (" +
         "  `user_id` INT UNSIGNED  NOT NULL AUTO_INCREMENT," +
@@ -14,19 +14,19 @@ function dbInitTableUser(pool) {
         "  UNIQUE INDEX (email)" +
         ") ENGINE = InnoDB;";
 
-    pool.query(sql, function (err) {
+    conn.query(sql, function (err) {
         if (err) throw err;
     });
 }
 
 
-function dbInitTables(pool, hostSQL, portSQL) {
+function dbInitTables(conn, hostSQL, portSQL) {
 
-    pool.query("SELECT 1", function (err) {
+    conn.query("SELECT 1", function (err) {
         if (err) throw err;
         console.log("Connected to the server mysql at http://%s:%s !", hostSQL, portSQL);
 
-        dbInitTableUser(pool);
+        dbInitTableUser(conn);
     });
 }
 

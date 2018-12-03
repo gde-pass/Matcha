@@ -1,11 +1,11 @@
 version: '3'
 services:
-    database:
-        image: mysql:5.5
-        ports:
-            - "3306:3306"
-        command: --max_allowed_packet=32505856
-        environment:
-            - MYSQL_ROOT_PASSWORD=password
-            - MYSQL_DATABASE=Matcha
-            - MYSQL_ALLOW_EMPTY_PASSWORD=no
+  database:
+    image: mysql:5.5
+    ports:
+    - "3306:3306"
+    command: --max_allowed_packet=32505856
+    environment:
+    - MYSQL_ROOT_PASSWORD=password
+    - MYSQL_DATABASE=Matcha
+    - MYSQL_ALLOW_EMPTY_PASSWORD=no
