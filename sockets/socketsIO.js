@@ -22,6 +22,7 @@ module.exports = function(io)
 
         socket.on("login", function (data) {
             let token = jwtUtils.generateTokenForUser(data.email);
+            socket.emit("tokenCreate", token);
             console.log(token);
         });
 
