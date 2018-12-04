@@ -3,6 +3,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require('path');
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
 
 //-----IMPORT LOCAL------------------------------------------------------------------------------------------
 const index = require('./routes/routes');
@@ -24,6 +26,22 @@ app.use(bodyParser.json());
 app.use("/assets", express.static('public/assets'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+let options = {
+    host: '192.168.99.100',
+    port: 3306,
+    user: 'root',
+    password: 'password',
+    database: 'Matcha'
+};
+let sessionStore = new MySQLStore(options);
+app.use(session({
+    secret: 'secret',
+    saveUninitialized :  false,
+    resave: false,
+    store: sessionStore
+    // cookie: {secure: true}
+}));
+
 const io = require("socket.io").listen(app.listen(portAPP, hostAPP, function (err) {
     if (err) throw err;
     console.log("Matcha is running at http://%s:%s !", hostAPP, portAPP);
@@ -31,6 +49,5 @@ const io = require("socket.io").listen(app.listen(portAPP, hostAPP, function (er
 //-----ROUTE-------------------------------------------------------------------------------------------------
 app.use('/', index);
 require("./sockets/socketsIO")(io);
-
 
 

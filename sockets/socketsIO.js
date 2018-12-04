@@ -1,9 +1,11 @@
 "use strict";
-
-const check = require("../database/check_validity.js");
 const validator = require("validator");
+let jwtUtils = require('../utils/jwt.utils');
+const express = require('express');
+
 const dbUser = require("../database/user.js");
 let db = require('../database/database');
+const check = require("../database/check_validity.js");
 
 module.exports = function(io)
 {
@@ -19,7 +21,8 @@ module.exports = function(io)
         });
 
         socket.on("login", function (data) {
-            console.log(data);
+            let token = jwtUtils.generateTokenForUser(data.email);
+            console.log(token);
         });
 
         socket.on("focusOutEmailSignUp", async function (email) {
