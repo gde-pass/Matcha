@@ -1,19 +1,19 @@
-let jwt = require('jsonwebtoken');
-const JWT_SIGN_SECRET ='CleSecretePourLeMatchaJaiPasDideeDeCleSecretAlorsJeMetCa';
+let jwt = require("jsonwebtoken");
+const JWT_SIGN_SECRET ="CleSecretePourLeMatchaJaiPasDideeDeCleSecretAlorsJeMetCa";
 
 module.exports ={
     generateTokenForUser: function (userData) {
         return jwt.sign({
-            type: 'login',
+            type: "login",
             email: userData
         },
         JWT_SIGN_SECRET,
             {
-            expiresIn: '1h'
+            expiresIn: "1h"
             })
     },
      parseAutorization: function (authorization) {
-         return (authorization != null) ? authorization.replace('Bearer ', '') : null;
+         return (authorization != null) ? authorization.replace("Bearer ", "") : null;
      },
      getUserID: function (authorization) {
          let userId = -1;
@@ -23,7 +23,7 @@ module.exports ={
                  let jwtToken = jwt.verify(token, JWT_SIGN_SECRET);
                  if(jwtToken != null){
                      userId = jwtToken.userId;
-                     if(jwtToken.type == undefined){
+                     if(jwtToken.type === undefined){
                          return -1;
                      }
                  }

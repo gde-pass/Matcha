@@ -1,7 +1,7 @@
 "use strict";
 
 const bcrypt = require("bcrypt-nodejs");
-const db = require('./database');
+const db = require("./database");
 
 
 function dbInsertNewUser(newUser) {

@@ -1,10 +1,10 @@
 "use strict";
 const validator = require("validator");
-let jwtUtils = require('../utils/jwt.utils');
-const express = require('express');
+let jwtUtils = require("../utils/jwt.utils");
+const express = require("express");
 
 const dbUser = require("../database/user.js");
-let db = require('../database/database');
+let db = require("../database/database");
 const check = require("../database/check_validity.js");
 
 module.exports = function(io)

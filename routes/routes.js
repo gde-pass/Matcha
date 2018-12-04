@@ -1,16 +1,16 @@
 "use strict";
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
 
     router.get("/", function (req, res) {
-        res.render('index');
+        res.render("index");
         // res.write(fs.readFileSync("js/cover.js"));
         // res.end();
     });
 
     router.get("/email", function (req, res) {
-        res.render('login_signin/email');
+        res.render("login_signin/email");
 
     });
 

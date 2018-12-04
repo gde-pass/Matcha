@@ -1,4 +1,4 @@
-const mysql = require('mysql');
+const mysql = require("mysql");
 
 const portSQL = 3306;
 const hostSQL = "192.168.99.100";
