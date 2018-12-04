@@ -14,6 +14,11 @@ const router = express.Router();
 
     });
 
+router.get("/profil", function (req, res) {
+    res.render('profil');
+
+});
+
     router.use(function(req, res) {
         res.render("404");
     });
