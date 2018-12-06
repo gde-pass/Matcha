@@ -10,7 +10,8 @@ function hideURLbar(){
     window.scrollTo(0,1);
 }
 
-$(window).load(function(){
+
+$(window).on('load', function () {
     $('.flexslider').flexslider({
         animation: "slide",
         start: function(slider){
