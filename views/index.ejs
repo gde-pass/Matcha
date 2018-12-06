@@ -1,88 +1,176 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-    <title>Matcha</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <link rel="stylesheet" href="/assets/css/cover.css">
-    <link rel="stylesheet" href="/assets/css/sign-in.css">
+<title>Matcha Bootstarp Website Template | Home :: w3layouts</title>
+<link href="/assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<link href="/assets/css/style.css" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--webfont-->
+<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<!--dropdown-->
+<script src="../assets/js/jquery-1.11.1.min.js"></script>
+<script src="../assets/js/jquery.easydropdown.js"></script>
+<!-- FlexSlider -->
+<link href="/assets/css/flexslider.css" rel='stylesheet' type='text/css' />
+							  <script defer src="../assets/js/jquery.flexslider.js"></script>
+							  <script type="text/javascript">
+								$(function(){
+								  SyntaxHighlighter.all();
+								});
+								$(window).load(function(){
+								  $('.flexslider').flexslider({
+									animation: "slide",
+									start: function(slider){
+									  $('body').removeClass('loading');
+									}
+								  });
+								});
+							  </script>
+<!-- FlexSlider -->
+<!--Animation-->
+<script src="../assets/js/wow.min.js"></script>
+<link href="/assets/css/animate.css" rel='stylesheet' type='text/css' />
+<script>
+	new WOW().init();
+</script>
 </head>
 <body>
-<!--====== COVER ======-->
-<div id="clickmoi" class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-    <div class="w3-display-topleft w3-padding-large w3-xlarge">
-
-    </div>
-    <div class="w3-display-middle">
-        <h1 class="w3-jumbo w3-animate-top">MATCHA</h1>
-        <img id="logo" src="../assets/img/logo.png">
-        <p class="w3-large w3-center">For the real match !</p>
-    </div>
+<div class="header wow fadeInUp" data-wow-delay="0.4s">
+	<div class='container'>
+		<div class="header_left">
+			<img src="/assets/images/rate.png" alt=""/>
+		</div>
+		<div class="logo">
+			<a href="/"><img src="/assets/images/logo.png" alt=""/>
+				<span>Matcha</span>
+			</a>
+		</div>
+		<div class="header_right">
+			<ul class="header_user_info">
+			  <a class="login" href="login">
+				<li class="user_desc"><span class="m_1">Already user ? </span>Login</li>
+				<i class="user"> </i> 
+				<div class="clearfix"> </div>
+			  </a>
+			  <div class="clearfix"> </div>
+	    	</ul>
+			<a href="register" class="btn1 btn-1 btn1-1b">Sign Up</a>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
 </div>
-<!--====== /COVER ======-->
-<!--====== LOGIN ======-->
-<div class="cotn_principal" id="logmoi" hidden>
-    <div class="cont_centrar">
-
-        <div class="cont_login">
-            <div class="cont_info_log_sign_up">
-                <div class="col_md_login">
-                    <div class="cont_ba_opcitiy">
-
-                        <h2>LOGIN</h2>
-                        <p>Glad to see you again !</p>
-                        <button id="initBT" class="btn_login" onclick="cambiarLogin()">LOGIN</button>
-                    </div>
-                </div>
-                <div class="col_md_sign_up">
-                    <div class="cont_ba_opcitiy">
-
-                        <h2>SIGN UP</h2>
-                        <p>Your match is waiting for you !</p>
-                        <button class="btn_sign_up" onclick="cambiarSignUp()">SIGN UP</button>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="cont_back_info">
-                <div class="cont_img_back_grey">
-                    <img src="../assets/img/background-sign-in.jpg" alt=""/>
-                </div>
-
-            </div>
-
-            <div class="cont_forms">
-                <div class="cont_img_back_">
-                    <img src="../assets/img/background-sign-in.jpg" alt=""/>
-                </div>
-                <div class="cont_form_login">
-                    <h2>LOGIN</h2>
-                    <input type="email" id="login_email" name="email" minlength="3" maxlength="254" placeholder="Email">
-                    <input type="password" id="login_password" name="password" minlength="6" maxlength="20" placeholder="Password">
-                    <button id="loginButton" class="btn_login" onclick="cambiarLogin()">LOGIN</button>
-                </div>
-                <div class="cont_form_sign_up">
-                    <h2>SIGN UP</h2>
-
-                    <input type="email" id="sign_up_email" name="email" minlength="3" maxlength="254" placeholder="Email">
-                    <input type="text" id="sign_up_user" name="user" minlength="2" maxlength="15" placeholder="User">
-                    <input type="password" id="sign_up_password" name="password" minlength="6" maxlength="20" placeholder="Password">
-                    <input type="password" id="sign_up_confirm_password" name="confirm_password" minlength="6" maxlength="20" placeholder="Confirm Password">
-                    <button id="subscribeButton" class="btn_sign_up" onclick="cambiarSignUp()">SIGN UP</button>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
+<div class="banner wow bounceInRight" data-wow-delay="0.4s">
+	<div class="container"> 
+	   <div class="banner_right">
+		   <h2>Find a perfect date</h2>
+		   <h1>Share your perfect moments </h1>
+	   </div>
+	</div>
 </div>
-<!--====== /LOGIN ======-->
-<script src="/assets/js/sweetalert2.all.js"></script>
-<script src="http://localhost:8080/socket.io/socket.io.js" language="JavaScript"></script>
-<script src="/assets/js/cover.js" language="JavaScript"></script>
-<script src="/assets/js/login_signup.js" language="JavaScript"></script>
+<div class="content_bottom">
+	<div class="container">
+	  <div class="box1">
+		<div class="col-md-4 wow fadeInLeft" data-wow-delay="0.4s">
+		  <div class="grid_4"><a href="single">
+			<h4><span class="m_3">Leonardo , </span> Manager-usa</h4>
+			<img src="/assets/images/pic1.jpg" class="img-responsive" alt=""/>
+			<ul class="category_desc">
+			   <li class="cate_head">Based in 1.100 votes</li>
+			   <li class="cate_right">
+			   	 <ul class="list1">
+			   	    <li><i class="heart"> </i></li>
+			   	    <li><i class="heart"> </i></li>
+			   	    <li><i class="heart"> </i></li>
+			   	    <li><i class="heart"> </i></li>
+			   	 </ul>
+			   </li>
+			   <div class="clearfix"> </div>
+			</ul>
+			<h5>Full Profile</h5>
+		</a> </div>
+		</div>
+		<div class="col-md-4 wow fadeInUp" data-wow-delay="0.4s">
+		   <div class="grid_4"><a href="single">
+			<h4><span class="m_3">luke ,</span>engineer-usa</h4>
+			<img src="/assets/images/pic2.jpg" class="img-responsive" alt=""/>
+			<ul class="category_desc">
+			   <li class="cate_head">Based in 956 votes</li>
+			   <li class="cate_right">
+			   	 <ul class="list1">
+			   	   <li><i class="heart"> </i></li>
+			   	   <li><i class="heart"> </i></li>
+			   	   <li><i class="heart"> </i></li>
+			   	 </ul>
+			   </li>
+			   <div class="clearfix"> </div>
+			</ul>
+			<h5>Full Profile</h5>
+		  </a></div>
+	    </div>
+		<div class="col-md-4 wow fadeInRight" data-wow-delay="0.4s">
+		  <div class="grid_4"><a href="single">
+			<h4><span class="m_3">max ,</span>security-usa</h4>
+			<img src="/assets/images/pic3.jpg" class="img-responsive" alt=""/>
+			<ul class="category_desc">
+			   <li class="cate_head">Based in 900 votes</li>
+			   <li class="cate_right">
+			   	 <ul class="list1">
+			   	    <li><i class="heart"> </i></li>
+			   	    <li><i class="heart"> </i></li>
+			   	    <li><i class="heart"> </i></li>
+			   	 </ul>
+			   </li>
+			   <div class="clearfix"> </div>
+			</ul>
+			<h5>Full Profile</h5>
+		  </a></div>
+	    </div>
+		<div class="clearfix"> </div>
+	  </div>
+	  <div class='span1'>
+		  <select class="dropdown" tabindex="10" data-settings='{"wrapperClass":"metro1"}'>
+		    <option value="0">More Profiles</option>	
+			<option value="1">Tincidunt</option>
+			<option value="2">Magna</option>
+			<option value="3">Lectores </option>
+			<option value="4">Insitam</option>
+			<option value="5">Claritatem </option>
+			<option value="5"></option>
+			<option value="5"></option>
+		  </select>
+	  </div>
+	  <div class='clearfix'> </div>
+	  <div class="search wow bounceInUp" data-wow-delay="0.4s">
+   	    <h3>Looking for someone ? </h3>
+   	    <form>
+		 <span>
+		   <div class="search-box">
+		   	<i class="search-icon"> </i>
+		    <input type="text" value="Type something here..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Type something here...';}">
+		   </div>
+		   <input name="submit" type="submit" id="submit" value="Search">
+		 </span>	
+		<div class="clearfix"> </div>
+	    </form>
+      </div>
+   </div>
+</div>
+<div class="footer">
+	<div class="container">
+	    <div class="copy wow fadeInUp" data-wow-delay="0.4s">
+			<p>&copy; 2018 Matcha</p>
+		</div>
+		<div class="social wow fadeInRight" data-wow-delay="0.4s"> 
+			<ul class="footer_social">
+			  <li><a href="#"> <i class="fb"> </i> </a></li>
+			  <li><a href="#"> <i class="tw"> </i> </a></li>
+		   </ul>
+		</div>
+	    <div class='clearfix'> </div>
+	</div>
+</div>
 </body>
-</html>
+</html>		

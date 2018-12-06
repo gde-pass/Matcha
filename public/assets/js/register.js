@@ -1,40 +1,17 @@
 const socket = io.connect("http://localhost:8080");
 
+
 // ============ FRONT EVENTS ===========
 
-function cambiarLogin() {
-    document.querySelector(".cont_forms").className = "cont_forms cont_forms_active_login";
-    document.querySelector(".cont_form_login").style.display = "block";
-    document.querySelector(".cont_form_sign_up").style.opacity = "0";
+addEventListener("load", function() {
+    setTimeout(hideURLbar, 0);
+}, false);
 
-    setTimeout(function () {
-        document.querySelector(".cont_form_login").style.opacity = "1";
-    }, 400);
-
-    setTimeout(function () {
-        document.querySelector(".cont_form_sign_up").style.display = "none";
-    }, 200);
+function hideURLbar(){
+    window.scrollTo(0,1);
 }
 
-function cambiarSignUp() {
-    document.querySelector(".cont_forms").className = "cont_forms cont_forms_active_sign_up";
-    document.querySelector(".cont_form_sign_up").style.display = "block";
-    document.querySelector(".cont_form_login").style.opacity = "0";
-
-    setTimeout(function () {
-        document.querySelector(".cont_form_sign_up").style.opacity = "1";
-    }, 100);
-
-    setTimeout(function () {
-        document.querySelector(".cont_form_login").style.display = "none";
-    }, 400);
-}
-
-function eventFire(el, etype) {
-    let evObj = document.createEvent("Events");
-    evObj.initEvent(etype, true, false);
-    el.dispatchEvent(evObj);
-}
+$('form').submit(false);
 
 // ============ /FRONT EVENTS ===========
 
@@ -93,7 +70,11 @@ function checkPasswordMatch(password1, password2) {
     }
 }
 
+// =========== /CHECK FUNCTIONS ===========
+
+
 // ============ SIGN UP EVENTS ===========
+
 
 document.getElementById("sign_up_email").addEventListener("focusout", function () {
 
@@ -148,35 +129,6 @@ document.getElementById("sign_up_confirm_password").addEventListener("focusout",
 
 // ============ /SIGN UP EVENTS ===========
 
-// ============ LOGIN EVENTS ===========
-
-document.getElementById("login_password").addEventListener("focusout", function () {
-
-    if (checkPasswordPattern(this.value)) {
-        this.style.borderColor = "green";
-        this.style.borderStyle = "solid";
-    }
-    else {
-        this.style.borderColor = "red";
-        this.style.borderStyle = "inset";
-    }
-});
-
-document.getElementById("login_email").addEventListener("focusout", function () {
-
-    if (checkEmailPattern(this.value)) {
-        socket.emit("focusOutEmailLogIn", this.value);
-        this.style.borderColor = "green";
-        this.style.borderStyle = "solid";
-    }
-    else {
-        this.style.borderColor = "red";
-        this.style.borderStyle = "inset";
-    }
-});
-
-// ============ /LOGIN EVENTS ===========
-
 // ============= BUTTONS =============
 
 document.getElementById("subscribeButton").addEventListener("click", function () {
@@ -219,7 +171,7 @@ document.getElementById("subscribeButton").addEventListener("click", function ()
         swal({
             type: "error",
             title: "Your password is not valid",
-            html: "Your password must contain between <b>6</b> and <b>20 characters<b/> with a <b>number</b>, a <b>capital</b> letter and a <b>minimal</b> letter"
+            html: "Your password must contain between <b>6</b> and <b>20 characters</b> with a <b>number</b>, a <b>capital</b> and <b>minimal</b> letter"
         });
     } else if (!checkPasswordMatch(password, confirmPassword)) {
         document.getElementById("sign_up_confirm_password").style.borderColor = "red";
@@ -227,31 +179,6 @@ document.getElementById("subscribeButton").addEventListener("click", function ()
         swal({
             type: "error",
             title: "Your passwords do not match !"
-        });
-    }
-});
-
-document.getElementById("loginButton").addEventListener("click", function () {
-    let email = document.getElementById("login_email").value;
-    let password = document.getElementById("login_password").value;
-
-    if (checkEmailPattern(email) && checkPasswordPattern(password)) {
-
-        socket.emit("login", {
-            email: email,
-            password: password,
-        });
-    } else if (!checkEmailPattern(email)) {
-        swal({
-            type: "error",
-            title: "`" + email + "` is not a valid email",
-            html: "Please use a correct email syntax: <b>`exemple@domain.com`</b>",
-        });
-    } else if (!checkPasswordPattern(password)) {
-        swal({
-            type: "error",
-            title: "Your password is not valid",
-            html: "Your password must contain between <b>6</b> and <b>20 characters<b/> with a <b>number</b>, a <b>capital</b> letter and a <b>minimal</b> letter"
         });
     }
 });

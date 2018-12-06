@@ -14,7 +14,32 @@ const router = express.Router();
 
     });
 
+router.get("/home", function (req, res) {
+    res.render("home");
+
+});
+
+router.get("/profil", function (req, res) {
+    res.render('profil');
+
+});
+
+router.get("/login", function (req, res) {
+    res.render('login');
+
+});
+
+router.get("/register", function (req, res) {
+    res.render('register');
+
+});
+
+router.get("/single", function (req, res) {
+    res.render("single");
+
+});
     router.use(function(req, res) {
         res.render("404");
     });
+    
 module.exports = router;
