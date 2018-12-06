@@ -24,6 +24,7 @@ app.set('view engine', 'ejs');
 //-----MIDDLE WARE-------------------------------------------------------------------------------------------
 app.use(bodyParser.json());
 app.use("/assets", express.static('public/assets'));
+app.use("/node_modules", express.static('node_modules'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 let options = {

@@ -1,7 +1,6 @@
 "use strict";
 const validator = require("validator");
 let jwtUtils = require("../utils/jwt.utils");
-const express = require("express");
 
 const dbUser = require("../database/user.js");
 let db = require("../database/database");

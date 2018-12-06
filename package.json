@@ -34,11 +34,13 @@
     "express-mysql-session": "^2.0.1",
     "express-session": "^1.15.6",
     "fs": "0.0.1-security",
+    "js-cookie": "^2.2.0",
     "jsonwebtoken": "^8.4.0",
     "mysql": "^2.16.0",
     "nodemon": "^1.18.7",
     "path": "^0.12.7",
     "socket.io": "^2.1.1",
+    "sweetalert": "^2.1.2",
     "validator": "^10.9.0"
   }
 }

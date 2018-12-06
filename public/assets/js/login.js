@@ -103,5 +103,8 @@ document.getElementById("loginButton").addEventListener("click", function () {
 // ============= /BUTTONS =============
 
 // ============ SOCKET EVENTS =============
-
+socket.on("tokenCreate", function (token) {
+    Cookies.set('token', token, {expires: 7});
+    alert(Cookies.get('token'));
+});
 // ============ /SOCKET EVENTS =============
