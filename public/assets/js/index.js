@@ -1,3 +1,6 @@
+// ============ FRONT EVENTS ===========
+
+new WOW().init();
 
 addEventListener("load", function() {
     setTimeout(hideURLbar, 0);
@@ -16,4 +19,5 @@ $(window).load(function(){
     });
 });
 
-new WOW().init();
+
+// ============ /FRONT EVENTS ===========
