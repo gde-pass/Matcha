@@ -3,20 +3,8 @@ const express = require("express");
 const router = express.Router();
 
 
-    router.get("/", function (req, res) {
-        res.render("index");
-        // res.write(fs.readFileSync("js/cover.js"));
-        // res.end();
-    });
-
-    router.get("/email", function (req, res) {
-        res.render("login_signin/email");
-
-    });
-
-router.get("/home", function (req, res) {
-    res.render("home");
-
+router.get("/", function (req, res) {
+    res.render("index");
 });
 
 router.get("/profil", function (req, res) {
@@ -38,8 +26,26 @@ router.get("/single", function (req, res) {
     res.render("single");
 
 });
-    router.use(function(req, res) {
-        res.render("404");
-    });
-    
+
+router.get("/about", function (req, res) {
+    res.render("about");
+
+});
+
+router.get("/profiles", function (req, res) {
+    res.render("profiles");
+
+});
+
+
+router.get("/contact", function (req, res) {
+    res.render("contact");
+
+});
+
+
+router.use(function (req, res) {
+    res.render("404");
+});
+
 module.exports = router;
