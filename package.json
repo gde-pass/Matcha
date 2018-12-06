@@ -34,6 +34,7 @@
     "express-mysql-session": "^2.0.1",
     "express-session": "^1.15.6",
     "fs": "0.0.1-security",
+    "jquery": "^3.3.1",
     "js-cookie": "^2.2.0",
     "jsonwebtoken": "^8.4.0",
     "mysql": "^2.16.0",
