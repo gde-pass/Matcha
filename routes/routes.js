@@ -7,14 +7,9 @@ router.get("/", function (req, res) {
     res.render("index");
 });
 
-router.get("/profil", function (req, res) {
-    res.render('profil');
-
-});
-
 router.get("/login", function (req, res) {
+    // console.log(req.get(token));
     res.render('login');
-
 });
 
 router.get("/register", function (req, res) {
@@ -32,20 +27,13 @@ router.get("/about", function (req, res) {
 
 });
 
-router.get("/profiles", function (req, res) {
-    res.render("profiles");
-
-});
-
-
 router.get("/contact", function (req, res) {
     res.render("contact");
 
 });
 
-
-router.use(function (req, res) {
-    res.render("404");
-});
+// router.use(function (req, res) {
+//     res.render("404");
+// });
 
 module.exports = router;

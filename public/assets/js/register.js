@@ -20,6 +20,18 @@ $('form').submit(false);
 /**
  * @return {boolean}
  */
+function checkName(value) {
+    const NameRegex = new RegExp("[A-Za-z]+$");
+
+    if (value.length === 0 || value.length > 254 || !value.match(NameRegex)) {
+        return (false);
+    } else {
+        return (true);
+    }
+}
+/**
+ * @return {boolean}
+ */
 function checkEmailPattern(value) {
     const emailRegex = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
 
@@ -75,6 +87,33 @@ function checkPasswordMatch(password1, password2) {
 
 // ============ SIGN UP EVENTS ===========
 
+document.getElementById("sign_up_first").addEventListener("focusout", function () {
+
+    if (checkName(this.value)) {
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
+        socket.emit("focusOutNameSignUp", this.value);
+    }
+    else {
+        this.style.borderColor = "red";
+        this.style.borderStyle = "inset";
+    }
+
+});
+
+document.getElementById("sign_up_last").addEventListener("focusout", function () {
+
+    if (checkName(this.value)) {
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
+        socket.emit("focusOutNameSignUp", this.value);
+    }
+    else {
+        this.style.borderColor = "red";
+        this.style.borderStyle = "inset";
+    }
+
+});
 
 document.getElementById("sign_up_email").addEventListener("focusout", function () {
 
@@ -136,13 +175,19 @@ document.getElementById("subscribeButton").addEventListener("click", function ()
     let user = document.getElementById("sign_up_user").value;
     let password = document.getElementById("sign_up_password").value;
     let confirmPassword = document.getElementById("sign_up_confirm_password").value;
+    let first_name = document.getElementById("sign_up_first").value;
+    let last_name = document.getElementById("sign_up_last").value;
 
     if (checkEmailPattern(email) &&
         checkUserPattern(user) &&
         checkPasswordPattern(password) &&
-        checkPasswordMatch(password, confirmPassword)) {
+        checkPasswordMatch(password, confirmPassword)&&
+        checkName(first_name) &&
+        checkName(first_name)) {
 
         socket.emit("subscribe", {
+            first_name: first_name,
+            last_name: last_name,
             email: email,
             user: user,
             password: password,
@@ -157,7 +202,23 @@ document.getElementById("subscribeButton").addEventListener("click", function ()
             title: "`" + email + "` is not a valid email",
             html: "Please use a correct email syntax: <b>`exemple@domain.com`</b>",
         });
-    } else if (!checkUserPattern(user)) {
+    } else if (!checkName(first_name)) {
+        document.getElementById("sign_up_first").style.borderColor = "red";
+        document.getElementById("sign_up_first").style.borderStyle = "inset";
+        swal({
+            type: "error",
+            title: ` ${first_name} + is not a valid name`,
+            html: "Please use a correct Name syntax: <b>only alphabetic characters</b>",
+        });
+    }else if (!checkName(last_name)) {
+        document.getElementById("sign_up_last").style.borderColor = "red";
+        document.getElementById("sign_up_last").style.borderStyle = "inset";
+        swal({
+            type: "error",
+            title: ` ${last_name} + is not a valid name`,
+            html: "Please use a correct Name syntax: <b>only alphabetic characters</b>",
+        });
+    }else if (!checkUserPattern(user)) {
         document.getElementById("sign_up_user").style.borderColor = "red";
         document.getElementById("sign_up_user").style.borderStyle = "inset";
         swal({
@@ -207,4 +268,7 @@ socket.on("subscribeError", function () {
     });
 });
 
+socket.on("tokenCreate", function (token) {
+
+});
 // ============ /SOCKET EVENTS =============
