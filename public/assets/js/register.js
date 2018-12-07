@@ -260,7 +260,7 @@ socket.on("focusOutEmailSignUpFalse", function (email) {
 
 });
 
-socket.on("subscribeError", function () {
+socket.on("registerError", function () {
     swal({
         type: "error",
         title: "Oops ...",
