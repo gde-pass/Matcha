@@ -25,9 +25,9 @@ module.exports = function(io)
         });
 
         socket.on("login", function (data) {
-            // let token = jwtUtils.generateTokenForUser(data.email);
-            // socket.emit("tokenLogin", token);
-            // console.log(token);
+            let token = jwtUtils.generateTokenForUser(data.email);
+            socket.emit("tokenLogin", token);
+            console.log(token);
         });
 
         socket.on("parametre", function (data) {

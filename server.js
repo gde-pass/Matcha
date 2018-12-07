@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const path = require('path');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
+var cookieParser = require('cookie-parser');
+
 
 //-----IMPORT LOCAL------------------------------------------------------------------------------------------
 const index = require('./routes/routes');
@@ -24,6 +26,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set('view engine', 'ejs');
 
 //-----MIDDLE WARE-------------------------------------------------------------------------------------------
+app.use(cookieParser())
 app.use(bodyParser.json());
 app.use("/assets", express.static('public/assets'));
 app.use("/node_modules", express.static('node_modules'));
