@@ -108,7 +108,7 @@ socket.on("tokenLogin", function (token) {
     alert(Cookies.get('token'));
 });
 
-ocket.on("loginError", function () {
+socket.on("loginError", function () {
     swal({
         type: "error",
         title: "Oops ...",
