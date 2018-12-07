@@ -5,7 +5,7 @@ let empty = require('is-empty');
 
 let conn = require('../database/database');
 
-router.get("/", function (req, res) {
+function profil(req,res){
     let sql = "SELECT * FROM Users WHERE email=?";//todo avec le token
     conn.query(sql,["bobsabates@gmail.com"], function (error, results, fields) {
         if(error) throw error;
@@ -24,6 +24,7 @@ router.get("/", function (req, res) {
             });
         }
     });
-});
+};
 
-module.exports = router;
+
+module.exports = profil;

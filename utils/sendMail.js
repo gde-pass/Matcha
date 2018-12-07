@@ -18,7 +18,7 @@ function sendMail(email, token) {
         form: "matcha",
         to: email,
         subject: 'helloe',
-        text: `Please click on this link to activate your account "http://localhost:8080/login?token=${token}"`
+        text: `Please click on this link to activate your account "http://localhost:8080/validation/${token}"`
     };
 
     transporter.sendMail(mailOption, (error, info) => {
