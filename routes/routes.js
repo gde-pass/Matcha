@@ -79,8 +79,8 @@ router.get("/profil", function (req, res) {
     profil(req,res);
 });
 
-// router.use(function (req, res) {
-//     res.render("404");
-// });
+router.use(function (req, res) {
+    res.render("404");
+});
 
 module.exports = router;

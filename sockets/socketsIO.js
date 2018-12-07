@@ -17,6 +17,7 @@ module.exports = function(io)
                 let token = jwtUtils.generateTokenForUser(data.email);
                 socket.emit("tokenValidation", token);
                 sendMail(data.email, token);
+                console.log("Registered !");
             } else {
                 socket.emit("registerError");
             }

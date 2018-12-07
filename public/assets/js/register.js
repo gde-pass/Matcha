@@ -21,14 +21,16 @@ $('form').submit(false);
  * @return {boolean}
  */
 function checkName(value) {
-    const NameRegex = new RegExp("[A-Za-z]+$");
+    const NameRegex = new RegExp("^(?=.{2,40}$)[a-zA-Z]+(?:[-'\\s][a-zA-Z]+)*$");
 
-    if (value.length === 0 || value.length > 254 || !value.match(NameRegex)) {
+    if (value.length === 0 || value.length > 40 ||
+        value.length < 2 || !value.match(NameRegex)) {
         return (false);
     } else {
         return (true);
     }
 }
+
 /**
  * @return {boolean}
  */
@@ -92,7 +94,6 @@ document.getElementById("sign_up_first").addEventListener("focusout", function (
     if (checkName(this.value)) {
         this.style.borderColor = "green";
         this.style.borderStyle = "solid";
-        socket.emit("focusOutNameSignUp", this.value);
     }
     else {
         this.style.borderColor = "red";
@@ -106,7 +107,6 @@ document.getElementById("sign_up_last").addEventListener("focusout", function ()
     if (checkName(this.value)) {
         this.style.borderColor = "green";
         this.style.borderStyle = "solid";
-        socket.emit("focusOutNameSignUp", this.value);
     }
     else {
         this.style.borderColor = "red";
@@ -185,7 +185,7 @@ document.getElementById("subscribeButton").addEventListener("click", function ()
         checkPasswordPattern(password) &&
         checkPasswordMatch(password, confirmPassword)) {
 
-        socket.emit("subscribe", {
+        socket.emit("register", {
             first_name: first_name,
             last_name: last_name,
             email: email,
@@ -200,7 +200,7 @@ document.getElementById("subscribeButton").addEventListener("click", function ()
         swal({
             type: "error",
             title: "`" + first_name + "` is not a valid first name",
-            html: "Please use a correct first name syntax: only <b>alphabetic characters</b>",
+            html: "Please use a correct first name syntax: only <b>alphabetic characters</b> with the first one <b>uppercase</b>",
         });
     } else if (!checkName(last_name)) {
         document.getElementById("sign_up_last").style.borderColor = "red";
@@ -269,7 +269,6 @@ socket.on("registerError", function () {
 });
 
 socket.on("tokenValidation", function (token) {
-
-    window.location.href = 'http://0.0.0.0/?email=send';
+    window.location.href = 'http://0.0.0.0:8080/?email';
 });
 // ============ /SOCKET EVENTS =============

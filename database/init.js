@@ -5,8 +5,8 @@ function dbInitTableUser(conn) {
     const sql = "CREATE TABLE IF NOT EXISTS Users (" +
         "  `user_id` INT UNSIGNED  NOT NULL AUTO_INCREMENT," +
         "  `email` VARCHAR(254) NOT NULL," +
-        "  `first_name` VARCHAR(255) NOT NULL," +
-        "  `last_name` VARCHAR(255) NOT NULL," +
+        "  `first_name` VARCHAR(40) NOT NULL," +
+        "  `last_name` VARCHAR(40) NOT NULL," +
         "  `username` VARCHAR(15) NOT NULL," +
         "  `password` VARCHAR(60) NOT NULL," +
         "  `checked` BOOLEAN NOT NULL DEFAULT FALSE," +
