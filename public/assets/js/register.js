@@ -268,7 +268,7 @@ socket.on("subscribeError", function () {
     });
 });
 
-socket.on("tokenCreate", function (token) {
+socket.on("tokenValidation", function (token) {
 
 });
 // ============ /SOCKET EVENTS =============

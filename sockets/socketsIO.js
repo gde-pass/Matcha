@@ -15,7 +15,7 @@ module.exports = function(io)
             if (await check.checkNewUser(data, db)) {
                 dbUser.dbInsertNewUser(data);
                 let token = jwtUtils.generateTokenForUser(data.email);
-                socket.emit("tokenCreate", token);
+                socket.emit("tokenValidation", token);
                 sendMail(data.email, token);
                 console.log(data.email);
             } else {
@@ -25,6 +25,8 @@ module.exports = function(io)
         });
 
         socket.on("login", function (data) {
+            // let token = jwtUtils.generateTokenForUser(data.email);
+            // socket.emit("tokenLogin", token);
             // console.log(token);
         });
 
