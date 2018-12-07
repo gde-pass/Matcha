@@ -11,7 +11,6 @@
 
 </head>
 <body>
-
 <div class="header">
     <div class='container'>
         <div class="header_left">
@@ -31,7 +30,7 @@
                 </a>
                 <div class="clearfix"></div>
             </ul>
-            <a href="register" class="btn1 btn-1 btn1-1b">Sign Up</a>
+            <a href="/register" class="btn1 btn-1 btn1-1b">Sign Up</a>
         </div>
         <div class="clearfix"></div>
     </div>
@@ -44,6 +43,12 @@
 <div class='profiles'>
     <div class="container">
         <div class="account_grid">
+            <%if (locals.error){%>
+            <div class="alert alert-danger"><%=locals.error%></div>
+            <%}%>
+            <%if (locals.success){%>
+            <div class="alert alert-success"><%=locals.success%></div>
+            <%}%>
             <div class="col-md-6 login-left">
                 <h3>NEW CUSTOMERS</h3>
                 <p>By creating an account with our store, you will be able to move through the checkout process faster,

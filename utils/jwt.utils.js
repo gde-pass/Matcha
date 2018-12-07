@@ -16,13 +16,13 @@ module.exports ={
          return (authorization != null) ? authorization.replace("Bearer ", "") : null;
      },
      getUserID: function (authorization) {
-         let userId = -1;
+         let email = -1;
          let token = module.exports.parseAutorization(authorization);
          if(token != null){
              try{
                  let jwtToken = jwt.verify(token, JWT_SIGN_SECRET);
                  if(jwtToken != null){
-                     userId = jwtToken.userId;
+                     email = jwtToken.email;
                      if(jwtToken.type === undefined){
                          return -1;
                      }
@@ -31,6 +31,6 @@ module.exports ={
 
              }
          }
-         return userId;
+         return email;
      }
 };

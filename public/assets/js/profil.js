@@ -10,3 +10,8 @@ function hideURLbar() {
 }
 
 // ============ /FRONT EVENTS ===========
+
+// ============ SOCKET EVENTS =============
+
+socket.emit("getCookie", Cookies.get("token"));
+// ============ /SOCKET EVENTS =============
