@@ -29,5 +29,4 @@ function sendMail(email, token) {
         console.log(info);
     });
 }
-
 module.exports = sendMail;

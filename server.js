@@ -10,6 +10,8 @@ const MySQLStore = require('express-mysql-session')(session);
 const index = require('./routes/routes');
 const initDb = require("./database/init.js");
 const db = require("./database/database");
+const profil = require('./routes/profil');
+const upload = require('./routes/upload');
 
 //------VARIABLE GLOBALE-------------------------------------------------------------------------------------
 const app = express();
@@ -48,6 +50,8 @@ const io = require("socket.io").listen(app.listen(portAPP, hostAPP, function (er
 }));
 //-----ROUTE-------------------------------------------------------------------------------------------------
 app.use('/', index);
+app.use('/profil', profil);
+app.use('/upload', upload);
 require("./sockets/socketsIO")(io);
 
 
