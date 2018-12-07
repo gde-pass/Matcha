@@ -1,158 +1,340 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
-    <title>Title</title>
-    <!--<link rel="stylesheet" href="/assets/css/profil.css">-->
-    <link rel="stylesheet" href="/assets/css/match.css">
-    <link rel="stylesheet" href="/assets/css/sidebar.css">
-    <link rel="stylesheet" href="/assets/css/header.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <link href="/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="/assets/css/style.css" rel='stylesheet' type='text/css'/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
 
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        } </script>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <script src="../assets/js/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
-
-<div class="bg"></div>
-<div class="container">
-    <nav>
-        <div class="search-box">
-            <div><i class="fa fa-search"></i>
-                <input type="search" placeholder="Search"/>
-            </div>
+<div class="header">
+    <div class='container'>
+        <div class="header_left">
+            <img src="/assets/images/rate.png" alt=""/>
         </div>
-        <ul class="menu">
-            <li><i class="fa fa-home"></i>Dashboard</li>
-            <li><i class="fa fa-envelope"></i>Messages</li>
-            <li><i class="fa fa-user"></i>Profile</li>
-            <li class="active"><i class="fa fa-group"></i>Friends</li>
-            <li><i class="fa fa-cog"></i>Settings</li>
-        </ul>
-        <hr/>
-        <div class="contacts">
-            <div class="contact">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/elastic-man.png" alt="" class="contact__photo" />
-                <span class="contact__name">Ethan Hawke</span>
-                <span class="contact__status online"></span>
-            </div>
-            <div class="contact">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/elastic-girl.png" alt="" class="contact__photo" />
-                <span class="contact__name">Natalie Portman</span>
-                <span class="contact__status online"></span>
-            </div>
-            <div class="contact">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/elastic-man.png" alt="" class="contact__photo" />
-                <span class="contact__name">Kevin Spacey</span>
-                <span class="contact__status online"></span>
-            </div>
-            <div class="contact">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/elastic-girl.png" alt="" class="contact__photo" />
-                <span class="contact__name">Rosamund Pike</span>
-                <span class="contact__status online"></span>
-            </div>
-            <div class="contact">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/elastic-man.png" alt="" class="contact__photo" />
-                <span class="contact__name">Robert Redford</span>
-                <span class="contact__status online"></span>
-            </div>
-            <div class="contact">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/elastic-girl.png" alt="" class="contact__photo" />
-                <span class="contact__name">Scarlett Johansson</span>
-                <span class="contact__status online"></span>
-            </div>
-            <div class="contact">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/elastic-man.png" alt="" class="contact__photo" />
-                <span class="contact__name">Tom Cruise</span>
-                <span class="contact__status"></span>
-            </div>
-            <div class="contact">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/elastic-girl.png" alt="" class="contact__photo" />
-                <span class="contact__name">Eva Green</span>
-                <span class="contact__status"></span>
-            </div>
-            <div class="contact">
-                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/elastic-man.png" alt="" class="contact__photo" />
-                <span class="contact__name">Paul Newman</span>
-                <span class="contact__status"></span>
-            </div>
+        <div class="logo">
+            <a href="/"><img src="/assets/images/logo.png" alt=""/>
+                <span>Matcha</span>
+            </a>
         </div>
-    </nav>
-    <!--<div class="header">-->
-        <!--<div class="userPanel">-->
-            <!--<div class="pic"></div>-->
-            <!--<div class="welcome"><span>Welcome</span><span class="name">John Doe</span></div>-->
-        <!--</div>-->
-        <!--<div class="title"></div>-->
-    <!--</div>-->
-    <!--.content
-    h1.dosis Blur Background (Dosis)
-    h1.lato Blur Background (Lato)
-    h1.roboto Blur Background (Roboto)
-    h1.open Blur Background (Open Sans)
-
-    -->
-</div>
-<!--==========================================================================================================-->
-        <div class='container' id='container'>
-
-            <div class='card-wrapper'>
-                <div class='arrow' id='previous'><i class="fa fa-arrow-left" aria-hidden="true"></i></div>
-                <div class='arrow' id='next'><i class="fa fa-arrow-right" aria-hidden="true"></i></div>
-                <div class='main-window' id='main-window'>
-
-                    <div class='user-image'>
-                        <div class='add-button'>+</div>
-                        <div class='username'>Jane C. Doe</div>
-                    </div>
-                    <div class='user-info'>
-                        <div class='quote'>"Where there is coffee, there is life. Loves to read, paint and sleep."</div>
-                    </div>
-
-                    <div class='social-info'>
-                        <div class='social-info-elm'>FOLLOWERS<br><span class='lg'>1293</span></div>
-                        <div class='social-info-elm'>FOLLOWING<br><span class='lg'>219</span></div>
-                        <div class='social-info-elm'>STORIES<br><span class='lg'>92</span></div>
-                    </div>
-
-                </div>
-                <div class='second-window' id='second-window'>
-                    <div class='user-image2'>
-                        <div class='add-button green'>+</div>
-                        <div class='username'>Tyler Durden</div>
-                    </div>
-                    <div class='user-info'>
-                        <div class='quote'>"Look at those sunglasses - of course I'm a surfer. See you at the beach."</div>
-                    </div>
-                    <div class='social-info'>
-                        <div class='social-info-elm'>FOLLOWERS<br><span class='lg'>593</span></div>
-                        <div class='social-info-elm'>FOLLOWING<br><span class='lg'>419</span></div>
-                        <div class='social-info-elm'>STORIES<br><span class='lg'>54</span></div>
-                    </div>
-                </div>
-                <div class='third-window' id='third-window'>
-                    <div class='user-image3'>
-                        <div class='add-button blue'>+</div>
-                        <div class='username'>Amber Brann</div>
-                    </div>
-                    <div class='user-info'>
-                        <div class='quote'>"Never stop exploring. One day I want to see the Aurora Borealis!"</div>
-                    </div>
-                    <div class='social-info'>
-                        <div class='social-info-elm'>FOLLOWERS<br><span class='lg'>243</span></div>
-                        <div class='social-info-elm'>FOLLOWING<br><span class='lg'>50</span></div>
-                        <div class='social-info-elm'>STORIES<br><span class='lg'>122</span></div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="header_right">
+            <ul class="header_user_info">
+                <a class="login" href="/login">
+                    <li class="user_desc"><span class="m_1">Already user ? </span>Login</li>
+                    <i class="user"> </i>
+                    <div class="clearfix"></div>
+                </a>
+                <div class="clearfix"></div>
+            </ul>
+            <a href="register" class="btn1 btn-1 btn1-1b">Sign Up</a>
         </div>
+        <div class="clearfix"></div>
     </div>
-<!--==================================================================================================================-->
-<script language="JavaScript" src="../assets/js/matchCSS.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script language="JavaScript" src="../assets/js/sidebarCSS.js"></script>
-<script language="JavaScript" src="../assets/js/sidebarCSS.js"></script>
+</div>
+<div class="profile_banner">
+    <div class="container">
+        <h3>Profile</h3>
+    </div>
+</div>
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-sm-10"><h1><%= [locals.first_name + " " + locals.last_name] %></h1></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><!--left col-->
+            <div class="text-center">
+                <img src="<%= typeof file != 'undefined' ? file : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                     class="avatar img-circle img-thumbnail" alt="avatar">
+                <h6>Upload a different photo...</h6>
+                <%= typeof msg != 'undefined' ? msg : '' %>
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <div class="file-field input-field">
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                                <input name="upload" type="file" class="custom-file-input" id="inputGroupFile01"
+                                       aria-describedby="inputGroupFileAddon01">
+                            </div>
+                        </div>
+                    </div>
+                    <button name="sub_upload" class="btn btn-primary" type="submit" value="submit">Submit</button>
+                </form>
+            </div>
+            </hr><br>
+
+            <ul class="list-group">
+                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Score</strong></span> 125</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Likes</strong></span> 13</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
+            </ul>
+
+        </div><!--/col-3-->
+        <div class="col-sm-9">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+                <li><a data-toggle="tab" href="#messages">Parametres</a></li>
+                <!--<li><a data-toggle="tab" href="#settings">Menu 2</a></li>-->
+            </ul>
 
 
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <hr>
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label><h4><%= locals.first_name + " " + locals.last_name %></h4></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label><h4><%= locals.username %></h4></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label><h4>Sex</h4></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label><h4>Age</h4></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label><h4>Sexual orientation</h4></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label><h4>Bio</h4></label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label><h4>tags</h4></label>
+                        </div>
+                    </div>
+                    <hr>
+
+                </div><!--/tab-pane-->
+                <div class="tab-pane" id="messages">
+                    <!--<hr>-->
+                    <form>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="first_name"><h4>First name</h4></label>
+                                <input type="text" class="form-control" name="first_name" id="first_name"
+                                       placeholder="first name" title="enter your first name if any.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="last_name"><h4>Last name</h4></label>
+                                <input type="text" class="form-control" name="last_name" id="last_name"
+                                       placeholder="last name" title="enter your last name if any.">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="phone"><h4>Sex</h4></label>
+                                <input type="text" class="form-control" name="sex" id="sex" placeholder="M/F"
+                                       title="enter your sex if any.">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="mobile"><h4>Age</h4></label>
+                                <input type="text" class="form-control" name="age" id="age" placeholder="enter your age"
+                                       title="enter your age.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Email</h4></label>
+                                <input type="email" class="form-control" name="email" id="email"
+                                       placeholder="you@email.com" title="enter your email.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Sexual orientation</h4></label>
+                                <input type="email" class="form-control" id="orientation" placeholder="somewhere"
+                                       title="enter a location">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Tags</h4></label>
+                                <input type="email" class="form-control" id="tags" placeholder="somewhere"
+                                       title="enter a location">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Location</h4></label>
+                                <input type="email" class="form-control" id="location" placeholder="somewhere"
+                                       title="enter a location">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Bio</h4></label>
+                                <input type="email" class="form-control" id="bio" placeholder="somewhere"
+                                       title="enter a location">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="password"><h4>Password</h4></label>
+                                <input type="password" class="form-control" name="password" id="password"
+                                       placeholder="password" title="enter your password.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="password2"><h4>Verify</h4></label>
+                                <input type="password" class="form-control" name="password2" id="password2"
+                                       placeholder="password2" title="enter your password2.">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                <button id="save" class="btn btn-lg btn-success" type="submit"><i
+                                            class="glyphicon glyphicon-ok-sign"></i> Save
+                                </button>
+                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div><!--/tab-pane-->
+                <!--<div class="tab-pane" id="settings">-->
+
+
+                <!--<hr>-->
+                <!--<form class="form" action="##" method="post" id="registrationForm">-->
+                <!--<div class="form-group">-->
+
+                <!--<div class="col-xs-6">-->
+                <!--<label for="first_name"><h4>First name</h4></label>-->
+                <!--<input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+
+                <!--<div class="col-xs-6">-->
+                <!--<label for="last_name"><h4>Last name</h4></label>-->
+                <!--<input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="form-group">-->
+
+                <!--<div class="col-xs-6">-->
+                <!--<label for="phone"><h4>Phone</h4></label>-->
+                <!--<input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">-->
+                <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="form-group">-->
+                <!--<div class="col-xs-6">-->
+                <!--<label for="mobile"><h4>Mobile</h4></label>-->
+                <!--<input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+
+                <!--<div class="col-xs-6">-->
+                <!--<label for="email"><h4>Email</h4></label>-->
+                <!--<input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+
+                <!--<div class="col-xs-6">-->
+                <!--<label for="email"><h4>Location</h4></label>-->
+                <!--<input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+
+                <!--<div class="col-xs-6">-->
+                <!--<label for="password"><h4>Password</h4></label>-->
+                <!--<input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+
+                <!--<div class="col-xs-6">-->
+                <!--<label for="password2"><h4>Verify</h4></label>-->
+                <!--<input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--<div class="form-group">-->
+                <!--<div class="col-xs-12">-->
+                <!--<br>-->
+                <!--<button class="btn btn-lg btn-success pull-right" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>-->
+                <!--&lt;!&ndash;<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>&ndash;&gt;-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</form>-->
+            </div>
+
+        </div><!--/tab-pane-->
+    </div><!--/tab-content-->
+
+</div><!--/col-9-->
+</div><!--/row-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>-->
+
+<script src="/assets/js/parametre.js" language="JavaScript"></script>
+
+<div class="footer">
+    <div class="container">
+        <div class="copy wow fadeInUp" data-wow-delay="0.4s">
+            <p>&copy; 2018 Matcha</p>
+        </div>
+        <div class="social wow fadeInRight" data-wow-delay="0.4s">
+            <ul class="footer_social">
+                <li><a href="#"> <i class="fb"> </i> </a></li>
+                <li><a href="#"> <i class="tw"> </i> </a></li>
+            </ul>
+        </div>
+        <div class='clearfix'></div>
+    </div>
+</div>
 </body>
 </html>
