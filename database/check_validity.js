@@ -1,5 +1,9 @@
 "use strict";
 const validator = require("validator");
+const util = require("util");
+const bcrypt = require("bcrypt-nodejs");
+const db = require("./database");
+
 
 /**
  * @return {boolean}
@@ -31,9 +35,10 @@ function checkUserPattern(user) {
  * @return {boolean}
  */
 function checkName(value) {
-    const NameRegex = new RegExp("[A-Za-z]+$");
+    const NameRegex = new RegExp("^(?=.{2,40}$)[a-zA-Z]+(?:[-'\\s][a-zA-Z]+)*$");
 
-    if (value.length === 0 || value.length > 254 || !value.match(NameRegex)) {
+    if (value.length === 0 || value.length > 40 ||
+        value.length < 2 || !value.match(NameRegex)) {
         return (false);
     } else {
         return (true);
@@ -72,7 +77,6 @@ function checkPasswordMatch(password1, password2) {
  */
 async function checkEmailValidity(email, pool) {
 
-    const util = require("util");
     let sql = "SELECT `email` FROM Users WHERE `email`= ?;";
 
     pool.query = util.promisify(pool.query);
@@ -93,15 +97,40 @@ async function checkEmailValidity(email, pool) {
  * @return {boolean}
  */
 async function checkNewUser(newUser, pool) {
-    console.log(newUser);
 
     if (checkEmailPattern(newUser.email) && await checkEmailValidity(newUser.email, pool) &&
         checkUserPattern(newUser.user) && checkPasswordPattern(newUser.password) &&
-        checkPasswordMatch(newUser.password, newUser.confirmPassword)&& checkName(newUser.first_name)
-        && checkName(newUser.last_name)) {
+        checkPasswordMatch(newUser.password, newUser.confirmPassword) &&
+        checkName(newUser.first_name) && checkName(newUser.last_name)) {
         return (true);
     } else {
         return (false);
+    }
+}
+
+/**
+ * @return {boolean}
+ */
+async function checkLoginUser(user) {
+
+    if (!checkEmailPattern(user.email) || !checkPasswordPattern(user.password)) {
+        return (false);
+    } else {
+
+        let sql = "SELECT * FROM `Users` WHERE `email` = ?;";
+        db.query = util.promisify(db.query);
+
+        try {
+            let result = await db.query(sql, [user.email]);
+            if (result.length > 0) {
+                let match = await bcrypt.compareSync(user.password, result[0].password);
+                return (match);
+            } else {
+                return (false);
+            }
+        } catch (error) {
+            throw error;
+        }
     }
 }
 
@@ -109,4 +138,5 @@ module.exports = {
     checkEmailValidity: checkEmailValidity,
     checkEmailPattern: checkEmailPattern,
     checkNewUser: checkNewUser,
+    checkLoginUser: checkLoginUser,
 };

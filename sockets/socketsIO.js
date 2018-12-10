@@ -1,13 +1,10 @@
 "use strict";
 const validator = require("validator");
-let jwtUtils = require("../utils/jwt.utils");
-const empty = require("is-empty");
-let conn = require("../database/database");
-
+const db = require("../database/database");
+const jwtUtils = require("../utils/jwt.utils");
 const dbUser = require("../database/user.js");
-let db = require("../database/database");
 const check = require("../database/check_validity.js");
-let sendMail = require('../utils/sendMail');
+const sendMail = require('../utils/sendMail');
 
 module.exports = function(io)
 {
@@ -23,22 +20,20 @@ module.exports = function(io)
                 socket.emit("registerError");
             }
         });
+      
+        socket.on("login", async function (data) {
 
-        socket.on("login", function (data) {
-            let sql = "SELECT * FROM Users WHERE email=?;";
-            conn.query(sql,[data.email], function (error, results, fields) {
-                if(error) throw error;
-               if(empty(results)){
-                   console.log("There are no users for this email")//todo afficher le message d'erreur
-               } else if(results[0].checked == 0){
-                   console.log("You must activate your account to login, please check your mails")//todo afficher le message d'erreur
-               }else{
-                   let token = jwtUtils.generateTokenForUser(results[0], "login");
-                   socket.emit("tokenLogin", token);
-                   console.log(token);
-               }
-            });
+            if (await check.checkLoginUser(data) === false) {
+                socket.emit("loginError");
+            } else if (await check.checkActivatedUser === false) {
+                        //todo check if account activated
+                       //You must activate your account to login, please check your mails
+            } else {
+                let token = jwtUtils.generateTokenForUser(data.email);
+                socket.emit("tokenLogin", token);
+            }
         });
+      
         socket.on("parametre", function (data) {
             console.log(data);
         });

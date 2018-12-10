@@ -99,8 +99,8 @@ router.get("/logout", function (req, res) {
     }
 });
 
-// router.use(function (req, res) {
-//     res.render("404");
-// });
+router.use(function (req, res) {
+    res.render("404");
+});
 
 module.exports = router;

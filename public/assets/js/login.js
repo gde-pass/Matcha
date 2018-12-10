@@ -106,13 +106,14 @@ document.getElementById("loginButton").addEventListener("click", function () {
 socket.on("tokenLogin", function (token) {
     Cookies.set('token', token, {expires: 7});
     window.location = "/";
+
 });
 
 socket.on("loginError", function () {
     swal({
         type: "error",
-        title: "Oops ...",
-        text: "A error occurred"
+        title: "Invalid password or email",
+        text: "The combination of email/password you type doesn't match with any user "
     });
 });
 // ============ /SOCKET EVENTS =============
