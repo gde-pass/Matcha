@@ -1,11 +1,11 @@
 "use strict";
 const validator = require("validator");
-let jwtUtils = require("../utils/jwt.utils");
 
+const db = require("../database/database");
+const jwtUtils = require("../utils/jwt.utils");
 const dbUser = require("../database/user.js");
-let db = require("../database/database");
 const check = require("../database/check_validity.js");
-let sendMail = require('../utils/sendMail');
+const sendMail = require('../utils/sendMail');
 
 module.exports = function(io)
 {
@@ -17,16 +17,20 @@ module.exports = function(io)
                 let token = jwtUtils.generateTokenForUser(data.email);
                 socket.emit("tokenValidation", token);
                 sendMail(data.email, token);
-                console.log("Registered !");
             } else {
                 socket.emit("registerError");
             }
         });
 
-        socket.on("login", function (data) {
-            let token = jwtUtils.generateTokenForUser(data.email);
-            socket.emit("tokenLogin", token);
-            console.log(token);
+        socket.on("login", async function (data) {
+
+            if (await check.checkLoginUser(data) === false) {
+                socket.emit("loginError");
+            } else {
+                let token = jwtUtils.generateTokenForUser(data.email);
+                socket.emit("tokenLogin", token);
+            }
+
         });
 
         socket.on("parametre", function (data) {
