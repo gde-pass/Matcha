@@ -19,7 +19,7 @@
                 <span>Matcha</span>
             </a>
         </div>
-        <%if (locals.connected == false){%>
+        <% if (locals.connected == false){ %>
             <div class="header_right">
                 <ul class="header_user_info">
                     <a class="login" href="login">
@@ -31,11 +31,19 @@
                 </ul>
                 <a href="register" class="btn1 btn-1 btn1-1b">Sign Up</a>
             </div>
-        <%}else{%>
+        <% }else{ %>
             <div class="header_right">
+                <ul class="header_user_info">
+                    <a class="login" href="profil">
+                        <li class="user_desc">Manage your account</li>
+                        <i class="user"> </i>
+                        <div class="clearfix"></div>
+                    </a>
+                    <div class="clearfix"></div>
+                </ul>
                 <a href="logout" class="btn1 btn-1 btn1-1b">Logout</a>
             </div>
-        <%}%>
+        <% } %>
         <div class="clearfix"></div>
     </div>
 </div>
@@ -47,19 +55,21 @@
 
 <div class="container bootstrap snippet">
     <div class="row">
-        <div class="col-sm-10"><h1><%=[locals.first_name +" "+ locals.last_name]%></h1></div>
+        <div class="col-sm-10"><h1><%= [locals.first_name + " " + locals.last_name] %></h1></div>
     </div>
     <div class="row">
         <div class="col-sm-3"><!--left col-->
             <div class="text-center">
-                <img src="<%= typeof file != 'undefined' ? file : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png"%>" class="avatar img-circle img-thumbnail" alt="avatar">
+                <img src="<%= typeof file != 'undefined' ? file : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                     class="avatar img-circle img-thumbnail" alt="avatar">
                 <h6>Upload a different photo...</h6>
-                <%= typeof msg != 'undefined' ? msg : ''%>
+                <%= typeof msg != 'undefined' ? msg : '' %>
                 <form action="/upload" method="post" enctype="multipart/form-data">
                     <div class="file-field input-field">
                         <div class="input-group mb-3">
                             <div class="custom-file">
-                                <input name="upload" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                <input name="upload" type="file" class="custom-file-input" id="inputGroupFile01"
+                                       aria-describedby="inputGroupFileAddon01">
                             </div>
                         </div>
                     </div>
@@ -90,13 +100,13 @@
                     <hr>
                     <div class="form-group">
                         <div class="col-xs-6">
-                            <label><h4><%= locals.first_name + " " + locals.last_name%></h4></label>
+                            <label><h4><%= locals.first_name + " " + locals.last_name %></h4></label>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-xs-6">
-                            <label><h4><%=locals.username%></h4></label>
+                            <label><h4><%= locals.username %></h4></label>
                         </div>
                     </div>
 
@@ -142,7 +152,7 @@
                             <div class="col-xs-6">
                                 <label for="first_name"><h4>First name</h4></label>
                                 <input type="text" class="form-control" name="first_name" id="first_name"
-                                       placeholder="first name" title="enter your first name if any.">
+                                       placeholder="<%= locals.first_name %>" title="enter your first name">
                             </div>
                         </div>
                         <div class="form-group">
@@ -150,7 +160,7 @@
                             <div class="col-xs-6">
                                 <label for="last_name"><h4>Last name</h4></label>
                                 <input type="text" class="form-control" name="last_name" id="last_name"
-                                       placeholder="last name" title="enter your last name if any.">
+                                       placeholder="<%= locals.last_name %>" title="Enter your last name">
                             </div>
                         </div>
 
@@ -158,8 +168,31 @@
                             <div class="col-xs-6">
                                 <label for="Username"><h4>Username</h4></label>
                                 <input type="text" class="form-control" name="username" id="username"
-                                       placeholder="enter your username"
-                                       title="enter your username.">
+                                       placeholder="<%= locals.username %>"
+                                       title="Enter your username if any.">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Email</h4></label>
+                                <input type="email" class="form-control" name="email" id="email"
+                                       placeholder="<%= locals.email %>" title="Enter your email.">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="sex-orient"><h4>Sexual orientation</h4></label>
+                                <select class="dropdown" tabindex="10" data-settings='{"wrapperClass":"metro1"}'>
+                                    <option value="">Select</option>
+                                    <option value="O">Heterosexual</option>
+                                    <option value="F">Homosexual</option>
+                                    <option value="M">Bisexual</option>
+                                </select>
                             </div>
                         </div>
 
@@ -167,41 +200,32 @@
 
                             <div class="col-xs-6">
                                 <label for="sex"><h4>Sex</h4></label>
-                                <input type="text" class="form-control" name="sex" id="sex" placeholder="M/F"
-                                       title="enter your sex if any.">
+                                <select class="dropdown" tabindex="10" data-settings='{"wrapperClass":"metro1"}'>
+                                    <option value="">Select</option>
+                                    <option value="O">Other</option>
+                                    <option value="F">Female</option>
+                                    <option value="M">Male</option>
+                                </select>
                             </div>
                         </div>
+
 
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="age"><h4>Age</h4></label>
-                                <input type="number" class="form-control" name="age" id="age"
-                                       placeholder="enter your age"
-                                       title="enter your age.">
+                                <input type="number" min="18" max="100" class="form-control" name="age" id="age"
+                                       placeholder="<%= locals.age %>"
+                                       title="Enter your age.">
                             </div>
                         </div>
-                        <div class="form-group">
 
-                            <div class="col-xs-6">
-                                <label for="email"><h4>Email</h4></label>
-                                <input type="email" class="form-control" name="email" id="email"
-                                       placeholder="you@email.com" title="enter your email.">
-                            </div>
-                        </div>
-                        <div class="form-group">
 
-                            <div class="col-xs-6">
-                                <label for="sex-orient"><h4>Sexual orientation</h4></label>
-                                <input type="text" class="form-control" id="sex-orient" placeholder="zizi ou pas zizi ?"
-                                       title="sex orientation">
-                            </div>
-                        </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
                                 <label for="tags"><h4>Tags</h4></label>
-                                <input type="text" class="form-control" id="tags" placeholder="#Tags"
-                                       title="choose you tags">
+                                <input type="text" class="form-control" id="tags" placeholder="<%= locals.tags %>"
+                                       title="Choose your tags">
                             </div>
                         </div>
                         <div class="form-group">
@@ -209,15 +233,15 @@
                             <div class="col-xs-6">
                                 <label for="location"><h4>Location</h4></label>
                                 <input type="text" class="form-control" id="location" placeholder="somewhere"
-                                       title="enter a location">
+                                       title="Enter your location">
                             </div>
                         </div>
                         <div class="form-group">
 
                             <div class="col-xs-6">
                                 <label for="bio"><h4>Bio</h4></label>
-                                <input type="email" class="form-control" id="bio" placeholder="somewhere"
-                                       title="enter a location">
+                                <input type="text" class="form-control" id="bio" placeholder="<%= locals.bio %>"
+                                       title="Enter your bio">
                             </div>
                         </div>
                         <div class="form-group">
@@ -225,7 +249,7 @@
                             <div class="col-xs-6">
                                 <label for="password"><h4>Password</h4></label>
                                 <input type="password" class="form-control" name="password" id="password"
-                                       placeholder="password" title="enter your password.">
+                                       placeholder="******" title="Enter your password." required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -233,7 +257,7 @@
                             <div class="col-xs-6">
                                 <label for="password2"><h4>Verify</h4></label>
                                 <input type="password" class="form-control" name="password2" id="password2"
-                                       placeholder="password2" title="enter your password2.">
+                                       placeholder="******" title="Confirm your password." required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -273,10 +297,10 @@
 <script src="http://localhost:8080/socket.io/socket.io.js" language="JavaScript"></script>
 <script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>
 <script src="/node_modules/js-cookie/src/js.cookie.js" language="JavaScript"></script>
+<script src="/assets/js/jquery.easydropdown.js" language="JavaScript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" language="JavaScript"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" language="JavaScript"></script>
 <script src="/assets/js/profil.js" language="JavaScript"></script>
-<script src="/assets/js/parametre.js" language="JavaScript"></script>
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="Matcha">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.11">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.14">
     <root id="1">
       <ServerVersion>5.5.62</ServerVersion>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -810,63 +810,88 @@
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
     <table id="203" parent="2" name="Users"/>
-    <column id="204" parent="203" name="user_id">
+    <table id="204" parent="2" name="sessions"/>
+    <column id="205" parent="203" name="user_id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="205" parent="203" name="email">
+    <column id="206" parent="203" name="email">
       <Position>2</Position>
       <DataType>varchar(254)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="206" parent="203" name="first_name">
+    <column id="207" parent="203" name="first_name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="207" parent="203" name="last_name">
+    <column id="208" parent="203" name="last_name">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="208" parent="203" name="display_name">
+    <column id="209" parent="203" name="display_name">
       <Position>5</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="209" parent="203" name="password">
+    <column id="210" parent="203" name="password">
       <Position>6</Position>
       <DataType>char(128)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="210" parent="203" name="checked">
+    <column id="211" parent="203" name="checked">
       <Position>7</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="211" parent="203" name="email">
+    <index id="212" parent="203" name="email">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="212" parent="203" name="PRIMARY">
+    <key id="213" parent="203" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="213" parent="203" name="email">
+    <key id="214" parent="203" name="email">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>email</UnderlyingIndexName>
+    </key>
+    <column id="215" parent="204" name="session_id">
+      <Position>1</Position>
+      <DataType>varchar(128)|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_bin</Collation>
+    </column>
+    <column id="216" parent="204" name="expires">
+      <Position>2</Position>
+      <DataType>int(11) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="217" parent="204" name="data">
+      <Position>3</Position>
+      <DataType>text|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+      <Collation>utf8mb4_bin</Collation>
+    </column>
+    <key id="218" parent="204" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>session_id</ColNames>
+      <Primary>1</Primary>
     </key>
   </database-model>
 </dataSource>
