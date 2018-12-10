@@ -116,4 +116,12 @@ socket.on("loginError", function () {
         text: "The combination of email/password you type doesn't match with any user "
     });
 });
+
+socket.on("loginActivatedError", function () {
+    swal({
+        type: "warning",
+        title: "Account not activated",
+        text: "You must activate your account to login, please check your mails"
+    });
+});
 // ============ /SOCKET EVENTS =============

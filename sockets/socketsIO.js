@@ -25,9 +25,8 @@ module.exports = function(io)
 
             if (await check.checkLoginUser(data) === false) {
                 socket.emit("loginError");
-            } else if (await check.checkActivatedUser === false) {
-                        //todo check if account activated
-                       //You must activate your account to login, please check your mails
+            } else if (await check.checkActivatedUser(data) === false) {
+                socket.emit("loginActivatedError");
             } else {
                 let token = jwtUtils.generateTokenForUser(data.email);
                 socket.emit("tokenLogin", token);

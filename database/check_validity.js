@@ -134,9 +134,29 @@ async function checkLoginUser(user) {
     }
 }
 
+/**
+ * @return {boolean}
+ */
+async function checkActivatedUser(data) {
+
+    let sql = "SELECT `checked` FROM `Users` WHERE `email` = ?;";
+    db.query = util.promisify(db.query);
+    try {
+        let result = await db.query(sql, [data.email]);
+        if (result[0].checked === 1) {
+            return (true);
+        } else {
+            return (false);
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     checkEmailValidity: checkEmailValidity,
     checkEmailPattern: checkEmailPattern,
     checkNewUser: checkNewUser,
     checkLoginUser: checkLoginUser,
+    checkActivatedUser: checkActivatedUser,
 };
