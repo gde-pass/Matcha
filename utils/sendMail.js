@@ -17,7 +17,7 @@ function sendMail(email, token) {
     let mailOption = {
         form: "matcha",
         to: email,
-        subject: 'helloe',
+        subject: 'activate your account',
         text: `Please click on this link to activate your account "http://localhost:8080/validation/${token}"`
     };
 

@@ -1,6 +1,5 @@
 "use strict";
 const validator = require("validator");
-
 const db = require("../database/database");
 const jwtUtils = require("../utils/jwt.utils");
 const dbUser = require("../database/user.js");
@@ -14,25 +13,27 @@ module.exports = function(io)
         socket.on("register", async function (data) {
             if (await check.checkNewUser(data, db)) {
                 dbUser.dbInsertNewUser(data);
-                let token = jwtUtils.generateTokenForUser(data.email);
+                let token = jwtUtils.generateTokenForUser(data, "validation");
                 socket.emit("tokenValidation", token);
                 sendMail(data.email, token);
             } else {
                 socket.emit("registerError");
             }
         });
-
+      
         socket.on("login", async function (data) {
 
             if (await check.checkLoginUser(data) === false) {
                 socket.emit("loginError");
+            } else if (await check.checkActivatedUser === false) {
+                        //todo check if account activated
+                       //You must activate your account to login, please check your mails
             } else {
                 let token = jwtUtils.generateTokenForUser(data.email);
                 socket.emit("tokenLogin", token);
             }
-
         });
-
+      
         socket.on("parametre", function (data) {
             console.log(data);
         });

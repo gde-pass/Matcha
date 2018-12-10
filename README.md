@@ -151,7 +151,7 @@ If you need inspiration here are some ideas:
 * Your code cannot produce any errors, warnings or notices either from the server or the client side in the web console.
 * Anything not specifically authorized is forbidden.
 * Finally, the slightest security breach will give you 0. You must at least manage what is indicated in the general instructions, ie NOT have plain text passwords
-stored in your database, be protected against SQL injections, and have a validation
+stored in your database, be protected against SQL injections, and have a email_validation
 of all the forms and upload.
 
 # Installation
