@@ -20,7 +20,7 @@ module.exports = function(io)
                 socket.emit("registerError");
             }
         });
-      
+
         socket.on("login", async function (data) {
 
             if (await check.checkLoginUser(data) === false) {
@@ -28,8 +28,12 @@ module.exports = function(io)
             } else if (await check.checkActivatedUser(data) === false) {
                 socket.emit("loginActivatedError");
             } else {
-                let token = jwtUtils.generateTokenForUser(data.email);
-                socket.emit("tokenLogin", token);
+                let sql = "SELECT * FROM Users WHERE email=?;";
+                db.query(sql, [data.email], function (error, results) {
+                    if (error) throw error;
+                    let token = jwtUtils.generateTokenForUser(results[0], "login");
+                    socket.emit("tokenLogin", token);
+                });
             }
         });
       

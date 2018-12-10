@@ -20,12 +20,4 @@ $(window).on('load', function () {
     });
 });
 
-if (window.location.search === '?email') {
-    swal({
-        type: "success",
-        title: "Confirmation email",
-        text: "Good job ! You just receive a email with a activation link please check your maibox."
-    });
-}
-
 // ============ /FRONT EVENTS ===========
