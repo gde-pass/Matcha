@@ -110,8 +110,8 @@ socket.on("tokenLogin", function (token) {
 socket.on("loginError", function () {
     swal({
         type: "error",
-        title: "Oops ...",
-        text: "A error occurred"
+        title: "Invalid password or email",
+        text: "The combination of email/password you type doesn't match with any user "
     });
 });
 // ============ /SOCKET EVENTS =============

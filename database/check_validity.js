@@ -113,19 +113,24 @@ async function checkNewUser(newUser, pool) {
  */
 async function checkLoginUser(user) {
 
-    let sql = "SELECT * FROM `Users` WHERE `email` = ?;";
-    db.query = util.promisify(db.query);
+    if (!checkEmailPattern(user.email) || !checkPasswordPattern(user.password)) {
+        return (false);
+    } else {
 
-    try {
-        let result = await db.query(sql, [user.email]);
-        if (result.length > 0) {
-            let match = await bcrypt.compareSync(user.password, result[0].password);
-            return (match);
-        } else {
-            return (false);
+        let sql = "SELECT * FROM `Users` WHERE `email` = ?;";
+        db.query = util.promisify(db.query);
+
+        try {
+            let result = await db.query(sql, [user.email]);
+            if (result.length > 0) {
+                let match = await bcrypt.compareSync(user.password, result[0].password);
+                return (match);
+            } else {
+                return (false);
+            }
+        } catch (error) {
+            throw error;
         }
-    } catch (error) {
-        throw error;
     }
 }
 
