@@ -105,7 +105,7 @@ document.getElementById("loginButton").addEventListener("click", function () {
 // ============ SOCKET EVENTS =============
 socket.on("tokenLogin", function (token) {
     Cookies.set('token', token, {expires: 7});
-    alert(Cookies.get('token'));
+    window.location = "/";
 });
 
 socket.on("loginError", function () {

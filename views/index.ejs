@@ -22,6 +22,7 @@
                 <span>Matcha</span>
             </a>
         </div>
+        <%if (locals.connected == false){%>
         <div class="header_right">
             <ul class="header_user_info">
                 <a class="login" href="login">
@@ -33,6 +34,11 @@
             </ul>
             <a href="register" class="btn1 btn-1 btn1-1b">Sign Up</a>
         </div>
+        <%}else{%>
+            <div class="header_right">
+                <a href="logout" class="btn1 btn-1 btn1-1b">Logout</a>
+            </div>
+        <%}%>
         <div class="clearfix"></div>
     </div>
 </div>

@@ -268,8 +268,8 @@ socket.on("registerError", function () {
     });
 });
 
+//
 socket.on("tokenValidation", function (token) {
-
-    window.location.href = 'http://0.0.0.0/?email=send';
+    window.location.href = 'http://0.0.0.0/login?email=send';
 });
 // ============ /SOCKET EVENTS =============
