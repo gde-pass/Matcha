@@ -13,15 +13,14 @@ module.exports = function(io)
 {
     io.on("connection", function (socket)
     {
-        socket.on("subscribe", async function (data) {
+        socket.on("register", async function (data) {
             if (await check.checkNewUser(data, db)) {
                 dbUser.dbInsertNewUser(data);
                 let token = jwtUtils.generateTokenForUser(data, "validation");
                 socket.emit("tokenValidation", token);
                 sendMail(data.email, token);
             } else {
-                console.log("error somewhere");
-                socket.emit("subscribeError");
+                socket.emit("registerError");
             }
         });
 

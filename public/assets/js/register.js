@@ -178,12 +178,12 @@ document.getElementById("subscribeButton").addEventListener("click", function ()
     let first_name = document.getElementById("sign_up_first").value;
     let last_name = document.getElementById("sign_up_last").value;
 
-    if (checkEmailPattern(email) &&
+    if (checkName(first_name) &&
+        checkName(last_name) &&
+        checkEmailPattern(email) &&
         checkUserPattern(user) &&
         checkPasswordPattern(password) &&
-        checkPasswordMatch(password, confirmPassword)&&
-        checkName(first_name) &&
-        checkName(first_name)) {
+        checkPasswordMatch(password, confirmPassword)) {
 
         socket.emit("subscribe", {
             first_name: first_name,
@@ -194,6 +194,22 @@ document.getElementById("subscribeButton").addEventListener("click", function ()
             confirmPassword: confirmPassword
         });
 
+    } else if (!checkName(first_name)) {
+        document.getElementById("sign_up_first").style.borderColor = "red";
+        document.getElementById("sign_up_first").style.borderStyle = "inset";
+        swal({
+            type: "error",
+            title: "`" + first_name + "` is not a valid first name",
+            html: "Please use a correct first name syntax: only <b>alphabetic characters</b>",
+        });
+    } else if (!checkName(last_name)) {
+        document.getElementById("sign_up_last").style.borderColor = "red";
+        document.getElementById("sign_up_last").style.borderStyle = "inset";
+        swal({
+            type: "error",
+            title: "`" + last_name + "` is not a valid last name",
+            html: "Please use a correct last name syntax: only <b>alphabetic characters</b>",
+        });
     } else if (!checkEmailPattern(email)) {
         document.getElementById("sign_up_email").style.borderColor = "red";
         document.getElementById("sign_up_email").style.borderStyle = "inset";
@@ -202,23 +218,7 @@ document.getElementById("subscribeButton").addEventListener("click", function ()
             title: "`" + email + "` is not a valid email",
             html: "Please use a correct email syntax: <b>`exemple@domain.com`</b>",
         });
-    } else if (!checkName(first_name)) {
-        document.getElementById("sign_up_first").style.borderColor = "red";
-        document.getElementById("sign_up_first").style.borderStyle = "inset";
-        swal({
-            type: "error",
-            title: ` ${first_name} + is not a valid name`,
-            html: "Please use a correct Name syntax: <b>only alphabetic characters</b>",
-        });
-    }else if (!checkName(last_name)) {
-        document.getElementById("sign_up_last").style.borderColor = "red";
-        document.getElementById("sign_up_last").style.borderStyle = "inset";
-        swal({
-            type: "error",
-            title: ` ${last_name} + is not a valid name`,
-            html: "Please use a correct Name syntax: <b>only alphabetic characters</b>",
-        });
-    }else if (!checkUserPattern(user)) {
+    } else if (!checkUserPattern(user)) {
         document.getElementById("sign_up_user").style.borderColor = "red";
         document.getElementById("sign_up_user").style.borderStyle = "inset";
         swal({
@@ -260,7 +260,7 @@ socket.on("focusOutEmailSignUpFalse", function (email) {
 
 });
 
-socket.on("subscribeError", function () {
+socket.on("registerError", function () {
     swal({
         type: "error",
         title: "Oops ...",
@@ -270,6 +270,6 @@ socket.on("subscribeError", function () {
 
 //
 socket.on("tokenValidation", function (token) {
-    window.location = "/login";
+    window.location.href = 'http://0.0.0.0/login?email=send';
 });
 // ============ /SOCKET EVENTS =============

@@ -7,7 +7,7 @@ function dbInitTableUser(conn) {
         "  `email` VARCHAR(254) NOT NULL," +
         "  `first_name` VARCHAR(255) NOT NULL," +
         "  `last_name` VARCHAR(255) NOT NULL," +
-        "  `display_name` VARCHAR(15) NOT NULL," +
+        "  `username` VARCHAR(15) NOT NULL," +
         "  `password` VARCHAR(60) NOT NULL," +
         "  `checked` BOOLEAN NOT NULL DEFAULT FALSE," +
         "  PRIMARY KEY (user_id)," +

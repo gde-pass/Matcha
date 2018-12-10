@@ -107,4 +107,12 @@ socket.on("tokenLogin", function (token) {
     Cookies.set('token', token, {expires: 7});
     window.location = "/";
 });
+
+socket.on("loginError", function () {
+    swal({
+        type: "error",
+        title: "Oops ...",
+        text: "A error occurred"
+    });
+});
 // ============ /SOCKET EVENTS =============
