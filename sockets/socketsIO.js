@@ -40,7 +40,6 @@ module.exports = function(io)
                }
             });
         });
-
         socket.on("parametre", function (data) {
             console.log(data);
         });

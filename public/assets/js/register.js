@@ -267,8 +267,9 @@ socket.on("subscribeError", function () {
         text: "A error occurred"
     });
 });
+
 //
-// socket.on("tokenValidation", function (token) {
-//     Cookies.set('token', token, {expires: 7});
-// });
+socket.on("tokenValidation", function (token) {
+    window.location = "/login";
+});
 // ============ /SOCKET EVENTS =============

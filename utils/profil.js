@@ -23,6 +23,7 @@ function profil(req,res){
                     first_name: data.first_name,
                     last_name: data.last_name,
                     username: data.username,
+                    connected: true,
                     //todo age: age,
                     //todo sex: sex,
                     //todo orientation: orientation,
