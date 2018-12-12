@@ -10,6 +10,8 @@ function dbInitTableUser(conn) {
         "  `username` VARCHAR(15) NOT NULL," +
         "  `password` VARCHAR(60) NOT NULL," +
         "  `checked` BOOLEAN NOT NULL DEFAULT FALSE," +
+        "  `latitude` real DEFAULT 0," +
+        "  `longitude` real DEFAULT 0," +
         "  PRIMARY KEY (user_id)," +
         "  UNIQUE INDEX (email)" +
         ") ENGINE = InnoDB;";

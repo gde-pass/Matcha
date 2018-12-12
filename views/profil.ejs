@@ -52,7 +52,6 @@
         <h3>Profile</h3>
     </div>
 </div>
-
 <div class="container bootstrap snippet">
     <div class="row">
         <div class="col-sm-10"><h1><%= [locals.first_name + " " + locals.last_name] %></h1></div>
@@ -60,16 +59,14 @@
     <div class="row">
         <div class="col-sm-3"><!--left col-->
             <div class="text-center">
-                <img src="<%= typeof file != 'undefined' ? file : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
-                     class="avatar img-circle img-thumbnail" alt="avatar">
+                <img src="<%= locals.profil_img != 'undefined' ? `assets/img/${locals.profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png"%>" class="avatar img-circle img-thumbnail" alt="avatar">
                 <h6>Upload a different photo...</h6>
-                <%= typeof msg != 'undefined' ? msg : '' %>
+                <%= typeof msg != 'undefined' ? msg : ''%>
                 <form action="/upload" method="post" enctype="multipart/form-data">
                     <div class="file-field input-field">
                         <div class="input-group mb-3">
                             <div class="custom-file">
-                                <input name="upload" type="file" class="custom-file-input" id="inputGroupFile01"
-                                       aria-describedby="inputGroupFileAddon01">
+                                <input name="upload" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                             </div>
                         </div>
                     </div>
@@ -77,7 +74,6 @@
                 </form>
             </div>
             </hr><br>
-
             <ul class="list-group">
                 <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Score</strong></span> 125</li>
@@ -85,7 +81,6 @@
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Posts</strong></span> 37</li>
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Followers</strong></span> 78</li>
             </ul>
-
         </div><!--/col-3-->
         <div class="col-sm-9">
             <ul class="nav nav-tabs">
@@ -93,8 +88,6 @@
                 <li><a data-toggle="tab" href="#messages">Parametres</a></li>
                 <!--<li><a data-toggle="tab" href="#settings">Menu 2</a></li>-->
             </ul>
-
-
             <div class="tab-content">
                 <div class="tab-pane active" id="home">
                     <hr>
@@ -103,7 +96,6 @@
                             <label><h4><%= locals.first_name + " " + locals.last_name %></h4></label>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label><h4><%= locals.username %></h4></label>
@@ -117,25 +109,21 @@
                             </label>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label><h4>Age</h4></label>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label><h4>Sexual orientation</h4></label>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label><h4>Bio</h4></label>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label><h4>Tags</h4></label>
@@ -144,13 +132,10 @@
                     <hr>
                 </div><!--/tab-pane-->
                 <div class="tab-pane" id="messages">
-
                     <h2></h2>
-
                     <hr>
                     <form class="form" action="#" method="post" id="registrationForm">
                         <div class="form-group">
-
                             <div class="col-xs-6">
                                 <label for="first_name"><h4>First name</h4></label>
                                 <input type="text" class="form-control" name="first_name" id="first_name"
@@ -158,14 +143,12 @@
                             </div>
                         </div>
                         <div class="form-group">
-
                             <div class="col-xs-6">
                                 <label for="last_name"><h4>Last name</h4></label>
                                 <input type="text" class="form-control" name="last_name" id="last_name"
                                        placeholder="<%= locals.last_name %>" title="Enter your last name">
                             </div>
                         </div>
-
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="Username"><h4>Username</h4></label>
@@ -174,19 +157,14 @@
                                        title="Enter your username if any.">
                             </div>
                         </div>
-
                         <div class="form-group">
-
                             <div class="col-xs-6">
                                 <label for="email"><h4>Email</h4></label>
                                 <input type="email" class="form-control" name="email" id="email"
                                        placeholder="<%= locals.email %>" title="Enter your email.">
                             </div>
                         </div>
-
-
                         <div class="form-group">
-
                             <div class="col-xs-6">
                                 <label for="sex-orient"><h4>Sexual orientation</h4></label>
                                 <select id="orientation" class="dropdown" tabindex="10"
@@ -198,9 +176,7 @@
                                 </select>
                             </div>
                         </div>
-
                         <div class="form-group">
-
                             <div class="col-xs-6">
                                 <label for="sex"><h4>Sex</h4></label>
                                 <select id="sex" class="dropdown" tabindex="10"
@@ -212,20 +188,14 @@
                                 </select>
                             </div>
                         </div>
-
-
-
                         <div class="form-group">
-
                             <div class="col-xs-6">
                                 <label for="bio"><h4>Bio</h4></label>
                                 <input type="text" class="form-control" id="bio" placeholder="<%= locals.bio %>"
                                        title="Enter your bio">
                             </div>
                         </div>
-
                         <div class="form-group">
-
                             <div class="col-xs-6">
                                 <label for="tags"><h4>Tags</h4></label>
                                 <input type="text" class="form-control" id="tags" placeholder="<%= locals.tags %>"
@@ -233,7 +203,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-
                             <div class="col-xs-6">
                                 <label for="distance"><h4 id="distanceText">Distance <%= locals.distance %> (Km)</h4>
                                 </label>
@@ -243,8 +212,6 @@
                                        onchange="updateTextDistance(this.value);">
                             </div>
                         </div>
-
-
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="age"><h4 id="ageText">Age</h4></label>
@@ -253,10 +220,7 @@
                                        onchange="updateTextAge(this.value);">
                             </div>
                         </div>
-
-
                         <div class="form-group">
-
                             <div class="col-xs-6">
                                 <label for="password"><h4>Password *</h4></label>
                                 <input type="password" class="form-control" name="password" id="password"
@@ -264,7 +228,6 @@
                             </div>
                         </div>
                         <div class="form-group">
-
                             <div class="col-xs-6">
                                 <label for="password2"><h4>Verify *</h4></label>
                                 <input type="password" class="form-control" name="password2" id="password2"
@@ -282,14 +245,11 @@
                             </div>
                         </div>
                     </form>
-
                 </div>
-            </div><!--/tab-content-->
-
-        </div><!--/col-9-->
-    </div><!--/row-->
+            </div>
+        </div>
+    </div>
 </div>
-
 <div class="footer">
     <div class="container">
         <div class="copy wow fadeInUp" data-wow-delay="0.4s">
@@ -306,10 +266,10 @@
 </div>
 
 <script src="http://localhost:8080/socket.io/socket.io.js" language="JavaScript"></script>
-<script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>
+<!--<script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>-->
 <script src="/node_modules/js-cookie/src/js.cookie.js" language="JavaScript"></script>
-<script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js" language="JavaScript"></script>
-<script src="/assets/js/jquery.easydropdown.js" language="JavaScript"></script>
+<!--<script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js" language="JavaScript"></script>-->
+<!--<script src="/assets/js/jquery.easydropdown.js" language="JavaScript"></script>-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" language="JavaScript"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" language="JavaScript"></script>
 <script src="/assets/js/profil.js" language="JavaScript"></script>

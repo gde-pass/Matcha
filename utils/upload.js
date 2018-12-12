@@ -2,58 +2,77 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
+let jwtUtils = require("./jwt.utils");
+const fs = require('fs');
+const glob = require('glob');
 
-    const storage = multer.diskStorage({
-        destination: './public/assets/img/',
-        filename: function (req, file, callback) {
-            callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))//todo faire en sorte que le nom de limage sois relier a 'ID de la personne pour que l'on puisse la retrouver
-        }
-    });
-
-    const upload = multer({
-        storage: storage,
-        limits: {fileSize: 1000000},
-        fileFilter: function (req, file, callback) {
-            checkFileType(file, callback);
-        }
-    }).single('upload'); // on peut mettre "Array()" pour uploade plusieur image
-
-    function checkFileType(file, callback) {
-        const fileTypes = /jpeg|jpg|png/;
-        const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
-        const mimeType = fileTypes.test(file.mimetype);
-
-        if (mimeType && extName) {
-            return callback(null, true);
-        } else {
-            callback('Error: images Only!');
-        }
+function up(req,res,file) {
+    let data = jwtUtils.getUserID(req.cookies.token);
+    // glob(`*/assets/img/${data.username}${data.Id}profil*`,{"ignore":[` ${data.username}${data.Id} + 'profil' + ${path.extname(file.originalname.toString())}`]}, function(err, files) {
+    //     var fileName = path.basename(files.toString());
+    // if(fileName) {
+    //     fs.unlinkSync(`./public/assets/img/${fileName}`);
+    // }
+    // })
+    if (data.email < 0) {
+        res.render('profil');
     }
+    if (data.type < 0 || data.type != "login") {
+        res.render('profil');
+    }
+    else {
+        const storage = multer.diskStorage({
+            destination: './public/assets/img/',
+            filename: function (req, file, callback) {
+                callback(null, data.username + data.Id + 'profil' + path.extname(file.originalname))//todo faire en sorte que le nom de limage sois relier a 'ID de la personne pour que l'on puisse la retrouver
+                // callback(null, data.username + data.Id + 'profil' +'-' + Date.now() + path.extname(file.originalname))//todo faire en sorte que le nom de limage sois relier a 'ID de la personne pour que l'on puisse la retrouver
+            }
+        });
 
-router.post("/", function (req, res) {
-    upload(req, res, (err) => {
-        if(err){
-         res.render('profil',{
-             msg: err
-         });
-        }
-        else{
-            if(req.file == undefined){
-                // res.render('profil',{
-                //     msg: 'Error: No file selected'
-                // });
-                res.end('Error: No file selected'); //todo trouver comment envoyer se message a l'HTML
-            }else{
-                // res.render('profil',{
-                //     msg: 'File Uploaded',
-                //     file: `assets/img/${req.file.filename}`,
-                //
-                // });
-                console.log('oui');
-                res.end("success");
+        const upload = multer({
+            storage: storage,
+            limits: {fileSize: 1000000},
+            fileFilter: function (req, file, callback) {
+                checkFileType(file, callback);
+            }
+        }).single('upload'); // on peut mettre "Array()" pour uploade plusieur image
+
+        function checkFileType(file, callback) {
+            const fileTypes = /jpeg|jpg|png/;
+            const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
+            const mimeType = fileTypes.test(file.mimetype);
+            //function pour supprimer l'image de profil precedente
+            glob(`*/assets/img/${data.username}${data.Id}profil*`,{"ignore":[`public/assets/img/${data.username}${data.Id}profil${path.extname(file.originalname)}`]}, function(err, files) {
+                var fileName = path.basename(files.toString());
+                if (fileName) {
+                    fs.unlinkSync(`./public/assets/img/${fileName}`);
+                }
+            });
+
+            if (mimeType && extName) {
+                return callback(null, true);
+            } else {
+                callback('Error: images Only!');
             }
         }
-    })
 
-});
-module.exports = router;
+        upload(req, res, (err) => {
+            if (err) {
+                res.render('profil', {
+                    msg: err
+                });
+            }
+            else {
+                if (req.file == undefined) {
+                    // res.render('profil',{
+                    //     msg: 'Error: No file selected'
+                    // });
+                    res.end('Error: No file selected'); //todo trouver comment envoyer se message a l'HTML
+                } else {
+                    res.redirect("profil");
+                }
+            }
+        })
+    }
+}
+module.exports = up;

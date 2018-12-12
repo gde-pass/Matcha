@@ -10,7 +10,7 @@ function hideURLbar() {
     window.scrollTo(0, 1);
 }
 
-$('form').submit(false);
+// $('form').submit(false);
 
 
 function updateTextDistance(val) {
