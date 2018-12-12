@@ -10,11 +10,11 @@ function profil(req,res){
     if (data.email < 0) {
         res.render('index');
     }
-    if (data.type < 0 || data.type != "login") {
+    if (data.type < 0 || data.type !== "login") {
         res.render('index');
     }else {
         let sql = "SELECT * FROM Users WHERE email=?";//todo avec le token
-        conn.query(sql, [data.email], function (error, results, fields) {
+        conn.query(sql, [data.email], function (error, results) {
             if (error) throw error;
             if (empty(results)) {
                 res.render('index');
@@ -33,7 +33,7 @@ function profil(req,res){
             }
         });
     }
-};
+}
 
 
 module.exports = profil;
