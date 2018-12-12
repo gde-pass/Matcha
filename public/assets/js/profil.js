@@ -30,7 +30,30 @@ function updateTextAge(val) {
 /**
  * @return {boolean}
  */
+function checkAgePattern(value) {
 
+    if (value < 18 || value > 100 || isNaN(value)) {
+        return (false);
+    } else {
+        return (true);
+    }
+}
+
+/**
+ * @return {boolean}
+ */
+function checkDistancePattern(value) {
+
+    if (value < 5 || value > 50 || isNaN(value)) {
+        return (false);
+    } else {
+        return (true);
+    }
+}
+
+/**
+ * @return {boolean}
+ */
 function checkTagsPattern(value) {
     const tagsRegex = new RegExp("^(#+[a-zA-Z]{2,20}\\s?){1,10}");
 
@@ -230,8 +253,33 @@ document.getElementById("save").addEventListener("click", function () {
             title: "Invalid tags",
             html: "Your tags must begin by a <b>'#'</b> they have to contain between <b>2</b> and <b>20</b> characters only and must be separate by a <b>space</b>."
         });
-    } else if (!checkDistancePattern) {
-        //todo BIENTOT FINI
+    } else if (!checkDistancePattern(distance)) {
+        swal({
+            type: "error",
+            title: "Invalid distance",
+            html: "Your tags must be between <b>5</b> and <b>50</b> Km."
+        });
+    } else if (!checkAgePattern(age)) {
+        swal({
+            type: "error",
+            title: "Invalid age",
+            html: "Your age must be between <b>18</b> and <b>100</b> years old."
+        });
+    } else if (!checkPasswordPattern(password)) {
+        document.getElementById("password").style.borderColor = "red";
+        document.getElementById("password").style.borderStyle = "inset";
+        swal({
+            type: "error",
+            title: "Your password is not valid",
+            html: "Your password must contain between <b>6</b> and <b>20 characters</b> with a <b>number</b>, a <b>capital</b> and <b>minimal</b> letter"
+        });
+    } else if (!checkPasswordMatch(password, password2)) {
+        document.getElementById("password2").style.borderColor = "red";
+        document.getElementById("password2").style.borderStyle = "inset";
+        swal({
+            type: "error",
+            title: "Your passwords do not match !"
+        });
     } else {
         socket.emit("parametre", {
             first_name: first_name,
