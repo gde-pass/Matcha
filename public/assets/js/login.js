@@ -88,11 +88,22 @@ document.getElementById("loginButton").addEventListener("click", function () {
     let password = document.getElementById("login_password").value;
 
     if (checkEmailPattern(email) && checkPasswordPattern(password)) {
-
-        socket.emit("login", {
-            email: email,
-            password: password,
-        });
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+            //             // $.get( "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ position.coords.latitude + "," + position.coords.longitude +"&key=AIzaSyD9oJ7wV_M2Q1U-xcU71D-SSEiPHqiozIE", function(data) {
+            //             //     console.log(data);
+            //             // })
+            //todo pour augmenter de 5km au nord il faut faire +0.040191 a a latitude pareil pour aller a l'est mais sur la longitude
+            //todo donc toute les personnes  qui sont entre lat/lgn + 0.04191 * (distance souhaiter) et lat/lgn +  0.04191 * (distance souhaiter) dans un perimetre de 0.04191 * (distance souhaiter)
+            //todo si les lat/lng des personne sont compris entre + 0.04191 * (distance souhaiter) et - 0.04191 * (distance souhaiter) on peut les voir
+            socket.emit("login", {
+                email: email,
+                password: password,
+                lat: lat,
+                lng: lng
+            });
+        })
     } else if (!checkEmailPattern(email)) {
         swal({
             type: "error",

@@ -3,6 +3,7 @@ const express = require("express");
 
 const router = express.Router();
 let profil = require("../utils/profil");
+let upload = require("../utils/upload");
 let validation = require("../utils/email_validation");
 
 router.get("/", function (req, res) {
@@ -97,6 +98,15 @@ router.get("/logout", function (req, res) {
             connected : false
         });
     }
+});
+
+router.get("/map", function (req, res) {
+    res.render('map');
+});
+
+router.post("/upload", function (req, res) {
+    console.log("dfdfdf");
+    upload(req, res);
 });
 
 router.use(function (req, res) {
