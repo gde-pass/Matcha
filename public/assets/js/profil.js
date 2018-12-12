@@ -174,6 +174,129 @@ function checkPasswordMatch(password1, password2) {
 
 // ============ /CHECK FUNCTIONS =============
 
+// ============ SIGN UP EVENTS ===========
+
+document.getElementById("first_name").addEventListener("focusout", function () {
+
+    if (this.value.length !== 0 && !checkName(this.value)) {
+        this.style.borderColor = "red";
+        this.style.borderStyle = "inset";
+    } else if (this.value.length !== 0 && checkName(this.value)) {
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
+    } else {
+        this.style.borderColor = "#ccc";
+        this.style.borderStyle = "solid";
+    }
+
+});
+
+document.getElementById("last_name").addEventListener("focusout", function () {
+
+    if (this.value.length !== 0 && !checkName(this.value)) {
+        this.style.borderColor = "red";
+        this.style.borderStyle = "inset";
+    } else if (this.value.length !== 0 && checkName(this.value)) {
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
+    } else {
+        this.style.borderColor = "#ccc";
+        this.style.borderStyle = "solid";
+    }
+
+});
+
+document.getElementById("email").addEventListener("focusout", function () {
+
+    if (this.value.length !== 0 && !checkEmailPattern(this.value)) {
+        this.style.borderColor = "red";
+        this.style.borderStyle = "inset";
+    } else if (this.value.length !== 0 && checkEmailPattern(this.value)) {
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
+        socket.emit("focusOutEmailSignUp", this.value);
+    } else {
+        this.style.borderColor = "#ccc";
+        this.style.borderStyle = "solid";
+    }
+
+});
+
+document.getElementById("username").addEventListener("focusout", function () {
+
+    if (this.value.length !== 0 && !checkUserPattern(this.value)) {
+        this.style.borderColor = "red";
+        this.style.borderStyle = "inset";
+    } else if (this.value.length !== 0 && checkUserPattern(this.value)) {
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
+    } else {
+        this.style.borderColor = "#ccc";
+        this.style.borderStyle = "solid";
+    }
+});
+
+document.getElementById("bio").addEventListener("focusout", function () {
+
+    if (this.value.length !== 0 && !checkBioPattern(this.value)) {
+        this.style.borderColor = "red";
+        this.style.borderStyle = "inset";
+    } else if (this.value.length !== 0 && checkBioPattern(this.value)) {
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
+    } else {
+        this.style.borderColor = "#ccc";
+        this.style.borderStyle = "solid";
+    }
+});
+
+document.getElementById("tags").addEventListener("focusout", function () {
+
+    if (this.value.length !== 0 && !checkTagsPattern(this.value)) {
+        this.style.borderColor = "red";
+        this.style.borderStyle = "inset";
+    } else if (this.value.length !== 0 && checkTagsPattern(this.value)) {
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
+    } else {
+        this.style.borderColor = "#ccc";
+        this.style.borderStyle = "solid";
+    }
+});
+
+document.getElementById("password").addEventListener("focusout", function () {
+
+    if (this.value.length !== 0 && !checkPasswordPattern(this.value)) {
+        this.style.borderColor = "red";
+        this.style.borderStyle = "inset";
+    } else if (this.value.length !== 0 && checkPasswordPattern(this.value)) {
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
+    } else {
+        this.style.borderColor = "#ccc";
+        this.style.borderStyle = "solid";
+    }
+});
+
+document.getElementById("password2").addEventListener("focusout", function () {
+
+    let password = document.getElementById("password").value;
+
+    if (this.value.length !== 0 && !checkPasswordMatch(this.value, password)) {
+        this.style.borderColor = "red";
+        this.style.borderStyle = "inset";
+    } else if (this.value.length !== 0 && checkPasswordMatch(this.value, password)) {
+        this.style.borderColor = "green";
+        this.style.borderStyle = "solid";
+    } else {
+        this.style.borderColor = "#ccc";
+        this.style.borderStyle = "solid";
+    }
+});
+
+// ============ /SIGN UP EVENTS ===========
+
+
 
 // ============ SOCKET EVENTS =============
 socket.emit("getCookie", Cookies.get("token"));
@@ -295,5 +418,17 @@ document.getElementById("save").addEventListener("click", function () {
             password2: password2,
         });
     }
+});
+
+socket.on("focusOutEmailSignUpFalse", function (email) {
+    document.getElementById("email").style.borderColor = "red";
+    document.getElementById("email").style.borderStyle = "inset";
+
+    swal({
+        type: "error",
+        title: "Email already existed",
+        text: email + " is already taken !"
+    });
+
 });
 // ============ /SOCKET EVENTS =============
