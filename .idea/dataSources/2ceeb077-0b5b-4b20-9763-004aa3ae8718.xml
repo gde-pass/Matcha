@@ -809,86 +809,135 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="203" parent="2" name="Users"/>
-    <table id="204" parent="2" name="sessions"/>
-    <column id="205" parent="203" name="user_id">
+    <table id="203" parent="2" name="Settings"/>
+    <table id="204" parent="2" name="Users"/>
+    <table id="205" parent="2" name="sessions"/>
+    <column id="206" parent="203" name="user_id">
       <Position>1</Position>
       <DataType>int(10) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="206" parent="203" name="email">
+    <column id="207" parent="203" name="orientation">
+      <Position>2</Position>
+      <DataType>char(2)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="208" parent="203" name="sex">
+      <Position>3</Position>
+      <DataType>varchar(1)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="209" parent="203" name="bio">
+      <Position>4</Position>
+      <DataType>text|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="210" parent="203" name="tags">
+      <Position>5</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="211" parent="203" name="distance">
+      <Position>6</Position>
+      <DataType>tinyint(3) unsigned|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="212" parent="203" name="age">
+      <Position>7</Position>
+      <DataType>tinyint(3) unsigned|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="213" parent="203" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="214" parent="203" name="Settings_ibfk_1">
+      <ColNames>user_id</ColNames>
+      <RefSchemaName>Matcha</RefSchemaName>
+      <RefTableName>Users</RefTableName>
+      <RefColNames>user_id</RefColNames>
+    </foreign-key>
+    <column id="215" parent="204" name="user_id">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="216" parent="204" name="email">
       <Position>2</Position>
       <DataType>varchar(254)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="207" parent="203" name="first_name">
+    <column id="217" parent="204" name="first_name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="208" parent="203" name="last_name">
+    <column id="218" parent="204" name="last_name">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="209" parent="203" name="display_name">
+    <column id="219" parent="204" name="display_name">
       <Position>5</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="210" parent="203" name="password">
+    <column id="220" parent="204" name="password">
       <Position>6</Position>
       <DataType>char(128)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="211" parent="203" name="checked">
+    <column id="221" parent="204" name="checked">
       <Position>7</Position>
       <DataType>tinyint(1)|0s</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="212" parent="203" name="email">
+    <index id="222" parent="204" name="email">
       <ColNames>email</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="213" parent="203" name="PRIMARY">
+    <key id="223" parent="204" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>user_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="214" parent="203" name="email">
+    <key id="224" parent="204" name="email">
       <ColNames>email</ColNames>
       <UnderlyingIndexName>email</UnderlyingIndexName>
     </key>
-    <column id="215" parent="204" name="session_id">
+    <column id="225" parent="205" name="session_id">
       <Position>1</Position>
       <DataType>varchar(128)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8mb4_bin</Collation>
     </column>
-    <column id="216" parent="204" name="expires">
+    <column id="226" parent="205" name="expires">
       <Position>2</Position>
       <DataType>int(11) unsigned|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="217" parent="204" name="data">
+    <column id="227" parent="205" name="data">
       <Position>3</Position>
       <DataType>text|0s</DataType>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8mb4_bin</Collation>
     </column>
-    <key id="218" parent="204" name="PRIMARY">
+    <key id="228" parent="205" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>session_id</ColNames>
       <Primary>1</Primary>

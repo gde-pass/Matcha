@@ -19,6 +19,24 @@ function dbInitTableUser(conn) {
     });
 }
 
+function dbInitTableSettings(conn) {
+
+    const sql = "CREATE TABLE IF NOT EXISTS Settings (" +
+        "    `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT," +
+        "    `orientation` CHAR(2)," +
+        "    `sex` VARCHAR (1)," +
+        "    `bio` TEXT (500)," +
+        "    `tags` VARCHAR(255)," +
+        "    `distance` TINYINT UNSIGNED," +
+        "    `age` TINYINT UNSIGNED," +
+        "    PRIMARY KEY(user_id)," +
+        "    FOREIGN KEY(user_id) REFERENCES Users(user_id)" +
+        ") ENGINE = InnoDB;";
+
+    conn.query(sql, function (err) {
+        if (err) throw err;
+    });
+}
 
 function dbInitTables(conn, hostSQL, portSQL) {
 
@@ -27,6 +45,7 @@ function dbInitTables(conn, hostSQL, portSQL) {
         console.log("Connected to the server mysql at http://%s:%s !", hostSQL, portSQL);
 
         dbInitTableUser(conn);
+        dbInitTableSettings(conn);
     });
 }
 
