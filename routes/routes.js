@@ -5,17 +5,15 @@ const router = express.Router();
 let profil = require("../utils/profil");
 let upload_profil = require("../utils/upload_profil");
 let upload_img = require("../utils/upload_img");
+let display_users = require("../utils/display_users");
+let get_user = require("../utils/get_user");
 let validation = require("../utils/email_validation");
 
 router.get("/", function (req, res) {
     if(typeof req.cookies.token === "undefined") {
-        res.render('index',{
-            connected : false
-        });
+        display_users(req, res, false);
     }else {
-        res.render('index',{
-            connected : true
-        });
+        display_users(req, res, true);
     }
 });
 
@@ -23,9 +21,7 @@ router.get("/login", function (req, res) {
     if(typeof req.cookies.token === "undefined") {
         res.render('login');
     }else {
-        res.render('index',{
-            connected : true
-        });
+        display_users(req, res, true);
     }
 });
 
@@ -37,21 +33,16 @@ router.get("/register", function (req, res) {
     if(typeof req.cookies.token === "undefined") {
         res.render('register');
     }else {
-        res.render('index',{
-            connected : true
-        });
+        display_users(req, res, true);
     }
 });
 
 router.get("/single", function (req, res) {
+
     if(typeof req.cookies.token === "undefined") {
-        res.render('single',{
-            connected : false
-        });
+        get_user(req, res, false)
     }else {
-        res.render('single',{
-            connected : true
-        });
+        get_user(req, res, true)
     }
 });
 
@@ -80,9 +71,7 @@ router.get("/contact", function (req, res) {
 });
 router.get("/profil", function (req, res) {
     if(typeof req.cookies.token === "undefined") {
-        res.render('index',{
-            connected : false
-        });
+        display_users(req, res, false);
     }else {
         profil(req, res);
     }
@@ -90,14 +79,10 @@ router.get("/profil", function (req, res) {
 
 router.get("/logout", function (req, res) {
     if(typeof req.cookies.token === "undefined") {
-        res.render('index',{
-            connected : false
-        });
+        display_users(req, res, false);
     }else {
         res.clearCookie("token");
-        res.render('index',{
-            connected : false
-        });
+        display_users(req, res, true);
     }
 });
 
