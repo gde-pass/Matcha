@@ -23,7 +23,7 @@ function dbInitTableUser(conn) {
 
 function dbInitTableSettings(conn) {
 
-    const sql = "CREATE TABLE IF NOT EXISTS Settings (" +
+    const sql2 = "CREATE TABLE IF NOT EXISTS Settings (" +
         "    `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT," +
         "    `orientation` CHAR(2)," +
         "    `sex` VARCHAR (1)," +
@@ -35,7 +35,7 @@ function dbInitTableSettings(conn) {
         "    FOREIGN KEY(user_id) REFERENCES Users(user_id)" +
         ") ENGINE = InnoDB;";
 
-    conn.query(sql, function (err) {
+    conn.query(sql2, function (err) {
         if (err) throw err;
     });
 }

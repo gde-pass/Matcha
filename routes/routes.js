@@ -3,6 +3,7 @@ const express = require("express");
 
 const router = express.Router();
 let profil = require("../utils/profil");
+let chat = require("../utils/chat");
 let upload_profil = require("../utils/upload_profil");
 let upload_img = require("../utils/upload_img");
 let validation = require("../utils/email_validation");
@@ -52,6 +53,16 @@ router.get("/single", function (req, res) {
         res.render('single',{
             connected : true
         });
+    }
+});
+
+router.get("/chat", function (req, res) {
+    if(typeof req.cookies.token === "undefined") {
+        res.render('chat',{
+            connected : false
+        });
+    }else {
+        chat(req, res);
     }
 });
 
