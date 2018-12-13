@@ -88,9 +88,9 @@ document.getElementById("loginButton").addEventListener("click", function () {
     let password = document.getElementById("login_password").value;
 
     if (checkEmailPattern(email) && checkPasswordPattern(password)) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var lat = position.coords.latitude;
-            var lng = position.coords.longitude;
+        // navigator.geolocation.getCurrentPosition(function (position) {
+        //     var lat = position.coords.latitude;
+        //     var lng = position.coords.longitude;
             //             // $.get( "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ position.coords.latitude + "," + position.coords.longitude +"&key=AIzaSyD9oJ7wV_M2Q1U-xcU71D-SSEiPHqiozIE", function(data) {
             //             //     console.log(data);
             //             // })
@@ -100,10 +100,10 @@ document.getElementById("loginButton").addEventListener("click", function () {
             socket.emit("login", {
                 email: email,
                 password: password,
-                lat: lat,
-                lng: lng
+                lat: 48.8566,
+                lng: 2.3522
             });
-        })
+        // })
     } else if (!checkEmailPattern(email)) {
         swal({
             type: "error",

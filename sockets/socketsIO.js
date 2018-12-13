@@ -29,7 +29,7 @@ module.exports = function(io)
             } else if (await check.checkActivatedUser(data) === false) {
                 socket.emit("loginActivatedError");
             } else {
-                let sqlUpdate = "UPDATE Users SET latitude=?, longitude=?WHERE email=?;";
+                let sqlUpdate = "UPDATE Users SET latitude=?, longitude=? WHERE email=?;";
                 db.query(sqlUpdate,[data.lat,data.lng, data.email], function (error, results, fields) {
                     if (error) throw error;
                 });
@@ -45,7 +45,7 @@ module.exports = function(io)
         });
 
         socket.on("parametre", function (data) {
-            console.log(data);
+            // console.log(data);
         });
 
         socket.on("location", function (data) {

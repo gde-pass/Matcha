@@ -58,14 +58,14 @@
         <div class="col-md-8 profile_left">
             <div class="lsidebar span_1_of_profile">
                 <div class="grid_4">
-                    <img src="/assets/images/pic1.jpg" class="img-responsive" alt=""/>
+                    <img src="<%= `assets/img/${locals.user.username}${locals.user.user_id}profil.jpg`%>" class="img-responsive" alt=""/>
+                    <img src="<%= `assets/img/${locals.user.username}${locals.user.user_id}profil.jpeg`%>" class="img-responsive" alt=""/>
                     <ul class="category_desc1">
-                        <li class="cate_head">1.100 votes</li>
+                        <li class="cate_head">Mettre score</li>
                         <li class="cate_right">
                             <ul class="list1">
                                 <li><a href="#"><i class="heart"> </i></a></li>
                                 <li><a href="#"><i class="heart"> </i></a></li>
-
                             </ul>
                         </li>
                         <div class="clearfix"></div>
@@ -73,7 +73,7 @@
                 </div>
             </div>
             <div class="cont span_2_of_profile">
-                <h4><a href="#">Leonardo ,</a>Manager-usa</h4>
+                <h4><a href="#"><%= locals.user.first_name + " " + locals.user.last_name%></a></h4>
                 <table class="profile-fields">
                     <tbody>
                     <tr>
@@ -101,51 +101,12 @@
             </div>
             <div class="clearfix"></div>
         </div>
-        <div class="col-md-4">
-            <h4 class="m_4">Top Members</h4>
-            <ul id="flexiselDemo3">
-                <li><img src="/assets/images/pic2.jpg" class="img-responsive" alt=""/></li>
-                <li><img src="/assets/images/pic1.jpg" class="img-responsive" alt=""/></li>
-                <li><img src="/assets/images/pic1.jpg" class="img-responsive" alt=""/></li>
-            </ul>
-
-
-            <h4 class="recent">Recently Active user Groups</h4>
-            <ul id="flexiselDemo1">
-                <li><img src="/assets/images/pic1.jpg"/>
-                    <div class="grid-flex"><a href="#">Syenergy 2mm</a>
-                        <p>0 friend</p></div>
-                </li>
-                <li><img src="/assets/images/pic2.jpg"/>
-                    <div class="grid-flex"><a href="#">Surf Yoke</a>
-                        <p>10 friends</p></div>
-                </li>
-                <li><img src="/assets/images/pic3.jpg"/>
-                    <div class="grid-flex"><a href="#">Salty Daiz</a>
-                        <p>1 friend</p></div>
-                </li>
-                <li><img src="/assets/images/pic1.jpg"/>
-                    <div class="grid-flex"><a href="#">Cheeky Zane</a>
-                        <p>0 friend</p></div>
-                </li>
-                <li><img src="/assets/images/pic2.jpg"/>
-                    <div class="grid-flex"><a href="#">Synergy</a>
-                        <p>0 friend</p></div>
-                </li>
-            </ul>
-        </div>
     </div>
 </div>
 <div class="footer">
     <div class="container">
         <div class="copy wow fadeInUp" data-wow-delay="0.4s">
             <p>&copy; 2018 Matcha</p>
-        </div>
-        <div class="social wow fadeInRight" data-wow-delay="0.4s">
-            <ul class="footer_social">
-                <li><a href="#"> <i class="fb"> </i> </a></li>
-                <li><a href="#"> <i class="tw"> </i> </a></li>
-            </ul>
         </div>
         <div class='clearfix'></div>
     </div>
