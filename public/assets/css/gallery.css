@@ -1,0 +1,44 @@
+#photos {
+    opacity: 0.88;
+}
+
+#photos img {
+    width: 30%;
+    float: left;
+    display: block;
+    margin: 2px;
+}
+
+ul {
+    list-style: none;
+    margin: 0px auto;
+    padding: 10px;
+    display: block;
+    max-width: 780px;
+    text-align: center;
+}
+
+#overlay {
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    text-align: center;
+}
+
+#overlay img {
+    margin: 10% auto 0;
+    width: 550px;
+    border-radius: 5px;
+}
+
+#photos {
+    width: 100%;
+}
+
+#photo-gallery {
+    width: 100%;
+}

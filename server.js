@@ -13,7 +13,7 @@ const index = require('./routes/routes');
 const initDb = require("./database/init.js");
 const db = require("./database/database");
 const profil = require('./utils/profil');
-const upload = require('./utils/upload');
+const upload = require('./utils/upload_profil');
 
 //------VARIABLE GLOBALE-------------------------------------------------------------------------------------
 const app = express();
