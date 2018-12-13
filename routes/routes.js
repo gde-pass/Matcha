@@ -3,7 +3,8 @@ const express = require("express");
 
 const router = express.Router();
 let profil = require("../utils/profil");
-let upload = require("../utils/upload");
+let upload_profil = require("../utils/upload_profil");
+let upload_img = require("../utils/upload_img");
 let validation = require("../utils/email_validation");
 
 router.get("/", function (req, res) {
@@ -105,9 +106,13 @@ router.get("/map", function (req, res) {
 });
 
 router.post("/upload", function (req, res) {
-    console.log("dfdfdf");
-    upload(req, res);
+    upload_profil(req, res);
 });
+
+router.post("/upload_img", function (req, res) {
+    upload_img(req, res);
+});
+
 
 router.use(function (req, res) {
     res.render("404");

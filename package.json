@@ -49,6 +49,7 @@
     "nodemon": "^1.18.7",
     "path": "^0.12.7",
     "socket.io": "^2.1.1",
+    "str-replace": "0.0.5",
     "sweetalert2": "^7.31.0",
     "validator": "^10.9.0",
     "wowjs": "^1.1.3"
