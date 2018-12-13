@@ -9,8 +9,8 @@
 Etant donner que notre site est un localhost il n'est pas reconnue comme une connection securisé, par consequent le
 module de localisation de fonctionne pas, pour le faire fonctionner il faut lancer une page google chrome qui ne
 verifie pas la securité de la connection. Pour se faire :
-Dans le terminal : /Applications/Google Chrome.app/Contents/MacOS
-Puis executer : ./Google\ Chrome --unsafely-treat-insecure-origin-as-secure="localhost:8080"
+* Dans le terminal : /Applications/Google Chrome.app/Contents/MacOS
+* Puis executer : ./Google\ Chrome --unsafely-treat-insecure-origin-as-secure="localhost:8080"
 ------------------------------------------------------------------------------------------------------------------------
 
 
