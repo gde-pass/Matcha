@@ -2,6 +2,18 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/806e5df34d2c4ca6bac52a06b0b54bbd)](https://app.codacy.com/app/gde-pass/Matcha?utm_source=github.com&utm_medium=referral&utm_content=gde-pass/Matcha&utm_campaign=Badge_Grade_Dashboard)
 
+
+## IMPORTANT
+------------------------------------------------------------------------------------------------------------------------
+
+Etant donner que notre site est un localhost il n'est pas reconnue comme une connection securisé, par consequent le
+module de localisation de fonctionne pas, pour le faire fonctionner il faut lancer une page google chrome qui ne
+verifie pas la securité de la connection. Pour se faire :
+* Dans le terminal : /Applications/Google Chrome.app/Contents/MacOS
+* Puis executer : ./Google\ Chrome --unsafely-treat-insecure-origin-as-secure="localhost:8080"
+------------------------------------------------------------------------------------------------------------------------
+
+
 ## Introduction
 
 This project is about creating a dating website.

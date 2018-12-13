@@ -1,10 +1,6 @@
-const express = require('express');
-const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 let jwtUtils = require("./jwt.utils");
-const fs = require('fs');
-const glob = require('glob');
 
 function up_img(req,res,file) {
 
