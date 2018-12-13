@@ -6,20 +6,27 @@ let replace = require("str-replace");
 const glob = require('glob');
 const path = require('path');
 
+let display_users = require("../utils/display_users");
+
 function profil(req,res){
 
+    let check = jwtUtils.getUserID(req.cookies.token);
+    if(check.exp < Date.now() /1000) {
+        res.clearCookie("token");
+        // display_users(req, res, false);
+    }
     let data = jwtUtils.getUserID(req.cookies.token);
     if (data.email < 0) {
-        res.render('index');
+        display_users(req, res, false);
     }
     if (data.type < 0 || data.type != "login") {
-        res.render('index');
+        display_users(req, res, false);
     }else {
         let sql = "SELECT * FROM Users WHERE email=?";//todo avec le token
         conn.query(sql, [data.email], function (error, results, fields) {
             if (error) throw error;
             if (empty(results)) {
-                res.render('index');
+                display_users(req, res, false);
             } else {
                 glob(`*/assets/img/${data.username}${data.Id}profil*`, function(err, files_profil) {
                     var profil_img = path.basename(files_profil.toString());

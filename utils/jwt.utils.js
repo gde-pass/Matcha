@@ -34,7 +34,6 @@ module.exports ={
         if(token != null){
             try{
                 let jwtToken = jwt.verify(token, JWT_SIGN_SECRET);
-
                 if(jwtToken != null){
                     data = {
                         email : jwtToken.email,
@@ -43,6 +42,7 @@ module.exports ={
                         last_name: jwtToken.last_name,
                         username: jwtToken.username,
                         Id: jwtToken.Id,
+                        exp: jwtToken.exp
                     };
 
                     if(jwtToken.type === undefined){
