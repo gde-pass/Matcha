@@ -49,7 +49,6 @@ router.post("/", function (req, res) {
                 //     file: `assets/img/${req.file.filename}`,
                 //
                 // });
-                console.log('oui');
                 res.end("success");
             }
         }

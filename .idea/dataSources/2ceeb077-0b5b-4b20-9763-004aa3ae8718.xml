@@ -842,11 +842,15 @@
     <column id="211" parent="203" name="distance">
       <Position>6</Position>
       <DataType>tinyint(3) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>0</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="212" parent="203" name="age">
       <Position>7</Position>
       <DataType>tinyint(3) unsigned|0s</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>8</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <key id="213" parent="203" name="PRIMARY">
@@ -875,25 +879,25 @@
     </column>
     <column id="217" parent="204" name="first_name">
       <Position>3</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="218" parent="204" name="last_name">
       <Position>4</Position>
-      <DataType>varchar(255)|0s</DataType>
+      <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="219" parent="204" name="display_name">
+    <column id="219" parent="204" name="username">
       <Position>5</Position>
-      <DataType>varchar(50)|0s</DataType>
+      <DataType>varchar(15)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="220" parent="204" name="password">
       <Position>6</Position>
-      <DataType>char(128)|0s</DataType>
+      <DataType>varchar(60)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>

@@ -21,12 +21,10 @@ function sendMail(email, token) {
         text: `Please click on this link to activate your account "http://localhost:8080/validation/${token}"`
     };
 
-    transporter.sendMail(mailOption, (error, info) => {
+    transporter.sendMail(mailOption, (error) => {
         if (error) {
-            return console.log(error);
+            throw error;
         }
-        console.log('envoyer');
-        console.log(info);
     });
 }
 module.exports = sendMail;

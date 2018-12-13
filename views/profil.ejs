@@ -235,7 +235,7 @@
                         <div class="form-group">
 
                             <div class="col-xs-6">
-                                <label for="distance"><h4 id="distanceText">Distance <%= locals.distance %> (Km)</h4>
+                                <label for="distance"><h4 id="distanceText">Distance: <%= locals.distance %> (Km)</h4>
                                 </label>
                                 <input type="range" class="form-control" id="distance" value="<%= locals.distance %>"
                                        min="5" max="50" step="5"
@@ -247,7 +247,7 @@
 
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="age"><h4 id="ageText">Age</h4></label>
+                                <label for="age"><h4 id="ageText">Age: <%= locals.age %> </h4></label>
                                 <input type="range" min="18" max="100" class="form-control" name="age" id="age"
                                        value="<%= locals.age %>" title="Enter your age."
                                        onchange="updateTextAge(this.value);">

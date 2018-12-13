@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Matcha" uuid="2ceeb077-0b5b-4b20-9763-004aa3ae8718">
+    <data-source source="LOCAL" name="Matcha" uuid="7ec51dbf-03be-483b-aa32-3f0923beda60">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://192.168.99.100:3306/Matcha</jdbc-url>
+      <jdbc-url>jdbc:mysql://192.168.99.100:3306/</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />
