@@ -67,7 +67,6 @@ function checkTagsPattern(value) {
  * @return {boolean}
  */
 function checkBioPattern(value) {
-    //const bioRegex = new RegExp("");
 
     if (value.length < 50 || value.length > 500) {
         return (false);
@@ -94,7 +93,7 @@ function checkSexPattern(value) {
  * @return {boolean}
  */
 function checkSexOrientationPattern(value) {
-    const sexOrientationRegex = new RegExp("^(Ho|He|Bi)$");
+    const sexOrientationRegex = new RegExp("^(Homosexual|Heterosexual|Bisexual)$");
 
     if (value.length !== 2 || !value.match(sexOrientationRegex)) {
         return (false);

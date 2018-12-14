@@ -96,7 +96,7 @@ function checkSexPattern(value) {
  * @return {boolean}
  */
 function checkSexOrientationPattern(value) {
-    const sexOrientationRegex = new RegExp("^(Ho|He|Bi)$");
+    const sexOrientationRegex = new RegExp("^(Homosexual|Heterosexual|Bisexual)$");
 
     if (value.length !== 2 || !value.match(sexOrientationRegex)) {
         return (false);
