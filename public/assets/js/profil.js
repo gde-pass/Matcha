@@ -388,7 +388,7 @@ document.getElementById("save").addEventListener("click", function () {
             title: "Invalid age",
             html: "Your age must be between <b>18</b> and <b>100</b> years old."
         });
-    } else if (!checkPasswordPattern(password)) {
+    } else if (password.length !== 0 && !checkPasswordPattern(password)) {
         document.getElementById("password").style.borderColor = "red";
         document.getElementById("password").style.borderStyle = "inset";
         swal({
@@ -396,7 +396,7 @@ document.getElementById("save").addEventListener("click", function () {
             title: "Your password is not valid",
             html: "Your password must contain between <b>6</b> and <b>20 characters</b> with a <b>number</b>, a <b>capital</b> and <b>minimal</b> letter"
         });
-    } else if (!checkPasswordMatch(password, password2)) {
+    } else if (password2.length !== 0 && !checkPasswordMatch(password, password2)) {
         document.getElementById("password2").style.borderColor = "red";
         document.getElementById("password2").style.borderStyle = "inset";
         swal({
@@ -407,6 +407,7 @@ document.getElementById("save").addEventListener("click", function () {
         socket.emit("parametre", {
             first_name: first_name,
             last_name: last_name,
+            username: username,
             email: email,
             sex: sex,
             orientation: orientation,
@@ -416,6 +417,7 @@ document.getElementById("save").addEventListener("click", function () {
             bio: bio,
             password: password,
             password2: password2,
+            cookie: Cookies.get("token"),
         });
     }
 });
@@ -431,4 +433,21 @@ socket.on("focusOutEmailSignUpFalse", function (email) {
     });
 
 });
+
+socket.on("settingsUpdateTrue", function () {
+    swal({
+        type: "success",
+        title: "Well done !",
+        text: "Your settings have been successfully updated !"
+    });
+});
+
+socket.on("settingsUpdateFalse", function () {
+    swal({
+        type: "error",
+        title: "Oops ...",
+        text: "A error occurred !"
+    });
+});
+
 // ============ /SOCKET EVENTS =============

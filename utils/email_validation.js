@@ -4,7 +4,6 @@ let conn = require("../database/database");
 
 function email_validation(req, res, token) {
     let data = jwtUtils.getUserID(token);
-    console.log(token);
     if (data.email < 0) {
         res.render('login', {
             error: "Token is not valid"
@@ -19,7 +18,6 @@ function email_validation(req, res, token) {
         conn.query(sqlCheck, [data.email], function (error, results, fields) {
             if (error) throw error;
             if (empty(results)) {
-                console.log("no users");
                 res.render('login', {
                     error: "There are no users for ths Token"
                 })
@@ -33,7 +31,6 @@ function email_validation(req, res, token) {
                 conn.query(sqlValidate, [1, data.email], function (error, results, fields) {
                     if (error) throw error;
                     if (empty(results)) {
-                        console.log("no users");
                         res.render('login', {
                             error: "There are no users for ths Token"
                         })

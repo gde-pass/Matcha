@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const path = require('path');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 
 
 //-----IMPORT LOCAL------------------------------------------------------------------------------------------

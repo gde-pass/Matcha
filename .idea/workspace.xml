@@ -1,0 +1,1013 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2f412605-4aa4-4c6c-8164-9b10572fa668" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2ceeb077-0b5b-4b20-9763-004aa3ae8718.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/check_validity.js" beforeDir="false" afterPath="$PROJECT_DIR$/database/check_validity.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/init.js" beforeDir="false" afterPath="$PROJECT_DIR$/database/init.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/database/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/js/profil.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/profil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sockets/socketsIO.js" beforeDir="false" afterPath="$PROJECT_DIR$/sockets/socketsIO.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/email_validation.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/email_validation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/jwt.utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/jwt.utils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/profil.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/profil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/sendMail.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/sendMail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/upload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/profil.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/profil.ejs" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sockets/socketsIO.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="58" column="11" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/utils/jwt.utils.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/utils/profil.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="915">
+              <caret line="61" column="1" lean-forward="true" selection-start-line="61" selection-start-column="1" selection-end-line="61" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/user.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2985">
+              <caret line="199" column="40" selection-start-line="199" selection-start-column="40" selection-end-line="199" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>cambiar_sign_up</find>
+      <find>confirm_password</find>
+      <find>value</find>
+      <find>'*'</find>
+      <find>/views</find>
+      <find>views</find>
+      <find>(express.stati</find>
+      <find>form</find>
+      <find>type</find>
+      <find>html</find>
+      <find>id=&quot;email&quot;</find>
+      <find>id=&quot;loca</find>
+      <find>soulmate</find>
+      <find>&quot;*&quot;</find>
+      <find>validator</find>
+      <find>script</find>
+      <find>checkFirstName</find>
+      <find>dbSelectUserWithEmail</find>
+      <find>span1</find>
+      <find>username</find>
+      <find>orien</find>
+      <find>passwordM</find>
+      <find>emai</find>
+      <find>checkTags</find>
+      <find>console.log</find>
+      <find>distance</find>
+      <find>ookie</find>
+      <find>cookie</find>
+      <find>`</find>
+      <find>else</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>CheckPasswordPattern</replace>
+      <replace>DbInitTableUser</replace>
+      <replace>CheckEmailPattern</replace>
+      <replace>CheckPasswordMatch</replace>
+      <replace>DbInitTables</replace>
+      <replace>CheckUserPattern</replace>
+      <replace>checkEmailValidity</replace>
+      <replace>checkPasswordPattern</replace>
+      <replace>checkEmailPattern</replace>
+      <replace>dbInitTables</replace>
+      <replace>CheckEmailValidity</replace>
+      <replace>checkUserPattern</replace>
+      <replace>checkPasswordMatch</replace>
+      <replace>cambiarLogin</replace>
+      <replace>cambiarSignUp</replace>
+      <replace>confirmPassword</replace>
+      <replace>password</replace>
+      <replace>&quot;</replace>
+      <replace>icon</replace>
+      <replace>content</replace>
+      <replace>'</replace>
+      <replace>checkName</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="gde-pass &lt;gde-pass@student.42.fr&gt;" />
+        <option value="gde-pass &lt;gde-pass@student.42.fr&gt;c" />
+        <option value="GREGORY &lt;gde-pass@student.42.fr&gt;" />
+        <option value="gde-pass" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/app/config/socketsIO.js" />
+        <option value="$PROJECT_DIR$/app/config/database/check_validity.js" />
+        <option value="$PROJECT_DIR$/app/public/js/login_signup.js" />
+        <option value="$PROJECT_DIR$/app/config/database/init.js" />
+        <option value="$PROJECT_DIR$/app/config/database/user.js" />
+        <option value="$PROJECT_DIR$/public/assets/js/layout.js" />
+        <option value="$PROJECT_DIR$/public/assets/js/js.cookie.js" />
+        <option value="$PROJECT_DIR$/public/views/register.ejs" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/public/assets/js/login_signup.js" />
+        <option value="$PROJECT_DIR$/public/assets/css/bootstrap.css" />
+        <option value="$PROJECT_DIR$/public/assets/js/inputChecks.js" />
+        <option value="$PROJECT_DIR$/public/assets/css/style.css" />
+        <option value="$PROJECT_DIR$/database/database.js" />
+        <option value="$PROJECT_DIR$/views/index.js" />
+        <option value="$PROJECT_DIR$/public/assets/js/profiles.js" />
+        <option value="$PROJECT_DIR$/public/assets/css/404.css" />
+        <option value="$PROJECT_DIR$/public/assets/js/single..js" />
+        <option value="$PROJECT_DIR$/public/assets/js/about.js" />
+        <option value="$PROJECT_DIR$/public/assets/js/contact.js" />
+        <option value="$PROJECT_DIR$/views/404.ejs" />
+        <option value="$PROJECT_DIR$/views/login.ejs" />
+        <option value="$PROJECT_DIR$/views/profiles.ejs" />
+        <option value="$PROJECT_DIR$/node_modules/easydropdown/bundle/easydropdown.js" />
+        <option value="$PROJECT_DIR$/public/assets/js/single.js" />
+        <option value="$PROJECT_DIR$/routes/profil.js" />
+        <option value="$PROJECT_DIR$/views/register.ejs" />
+        <option value="$PROJECT_DIR$/routes/routes.js" />
+        <option value="$PROJECT_DIR$/public/assets/js/register.js" />
+        <option value="$PROJECT_DIR$/public/assets/js/index.js" />
+        <option value="$PROJECT_DIR$/public/assets/js/login.js" />
+        <option value="$PROJECT_DIR$/views/index.ejs" />
+        <option value="$PROJECT_DIR$/views/about.ejs" />
+        <option value="$PROJECT_DIR$/views/contact.ejs" />
+        <option value="$PROJECT_DIR$/views/single.ejs" />
+        <option value="$PROJECT_DIR$/public/assets/js/parametre.js" />
+        <option value="$PROJECT_DIR$/utils/email_validation.js" />
+        <option value="$PROJECT_DIR$/utils/sendMail.js" />
+        <option value="$PROJECT_DIR$/utils/upload.js" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/2ceeb077-0b5b-4b20-9763-004aa3ae8718/console.sql" />
+        <option value="$PROJECT_DIR$/database/init.js" />
+        <option value="$PROJECT_DIR$/views/profil.ejs" />
+        <option value="$PROJECT_DIR$/server.js" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7ec51dbf-03be-483b-aa32-3f0923beda60/console.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/database/check_validity.js" />
+        <option value="$PROJECT_DIR$/public/assets/js/profil.js" />
+        <option value="$PROJECT_DIR$/database/user.js" />
+        <option value="$PROJECT_DIR$/sockets/socketsIO.js" />
+        <option value="$PROJECT_DIR$/utils/jwt.utils.js" />
+        <option value="$PROJECT_DIR$/utils/profil.js" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1280" />
+    <option name="height" value="800" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+          <State>
+            <id>EJS</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>EJS</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Matcha" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="Matcha" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="Matcha" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="node_modules" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Matcha" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="views" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="database.console.LAST_STATE" value="false" />
+    <property name="javascript.nodejs.core.library.configured.version" value="11.1.0" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/sockets" />
+      <recent name="$PROJECT_DIR$/app/config/database" />
+      <recent name="$PROJECT_DIR$/app" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Node.js.Matcha">
+    <configuration name="Matcha" type="NodeJSConfigurationType" path-to-js-file="server.js" working-dir="$PROJECT_DIR$/">
+      <method v="2" />
+    </configuration>
+    <configuration name="Matcha" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker-Machine Matcha">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="envVars">
+            <list>
+              <DockerEnvVarImpl>
+                <option name="name" value="COMPOSE_TLS_VERSION" />
+                <option name="value" value="TLSv1_2" />
+              </DockerEnvVarImpl>
+            </list>
+          </option>
+          <option name="commandLineOptions" value="--build" />
+          <option name="sourceFilePath" value="docker/docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Docker.Matcha" />
+      <item itemvalue="Node.js.Matcha" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2f412605-4aa4-4c6c-8164-9b10572fa668" name="Default Changelist" comment="" />
+      <created>1543346596969</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1543346596969</updated>
+      <workItem from="1543346602464" duration="33144000" />
+      <workItem from="1543507081370" duration="21541000" />
+      <workItem from="1543750640657" duration="14421000" />
+      <workItem from="1543856517690" duration="11885000" />
+      <workItem from="1544116924897" duration="3826000" />
+      <workItem from="1544121112377" duration="53000" />
+      <workItem from="1544121223348" duration="89424000" />
+    </task>
+    <task id="LOCAL-00001" summary="JS sign in client side done">
+      <created>1543434875092</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1543434875093</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Norme en JS O_o">
+      <created>1543762029107</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1543762029107</updated>
+    </task>
+    <task id="LOCAL-00003" summary=".idea added&#10;&#10;some norme">
+      <created>1543763694878</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1543763694878</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Readme fixed">
+      <created>1543768202900</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1543768202900</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Norme NODE">
+      <created>1543770111606</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1543770111606</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Norme NODE">
+      <created>1543771120945</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1543771120945</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Norme NODE">
+      <created>1543848493616</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1543848493616</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Norme NODE">
+      <created>1543938652873</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1543938652873</updated>
+    </task>
+    <task id="LOCAL-00009" summary="New Template&#10;JS login SignIn merged&#10;Some CSS fix">
+      <created>1544122492277</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1544122492277</updated>
+    </task>
+    <task id="LOCAL-00010" summary="CSS fix on index&#10;HTML fix on index&#10;JS fix on index">
+      <created>1544123912518</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1544123912518</updated>
+    </task>
+    <task id="LOCAL-00011" summary="COOKIES: THE RETURN">
+      <created>1544126328890</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1544126328890</updated>
+    </task>
+    <task id="LOCAL-00012" summary="SweetAlert and JS-Cookie are now managed by npm">
+      <created>1544127737098</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1544127737098</updated>
+    </task>
+    <task id="LOCAL-00013" summary="404 fixed&#10;&#10;CLIENTSIDE JS mis a part&#10;&#10;WOW-js gérer par NPM&#10;&#10;Tous les scripts mis a la fin de body&#10;&#10;Titres des pages mis au propre">
+      <created>1544132034464</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1544132034464</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Jquery-js gérer par NPM">
+      <created>1544133021459</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1544133021459</updated>
+    </task>
+    <task id="LOCAL-00015" summary="flexslider gérer par NPM">
+      <created>1544133950010</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1544133950010</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Fix DOM error in profil page">
+      <created>1544136697349</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1544136697349</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Add every routes of the template&#10;&#10;Remove &quot;soulmate&quot; from single.ejs">
+      <created>1544137284605</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1544137284605</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fix js single&#10;&#10;Fix socket loginerror&#10;&#10;Fix img path register">
+      <created>1544191118149</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1544191118149</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Fix front register&#10;&#10;Add HTML check&#10;&#10;modif displayname to usename in initDB&#10;&#10;remove useless console.log">
+      <created>1544195882829</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1544195882830</updated>
+    </task>
+    <task id="LOCAL-00020" summary="regex checkName changed&#10;&#10;length LastFirst changed to 40 in initDB/ CheckValidity / register.js&#10;&#10;old img folder deleted&#10;&#10;redirection after you register and swal for the email confirmation&#10;&#10;route 404 reactiver">
+      <created>1544203533857</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1544203533858</updated>
+    </task>
+    <task id="LOCAL-00021" summary="function checkLoginUser added&#10;Cookie alert creation deleted">
+      <created>1544449072104</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1544449072105</updated>
+    </task>
+    <task id="LOCAL-00022" summary="function checkLoginUser now check pattern of email and password&#10;Error message when invalid user try to login done">
+      <created>1544449477272</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1544449477272</updated>
+    </task>
+    <task id="LOCAL-00023" summary="function checkActivatedUser added&#10;&#10;Error message when account is not activated">
+      <created>1544450965219</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1544450965219</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Message envois email de confirmation&#10;&#10;fix login">
+      <created>1544454974255</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1544454974255</updated>
+    </task>
+    <task id="LOCAL-00025" summary="param.js deleted (content =&gt; profil.js)&#10;&#10;fix security fail ===&#10;&#10;Delete useless var in query&#10;&#10;Manage your account link add on every page&#10;&#10;Select input in profil for sex and sex orient&#10;&#10;placeholder done in profil">
+      <created>1544459636001</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1544459636001</updated>
+    </task>
+    <task id="LOCAL-00026" summary="socket.emit when save button clicked&#10;&#10;sex and age have range html type">
+      <created>1544468545770</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1544468545771</updated>
+    </task>
+    <task id="LOCAL-00027" summary="A lot of pattern check added&#10;And some SWAL error message">
+      <created>1544556130287</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1544556130287</updated>
+    </task>
+    <task id="LOCAL-00028" summary="check pattern client side done">
+      <created>1544617394408</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1544617394408</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Event focus out added&#10;&#10;check email validity done&#10;&#10;tiny fix front">
+      <created>1544619689668</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1544619689668</updated>
+    </task>
+    <task id="LOCAL-00030" summary="init table setting">
+      <created>1544636639969</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1544636639976</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Transformation des requetes sql creation user sync en async&#10;&#10;creation de la table setting avec defaults settings (age \ distance)&#10;&#10;Delete des consoles logs de partout super relou&#10;&#10;Recupération dans la page profil des informations et settings de l'user&#10;&#10;tiny fix front profil.ejs">
+      <created>1544712439838</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1544712439838</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Check des settings server-side&#10;&#10;Update des settings&#10;&#10;password n'est plus obligatoire pour update ses settings mais est maintenant utilisé pour changer son mdp&#10;&#10;message d'erreur en cas d'echec des updates et en cas de success&#10;&#10;epriration du token login set a 5h">
+      <created>1544794463357</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1544794463357</updated>
+    </task>
+    <task id="LOCAL-00033" summary="fix stupid bug :)">
+      <created>1544795095766</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1544795095767</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="174294000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2515625" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" order="0" weight="0.30359522" />
+      <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="2" weight="0.32876712" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.20772304" />
+      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5015625" side_tool="true" weight="0.19840214" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info anchor="bottom" id="Find" order="6" weight="0.3262317" />
+      <window_info active="true" anchor="bottom" id="Run" order="7" sideWeight="0.4984375" visible="true" weight="0.21970706" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="Database Console" order="11" weight="0.32756326" />
+      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.3288948" />
+      <window_info anchor="right" id="Database" order="0" weight="0.28828126" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="TODO" order="4" side_tool="true" weight="0.328125" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2515625" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" order="0" weight="0.30359522" />
+      <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="2" weight="0.32876712" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.20772304" />
+      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5015625" side_tool="true" weight="0.19840214" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info anchor="bottom" id="Find" order="6" weight="0.3262317" />
+      <window_info anchor="bottom" id="Run" order="7" sideWeight="0.4984375" visible="true" weight="0.21970706" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="Database Console" order="11" weight="0.32756326" />
+      <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.3288948" />
+      <window_info active="true" anchor="right" id="Database" order="0" visible="true" weight="0.28828126" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="TODO" order="4" side_tool="true" weight="0.328125" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="CSS fix on index&#10;HTML fix on index&#10;JS fix on index" />
+    <MESSAGE value="COOKIES: THE RETURN" />
+    <MESSAGE value="SweetAlert and JS-Cookie are now managed by npm" />
+    <MESSAGE value="404 fixed&#10;&#10;CLIENTSIDE JS mis a part&#10;&#10;WOW-js gérer par NPM&#10;&#10;Tous les scripts mis a la fin de body&#10;&#10;Titres des pages mis au propre" />
+    <MESSAGE value="Jquery-js gérer par NPM" />
+    <MESSAGE value="flexslider gérer par NPM" />
+    <MESSAGE value="Fix DOM error in profil page" />
+    <MESSAGE value="Add every routes of the template&#10;&#10;Remove &quot;soulmate&quot; from single.ejs" />
+    <MESSAGE value="MAJ" />
+    <MESSAGE value="Fix js single&#10;&#10;Fix socket loginerror&#10;&#10;Fix img path register" />
+    <MESSAGE value="Fix front register&#10;&#10;Add HTML check&#10;&#10;modif displayname to usename in initDB&#10;&#10;remove useless console.log" />
+    <MESSAGE value="regex checkName changed&#10;&#10;length LastFirst changed to 40 in initDB/ CheckValidity / register.js&#10;&#10;old img folder deleted&#10;&#10;redirection after you register and swal for the email confirmation&#10;&#10;route 404 reactiver" />
+    <MESSAGE value="function checkLoginUser added&#10;Cookie alert creation deleted" />
+    <MESSAGE value="function checkLoginUser now check pattern of email and password&#10;Error message when invalid user try to login done" />
+    <MESSAGE value="function checkActivatedUser added&#10;&#10;Error message when account is not activated" />
+    <MESSAGE value="Message envois email de confirmation&#10;&#10;fix login" />
+    <MESSAGE value="param.js deleted (content =&gt; profil.js)&#10;&#10;fix security fail ===&#10;&#10;Delete useless var in query&#10;&#10;Manage your account link add on every page&#10;&#10;Select input in profil for sex and sex orient&#10;&#10;placeholder done in profil" />
+    <MESSAGE value="socket.emit when save button clicked&#10;&#10;sex and age have range html type" />
+    <MESSAGE value="A lot of pattern check added&#10;And some SWAL error message" />
+    <MESSAGE value="check pattern client side done" />
+    <MESSAGE value="Event focus out added&#10;&#10;check email validity done&#10;&#10;tiny fix front" />
+    <MESSAGE value="init table setting" />
+    <MESSAGE value="Transformation des requetes sql creation user sync en async&#10;&#10;creation de la table setting avec defaults settings (age \ distance)&#10;&#10;Delete des consoles logs de partout super relou&#10;&#10;Recupération dans la page profil des informations et settings de l'user&#10;&#10;tiny fix front profil.ejs" />
+    <MESSAGE value="Check des settings server-side&#10;&#10;Update des settings&#10;&#10;password n'est plus obligatoire pour update ses settings mais est maintenant utilisé pour changer son mdp&#10;&#10;message d'erreur en cas d'echec des updates et en cas de success&#10;&#10;epriration du token login set a 5h" />
+    <MESSAGE value="fix stupid bug :)" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix stupid bug :)" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="das://2ceeb077-0b5b-4b20-9763-004aa3ae8718/schema/Matcha/table/Users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2ceeb077-0b5b-4b20-9763-004aa3ae8718/schema/Matcha/table/Users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2ceeb077-0b5b-4b20-9763-004aa3ae8718/schema/Matcha/table/Users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2ceeb077-0b5b-4b20-9763-004aa3ae8718/schema/Matcha/table/Users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/404.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="10" selection-end-line="16" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/js/single.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/upload.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/profil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/img/background-sign-in.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/img/cover.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/img/logo.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/images/abg.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/images/app.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/images/arrow.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/images/pic1.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/images/pic2.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/images/pic3.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/images/rate.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/about.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/single.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="137" column="6" lean-forward="true" selection-start-line="137" selection-start-column="6" selection-end-line="137" selection-end-column="6" />
+          <folding>
+            <element signature="e#5319#5325#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/contact.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/js/parametre.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/js/jquery.easydropdown.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="166" column="34" lean-forward="true" selection-start-line="166" selection-end-line="167" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/js/login.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="114" column="24" selection-start-line="114" selection-end-line="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/login.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="96" column="44" selection-start-line="96" selection-end-line="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/js/register.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1129">
+          <caret line="245" selection-start-line="245" selection-end-line="245" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="98" column="5" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2ceeb077-0b5b-4b20-9763-004aa3ae8718/schema/Matcha/table/Settings">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://2ceeb077-0b5b-4b20-9763-004aa3ae8718/schema/Matcha/table/Users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/2ceeb077-0b5b-4b20-9763-004aa3ae8718/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="22" selection-start-column="22" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="27" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/init.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/7ec51dbf-03be-483b-aa32-3f0923beda60/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="60" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/email_validation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/sendMail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="7" lean-forward="true" selection-start-line="27" selection-start-column="7" selection-end-line="27" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/profil.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="270" column="91" selection-start-line="270" selection-start-column="91" selection-end-line="270" selection-end-column="91" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/check_validity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/register.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="104" column="52" lean-forward="true" selection-start-line="104" selection-end-line="104" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="58" column="17" lean-forward="true" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://7ec51dbf-03be-483b-aa32-3f0923beda60/schema/Matcha/table/Settings">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://7ec51dbf-03be-483b-aa32-3f0923beda60/schema/Matcha/table/Users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/js/profil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5712">
+          <caret line="419" column="41" selection-start-line="419" selection-start-column="41" selection-end-line="419" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/upload_profil.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/upload.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="359">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/user.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2985">
+          <caret line="199" column="40" selection-start-line="199" selection-start-column="40" selection-end-line="199" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sockets/socketsIO.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="58" column="11" selection-start-line="58" selection-start-column="11" selection-end-line="58" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/jwt.utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/profil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="61" column="1" lean-forward="true" selection-start-line="61" selection-start-column="1" selection-end-line="61" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <last-edited>wad</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

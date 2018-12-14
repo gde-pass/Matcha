@@ -8,10 +8,8 @@ const check = require("../database/check_validity.js");
 const sendMail = require('../utils/sendMail');
 const geolib = require('geolib');
 
-module.exports = function(io)
-{
-    io.on("connection", function (socket)
-    {
+module.exports = function (io) {
+    io.on("connection", function (socket) {
         socket.on("register", async function (data) {
             if (await check.checkNewUser(data, db)) {
                 dbUser.dbInsertNewUser(data);
@@ -30,11 +28,11 @@ module.exports = function(io)
                 socket.emit("loginActivatedError");
             } else {
                 let sqlUpdate = "UPDATE Users SET latitude=?, longitude=? WHERE email=?;";
-                db.query(sqlUpdate,[data.lat,data.lng, data.email], function (error, results, fields) {
+                db.query(sqlUpdate, [data.lat, data.lng, data.email], function (error, results, fields) {
                     if (error) throw error;
                 });
                 let sql = "SELECT * FROM Users WHERE email=?;";
-                db.query(sql,[data.email], function (error, results, fields) {
+                db.query(sql, [data.email], function (error, results, fields) {
                     if (error) throw error;
                     let token = jwtUtils.generateTokenForUser(results[0], "login");
                     // distance(15,token);
@@ -44,18 +42,21 @@ module.exports = function(io)
             }
         });
 
-        socket.on("parametre", function (data) {
-            // console.log(data);
-        });
-
         socket.on("location", function (data) {
             let dist = geolib.getDistance(
                 {latitude: data.lat, longitude: data.lng},
-                {latitude: "48.896614", longitude: "2.3522219000000177"},100)
-            console.log(dist / 1000+ "km");
-
+                {latitude: "48.896614", longitude: "2.3522219000000177"}, 100)
+            console.log(dist / 1000 + "km");
         });
 
+        socket.on("parametre", async function (data) {
+            if (await check.checkSettingsUpdate(data) === false) {
+                socket.emit("settingsUpdateFalse");
+            } else {
+                await dbUser.dbSettingsUpdate(data);
+                socket.emit("settingsUpdateTrue");
+            }
+        });
         socket.on("focusOutEmailSignUp", async function (email) {
 
             if (validator.isEmail(email) && !validator.isEmpty(email) &&

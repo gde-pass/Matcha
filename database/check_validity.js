@@ -5,6 +5,106 @@ const bcrypt = require("bcrypt-nodejs");
 const db = require("./database");
 
 
+// ============= SETTINGS =============
+
+/**
+ * @return {boolean}
+ */
+function checkSettingsUpdate(data) {
+    if ((data.first_name.length !== 0 && !checkName(data.first_name)) ||
+        (data.last_name.length !== 0 && !checkName(data.last_name)) ||
+        (data.username.length !== 0 && !checkUserPattern(data.username)) ||
+        (data.email.length !== 0 && !checkEmailPattern(data.email)) ||
+        (data.orientation.length !== 0 && !checkSexOrientationPattern(data.orientation)) ||
+        (data.sex.length !== 0 && !checkSexPattern(data.sex)) ||
+        (data.bio.length !== 0 && !checkBioPattern(data.bio)) ||
+        (data.tags.length !== 0 && !checkTagsPattern(data.tags)) ||
+        (data.distance.length !== 0 && !checkDistancePattern(data.distance)) ||
+        (data.age.length !== 0 && !checkAgePattern(data.age)) ||
+        (data.password.length !== 0 && !checkPasswordPattern(data.password)) ||
+        (data.password2.length !== 0 && !checkPasswordMatch(data.password, data.password2))) {
+        return (false);
+    } else {
+        return (true);
+    }
+}
+
+// ============= /SETTINGS =============
+
+function checkAgePattern(value) {
+
+    if (value < 18 || value > 100 || isNaN(value)) {
+        return (false);
+    } else {
+        return (true);
+    }
+}
+
+
+/**
+ * @return {boolean}
+ */
+function checkDistancePattern(value) {
+
+    if (value < 5 || value > 50 || isNaN(value)) {
+        return (false);
+    } else {
+        return (true);
+    }
+}
+
+/**
+ * @return {boolean}
+ */
+function checkTagsPattern(value) {
+    const tagsRegex = new RegExp("^(#+[a-zA-Z]{2,20}\\s?){1,10}");
+
+    if (!value.match(tagsRegex)) {
+        return (false);
+    } else {
+        return (true);
+    }
+
+}
+
+/**
+ * @return {boolean}
+ */
+function checkBioPattern(value) {
+
+    if (value.length < 50 || value.length > 500) {
+        return (false);
+    } else {
+        return (true);
+    }
+}
+
+/**
+ * @return {boolean}
+ */
+function checkSexPattern(value) {
+    const sexRegex = new RegExp("^([OFM])$");
+
+    if (value.length !== 1 || !value.match(sexRegex)) {
+        return (false);
+    } else {
+        return (true);
+    }
+}
+
+/**
+ * @return {boolean}
+ */
+function checkSexOrientationPattern(value) {
+    const sexOrientationRegex = new RegExp("^(Ho|He|Bi)$");
+
+    if (value.length !== 2 || !value.match(sexOrientationRegex)) {
+        return (false);
+    } else {
+        return (true);
+    }
+}
+
 /**
  * @return {boolean}
  */
@@ -159,4 +259,5 @@ module.exports = {
     checkNewUser: checkNewUser,
     checkLoginUser: checkLoginUser,
     checkActivatedUser: checkActivatedUser,
+    checkSettingsUpdate: checkSettingsUpdate,
 };
