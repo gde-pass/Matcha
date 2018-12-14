@@ -20,7 +20,7 @@ async function dbPasswordUpdate(password, id) {
 
 async function dbAgeUpdate(age, id) {
 
-    let sql = "UPDATE `Users` SET `age` = ? WHERE `user_id` = ?;";
+    let sql = "UPDATE `Settings` SET `age` = ? WHERE `user_id` = ?;";
     db.query = util.promisify(db.query);
 
     try {
@@ -32,7 +32,7 @@ async function dbAgeUpdate(age, id) {
 
 async function dbDistanceUpdate(distance, id) {
 
-    let sql = "UPDATE `Users` SET `distance` = ? WHERE `user_id` = ?;";
+    let sql = "UPDATE `Settings` SET `distance` = ? WHERE `user_id` = ?;";
     db.query = util.promisify(db.query);
 
     try {
@@ -44,7 +44,7 @@ async function dbDistanceUpdate(distance, id) {
 
 async function dbTagsUpdate(tags, id) {
 
-    let sql = "UPDATE `Users` SET `tags` = ? WHERE `user_id` = ?;";
+    let sql = "UPDATE `Settings` SET `tags` = ? WHERE `user_id` = ?;";
     db.query = util.promisify(db.query);
 
     try {
@@ -56,7 +56,7 @@ async function dbTagsUpdate(tags, id) {
 
 async function dbBioUpdate(bio, id) {
 
-    let sql = "UPDATE `Users` SET `bio` = ? WHERE `user_id` = ?;";
+    let sql = "UPDATE `Settings` SET `bio` = ? WHERE `user_id` = ?;";
     db.query = util.promisify(db.query);
 
     try {
@@ -68,7 +68,7 @@ async function dbBioUpdate(bio, id) {
 
 async function dbSexUpdate(sex, id) {
 
-    let sql = "UPDATE `Users` SET `sex` = ? WHERE `user_id` = ?;";
+    let sql = "UPDATE `Settings` SET `sex` = ? WHERE `user_id` = ?;";
     db.query = util.promisify(db.query);
 
     try {
@@ -80,7 +80,7 @@ async function dbSexUpdate(sex, id) {
 
 async function dbOrientationUpdate(orientation, id) {
 
-    let sql = "UPDATE `Users` SET `orientation` = ? WHERE `user_id` = ?;";
+    let sql = "UPDATE `Settings` SET `orientation` = ? WHERE `user_id` = ?;";
     db.query = util.promisify(db.query);
 
     try {
@@ -145,25 +145,35 @@ async function dbSettingsUpdate(data) {
 
     if (data.first_name.length !== 0) {
         await dbFirstNameUpdate(data.first_name, id);
-    } else if (data.last_name.length !== 0) {
+    }
+    if (data.last_name.length !== 0) {
         await dbLastNameUpdate(data.last_name, id);
-    } else if (data.username.length !== 0) {
+    }
+    if (data.username.length !== 0) {
         await dbUsernameUpdate(data.username, id);
-    } else if (data.email.length !== 0) {
+    }
+    if (data.email.length !== 0) {
         await dbEmailUpdate(data.email, id);
-    } else if (data.orientation.length !== 0) {
+    }
+    if (data.orientation.length !== 0) {
         await dbOrientationUpdate(data.orientation, id);
-    } else if (data.sex.length !== 0) {
+    }
+    if (data.sex.length !== 0) {
         await dbSexUpdate(data.sex, id);
-    } else if (data.bio.length !== 0) {
+    }
+    if (data.bio.length !== 0) {
         await dbBioUpdate(data.bio, id);
-    } else if (data.tags.length !== 0) {
+    }
+    if (data.tags.length !== 0) {
         await dbTagsUpdate(data.tags, id);
-    } else if (data.distance.length !== 0) {
+    }
+    if (data.distance.length !== 0) {
         await dbDistanceUpdate(data.distance, id);
-    } else if (data.age.length !== 0) {
+    }
+    if (data.age.length !== 0) {
         await dbAgeUpdate(data.age, id);
-    } else if (data.password.length !== 0) {
+    }
+    if (data.password.length !== 0) {
         await dbPasswordUpdate(data.password, id);
     }
 }
