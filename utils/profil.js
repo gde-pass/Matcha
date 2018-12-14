@@ -16,10 +16,7 @@ function profil(req,res){
         // display_users(req, res, false);
     }
     let data = jwtUtils.getUserID(req.cookies.token);
-    if (data.email < 0) {
-        display_users(req, res, false);
-    }
-    if (data.type < 0 || data.type !== "login") {
+    if (data.type < 0 || data.type !== "login" || data.email < 0) {
         display_users(req, res, false);
     } else {
         let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id WHERE `email` = ?";//todo avec le token
