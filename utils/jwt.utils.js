@@ -42,6 +42,7 @@ module.exports ={
                         last_name: jwtToken.last_name,
                         username: jwtToken.username,
                         Id: jwtToken.Id,
+                        exp: jwtToken.exp
                     };
 
                     if(jwtToken.type === undefined){

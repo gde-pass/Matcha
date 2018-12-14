@@ -61,12 +61,14 @@
 <div class="content_bottom">
     <div class="container">
         <div class="box1">
+            <% for (let i = 0; i < locals.users.length; i++) { /*locals.files_img.forEach(function(el, index){ */%>
             <div class="col-md-4 wow fadeInLeft" data-wow-delay="0.4s">
-                <div class="grid_4"><a href="single">
-                        <h4><span class="m_3">Leonardo , </span> Manager-usa</h4>
-                        <img src="/assets/images/pic1.jpg" class="img-responsive" alt=""/>
+                <div class="grid_4"><a href="single?<%= locals.users[i].username%>">
+                        <h4><span class="m_3"><%= locals.users[i].username%></span></h4>
+                        <img src="<%= `assets/img/${locals.users[i].username}${locals.users[i].user_id}profil.jpg`%>" class="img-responsive" alt=""/>
+                        <img src="<%= `assets/img/${locals.users[i].username}${locals.users[i].user_id}profil.jpeg`%>" class="img-responsive" alt=""/>
                         <ul class="category_desc">
-                            <li class="cate_head">Based in 1.100 votes</li>
+                            <li class="cate_head">Mettre score</li>
                             <li class="cate_right">
                                 <ul class="list1">
                                     <li><i class="heart"> </i></li>
@@ -80,42 +82,7 @@
                         <h5>Full Profile</h5>
                     </a></div>
             </div>
-            <div class="col-md-4 wow fadeInUp" data-wow-delay="0.4s">
-                <div class="grid_4"><a href="single">
-                        <h4><span class="m_3">luke ,</span>engineer-usa</h4>
-                        <img src="/assets/images/pic2.jpg" class="img-responsive" alt=""/>
-                        <ul class="category_desc">
-                            <li class="cate_head">Based in 956 votes</li>
-                            <li class="cate_right">
-                                <ul class="list1">
-                                    <li><i class="heart"> </i></li>
-                                    <li><i class="heart"> </i></li>
-                                    <li><i class="heart"> </i></li>
-                                </ul>
-                            </li>
-                            <div class="clearfix"></div>
-                        </ul>
-                        <h5>Full Profile</h5>
-                    </a></div>
-            </div>
-            <div class="col-md-4 wow fadeInRight" data-wow-delay="0.4s">
-                <div class="grid_4"><a href="single">
-                        <h4><span class="m_3">max ,</span>security-usa</h4>
-                        <img src="/assets/images/pic3.jpg" class="img-responsive" alt=""/>
-                        <ul class="category_desc">
-                            <li class="cate_head">Based in 900 votes</li>
-                            <li class="cate_right">
-                                <ul class="list1">
-                                    <li><i class="heart"> </i></li>
-                                    <li><i class="heart"> </i></li>
-                                    <li><i class="heart"> </i></li>
-                                </ul>
-                            </li>
-                            <div class="clearfix"></div>
-                        </ul>
-                        <h5>Full Profile</h5>
-                    </a></div>
-            </div>
+            <% };%>
             <div class="clearfix"></div>
         </div>
         <div class='span1'>
