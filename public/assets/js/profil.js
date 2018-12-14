@@ -10,8 +10,6 @@ function hideURLbar() {
     window.scrollTo(0, 1);
 }
 
-// $('form').submit(false);
-
 
 function updateTextDistance(val) {
     document.getElementById('distanceText').innerHTML = "Distance: " + val + " (Km)";
