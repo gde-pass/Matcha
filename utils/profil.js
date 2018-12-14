@@ -28,6 +28,7 @@ function profil(req,res){
                     orientation: results[0].orientation,
                     bio: results[0].bio,
                     tags: results[0].tags,
+                    distance: results[0].distance,
                     connected: true,
                 });
             }

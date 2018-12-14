@@ -1,6 +1,5 @@
 let jwt = require("jsonwebtoken");
 const JWT_SIGN_SECRET ="CleSecretePourLeMatchaJaiPasDideeDeCleSecretAlorsJeMetCa";
-const empty = require("is-empty");
 
 module.exports ={
     generateTokenForUser: function (userData, type) {
@@ -13,7 +12,7 @@ module.exports ={
             },
         JWT_SIGN_SECRET,
             {
-            expiresIn: "1h"
+                expiresIn: "5h"
             })
     },
      parseAutorization: function (authorization) {

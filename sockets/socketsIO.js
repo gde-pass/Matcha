@@ -6,10 +6,8 @@ const dbUser = require("../database/user.js");
 const check = require("../database/check_validity.js");
 const sendMail = require('../utils/sendMail');
 
-module.exports = function(io)
-{
-    io.on("connection", function (socket)
-    {
+module.exports = function (io) {
+    io.on("connection", function (socket) {
         socket.on("register", async function (data) {
             if (await check.checkNewUser(data, db)) {
                 dbUser.dbInsertNewUser(data);
@@ -36,9 +34,14 @@ module.exports = function(io)
                 });
             }
         });
-      
-        socket.on("parametre", function (data) {
-            console.log(data);
+
+        socket.on("parametre", async function (data) {
+            if (await check.checkSettingsUpdate(data) === false) {
+                socket.emit("settingsUpdateFalse");
+            } else {
+                await dbUser.dbSettingsUpdate(data);
+                socket.emit("settingsUpdateTrue");
+            }
         });
 
         socket.on("focusOutEmailSignUp", async function (email) {
