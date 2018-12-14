@@ -13,26 +13,26 @@ var cookieParser = require('cookie-parser');
 
 var UserOnline = [];
 var i;
-var data = [];
+var dataToken = [];
 module.exports = function(io)
 {
     io.on("connection", function (socket)
     {
         var req = socket.request;
-        var push = 0;
 
 		if (req.headers.cookie) {
 		req.cookie = cookie.parse(req.headers.cookie);
-		    }
 		// console.log('cookie id: ' , req.cookie.token);
-        if (req.cookie.token) {
-		data = jwtUtils.getUserID(req.cookie.token)
-		// console.log('DATA: ', data);
-
-        UserOnline = SocketO.SetStore(socket.id, UserOnline, data.Id);
-        // console.log('NEW JSON Array', JSON.stringify(UserOnline));
+            if (req.cookie.token) {
+    		dataToken = jwtUtils.getUserID(req.cookie.token)
+    		// console.log('DATA: ', data);
+            let sqlSetSocket = "UPDATE Useronline SET socketid= ?, online=? WHERE user_id= ?";
+                db.query(sqlSetSocket, [socket.id, 'Y', dataToken.Id], function (error) {
+                    if (error)throw error;
+                    console.log('Set db socket id');
+                });
+            }
         }
-
         socket.on("register", async function (data) {
             if (await check.checkNewUser(data, db)) {
                 dbUser.dbInsertNewUser(data);
@@ -61,19 +61,11 @@ module.exports = function(io)
                     // distance(15,token);
                     // console.log(distance(15,token));
                     socket.emit("tokenLogin", token);
-                    for (i in UserOnline) {
-                        if (UserOnline[i].id_user == results[0].user_id) {
-                                UserOnline[i].socketid = socket.id;
-                                push = 1;
-                            }
-                        }
-                    if (push == 0) {
-                            UserOnline.push({
-        					id_user: results[0].user_id,
-        					socketid: socket.id
-                        })
-                        // console.log('NEW HOT JSON Array', JSON.stringify(UserOnline));
-                    }
+
+                    let sqlOnline = "INSERT INTO Useronline (user_id, username, online, socketid) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE user_id= ?;";
+                    db.query(sqlOnline,[results[0].user_id,results[0].username, 'Y', socket.id, results[0].user_id], function (error) {
+                        if (error) throw error;
+                    });
 
             })
         }
@@ -104,10 +96,17 @@ module.exports = function(io)
 
         //SOCKET EVENT CHAT--------------------------------------//
 		socket.on('chat', function (data) {
-			socket.broadcast.emit('chat_rep', data);
+
+            let sqlsend = "SELECT socketid FROM Useronline WHERE username= ?";
+            db.query(sqlsend,[data.to], function (error, results) {
+                if (error) throw error;
 			//PRIVATE MESSAGE---------------------------------------------//
+			io.to(results[0].socketid).emit('chat_rep', data);
 			io.to(socket.id).emit('chat', data);
-		});
+
+            })
+
+        });
 
 		socket.on('typing', function (data) {
 			socket.broadcast.emit('typing', data);
@@ -115,17 +114,21 @@ module.exports = function(io)
 
         socket.on('disconnect', function() {
 
-            // if (req.headers.cookie) {
-    		// req.cookie = cookie.parse(req.headers.cookie);
-    		//     }
-    		// // console.log('cookie id: ' , req.cookie.token);
-            // if (req.cookie.token) {
-    		// data = jwtUtils.getUserID(req.cookie.token)
-    		// // console.log('DATA: ', data);
-            //
-            // UserOnline = SocketO.DelStore(socket.id, UserOnline, data.Id);
-            // console.log('DEL JSON Array', JSON.stringify(UserOnline));
-            // }
+            // var req = socket.request;
+
+    		if (req.headers.cookie) {
+    		req.cookie = cookie.parse(req.headers.cookie);
+    		// console.log('cookie id: ' , req.cookie.token);
+            if (req.cookie.token) {
+    		dataToken = jwtUtils.getUserID(req.cookie.token);
+
+            let sqldisconnect = "UPDATE Useronline SET online= ?, socketid= ? WHERE user_id= ?";
+            db.query(sqldisconnect,['N','',dataToken.Id], function (error) {
+                if (error) throw error;
+            });
+                };
+            };
+
 
         console.log('socket '+this.id+' disconnect');
     });

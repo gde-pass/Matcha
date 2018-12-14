@@ -40,6 +40,22 @@ function dbInitTableSettings(conn) {
     });
 }
 
+function dbInitTableUseronline(conn) {
+
+    const sql3 = "CREATE TABLE IF NOT EXISTS Useronline (" +
+        "    `user_id` INT UNSIGNED NOT NULL ," +
+        "    `username` VARCHAR(15) NOT NULL," +
+        "    `online` ENUM ('N','Y')," +
+        "    `socketid` VARCHAR(255)," +
+        "    PRIMARY KEY(user_id)," +
+        "    FOREIGN KEY(user_id) REFERENCES Users(user_id)" +
+        ") ENGINE = InnoDB;";
+
+    conn.query(sql3, function (err) {
+        if (err) throw err;
+    });
+}
+
 function dbInitTables(conn, hostSQL, portSQL) {
 
     conn.query("SELECT 1", function (err) {
@@ -48,6 +64,7 @@ function dbInitTables(conn, hostSQL, portSQL) {
 
         dbInitTableUser(conn);
         dbInitTableSettings(conn);
+        dbInitTableUseronline(conn);
     });
 }
 
