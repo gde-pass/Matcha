@@ -5,7 +5,10 @@ const path = require('path');
 let jwtUtils = require("./jwt.utils");
 const fs = require('fs');
 const glob = require('glob');
+let conn = require('../database/database');
+const util = require("util");
 
+var file_name;
 function up(req,res,file) {
     let data = jwtUtils.getUserID(req.cookies.token);
     // glob(`*/assets/img/${data.username}${data.Id}profil*`,{"ignore":[` ${data.username}${data.Id} + 'profil' + ${path.extname(file.originalname.toString())}`]}, function(err, files) {
@@ -26,6 +29,7 @@ function up(req,res,file) {
             filename: function (req, file, callback) {
                 callback(null, data.username + data.Id + 'profil' + path.extname(file.originalname))//todo faire en sorte que le nom de limage sois relier a 'ID de la personne pour que l'on puisse la retrouver
                 // callback(null, data.username + data.Id + 'profil' +'-' + Date.now() + path.extname(file.originalname))//todo faire en sorte que le nom de limage sois relier a 'ID de la personne pour que l'on puisse la retrouver
+                file_name = data.username + data.Id + 'profil' + path.extname(file.originalname);
             }
         });
 
@@ -69,6 +73,9 @@ function up(req,res,file) {
                     // });
                     res.end('Error: No file selected'); //todo trouver comment envoyer se message a l'HTML
                 } else {
+                    let sql = "UPDATE `Settings` SET `profil_img` = ? WHERE `user_id` = ?;";
+                    conn.query = util.promisify(conn.query);
+                    conn.query(sql, [file_name, data.Id]);
                     res.redirect("profil");
                 }
             }

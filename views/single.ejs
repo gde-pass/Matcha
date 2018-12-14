@@ -7,6 +7,7 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href="/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/style.css" rel='stylesheet' type='text/css'/>
+    <link href="/assets/css/gallery.css" rel='stylesheet' type='text/css'/>
 
 </head>
 <body>
@@ -58,8 +59,8 @@
         <div class="col-md-8 profile_left">
             <div class="lsidebar span_1_of_profile">
                 <div class="grid_4">
-                    <img src="<%= `assets/img/${locals.user.username}${locals.user.user_id}profil.jpg`%>" class="img-responsive" alt=""/>
-                    <img src="<%= `assets/img/${locals.user.username}${locals.user.user_id}profil.jpeg`%>" class="img-responsive" alt=""/>
+                    <img src="<%= locals.user.profil_img != null ? `assets/img/${locals.user.profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                         class="img-responsive" alt="" style="width: 100%">
                     <ul class="category_desc1">
                         <li class="cate_head">Mettre score</li>
                         <li class="cate_right">
@@ -78,31 +79,41 @@
                     <tbody>
                     <tr>
                         <th>Gender</th>
-                        <td>man</td>
+                        <td><%= locals.user.sex %></td>
                     </tr>
                     <tr>
                         <th>Age</th>
-                        <td>25</td>
+                        <td><%= locals.user.age %></td>
                     </tr>
                     <tr>
-                        <th>Country</th>
-                        <td>Usa</td>
+                        <th>Orientation</th>
+                        <td><%= locals.user.orientation %></td>
                     </tr>
                     <tr>
-                        <th>City</th>
-                        <td>Newyork</td>
+                        <th>tags</th>
+                        <td><%= locals.user.tags %></td>
                     </tr>
                     </tbody>
                 </table>
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                   laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p>
-                <p>Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum
-                   dolore eu feugiat nulla facilisis</p>
+                <p><%= locals.user.bio %></p>
             </div>
             <div class="clearfix"></div>
         </div>
     </div>
+    <aside class="tab-pane" id="gallery" style="float: right">
+        <div id="photos">
+            <ul id="photo-gallery">
+                <li>
+                    <% for (let i = 0; i < locals.files_img.length; i++) { /*locals.files_img.forEach(function(el, index){ */ %>
+                    <img src="<%= locals.files_img[i] != 'undefined' ? `${locals.files_img[i] }` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                         alt="">
+                    <% }; %>
+                </li>
+            </ul>
+        </div>
+    </aside>
 </div>
+
 <div class="footer">
     <div class="container">
         <div class="copy wow fadeInUp" data-wow-delay="0.4s">

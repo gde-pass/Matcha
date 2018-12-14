@@ -1,6 +1,5 @@
 "use strict";
 const express = require("express");
-
 const router = express.Router();
 let profil = require("../utils/profil");
 let upload_profil = require("../utils/upload_profil");
@@ -8,6 +7,8 @@ let upload_img = require("../utils/upload_img");
 let display_users = require("../utils/display_users");
 let get_user = require("../utils/get_user");
 let validation = require("../utils/email_validation");
+let jwtUtils = require("../utils/jwt.utils");
+
 
 router.get("/", function (req, res) {
     if(typeof req.cookies.token === "undefined") {
@@ -18,6 +19,12 @@ router.get("/", function (req, res) {
 });
 
 router.get("/login", function (req, res) {
+    let check = jwtUtils.getUserID(req.cookies.token);
+
+    if (check.exp < Date.now() / 1000) {
+        res.clearCookie("token");
+        // display_users(req, res, false);
+    }
     if(typeof req.cookies.token === "undefined") {
         res.render('login');
     }else {

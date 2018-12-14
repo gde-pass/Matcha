@@ -23,17 +23,17 @@
             </a>
         </div>
         <%if (locals.connected == false){%>
-        <div class="header_right">
-            <ul class="header_user_info">
-                <a class="login" href="login">
-                    <li class="user_desc"><span class="m_1">Already user ? </span>Login</li>
-                    <i class="user"> </i>
+            <div class="header_right">
+                <ul class="header_user_info">
+                    <a class="login" href="login">
+                        <li class="user_desc"><span class="m_1">Already user ? </span>Login</li>
+                        <i class="user"> </i>
+                        <div class="clearfix"></div>
+                    </a>
                     <div class="clearfix"></div>
-                </a>
-                <div class="clearfix"></div>
-            </ul>
-            <a href="register" class="btn1 btn-1 btn1-1b">Sign Up</a>
-        </div>
+                </ul>
+                <a href="register" class="btn1 btn-1 btn1-1b">Sign Up</a>
+            </div>
         <%}else{%>
             <div class="header_right">
                 <ul class="header_user_info">
@@ -65,8 +65,8 @@
             <div class="col-md-4 wow fadeInLeft" data-wow-delay="0.4s">
                 <div class="grid_4"><a href="single?<%= locals.users[i].username%>">
                         <h4><span class="m_3"><%= locals.users[i].username%></span></h4>
-                        <img src="<%= `assets/img/${locals.users[i].username}${locals.users[i].user_id}profil.jpg`%>" class="img-responsive" alt=""/>
-                        <img src="<%= `assets/img/${locals.users[i].username}${locals.users[i].user_id}profil.jpeg`%>" class="img-responsive" alt=""/>
+                        <img src="<%= locals.users[i].profil_img != 0 ? `assets/img/${locals.users[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                             class="img-responsive" alt="" style="width: 100%">
                         <ul class="category_desc">
                             <li class="cate_head">Mettre score</li>
                             <li class="cate_right">

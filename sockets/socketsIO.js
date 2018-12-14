@@ -2,11 +2,9 @@
 const validator = require("validator");
 const db = require("../database/database");
 const jwtUtils = require("../utils/jwt.utils");
-const distance = require("../utils/distance");
 const dbUser = require("../database/user.js");
 const check = require("../database/check_validity.js");
 const sendMail = require('../utils/sendMail');
-const geolib = require('geolib');
 
 module.exports = function (io) {
     io.on("connection", function (socket) {
@@ -40,13 +38,6 @@ module.exports = function (io) {
                     socket.emit("tokenLogin", token);
                 });
             }
-        });
-
-        socket.on("location", function (data) {
-            let dist = geolib.getDistance(
-                {latitude: data.lat, longitude: data.lng},
-                {latitude: "48.896614", longitude: "2.3522219000000177"}, 100)
-            console.log(dist / 1000 + "km");
         });
 
         socket.on("parametre", async function (data) {
