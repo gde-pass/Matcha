@@ -16,7 +16,6 @@ function profil(req,res){
     //     // display_users(req, res, false);
     // }
     let data = jwtUtils.getUserID(req.cookies.token);
-    // console.log(data);
     if (data.type < 0 || data.type !== "login" || data.email < 0) {
         display_users(req, res, false);
     } else {

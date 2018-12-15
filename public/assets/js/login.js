@@ -134,7 +134,7 @@ document.getElementById("loginButton").addEventListener("click", function () {
 // ============ SOCKET EVENTS =============
 socket.on("tokenLogin", function (token) {
     Cookies.set('token', token, {expires: 7});
-    window.location = "/";
+    window.location = "profil";
 
 });
 

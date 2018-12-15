@@ -29,6 +29,7 @@ module.exports ={
             last_name: -1,
             username: -1,
             Id: -1,
+            exp: -1,
         };
         let token = module.exports.parseAutorization(authorization);
         if(token != null){

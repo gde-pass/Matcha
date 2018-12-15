@@ -56,10 +56,14 @@
 </div>
 <div class="profile">
     <div class="container">
+        <form action='/match?<%= locals.user.username %>' method="post" class="btn1 btn-1 btn1-1b"
+              style="padding: 0 !important;">
+            <button class="btn1 btn-1 btn1-1b" type="submit"><%= locals.like %></button>
+        </form>
         <div class="col-md-8 profile_left">
             <div class="lsidebar span_1_of_profile">
                 <div class="grid_4">
-                    <img src="<%= locals.user.profil_img != null ? `assets/img/${locals.user.profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                    <img src="<%= locals.user.profil_img != 0 ? `assets/img/${locals.user.profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
                          class="img-responsive" alt="" style="width: 100%">
                     <ul class="category_desc1">
                         <li class="cate_head">Mettre score</li>

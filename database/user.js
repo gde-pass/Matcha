@@ -200,6 +200,12 @@ async function dbInitUserDefaultSettings(newUser) {
     db.query(sql, [id], function (err) {
         if (err) throw err;
     });
+
+    let sqlmatch = "INSERT INTO `matchs` (`user1_id`) VALUES (?)";
+
+    db.query(sqlmatch, [id], function (err) {
+        if (err) throw err;
+    });
 }
 
 async function dbInsertNewUser(newUser) {
