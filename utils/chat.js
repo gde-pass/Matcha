@@ -38,7 +38,6 @@ function chat(req,res){
                         if (error) throw error;
                         let friend = results;
                         // console.log('data friend: ', friend[0]);
-
                     res.render('chat', {
                         first_name: data.first_name,
                         last_name: data.last_name,

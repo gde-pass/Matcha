@@ -14,8 +14,9 @@ var message = document.getElementById('message'),
 
 for(var i=0;i<contact.length;i++){
     contact[i].addEventListener('click', function (contact) {
-        // console.log(contact);
-     document.getElementById("Userto").innerHTML = contact.srcElement.innerText;
+        console.log(contact);
+     document.getElementById("Userto").innerText = contact.srcElement.innerText.trim();
+     socket.emit('getmessage', contact.srcElement.innerText.trim());
     });
 };
 
@@ -36,6 +37,16 @@ message.addEventListener('keypress', function () {
 
 //listen for events
 
+socket.on('getmessage', function (data) {
+    for(var i=0;i<data.message.length;i++){
+        if (data.message[i].from_user_id == data.from_user_id) {
+            output.innerHTML += '<li class="sent"><img src="" alt="" /><p>' + data.message[i].message + '</p></li>';
+        }else {
+            output.innerHTML += '<li class="replies"><img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" /><p>' + data.message[i].message + '</p></li>';
+        }
+    }
+
+})
 socket.on('chat', function (data) {
 	feedback.innerHTML = "";
 	output.innerHTML += '<li class="sent"><img src="' + data.img + '" alt="" /><p>' + data.message + '</p></li>';

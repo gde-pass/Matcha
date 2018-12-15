@@ -10,7 +10,6 @@ function StoreUser(email, callback) {
 		// console.log(rows[0]);
 		return callback(rows[0].user_id);
 	});
-
 }
 
 function SetStore(socketid, json, id_user) {
@@ -25,19 +24,18 @@ function SetStore(socketid, json, id_user) {
 	return (json);
 }
 
-// function DelStore(socketid, json, id_user) {
-// 	console.log('in ---> ID: ', id_user);
-// 	for (i in json) {
-// 		if (json[i].socketid == id_user) {
-// 			json[i].socketid = socketid;
-// 			// console.log('in socket id: ', socketid);
-//
-// 		}
-// 	}
-// 	return (json);
-// }
+async function Getparams(data, callback) {
+	let sqlsend = "SELECT user_id, username, socketid FROM Useronline WHERE username= ?";
+	db.query(sqlsend,[data], function (error, results) {
+		if (error) throw error;
+		 return (results[0].user_id);
+	});
+
+};
+
 
 module.exports = {
 	StoreUser: StoreUser,
-	SetStore: SetStore
+	SetStore: SetStore,
+	Getparams: Getparams
 };

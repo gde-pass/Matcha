@@ -56,6 +56,22 @@ function dbInitTableUseronline(conn) {
     });
 }
 
+function dbInitTableMessages(conn) {
+
+    const sql4 = "CREATE TABLE IF NOT EXISTS Messages (" +
+        "    `mess_id` INT UNSIGNED NOT NULL AUTO_INCREMENT," +
+        "    `from_user_id` INT ," +
+        "    `to_user_id` INT," +
+        "    `message` TEXT," +
+        "    `date` DATETIME," +
+        "    PRIMARY KEY(mess_id)" +
+        ") ENGINE = InnoDB;";
+
+    conn.query(sql4, function (err) {
+        if (err) throw err;
+    });
+}
+
 function dbInitTables(conn, hostSQL, portSQL) {
 
     conn.query("SELECT 1", function (err) {
@@ -65,6 +81,8 @@ function dbInitTables(conn, hostSQL, portSQL) {
         dbInitTableUser(conn);
         dbInitTableSettings(conn);
         dbInitTableUseronline(conn);
+        dbInitTableMessages(conn);
+
     });
 }
 
