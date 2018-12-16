@@ -56,10 +56,7 @@
 </div>
 <div class="profile">
     <div class="container">
-        <form action='/match?<%= locals.user.username %>' method="post" class="btn1 btn-1 btn1-1b"
-              style="padding: 0 !important;">
-            <button class="btn1 btn-1 btn1-1b" type="submit"><%= locals.like %></button>
-        </form>
+        <button id="like_btn" class="btn1 btn-1 btn1-1b" type="submit"><%= locals.like %></button>
         <div class="col-md-8 profile_left">
             <div class="lsidebar span_1_of_profile">
                 <div class="grid_4">
@@ -126,7 +123,6 @@
         <div class='clearfix'></div>
     </div>
 </div>
-
 <script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>
 <script src="/assets/js/single.js" language="JavaScript"></script>
 <script src="/assets/js/jquery.flexisel.js" language="JavaScript"></script>

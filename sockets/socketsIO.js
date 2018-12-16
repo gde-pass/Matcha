@@ -48,6 +48,9 @@ module.exports = function (io) {
                 socket.emit("settingsUpdateTrue");
             }
         });
+        socket.on("like", async function (data) {
+            io.sockets.emit('like', data);
+        });
         socket.on("focusOutEmailSignUp", async function (email) {
 
             if (validator.isEmail(email) && !validator.isEmpty(email) &&

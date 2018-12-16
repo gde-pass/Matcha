@@ -4,7 +4,6 @@ const router = express.Router();
 let profil = require("../utils/profil");
 let upload_profil = require("../utils/upload_profil");
 let upload_img = require("../utils/upload_img");
-let match = require("../utils/match");
 let display_users = require("../utils/display_users");
 let get_user = require("../utils/get_user");
 let validation = require("../utils/email_validation");
@@ -104,14 +103,6 @@ router.post("/upload", function (req, res) {
 
 router.post("/upload_img", function (req, res) {
     upload_img(req, res);
-});
-
-router.post("/match", function (req, res) {
-    if (typeof req.cookies.token === "undefined") {
-        display_users(req, res, false);
-    } else {
-        match(req, res, true);
-    }
 });
 
 router.use(function (req, res) {

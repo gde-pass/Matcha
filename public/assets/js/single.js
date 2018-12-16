@@ -8,6 +8,36 @@ function hideURLbar() {
     window.scrollTo(0, 1);
 }
 
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+$("#like_btn").click(function (e) {
+    const btn = $("#like_btn");
+
+    let target = window.location.search.replace("?", "");
+
+    $.ajax({
+        url: "/api/single/toggle_like",
+        type: "POST",
+        contentType: "application/x-www-form-urlencoded",
+        data: {token: getCookie("token"), target: target},
+        success: function (data, status, xhr) {
+            if (data.liked) {// todo recupere si matched
+                btn.text("Dislike");
+            } else {
+                btn.text("Like");
+            }
+        },
+        error: function (xhr, status, error) {
+            if (xhr.responseJSON.error === "token") {
+                window.location = "/";
+            }
+        }
+    })
+});
 
 $(window).on('load', function () {
     $("#flexiselDemo1").flexisel({
