@@ -4,8 +4,9 @@ let conn = require('../database/database');
 let replace = require("str-replace");
 const glob = require('glob');
 let jwtUtils = require("./jwt.utils");
-let like;
+let findIfMach = require('./find_If_matched');
 
+let like;
 function display_users(req, res, connected, user = '@2584!@@@##$#@254521685241@#!@#!@#@!#') {
 
     let data = jwtUtils.getUserID(req.cookies.token);
@@ -28,12 +29,10 @@ function display_users(req, res, connected, user = '@2584!@@@##$#@254521685241@#
                 for (let i = 0; i < files_img.length; i++) {
                     images.push(replace.all("public").from(files_img[i]).with(""));
                 }
-
                 let sql = "SELECT * FROM matchs WHERE user1_id = ?";
                 conn.query(sql, data.Id, function (err, resu) {
                     if (err) throw err;
-
-                    var filtered = resu[0].user2_id.split(',').filter(function (value) {
+                    var filtered = resu[0].users_you_liked.split(',').filter(function (value) {
                         if (value == results[0].user_id)
                             return (true)
                     });
@@ -42,12 +41,16 @@ function display_users(req, res, connected, user = '@2584!@@@##$#@254521685241@#
                     }
                     else
                         like = "Like";
+                    if (findIfMach(req, res, data, url) == 1)
+                        console.log("match")
+                    else
+                        console.log("not")
 
                     res.render('single', {
                         connected: connected,
                         user: results[0],
                         files_img: images,
-                        like: like
+                        like: like,
                     })
                 });
             })

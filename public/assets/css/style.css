@@ -322,7 +322,7 @@ i.google{
 	top: 0;
 	left: 0;
 	background:#d26e8e;
-	border-bottom;5px solid #ba5576;
+	border-bottom: 5px solid #ba5576;
 	border-radius:5px;
 	-webkit-border-radius:5px;
 	-moz-border-radius:5px;
@@ -1886,4 +1886,8 @@ h4.m_4, h4.recent {
 .span_1_of_profile {
 	width:100%;
 }
+}
+
+.hide {
+	display: none;
 }

@@ -51,8 +51,8 @@ async function dbInitTableMatch(conn) {
 
     const sql = "CREATE TABLE IF NOT EXISTS matchs (" +
         "    `user1_id` INT UNSIGNED NOT NULL," +
-        "    `user2_id` varchar(100) not null," +
-        "    `matched` INT(2) UNSIGNED," +
+        "    `users_you_liked` varchar(100) not null," +
+        "    `users_that_liked_you` varchar(100) not null," +
         "    FOREIGN KEY(user1_id) REFERENCES Users(user_id)" +
         ") ENGINE = InnoDB;";
 

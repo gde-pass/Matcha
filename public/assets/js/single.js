@@ -25,10 +25,12 @@ $("#like_btn").click(function (e) {
         contentType: "application/x-www-form-urlencoded",
         data: {token: getCookie("token"), target: target},
         success: function (data, status, xhr) {
-            if (data.liked) {// todo recupere si matched
+            if (data.liked) {// todo recupere si matched, if matched donne enlever la class hide
                 btn.text("Dislike");
+                // msg.toggleClass('hide');
             } else {
                 btn.text("Like");
+                // msg.toggleClass('hide');
             }
         },
         error: function (xhr, status, error) {

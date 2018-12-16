@@ -105,8 +105,8 @@ router.post("/upload_img", function (req, res) {
     upload_img(req, res);
 });
 
-router.use(function (req, res) {
-    res.render("404");
-});
+// router.use(function (req, res) {
+//     res.render("404");
+// });
 
 module.exports = router;
