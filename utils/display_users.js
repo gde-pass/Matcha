@@ -23,7 +23,7 @@ function display_users(req, res, connected) {
             if (errors) throw errors;
             for (let k = 0; k < results.length; k++) {
                 if (results[k].email == data.email) {
-                    if (results[k].orientation != null)
+                    if (results[k].orientation != null && results[k].sex != null)
                         isFull = false;
                 }
             }

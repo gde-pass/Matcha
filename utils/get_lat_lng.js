@@ -17,7 +17,6 @@ function findUserLocation(req) {
             userLng = res[0].longitude;
         })
     }
-    console.log(userLat)
 }
 
 module.exports = findUserLocation;

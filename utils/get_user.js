@@ -5,8 +5,10 @@ let replace = require("str-replace");
 const glob = require('glob');
 let jwtUtils = require("./jwt.utils");
 let findIfMach = require('./find_If_matched');
+let findIfLiked = require('./find_If_liked');
 
 let like;
+let asLikedYou;
 function display_users(req, res, connected, user = '@2584!@@@##$#@254521685241@#!@#!@#@!#') {
 
     let data = jwtUtils.getUserID(req.cookies.token);
@@ -23,8 +25,9 @@ function display_users(req, res, connected, user = '@2584!@@@##$#@254521685241@#
         conn.query(sql, url, function (errors, results, fields) {
             if (errors) throw errors;
             glob(`*/assets/images/${results[0].username}${results[0].user_id}img*`, function (err, files_img) {
-                if (empty(files_img))
-                    files_img = 'undefined';
+                if (empty(files_img)) {
+                    files_img = "";
+                }
                 var images = [];
                 for (let i = 0; i < files_img.length; i++) {
                     images.push(replace.all("public").from(files_img[i]).with(""));
@@ -41,16 +44,28 @@ function display_users(req, res, connected, user = '@2584!@@@##$#@254521685241@#
                     }
                     else
                         like = "Like";
-                    if (findIfMach(req, res, data, url) == 1)
-                        console.log("match")
-                    else
-                        console.log("not")
+                    findIfLiked(req, res, data, url, function (err, liked) {
+                        if (err) {
 
-                    res.render('single', {
-                        connected: connected,
-                        user: results[0],
-                        files_img: images,
-                        like: like,
+                        } else {
+                            asLikedYou = liked;
+                            console.log(asLikedYou)
+                        }
+                    })
+                    findIfMach(req, res, data, url, function (err, match) {
+                        if (err) {
+                            // error handling
+                        }
+                        if (results[0].profil_img == 0)
+                            like = null;
+                        res.render('single', {
+                            connected: connected,
+                            user: results[0],
+                            files_img: images,
+                            like: like,
+                            match: match,
+                            asLikedYou: asLikedYou
+                        })
                     })
                 });
             })

@@ -25,7 +25,7 @@ router.get("/login", function (req, res) {
         res.clearCookie("token");
         res.render('login')
     }
-    if(typeof req.cookies.token === "undefined") {
+    else if (typeof req.cookies.token === "undefined") {
         res.render('login');
     }else {
         display_users(req, res, true);
@@ -34,6 +34,10 @@ router.get("/login", function (req, res) {
 
 router.get("/validation/:token", function (req, res) {
     validation(req, res, req.params.token);
+});
+
+router.get("/reset/:token", function (req, res) {
+    res.render('reset');
 });
 
 router.get("/register", function (req, res) {
@@ -93,8 +97,8 @@ router.get("/logout", function (req, res) {
     }
 });
 
-router.get("/map", function (req, res) {
-    res.render('map');
+router.get("/forgot", function (req, res) {
+    res.render('forgot');
 });
 
 router.post("/upload", function (req, res) {

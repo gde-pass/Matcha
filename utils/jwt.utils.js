@@ -31,7 +31,7 @@ module.exports ={
             Id: -1,
             exp: -1,
         };
-        let token = module.exports.parseAutorization(authorization);
+        let token = authorization;
         if(token != null){
             try{
                 let jwtToken = jwt.verify(token, JWT_SIGN_SECRET);

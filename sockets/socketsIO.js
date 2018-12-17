@@ -5,6 +5,7 @@ const jwtUtils = require("../utils/jwt.utils");
 const dbUser = require("../database/user.js");
 const check = require("../database/check_validity.js");
 const sendMail = require('../utils/sendMail');
+let reset = require("../utils/reset_mail");
 
 module.exports = function (io) {
     io.on("connection", function (socket) {
@@ -13,7 +14,7 @@ module.exports = function (io) {
                 dbUser.dbInsertNewUser(data);
                 let token = jwtUtils.generateTokenForUser(data, "validation");
                 socket.emit("tokenValidation", token);
-                sendMail(data.email, token);
+                sendMail(data.email, token, "validation");
             } else {
                 socket.emit("registerError");
             }
@@ -33,8 +34,6 @@ module.exports = function (io) {
                 db.query(sql, [data.email], function (error, results, fields) {
                     if (error) throw error;
                     let token = jwtUtils.generateTokenForUser(results[0], "login");
-                    // distance(15,token);
-                    // console.log(distance(15,token));
                     socket.emit("tokenLogin", token);
                 });
             }
@@ -48,9 +47,21 @@ module.exports = function (io) {
                 socket.emit("settingsUpdateTrue");
             }
         });
-        socket.on("like", async function (data) {
-            io.sockets.emit('like', data);
+
+        socket.on("forgot", async function (data) {
+            let token = jwtUtils.generateTokenForUser(data, "reset");
+            sendMail(data.email, token, "reset");
+            io.sockets.emit('forgotSend', data);
         });
+
+        socket.on("reset", async function (data) {
+            if (await check.checkReset(data) === false) {
+                socket.emit("ResetError");
+            } else {
+                socket.emit("ResetSuccess");
+            }
+        });
+
         socket.on("focusOutEmailSignUp", async function (email) {
 
             if (validator.isEmail(email) && !validator.isEmpty(email) &&

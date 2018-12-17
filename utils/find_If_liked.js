@@ -9,7 +9,6 @@ function findIfMatch(req, res, data, target, cb) {
         }
         else if (!empty(resu)) {
             user_id = data.Id; //recupère mon id
-            users_I_Liked = resu[0].users_you_liked.split(',');// met toute les personnes que j'ai aimer dans un tableau
             users_That_Liked_Me = resu[0].users_that_liked_you.split(',');
 // ------------------------------------------------------------------------------------------------------------------------------
             let sql = "SELECT `user_id` FROM `Users` WHERE `username` = ?;";// selectionne Id de l'utilisateur qui va etre liker
@@ -18,19 +17,19 @@ function findIfMatch(req, res, data, target, cb) {
                     return (res.status(400).end())
                 }
                 else if (!empty(result)) {
-                    match1 = users_I_Liked.filter(ret => { //regarde si jai deja liker cette utilisateur ou non
-                        if (ret.trim() == result[0].user_id.toString().trim())
-                            return (true);
-                        else
-                            return (false)
-                    });
+                    // match1 = users_I_Liked.filter(ret => { //regarde si jai deja liker cette utilisateur ou non
+                    //     if (ret.trim() == result[0].user_id.toString().trim())
+                    //         return (true);
+                    //     else
+                    //         return (false)
+                    // });
                     match2 = users_That_Liked_Me.filter(ret => { //regarde si jai deja liker cette utilisateur ou non
                         if (ret.trim() == result[0].user_id.toString().trim())
                             return (true);
                         else
                             return (false)
                     });
-                    if (match1 == result[0].user_id && match2 == result[0].user_id) {
+                    if (match2 == result[0].user_id) {
                         cb(null, true);
                     }
                     else {

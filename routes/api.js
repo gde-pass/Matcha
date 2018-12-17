@@ -55,7 +55,7 @@ router.post("/single/toggle_like", function (req, res) {
         })
     }
 
-    function addToLikes(toAdd, user_id) {
+    function addToLikes(toAdd, user_id, data, target) {
         let sql = "UPDATE matchs SET users_you_liked = ? WHERE user1_id = ? ";//update la bdd pour retirer son id des personne que j'ai aimer
         conn.query(sql, [toAdd.toString(), user_id], function (errors, results, fiedls) {
             if (errors) {
@@ -69,7 +69,7 @@ router.post("/single/toggle_like", function (req, res) {
         })
     }
 
-    function delFromLikes(toDel, user_id) {
+    function delFromLikes(toDel, user_id, data, target) {
         let sql = "UPDATE matchs SET users_you_liked = ? WHERE user1_id = ?"; //update la bdd pour l'ajouter a la liste des peronne aue jai aime
         conn.query(sql, [toDel.toString(), user_id], function (errors, results, fiedls) {
             if (errors) {
@@ -77,7 +77,7 @@ router.post("/single/toggle_like", function (req, res) {
             }
             else {
                 res.status(200).json({
-                    liked: true
+                    liked: true,
                 })
             }
         })
@@ -109,12 +109,12 @@ router.post("/single/toggle_like", function (req, res) {
                             var filtered = matched_id.filter(function (value,) {
                                 return value != result[0].user_id;
                             });
-                            addToLikes(filtered, user_id);
+                            addToLikes(filtered, user_id, data, result[0].user_id);
                             // ------------------------------------------------------------------------------------------------------------------------------
                         } else {// si je 'ai pas deja aimer
                             AddOrDel(result[0].user_id, data.Id);
                             matched_id.push(result[0].user_id)
-                            delFromLikes(matched_id, user_id)
+                            delFromLikes(matched_id, user_id, data, result[0].user_id)
                         }
                     }
                 })

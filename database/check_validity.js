@@ -1,8 +1,10 @@
 "use strict";
+let jwtUtils = require("../utils/jwt.utils");
 const validator = require("validator");
 const util = require("util");
 const bcrypt = require("bcrypt-nodejs");
 const db = require("./database");
+const empty = require("is-empty");
 
 
 // ============= SETTINGS =============
@@ -237,6 +239,49 @@ async function checkLoginUser(user) {
 /**
  * @return {boolean}
  */
+async function checkReset(user) {
+    if (!checkPasswordPattern(user.password)) {
+        return (false);
+    } else {
+        let data = jwtUtils.getUserID(user.token);
+        if (data.email < 0) {
+            return (false)
+        }
+        else if (data.type < 0 || data.type != "reset") {
+            return (false)
+        }
+        let sql = 'SELECT * FROM Users WHERE email=?';
+        db.query = util.promisify(db.query);
+
+        try {
+            let result = await db.query(sql, [data.email]);
+            if (!empty(result[0])) {
+                let hash = bcrypt.hashSync(user.password);
+                let sqlReset = 'UPDATE Users SET password=? WHERE email=?';
+                db.query = util.promisify(db.query);
+                console.log(data.email);
+                try {
+                    let result = await db.query(sqlReset, [hash, data.email]);
+                    if (!empty(result)) {
+                        return (true)
+                    } else {
+                        return (false)
+                    }
+                } catch (error) {
+                    throw error;
+                }
+            } else {
+                return (false)
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+}
+
+/**
+ * @return {boolean}
+ */
 async function checkActivatedUser(data) {
 
     let sql = "SELECT `checked` FROM `Users` WHERE `email` = ?;";
@@ -260,4 +305,5 @@ module.exports = {
     checkLoginUser: checkLoginUser,
     checkActivatedUser: checkActivatedUser,
     checkSettingsUpdate: checkSettingsUpdate,
+    checkReset: checkReset,
 };

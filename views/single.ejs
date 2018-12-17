@@ -56,8 +56,15 @@
 </div>
 <div class="profile">
     <div class="container">
+        <% if (locals.match == true){ %>
+        <div class="alert alert-success"><%= "You have matched" %></div>
+        <% } %>
+        <% if(locals.like != null){ %>
         <button id="like_btn" class="btn1 btn-1 btn1-1b" type="submit"><%= locals.like %></button>
-        <!--<button id="msg" class="btn1 btn-1 btn1-1b" type="submit">Discuter</button>-->
+        <% } %>
+        <% if(locals.match == true){ %>
+            <button id="like_btn" class="btn1 btn-1 btn1-1b" type="submit">Discuter</button>
+        <% } %>
         <div class="col-md-8 profile_left">
             <div class="lsidebar span_1_of_profile">
                 <div class="grid_4">
@@ -106,16 +113,19 @@
         <div id="photos">
             <ul id="photo-gallery">
                 <li>
+                    <% if(locals.files_img != ""){ %>
                     <% for (let i = 0; i < locals.files_img.length; i++) { /*locals.files_img.forEach(function(el, index){ */ %>
                     <img src="<%= locals.files_img[i] != 'undefined' ? `${locals.files_img[i] }` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
                          alt="">
-                    <% }; %>
+                    <% }}; %>
                 </li>
             </ul>
         </div>
     </aside>
 </div>
-
+<% if(locals.asLikedYou == true){ %>
+    <h1 style="text-align: center">This user liked your profil</h1>
+<% } %>
 <div class="footer">
     <div class="container">
         <div class="copy wow fadeInUp" data-wow-delay="0.4s">

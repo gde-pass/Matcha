@@ -9,7 +9,7 @@ function email_validation(req, res, token) {
             error: "Token is not valid"
         })
     }
-    if (data.type < 0 || data.type != "validation") {
+    else if (data.type < 0 || data.type != "validation") {
         res.render('login', {
             error: "Token is not valid"
         })
@@ -17,12 +17,12 @@ function email_validation(req, res, token) {
         let sqlCheck = 'SELECT * FROM Users WHERE email=?';
         conn.query(sqlCheck, [data.email], function (error, results, fields) {
             if (error) throw error;
-            if (empty(results)) {
+            else if (empty(results)) {
                 res.render('login', {
                     error: "There are no users for ths Token"
                 })
             }
-            if (results[0].checked == 1) {
+            else if (results[0].checked == 1) {
                 res.render('login', {
                     success: "Your account is already activated"
                 })
@@ -30,7 +30,7 @@ function email_validation(req, res, token) {
                 let sqlValidate = 'UPDATE Users SET checked=? WHERE email=?';
                 conn.query(sqlValidate, [1, data.email], function (error, results, fields) {
                     if (error) throw error;
-                    if (empty(results)) {
+                    else if (empty(results)) {
                         res.render('login', {
                             error: "There are no users for ths Token"
                         })
