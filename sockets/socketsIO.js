@@ -129,20 +129,20 @@ module.exports = function(io)
             // console.log('Sortie getparams', to_id);
             // console.log('Sortie getparams2', SocketO.Getparams(data));
             let sqlsend = "SELECT user_id, username, socketid FROM Useronline WHERE username= ?";
-        	db.query(sqlsend,[data], async function (error, results) {
-        		if (error) throw error;
+        	  db.query(sqlsend,[data], async function (error, results) {
+            		if (error) throw error;
 
-            let params = {
-                from_user_id: socket.data.user_id,
-                to_user_id: results[0].user_id
+                let params = {
+                    from_user_id: socket.data.user_id,
+                    to_user_id: results[0].user_id
+                    };
+                    console.log(params);
+                let tmp_res = {
+                    message: await dbmessage.GetMessage(params),
+                    from_user_id: socket.data.user_id
                 };
-                console.log(params);
-            let tmp_res = {
-                message: await dbmessage.GetMessage(params),
-                from_user_id: socket.data.user_id
-            };
-            console.log(tmp_res);
-            socket.emit('getmessage', tmp_res);
+                console.log(tmp_res);
+                socket.emit('getmessage', tmp_res);
             })
 		});
 

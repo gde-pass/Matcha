@@ -38,26 +38,34 @@ message.addEventListener('keypress', function () {
 //listen for events
 
 socket.on('getmessage', function (data) {
+  output.innerHTML = "";
+
     for(var i=0;i<data.message.length;i++){
         if (data.message[i].from_user_id == data.from_user_id) {
-            output.innerHTML += '<li class="sent"><img src="" alt="" /><p>' + data.message[i].message + '</p></li>';
+            output.innerHTML += '<li class="sent"><img src="" alt="" /><p class="answer">' + data.message[i].message + '</p></li>';
         }else {
-            output.innerHTML += '<li class="replies"><img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" /><p>' + data.message[i].message + '</p></li>';
+            output.innerHTML += '<li class="replies"><img src="" alt="" /><p class="answer">' + data.message[i].message + '</p></li>';
         }
     }
-
+$(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, "fast");
 })
+
 socket.on('chat', function (data) {
 	feedback.innerHTML = "";
 	output.innerHTML += '<li class="sent"><img src="' + data.img + '" alt="" /><p>' + data.message + '</p></li>';
+  $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);
+  $('.message-input input').val(null);
     // output.innerHTML += '<li class="replies"><img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" /><p>' + data.message + '</p></li>';
 });
+
 socket.on('chat_rep', function (data) {
 	feedback.innerHTML = "";
 	// output.innerHTML += '<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + data.message + '</p></li>';
     output.innerHTML += '<li class="replies"><img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" /><p>' + data.message + '</p></li>';
+    $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);
 });
 
 socket.on('typing', function (data) {
 	feedback.innerHTML = data;
+  $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);
 });
