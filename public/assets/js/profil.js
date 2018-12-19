@@ -79,10 +79,10 @@ function checkBioPattern(value) {
 /**
  * @return {boolean}
  */
-function checkSexPattern(value) {
-    const sexRegex = new RegExp("^([OFM])$");
+function checkGenderPattern(value) {
+    const genderRegex = new RegExp("^([FM])$");
 
-    if (value.length !== 1 || !value.match(sexRegex)) {
+    if (value.length !== 1 || !value.match(genderRegex)) {
         return (false);
     } else {
         return (true);
@@ -303,7 +303,7 @@ document.getElementById("save").addEventListener("click", function () {
     let first_name = document.getElementById("first_name").value;
     let last_name = document.getElementById("last_name").value;
     let username = document.getElementById("username").value;
-    let sex = document.getElementById("sex").value;
+    let gender = document.getElementById("gender").value;
     let orientation = document.getElementById("orientation").value;
     let age = document.getElementById("age").value;
     let email = document.getElementById("email").value;
@@ -351,7 +351,7 @@ document.getElementById("save").addEventListener("click", function () {
             title: "WTF ?",
             html: "Don't try to glitch bro",
         });
-    } else if (sex.length !== 0 && !checkSexPattern(sex)) {
+    } else if (gender.length !== 0 && !checkGenderPattern(gender)) {
         swal({
             type: "error",
             title: "WTF ?",
@@ -406,7 +406,7 @@ document.getElementById("save").addEventListener("click", function () {
             last_name: last_name,
             username: username,
             email: email,
-            sex: sex,
+            gender: gender,
             orientation: orientation,
             age: age,
             tags: tags,

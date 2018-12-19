@@ -16,7 +16,7 @@ function checkSettingsUpdate(data) {
         (data.username.length !== 0 && !checkUserPattern(data.username)) ||
         (data.email.length !== 0 && !checkEmailPattern(data.email)) ||
         (data.orientation.length !== 0 && !checkSexOrientationPattern(data.orientation)) ||
-        (data.sex.length !== 0 && !checkSexPattern(data.sex)) ||
+        (data.gender.length !== 0 && !checkGenderPattern(data.gender)) ||
         (data.bio.length !== 0 && !checkBioPattern(data.bio)) ||
         (data.tags.length !== 0 && !checkTagsPattern(data.tags)) ||
         (data.distance.length !== 0 && !checkDistancePattern(data.distance)) ||
@@ -82,10 +82,10 @@ function checkBioPattern(value) {
 /**
  * @return {boolean}
  */
-function checkSexPattern(value) {
-    const sexRegex = new RegExp("^([OFM])$");
+function checkGenderPattern(value) {
+    const genderRegex = new RegExp("^([FM])$");
 
-    if (value.length !== 1 || !value.match(sexRegex)) {
+    if (value.length !== 1 || !value.match(genderRegex)) {
         return (false);
     } else {
         return (true);
