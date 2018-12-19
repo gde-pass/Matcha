@@ -28,8 +28,8 @@ async function dbInitTableSettings(conn) {
 
     const sql = "CREATE TABLE IF NOT EXISTS Settings (" +
         "    `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT," +
-        "    `orientation` VARCHAR(12)," +
-        "    `sex` VARCHAR (1)," +
+        "    `orientation` VARCHAR(12) DEFAULT 'Bisexual' NOT NULL," +
+        "    `gender` VARCHAR (6)," +
         "    `bio` TEXT (500)," +
         "    `tags` VARCHAR(255)," +
         "    `distance` TINYINT UNSIGNED DEFAULT 50 NOT NULL," +

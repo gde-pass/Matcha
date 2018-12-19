@@ -66,13 +66,13 @@ async function dbBioUpdate(bio, id) {
     }
 }
 
-async function dbSexUpdate(sex, id) {
+async function dbGenderUpdate(gender, id) {
 
-    let sql = "UPDATE `Settings` SET `sex` = ? WHERE `user_id` = ?;";
+    let sql = "UPDATE `Settings` SET `gender` = ? WHERE `user_id` = ?;";
     db.query = util.promisify(db.query);
 
     try {
-        await db.query(sql, [sex, id]);
+        await db.query(sql, [gender, id]);
     } catch (error) {
         throw error;
     }
@@ -158,8 +158,8 @@ async function dbSettingsUpdate(data) {
     if (data.orientation.length !== 0) {
         await dbOrientationUpdate(data.orientation, id);
     }
-    if (data.sex.length !== 0) {
-        await dbSexUpdate(data.sex, id);
+    if (data.gender.length !== 0) {
+        await dbGenderUpdate(data.gender, id);
     }
     if (data.bio.length !== 0) {
         await dbBioUpdate(data.bio, id);
