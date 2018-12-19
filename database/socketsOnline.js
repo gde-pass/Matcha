@@ -34,8 +34,8 @@ async function Getparams(data, callback) {
 };
 
 function SetConv(data) {
-	let sqldisconnect = "UPDATE Useronline SET in_conv= ? WHERE user_id= ?";
-	db.query(sqlsetconv,[data,data], function (error, results) {
+	let sqlsetconv = "UPDATE Useronline SET in_conv= ? WHERE user_id= ?";
+	db.query(sqlsetconv,[data.to_user_id,data.from_user_id], function (error) {
 		if (error) throw error;
 		 return (true);
 	});
@@ -46,9 +46,9 @@ async function CheckConv(params){
     db.query = util.promisify(db.query);
 
     try {
-        let result = await db.query(checksql,[params.from_user_id, params.to_user_id,params.to_user_id, params.from_user_id]);
+        let result = await db.query(checksql,[params.to_user_id]);
         console.log('IN', result.length);
-        if (result[0].in_conv == params) {
+        if (result[0].in_conv == params.from_user_id) {
             return (true);
         } else {
             return (false);
@@ -63,5 +63,6 @@ module.exports = {
 	StoreUser: StoreUser,
 	SetStore: SetStore,
 	Getparams: Getparams,
-	SetConv: SetConv
+	SetConv: SetConv,
+	CheckConv: CheckConv
 };

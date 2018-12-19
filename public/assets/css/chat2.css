@@ -373,8 +373,8 @@ body {
   background: #32465a;
 }
 #frame #sidepanel #contacts ul li.contact.active {
-  /* background: #32465a; */
-  border-right: 5px solid #435f7a;
+  background: #32465a;
+  /* border-right: 5px solid #435f7a; */
 }
 #frame #sidepanel #contacts ul li.contact.active span.contact-status {
   border: 2px solid #32465a !important;

@@ -21,7 +21,7 @@ async function GetMessage(params){
 
     try {
         let result = await db.query(getsql,[params.from_user_id, params.to_user_id,params.to_user_id, params.from_user_id]);
-        console.log('IN', result.length);
+        // console.log('IN', result.length);
         if (result.length == 0) {
             return (false);
         } else {

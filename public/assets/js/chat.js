@@ -8,17 +8,39 @@ var message = document.getElementById('message'),
   	feedback = document.getElementById('feedback'),
     img = document.getElementById('profilimg').src,
     Userto = document.getElementById('Userto'),
-    contact = document.getElementsByClassName('contact');
-    // console.log(contact);
+    contact2 = document.getElementsByClassName('contact');
+    contact = document.getElementsByClassName('meta');
+    // console.log(document.getElementsByClassName('meta')[0]);
 //emit EVENTS
 
-for(var i=0;i<contact.length;i++){
-    contact[i].addEventListener('click', function (contact) {
-        console.log(contact);
-     document.getElementById("Userto").innerText = contact.srcElement.innerText.trim();
-     socket.emit('getmessage', contact.srcElement.innerText.trim());
+// for(var i=0;i<contact.length;i++){
+//     contact[i].addEventListener('click', function (contact) {
+//         console.log(contact);
+//         // console.log(contact.getElementsByClassName('name'));
+//         // contact.srcElement('p.preview').innerText.nextElementSibling.innerText = "New New !";
+//
+//      document.getElementById("Userto").innerText = contact.srcElement.innerText.trim();
+//      socket.emit('getmessage', contact.srcElement.innerText.trim());
+//     });
+// };
+
+
+for(var i= 0; i < contact.length; i++){
+    let index = i;
+    contact[i].addEventListener('click', function(){
+
+      // console.log('test', contact[index].getElementsByClassName('preview')[0].innerText);
+      document.getElementById("Userto").innerText = contact[index].getElementsByClassName('name')[0].innerText;
+      socket.emit('getmessage', contact[index].getElementsByClassName('name')[0].innerText.trim());
+      contact[index].getElementsByClassName('preview')[0].innerText = '';
+        for(var y= 0; y < contact2.length; y++){
+          contact2[y].classList.remove('active');
+        }
+        contact2[index].classList.add('active')
     });
 };
+
+
 
 btn.addEventListener('click', function () {
     console.log("click");
@@ -49,6 +71,14 @@ socket.on('getmessage', function (data) {
     }
 $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, "fast");
 })
+
+socket.on('notifnew', function (data) {
+      for(var i= 0;i < contact.length; i++){
+        if (contact[i].getElementsByClassName('name')[0].innerText.trim() == data){
+           contact[i].getElementsByClassName('preview')[0].innerText = 'Nouveaux messages !';
+         }
+      }
+});
 
 socket.on('chat', function (data) {
 	feedback.innerHTML = "";

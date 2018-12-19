@@ -67,8 +67,8 @@ module.exports = function(io)
                     // console.log(distance(15,token));
                     socket.emit("tokenLogin", token);
 
-                    let sqlOnline = "INSERT INTO Useronline (user_id, username, online, socketid) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE user_id= ?;";
-                    db.query(sqlOnline,[results[0].user_id,results[0].username, 'Y', socket.id, results[0].user_id], function (error) {
+                    let sqlOnline = "INSERT INTO Useronline (user_id, username, online, socketid, in_conv) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE user_id= ?;";
+                    db.query(sqlOnline,[results[0].user_id,results[0].username, 'Y', socket.id, results[0].user_id, 0], function (error) {
                         if (error) throw error;
                     });
 
@@ -112,22 +112,26 @@ module.exports = function(io)
                     message: data.message
                     };
                     if (await dbmessage.InsertMessage(params)){
+                      io.to(socket.id).emit('chat', data);
 
-			//PRIVATE MESSAGE---------------------------------------------//
-            			io.to(results[0].socketid).emit('chat_rep', data);
-            			io.to(socket.id).emit('chat', data);
+          //--------------------HERE CHECK CONV WITH--IF-------------------------//
+                      if ( await SocketO.CheckConv(params) == true){
+			         // PRIVATE MESSAGE---------------------------------------------//
+                      			io.to(results[0].socketid).emit('chat_rep', data);
+                      }else {
+                        io.to(results[0].socketid).emit('notifnew', socket.data.username);
+                        console.log('message later');
+                      }
                     }else {
                         console.log('error insert db message');
                     }
             })
-
         });
 
 		socket.on('getmessage', async function (data) {
 
             // let to_id = await SocketO.Getparams(data);
-            // console.log('Sortie getparams', to_id);
-            // console.log('Sortie getparams2', SocketO.Getparams(data));
+
             let sqlsend = "SELECT user_id, username, socketid FROM Useronline WHERE username= ?";
         	  db.query(sqlsend,[data], async function (error, results) {
             		if (error) throw error;
@@ -141,7 +145,8 @@ module.exports = function(io)
                     message: await dbmessage.GetMessage(params),
                     from_user_id: socket.data.user_id
                 };
-                console.log(tmp_res);
+                // console.log(tmp_res);
+                SocketO.SetConv(params);
                 socket.emit('getmessage', tmp_res);
             })
 		});
