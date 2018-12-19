@@ -1,5 +1,6 @@
 const db = require("./database");
 const session = require('express-session');
+const util = require("util");
 var i;
 
 
@@ -30,12 +31,37 @@ async function Getparams(data, callback) {
 		if (error) throw error;
 		 return (results[0].user_id);
 	});
+};
 
+function SetConv(data) {
+	let sqldisconnect = "UPDATE Useronline SET in_conv= ? WHERE user_id= ?";
+	db.query(sqlsetconv,[data,data], function (error, results) {
+		if (error) throw error;
+		 return (true);
+	});
+};
+
+async function CheckConv(params){
+    let checksql = "SELECT in_conv FROM Useronline WHERE user_id=?";
+    db.query = util.promisify(db.query);
+
+    try {
+        let result = await db.query(checksql,[params.from_user_id, params.to_user_id,params.to_user_id, params.from_user_id]);
+        console.log('IN', result.length);
+        if (result[0].in_conv == params) {
+            return (true);
+        } else {
+            return (false);
+        }
+    } catch (error) {
+        throw error;
+    }
 };
 
 
 module.exports = {
 	StoreUser: StoreUser,
 	SetStore: SetStore,
-	Getparams: Getparams
+	Getparams: Getparams,
+	SetConv: SetConv
 };

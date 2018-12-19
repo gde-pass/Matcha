@@ -47,6 +47,7 @@ function dbInitTableUseronline(conn) {
         "    `username` VARCHAR(15) NOT NULL," +
         "    `online` ENUM ('N','Y')," +
         "    `socketid` VARCHAR(255)," +
+        "    `in_conv` INT," +
         "    PRIMARY KEY(user_id)," +
         "    FOREIGN KEY(user_id) REFERENCES Users(user_id)" +
         ") ENGINE = InnoDB;";
