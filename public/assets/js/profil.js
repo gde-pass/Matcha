@@ -80,9 +80,9 @@ function checkBioPattern(value) {
  * @return {boolean}
  */
 function checkGenderPattern(value) {
-    const genderRegex = new RegExp("^([FM])$");
+    const genderRegex = new RegExp("^(Female|Male)$");
 
-    if (value.length !== 1 || !value.match(genderRegex)) {
+    if (value.length < 6 || !value.match(genderRegex)) {
         return (false);
     } else {
         return (true);
