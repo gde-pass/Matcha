@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f412605-4aa4-4c6c-8164-9b10572fa668" name="Default Changelist" comment="">
+    <list default="true" id="2f412605-4aa4-4c6c-8164-9b10572fa668" name="Default Changelist" comment="Bisexual is the default setting for a new user&#10;&#10;check valdity gender et orient updated">
+      <change afterPath="$PROJECT_DIR$/public/assets/css/nojs.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/nojs.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/check_validity.js" beforeDir="false" afterPath="$PROJECT_DIR$/database/check_validity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/js/profil.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/profil.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -48,65 +50,45 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/profil.ejs">
+        <entry file="file://$PROJECT_DIR$/views/index.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="208" column="55" selection-start-line="208" selection-start-column="55" selection-end-line="208" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/assets/js/profil.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="84" column="8" selection-start-line="84" selection-start-column="8" selection-end-line="84" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/init.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/user.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="80" column="22" selection-start-line="80" selection-start-column="17" selection-end-line="80" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="das://7ec51dbf-03be-483b-aa32-3f0923beda60/schema/Matcha/table/Users">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
-              <filtering enabled="true" />
+              <caret column="15" lean-forward="true" selection-end-line="1" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="das://7ec51dbf-03be-483b-aa32-3f0923beda60/schema/Matcha/table/Settings">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
+        <entry file="file://$PROJECT_DIR$/routes/routes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="101" column="20" selection-start-line="101" selection-start-column="20" selection-end-line="101" selection-end-column="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/check_validity.js">
+        <entry file="file://$PROJECT_DIR$/views/nojs.ejs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+            <state relative-caret-position="255">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/assets/css/nojs.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2790">
+              <caret line="186" column="1" selection-start-line="186" selection-start-column="1" selection-end-line="186" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/login.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-118" />
           </provider>
         </entry>
       </file>
@@ -115,14 +97,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>(express.stati</find>
       <find>type</find>
       <find>html</find>
       <find>id=&quot;email&quot;</find>
@@ -135,7 +116,6 @@
       <find>dbSelectUserWithEmail</find>
       <find>span1</find>
       <find>username</find>
-      <find>orien</find>
       <find>passwordM</find>
       <find>emai</find>
       <find>checkTags</find>
@@ -152,6 +132,8 @@
       <find>cryptiles</find>
       <find>form</find>
       <find>sex</find>
+      <find>orien</find>
+      <find>gallery</find>
     </findStrings>
     <replaceStrings>
       <replace>CheckPasswordPattern</replace>
@@ -191,15 +173,13 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="UpdateUserDB" />
       </map>
     </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/public/js/login_signup.js" />
-        <option value="$PROJECT_DIR$/app/config/database/init.js" />
         <option value="$PROJECT_DIR$/app/config/database/user.js" />
         <option value="$PROJECT_DIR$/public/assets/js/layout.js" />
         <option value="$PROJECT_DIR$/public/assets/js/js.cookie.js" />
@@ -223,11 +203,9 @@
         <option value="$PROJECT_DIR$/public/assets/js/single.js" />
         <option value="$PROJECT_DIR$/routes/profil.js" />
         <option value="$PROJECT_DIR$/views/register.ejs" />
-        <option value="$PROJECT_DIR$/routes/routes.js" />
         <option value="$PROJECT_DIR$/public/assets/js/register.js" />
         <option value="$PROJECT_DIR$/public/assets/js/index.js" />
         <option value="$PROJECT_DIR$/public/assets/js/login.js" />
-        <option value="$PROJECT_DIR$/views/index.ejs" />
         <option value="$PROJECT_DIR$/views/about.ejs" />
         <option value="$PROJECT_DIR$/views/contact.ejs" />
         <option value="$PROJECT_DIR$/views/single.ejs" />
@@ -245,10 +223,14 @@
         <option value="$PROJECT_DIR$/utils/profil.js" />
         <option value="$PROJECT_DIR$/database/user.js" />
         <option value="$PROJECT_DIR$/database/init.js" />
-        <option value="$PROJECT_DIR$/views/profil.ejs" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
         <option value="$PROJECT_DIR$/database/check_validity.js" />
         <option value="$PROJECT_DIR$/public/assets/js/profil.js" />
+        <option value="$PROJECT_DIR$/views/profil.ejs" />
+        <option value="$PROJECT_DIR$/views/index.ejs" />
+        <option value="$PROJECT_DIR$/public/assets/css/nojs.css" />
+        <option value="$PROJECT_DIR$/routes/routes.js" />
+        <option value="$PROJECT_DIR$/views/nojs.ejs" />
       </list>
     </option>
   </component>
@@ -302,11 +284,6 @@
             <path>
               <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
               <item name="Matcha" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Matcha" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -320,7 +297,7 @@
               <item name="Matcha" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Matcha" type="b2602c69:ProjectViewProjectNode" />
@@ -419,7 +396,7 @@
       <workItem from="1545225433951" duration="793000" />
       <workItem from="1545226341454" duration="116000" />
       <workItem from="1545226490612" duration="1265000" />
-      <workItem from="1545227797365" duration="1663000" />
+      <workItem from="1545227797365" duration="3855000" />
     </task>
     <task id="LOCAL-00001" summary="JS sign in client side done">
       <created>1543434875092</created>
@@ -701,11 +678,18 @@
       <option name="project" value="LOCAL" />
       <updated>1545236716939</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Bisexual is the default setting for a new user&#10;&#10;check valdity gender et orient updated">
+      <created>1545237222289</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1545237222290</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="184046000" />
+    <option name="totallyTimeSpent" value="186238000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -720,7 +704,7 @@
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.19375" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19375" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info active="true" id="DB Browser" order="3" visible="true" weight="0.209375" />
@@ -738,7 +722,7 @@
       <window_info anchor="bottom" id="Database Console" order="11" weight="0.32756326" />
       <window_info active="true" anchor="bottom" id="Messages" order="12" visible="true" weight="0.3288948" />
       <window_info anchor="bottom" id="DB Execution Console" order="13" />
-      <window_info anchor="right" id="Database" order="0" visible="true" weight="0.28828126" />
+      <window_info anchor="right" id="Database" order="0" weight="0.28828126" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
@@ -772,7 +756,6 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add every routes of the template&#10;&#10;Remove &quot;soulmate&quot; from single.ejs" />
     <MESSAGE value="MAJ" />
     <MESSAGE value="Fix js single&#10;&#10;Fix socket loginerror&#10;&#10;Fix img path register" />
     <MESSAGE value="Fix front register&#10;&#10;Add HTML check&#10;&#10;modif displayname to usename in initDB&#10;&#10;remove useless console.log" />
@@ -797,58 +780,11 @@
     <MESSAGE value="fix pattern" />
     <MESSAGE value="Replace sex by gender" />
     <MESSAGE value="Replace F M to Female Male in the database" />
-    <option name="LAST_COMMIT_MESSAGE" value="Replace F M to Female Male in the database" />
+    <MESSAGE value="Bisexual is the default setting for a new user&#10;&#10;check valdity gender et orient updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bisexual is the default setting for a new user&#10;&#10;check valdity gender et orient updated" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/utils/jwt.utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://7ec51dbf-03be-483b-aa32-3f0923beda60/schema/Matcha/table/Settings" />
-    <entry file="das://7ec51dbf-03be-483b-aa32-3f0923beda60/schema/Matcha/table/Users" />
-    <entry file="file://$PROJECT_DIR$/docker/docker-compose.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package-lock.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="645" column="16" selection-start-line="645" selection-start-column="16" selection-end-line="645" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="db://8b0a1824-1e45-44ab-bf3c-faf257343053/objects/schemas/Matcha/tables/Users" />
-    <entry file="file://$PROJECT_DIR$/database/database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="27" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://7ec51dbf-03be-483b-aa32-3f0923beda60/schema/Matcha/table/Settings">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://7ec51dbf-03be-483b-aa32-3f0923beda60/schema/Matcha/table/Settings">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://7ec51dbf-03be-483b-aa32-3f0923beda60/schema/Matcha/table/Users">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://7ec51dbf-03be-483b-aa32-3f0923beda60/schema/Matcha/table/Settings">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1045,13 +981,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/profil.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="208" column="55" selection-start-line="208" selection-start-column="55" selection-end-line="208" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/user.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
@@ -1115,13 +1044,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/check_validity.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/assets/js/profil.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -1133,6 +1055,86 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://7ec51dbf-03be-483b-aa32-3f0923beda60/schema/Matcha/table/Settings">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/profil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-177" />
+      </provider>
+    </entry>
+    <entry file="das://7ec51dbf-03be-483b-aa32-3f0923beda60/schema/Matcha/table/Users">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://7ec51dbf-03be-483b-aa32-3f0923beda60/schema/Matcha/table/Settings">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/jwt.utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="12" lean-forward="true" selection-start-line="13" selection-start-column="12" selection-end-line="16" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/check_validity.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/login.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-118" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/profil.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="91" column="55" selection-start-line="91" selection-start-column="48" selection-end-line="91" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/css/nojs.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2790">
+          <caret line="186" column="1" selection-start-line="186" selection-start-column="1" selection-end-line="186" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="15" lean-forward="true" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/nojs.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="101" column="20" selection-start-line="101" selection-start-column="20" selection-end-line="101" selection-end-column="20" />
         </state>
       </provider>
     </entry>
