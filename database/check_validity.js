@@ -85,7 +85,7 @@ function checkBioPattern(value) {
 function checkGenderPattern(value) {
     const genderRegex = new RegExp("^(Female|Male)$");
 
-    if (value.length > 6 || !value.match(genderRegex)) {
+    if (!value.match(genderRegex)) {
         return (false);
     } else {
         return (true);
@@ -98,7 +98,7 @@ function checkGenderPattern(value) {
 function checkSexOrientationPattern(value) {
     const sexOrientationRegex = new RegExp("^(Homosexual|Heterosexual|Bisexual)$");
 
-    if (value.length < 8 || !value.match(sexOrientationRegex)) {
+    if (!value.match(sexOrientationRegex)) {
         return (false);
     } else {
         return (true);
