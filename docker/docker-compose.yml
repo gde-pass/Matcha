@@ -9,3 +9,15 @@ services:
     - MYSQL_ROOT_PASSWORD=password
     - MYSQL_DATABASE=Matcha
     - MYSQL_ALLOW_EMPTY_PASSWORD=no
+
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+    - "8080:80"
+    links:
+    - database
+    environment:
+    - PMA_HOST=database

@@ -13,18 +13,6 @@ var message = document.getElementById('message'),
     // console.log(document.getElementsByClassName('meta')[0]);
 //emit EVENTS
 
-// for(var i=0;i<contact.length;i++){
-//     contact[i].addEventListener('click', function (contact) {
-//         console.log(contact);
-//         // console.log(contact.getElementsByClassName('name'));
-//         // contact.srcElement('p.preview').innerText.nextElementSibling.innerText = "New New !";
-//
-//      document.getElementById("Userto").innerText = contact.srcElement.innerText.trim();
-//      socket.emit('getmessage', contact.srcElement.innerText.trim());
-//     });
-// };
-
-
 for(var i= 0; i < contact.length; i++){
     let index = i;
     contact[i].addEventListener('click', function(){
@@ -39,8 +27,6 @@ for(var i= 0; i < contact.length; i++){
         contact2[index].classList.add('active')
     });
 };
-
-
 
 btn.addEventListener('click', function () {
     console.log("click");
@@ -60,7 +46,7 @@ message.addEventListener('keypress', function () {
 //listen for events
 
 socket.on('getmessage', function (data) {
-  output.innerHTML = "";
+    output.innerHTML = "";
 
     for(var i=0;i<data.message.length;i++){
         if (data.message[i].from_user_id == data.from_user_id) {
@@ -69,7 +55,7 @@ socket.on('getmessage', function (data) {
             output.innerHTML += '<li class="replies"><img src="" alt="" /><p class="answer">' + data.message[i].message + '</p></li>';
         }
     }
-$(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, "fast");
+    $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, "fast");
 })
 
 socket.on('notifnew', function (data) {
@@ -81,21 +67,19 @@ socket.on('notifnew', function (data) {
 });
 
 socket.on('chat', function (data) {
-	feedback.innerHTML = "";
+    feedback.innerHTML = "";
 	output.innerHTML += '<li class="sent"><img src="' + data.img + '" alt="" /><p>' + data.message + '</p></li>';
-  $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);
-  $('.message-input input').val(null);
-    // output.innerHTML += '<li class="replies"><img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" /><p>' + data.message + '</p></li>';
+    $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);
+    $('.message-input input').val(null);
 });
 
 socket.on('chat_rep', function (data) {
 	feedback.innerHTML = "";
-	// output.innerHTML += '<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + data.message + '</p></li>';
-    output.innerHTML += '<li class="replies"><img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" /><p>' + data.message + '</p></li>';
+    output.innerHTML += '<li class="replies"><img src="" alt="" /><p>' + data.message + '</p></li>';
     $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);
 });
 
 socket.on('typing', function (data) {
-	feedback.innerHTML = data;
-  $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);
+    feedback.innerHTML = data;
+    $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);
 });

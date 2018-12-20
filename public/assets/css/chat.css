@@ -20,15 +20,16 @@ body {
 }
 
 #frame {
-  width: 95%;
+  /* width: 95%; */
   min-width: 360px;
-  max-width: 1000px;
+  /* max-width: 1000px; */
   height: 92vh;
   min-height: 300px;
-  max-height: 720px;
+  /* max-height: 720px; */
   /* background: #E6EAEA; */
-  border-radius: 25px;
-  border: solid 1px grey;
+  /* border-radius: 25px; */
+  /* border: solid 1px grey; */
+
 }
 @media screen and (max-width: 360px) {
   #frame {
@@ -45,7 +46,7 @@ body {
   background: #d47e99;
   color: #f5f5f5;
   overflow: hidden;
-  border-radius: 22px 0px 0px 23px;
+  /* border-radius: 22px 0px 0px 23px; */
   position: relative;
 }
 @media screen and (max-width: 735px) {
@@ -480,7 +481,7 @@ body {
 }
 #frame #sidepanel #bottom-bar button:nth-child(1) {
   border-right: 1px solid #2c3e50;
-  border-radius: 0px 0px 0px 23px;
+  /* border-radius: 0px 0px 0px 23px; */
 }
 @media screen and (max-width: 735px) {
   #frame #sidepanel #bottom-bar button:nth-child(1) {
@@ -528,7 +529,7 @@ body {
   height: 60px;
   line-height: 60px;
   background: #f5f5f5;
-  border-radius: 0px 23px 0px 0px;
+  /* border-radius: 0px 23px 0px 0px; */
 }
 #frame .content .contact-profile img {
   width: 40px;
@@ -672,7 +673,7 @@ body {
   cursor: pointer;
   background: #32465a;
   color: #f5f5f5;
-  border-radius: 0px 0px 22px;
+  /* border-radius: 0px 0px 22px; */
 }
 @media screen and (max-width: 735px) {
   #frame .content .message-input .wrap button {
