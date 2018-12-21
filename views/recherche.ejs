@@ -1,0 +1,251 @@
+<html>
+<head>
+
+    <title>Matcha | Login</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href="/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="/assets/css/style.css" rel='stylesheet' type='text/css'/>
+    <link href="/assets/css/sliders.css" rel='stylesheet' type='text/css'/>
+
+</head>
+<body>
+<div class="header wow fadeInUp" data-wow-delay="0.4s">
+    <div class='container'>
+        <div class="header_left">
+            <img src="/assets/images/rate.png" alt=""/>
+        </div>
+        <div class="logo">
+            <a href="/"><img src="/assets/images/logo.png" alt=""/>
+                <span>Matcha</span>
+            </a>
+        </div>
+        <% if (locals.connected == false){ %>
+            <div class="header_right">
+                <ul class="header_user_info">
+                    <a class="login" href="login">
+                        <li class="user_desc"><span class="m_1">Already user ? </span>Login</li>
+                        <i class="user"> </i>
+                        <div class="clearfix"></div>
+                    </a>
+                    <div class="clearfix"></div>
+                </ul>
+                <a href="register" class="btn1 btn-1 btn1-1b">Sign Up</a>
+            </div>
+        <% }else{ %>
+            <div class="header_right">
+                <ul class="header_user_info">
+                    <a class="login" href="profil">
+                        <li class="user_desc">Manage your account</li>
+                        <i class="user"> </i>
+                        <div class="clearfix"></div>
+                    </a>
+                    <div class="clearfix"></div>
+                </ul>
+                <a href="logout" class="btn1 btn-1 btn1-1b">Logout</a>
+            </div>
+        <% } %>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="profile_banner">
+    <div class="container">
+        <h3>Search</h3>
+    </div>
+</div>
+<!--<fieldset>-->
+<!--<legend>Params</legend>-->
+<!--<div class="range-slider">-->
+<!--<h4>Age:</h4>-->
+<!--<input name="age" class="range-slider__range" type="range" value="<%= locals.age != null ? locals.age : 18 %>" min="18" max="100">-->
+<!--<span class="range-slider__value">0</span>-->
+<!--</div>-->
+
+<!--<div class="range-slider">-->
+<!--<h4>distance:</h4>-->
+<!--<input name="distance" class="range-slider__range" type="range"  value="<%= locals.distance != null ? locals.distance : 5 %>" min="5" max="50" step="5" >-->
+<!--<span class="range-slider__value">0</span>-->
+<!--</div>-->
+
+<!--<div class="range-slider">-->
+<!--<h4>Score:</h4>-->
+<!--<input name="score" class="range-slider__range" type="range"  value="<%= locals.score != null ? locals.score : 0 %>" min="0" max="500">-->
+<!--<span class="range-slider__value">0</span>-->
+<!--</div>-->
+<!--<button class="btn1 btn-1 btn1-1b"  style="float: right" type="submit">Search</button>-->
+<!--</fieldset>-->
+<form action="recherche" method="post">
+
+    <div class="wrapper" style="padding:20px;">
+        <input type="checkbox" name="ageBox" value="1" <%= locals.ageChecked == "checked" ? checked = "checked" : "" %>>
+        <h4>Age:</h4>
+        <div class="extra-controls form-inline">
+            <input type="text" name="age1" class="js-input-from form-control"
+                   value="<%= locals.age1 != null ? locals.age1 : 18 %>"/>
+            <input type="text" name="age2" class="js-input-to form-control"
+                   value="<%= locals.age2 != null ? locals.age2 : 100 %>"/>
+        </div>
+        <input type="checkbox" name="distanceBox"
+               value="1" <%= locals.distanceChecked == "checked" ? checked = "checked" : "" %>><h4>Distance:</h4>
+        <div class="extra-controls form-inline">
+            <input type="text" name="distance1" class="js-input-from form-control"
+                   value="<%= locals.distance1 != null ? locals.distance1 : 0 %>"/>
+            <input type="text" name="distance2" class="js-input-to form-control"
+                   value="<%= locals.distance2 != null ? locals.distance2 : 50 %>"/>
+        </div>
+        <input type="checkbox" name="scoreBox" value="1"><h4>Score:</h4>
+        <div class="extra-controls form-inline">
+            <input type="text" name="score1" class="js-input-from form-control"
+                   value="<%= locals.score1 != null ? locals.score1 : 0 %>"/>
+            <input type="text" name="score2" class="js-input-to form-control"
+                   value="<%= locals.score2 != null ? locals.score2 : 0 %>"/>
+        </div>
+        <h4>Tag:</h4>
+        <div class="extra-controls form-inline">
+            <input type="text" name="tag" class="js-input-from form-control"
+                   value="<%= locals.tag != null ? locals.tag : "" %>"/>
+        </div>
+    </div>
+    </div>
+    <button class="btn1 btn-1 btn1-1b" style="float: right" type="submit">Search</button>
+
+</form>
+
+<div class="container">
+    <% if(locals.users != 1){ %>
+        <% if(locals.sorted == true){ %>
+            <fieldset>
+                <legend>Les utilsateurs fait pour vous:</legend>
+                <div class="box1">
+                    <% for (let i = 0; i < locals.users.length; i++) { /*locals.files_img.forEach(function(el, index){ */ %>
+                    <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.4s">
+                        <div class="grid_4"><a href="single?<%= locals.users[i][0].username %>">
+                                <h4><span class="m_3"><%= locals.users[i][0].username %></span></h4>
+                                <img src="<%= locals.users[i][0].profil_img != 0 ? `assets/img/${locals.users[i][0].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                                     class="img-responsive" alt="" style="width: 100%;">
+                                <ul class="category_desc">
+                                    <li class="cate_head">Mettre score</li>
+                                    <li class="cate_right">
+                                        <ul class="list1">
+                                            <li><i class="heart"> </i></li>
+                                            <li><i class="heart"> </i></li>
+                                            <li><i class="heart"> </i></li>
+                                        </ul>
+                                    </li>
+                                    <div class="clearfix"></div>
+                                </ul>
+                                <h5>Full Profile</h5>
+                            </a></div>
+                    </div>
+                    <% }; %>
+                    <div class="clearfix"></div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Les utilisateur avec des interets commun:</legend>
+                <div class="box1">
+                    <% for (let i = 0; i < locals.suggestion.length; i++) { /*locals.files_img.forEach(function(el, index){ */ %>
+                    <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.4s">
+                        <div class="grid_4"><a href="single?<%= locals.suggestion[i].username %>">
+                                <h4><span class="m_3"><%= locals.suggestion[i].username %></span></h4>
+                                <img src="<%= locals.suggestion[i].profil_img != 0 ? `assets/img/${locals.suggestion[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                                     class="img-responsive" alt="" style="width: 100%">
+                                <ul class="category_desc">
+                                    <li class="cate_head">Mettre score</li>
+                                    <li class="cate_right">
+                                        <ul class="list1">
+                                            <li><i class="heart"> </i></li>
+                                            <li><i class="heart"> </i></li>
+                                            <li><i class="heart"> </i></li>
+                                        </ul>
+                                    </li>
+                                    <div class="clearfix"></div>
+                                </ul>
+                                <h5>Full Profile</h5>
+                            </a></div>
+                    </div>
+                    <% }; %>
+                    <div class="clearfix"></div>
+                </div>
+            </fieldset>
+        <% }else if(locals.sorted == false){ %>
+            <fieldset>
+                <legend>Les utilsateurs fait pour vous:</legend>
+                <div class="box1">
+                    <% for (let i = 0; i < locals.users.length; i++) { /*locals.files_img.forEach(function(el, index){ */ %>
+                    <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.4s">
+                        <div class="grid_4"><a href="single?<%= locals.users[i].username %>">
+                                <h4><span class="m_3"><%= locals.users[i].username %></span></h4>
+                                <img src="<%= locals.users[i].profil_img != 0 ? `assets/img/${locals.users[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                                     class="img-responsive" alt="" style="width: 100%;">
+                                <ul class="category_desc">
+                                    <li class="cate_head">Mettre score</li>
+                                    <li class="cate_right">
+                                        <ul class="list1">
+                                            <li><i class="heart"> </i></li>
+                                            <li><i class="heart"> </i></li>
+                                            <li><i class="heart"> </i></li>
+                                        </ul>
+                                    </li>
+                                    <div class="clearfix"></div>
+                                </ul>
+                                <h5>Full Profile</h5>
+                            </a></div>
+                    </div>
+                    <% }; %>
+                    <div class="clearfix"></div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Les utilisateur avec des interets commun:</legend>
+                <div class="box1">
+                    <% for (let i = 0; i < locals.suggestion.length; i++) { /*locals.files_img.forEach(function(el, index){ */ %>
+                    <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.4s">
+                        <div class="grid_4"><a href="single?<%= locals.suggestion[i].username %>">
+                                <h4><span class="m_3"><%= locals.suggestion[i].username %></span></h4>
+                                <img src="<%= locals.suggestion[i].profil_img != 0 ? `assets/img/${locals.suggestion[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                                     class="img-responsive" alt="" style="width: 100%">
+                                <ul class="category_desc">
+                                    <li class="cate_head">Mettre score</li>
+                                    <li class="cate_right">
+                                        <ul class="list1">
+                                            <li><i class="heart"> </i></li>
+                                            <li><i class="heart"> </i></li>
+                                            <li><i class="heart"> </i></li>
+                                        </ul>
+                                    </li>
+                                    <div class="clearfix"></div>
+                                </ul>
+                                <h5>Full Profile</h5>
+                            </a></div>
+                    </div>
+                    <% }; %>
+                    <div class="clearfix"></div>
+                </div>
+            </fieldset>
+    <% }} %>
+</div>
+</br>
+<div class="footer">
+    <div class="container">
+        <div class="copy wow fadeInUp" data-wow-delay="0.4s">
+            <p>&copy; 2018 Matcha</p>
+        </div>
+        <div class="social wow fadeInRight" data-wow-delay="0.4s">
+            <ul class="footer_social">
+                <li><a href="#"> <i class="fb"> </i> </a></li>
+                <li><a href="#"> <i class="tw"> </i> </a></li>
+            </ul>
+        </div>
+        <div class='clearfix'></div>
+    </div>
+</div>
+
+
+</body>
+<script src="http://localhost:8080/socket.io/socket.io.js" language="JavaScript"></script>
+<script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>
+<script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js" language="JavaScript"></script>
+<script src="/node_modules/js-cookie/src/js.cookie.js" language="JavaScript"></script>
+</html>

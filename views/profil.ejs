@@ -141,8 +141,15 @@
                             <li>
                                 <% if(locals.files_img != ""){ %>
                                 <% for (let i = 0; i < locals.files_img.length; i++) { /*locals.files_img.forEach(function(el, index){ */%>
-                                <img src="<%= locals.files_img[i] != 'undefined' ? `${locals.files_img[i] }` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                                    <form action="/delete_img" method="post">
+                                        <div class="contai">
+                                            <img class="gallery" id="gallery_img"
+                                                 src="<%= locals.files_img[i] != 'undefined' ? `${locals.files_img[i]}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
                                      alt="">
+                                            <input name="img_to_del" type="hidden" value="<%= locals.files_img[i] %>">
+                                            <button class="btn" type="submit">Delete</button>
+                                        </div>
+                                    </form>
                                 <% }}; %>
                             </li>
                         </ul>

@@ -32,7 +32,6 @@ function profil(req,res){
                         if (empty(profil_img))
                             profil_img = 'undefined';
                         glob(`*/assets/images/${data.username}${data.Id}img*`, function (err, files_img) {
-                            // var gallery_img = path.basename(files.toString());
                             if (empty(files_img))
                                 files_img = "";
                             var images = [];
@@ -54,7 +53,6 @@ function profil(req,res){
                                                 let check = false
                                                 users_that_liked_you.forEach(liked => {
                                                     if (usr.user_id == parseInt(liked)) {
-                                                        console.log(users)
                                                         check = true
                                                     }
                                                 })

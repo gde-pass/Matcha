@@ -1,8 +1,8 @@
 "use strict"
 let conn = require('../database/database');
 const geolib = require('geolib');
-const distance = require("../utils/distance");
 let jwtUtils = require("./jwt.utils");
+let sortDistance = require("./sort_distance")
 
 let userLat;
 let userLng;
@@ -12,6 +12,19 @@ let orientation;
 let tags;
 let age;
 let isFull = true;
+
+function findTag(tagVoulu) {
+    let found = 0;
+    tags.forEach(function (elem) {
+        for (let i = 1; i < tagVoulu.length; i++) {
+            if (elem.trim() == tagVoulu[i].trim()) {
+                found = 1;
+            }
+        }
+    });
+    return (found);
+}
+
 function display_users(req, res, connected) {
     let data = jwtUtils.getUserID(req.cookies.token);
     if (data.type < 0 || data.type !== "login" || data.email < 0) {
@@ -41,18 +54,6 @@ function display_users(req, res, connected) {
                             tags = [];
                         age = results[i].age;
                     }
-                }
-
-                function findTag(tagVoulu) {
-                    let found = 0;
-                    tags.forEach(function (elem) {
-                        for (let i = 1; i < tagVoulu.length; i++) {
-                            if (elem.trim() == tagVoulu[i].trim()) {
-                                found = 1;
-                            }
-                        }
-                    });
-                    return (found);
                 }
 
                 let users = results.filter(res => {
@@ -100,10 +101,17 @@ function display_users(req, res, connected) {
                         }
                     }
                 });
-                res.render('index', {
-                    connected: connected,
-                    users: users,
-                    suggestion: suggestion
+                sortDistance(userLat, userLng, users, function (err, sortedByDistance) {
+                    if (err) {
+                        //error handling
+                    } else {
+                        res.render('index', {
+                            connected: connected,
+                            sorted: false,
+                            users: sortedByDistance,
+                            suggestion: suggestion,
+                        })
+                    }
                 })
             } else {
                 res.render('index', {

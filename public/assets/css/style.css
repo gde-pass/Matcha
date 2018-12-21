@@ -604,42 +604,43 @@ span.m_3{
 	-moz-border-bottom-left-radius: 5px;
 	-o-border-bottom-left-radius: 5px;
 }
-.search input[type="text"] {
-	padding:20px 10px;
-	color: #999;
-	font-size: 1em;
-	background: none;
-	outline: none;
-	border: none;
-	margin: 0px auto;
-	width:92%;
-	-webkit-apperance: none;
-	vertical-align: middle;
-	text-transform: uppercase;
-}
-.search input[type="submit"] {
-	background: #d26b8b;
-	padding:21px 35px;
-	display: inline-block;
-	color: #FFF;
-	text-transform: uppercase;
-	font-size: 1em;
-	transition: 0.5s ease;
-	-o-transition: 0.5s ease;
-	-webkit-transition: 0.5s ease;
-	border: none;
-	cursor: pointer;
-	outline: none;
-	border-top-right-radius: 5px;
-	-moz-border-top-right-radius: 5px;
-	-o-border-top-right-radius: 5px;
-	border-bottom-right-radius: 5px;
-	-moz-border-bottom-right-radius: 5px;
-	-o-border-bottom-right-radius: 5px;
-}
-.search input[type="submit"]:hover{
-	background:#3a5878;
-}
+
+/*.search input[type="text"] {*/
+/*padding:20px 10px;*/
+/*color: #999;*/
+/*font-size: 1em;*/
+/*background: none;*/
+/*outline: none;*/
+/*border: none;*/
+/*margin: 0px auto;*/
+/*width:92%;*/
+/*-webkit-apperance: none;*/
+/*vertical-align: middle;*/
+/*text-transform: uppercase;*/
+/*}*/
+/*.search input[type="submit"] {*/
+/*background: #d26b8b;*/
+/*padding:21px 35px;*/
+/*display: inline-block;*/
+/*color: #FFF;*/
+/*text-transform: uppercase;*/
+/*font-size: 1em;*/
+/*transition: 0.5s ease;*/
+/*-o-transition: 0.5s ease;*/
+/*-webkit-transition: 0.5s ease;*/
+/*border: none;*/
+/*cursor: pointer;*/
+/*outline: none;*/
+/*border-top-right-radius: 5px;*/
+/*-moz-border-top-right-radius: 5px;*/
+/*-o-border-top-right-radius: 5px;*/
+/*border-bottom-right-radius: 5px;*/
+/*-moz-border-bottom-right-radius: 5px;*/
+/*-o-border-bottom-right-radius: 5px;*/
+/*}*/
+/*.search input[type="submit"]:hover{*/
+/*background:#3a5878;*/
+/*}*/
 i.search-icon{
 	width: 35px;
 	height: 35px;
@@ -1293,70 +1294,71 @@ a.forgot {
 	font-size: 1em;
 	padding: 0.5em;
 }
-.checkbox {
-	margin-bottom: 4px;
-	padding-left: 27px;
-	font-size: 1.1em;
-	line-height: 27px;
-	cursor: pointer;
-}
-.checkbox {
-	position: relative;
-	font-size: 0.85em;
-	color:#555;
-}
-.checkbox:last-child {
-	margin-bottom: 0;
-}
-.news-letter {
-	color: #555;
-	font-weight:600;
-	font-size: 0.85em;
-	margin-bottom: 1em;
-	display: block;
-	text-transform: uppercase;
-	transition: 0.5s all;
-	-webkit-transition: 0.5s all;
-	-moz-transition: 0.5s all;
-	-o-transition: 0.5s all;
-	clear: both;
-}
-.checkbox i {
-	position: absolute;
-	bottom: 5px;
-	left: 0;
-	display: block;
-	width:20px;
-	height:20px;
-	outline: none;
-	border: 2px solid #D2CF99;
-}
-.checkbox input + i:after {
-	content: '';
-	background: url("../images/tick1.png") no-repeat 1px 2px;
-	top: -1px;
-	left: -1px;
-	width: 15px;
-	height: 15px;
-	font: normal 12px/16px FontAwesome;
-	text-align: center;
-}
-.checkbox input + i:after {
-	position: absolute;
-	opacity: 0;
-	transition: opacity 0.1s;
-	-o-transition: opacity 0.1s;
-	-ms-transition: opacity 0.1s;
-	-moz-transition: opacity 0.1s;
-	-webkit-transition: opacity 0.1s;
-}
-.checkbox input {
-	position: absolute;
-	left: -9999px;
-}
-.checkbox input:checked + i:after {
-	opacity: 1;
-}
+
+/*.checkbox {*/
+/*margin-bottom: 4px;*/
+/*padding-left: 27px;*/
+/*font-size: 1.1em;*/
+/*line-height: 27px;*/
+/*cursor: pointer;*/
+/*}*/
+/*.checkbox {*/
+/*position: relative;*/
+/*font-size: 0.85em;*/
+/*color:#555;*/
+/*}*/
+/*.checkbox:last-child {*/
+/*margin-bottom: 0;*/
+/*}*/
+/*.news-letter {*/
+/*color: #555;*/
+/*font-weight:600;*/
+/*font-size: 0.85em;*/
+/*margin-bottom: 1em;*/
+/*display: block;*/
+/*text-transform: uppercase;*/
+/*transition: 0.5s all;*/
+/*-webkit-transition: 0.5s all;*/
+/*-moz-transition: 0.5s all;*/
+/*-o-transition: 0.5s all;*/
+/*clear: both;*/
+/*}*/
+/*.checkbox i {*/
+/*position: absolute;*/
+/*bottom: 5px;*/
+/*left: 0;*/
+/*display: block;*/
+/*width:20px;*/
+/*height:20px;*/
+/*outline: none;*/
+/*border: 2px solid #D2CF99;*/
+/*}*/
+/*.checkbox input + i:after {*/
+/*content: '';*/
+/*background: url("../images/tick1.png") no-repeat 1px 2px;*/
+/*top: -1px;*/
+/*left: -1px;*/
+/*width: 15px;*/
+/*height: 15px;*/
+/*font: normal 12px/16px FontAwesome;*/
+/*text-align: center;*/
+/*}*/
+/*.checkbox input + i:after {*/
+/*position: absolute;*/
+/*opacity: 0;*/
+/*transition: opacity 0.1s;*/
+/*-o-transition: opacity 0.1s;*/
+/*-ms-transition: opacity 0.1s;*/
+/*-moz-transition: opacity 0.1s;*/
+/*-webkit-transition: opacity 0.1s;*/
+/*}*/
+/*.checkbox input {*/
+/*position: absolute;*/
+/*left: -9999px;*/
+/*}*/
+/*.checkbox input:checked + i:after {*/
+/*opacity: 1;*/
+/*}*/
 .news-letter:hover {
 	color:#00BFF0;
 }
@@ -1888,6 +1890,37 @@ h4.m_4, h4.recent {
 }
 }
 
-.hide {
-	display: none;
+.contai {
+    position: relative;
+    /*width: 50%;*/
+}
+
+/* Make the image responsive */
+.contai img {
+    width: 100%;
+    height: auto;
+}
+
+/* Style the button and place it in the middle of the contai/image */
+.contai .btn {
+    display: block;
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.contai .btn:hover {
+    opacity: 1;
+    color: white;
+    transition: all ease 0.8s;
 }

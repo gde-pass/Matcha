@@ -4,6 +4,8 @@ let conn = require("../database/database");
 
 function email_validation(req, res, token) {
     let data = jwtUtils.getUserID(token);
+    console.log(data)
+
     if (data.email < 0) {
         res.render('login', {
             error: "Token is not valid"
