@@ -64,6 +64,23 @@ async function dbInitTableMatch(conn) {
     }
 }
 
+async function dbInitTableScore(conn) {
+
+    const sql = "CREATE TABLE IF NOT EXISTS score (" +
+        "    `current_user_id` INT UNSIGNED NOT NULL," +
+        "    `score` int(11) not null," +
+        "    `user_that_is_scored` int(11) not null," +
+        "    FOREIGN KEY(current_user_id) REFERENCES Users(user_id)" +
+        ") ENGINE = InnoDB;";
+
+    conn.query = util.promisify(conn.query);
+    try {
+        await conn.query(sql);
+    } catch (error) {
+        throw error;
+    }
+}
+
 async function dbInitTables(conn, hostSQL, portSQL) {
 
     conn.query("SELECT 1", async function (err) {
@@ -73,6 +90,7 @@ async function dbInitTables(conn, hostSQL, portSQL) {
         await dbInitTableUser(conn);
         await dbInitTableSettings(conn);
         await dbInitTableMatch(conn);
+        await dbInitTableScore(conn);
     });
 }
 

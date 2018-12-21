@@ -798,7 +798,7 @@ ul.category_desc1 {
 	background: #d26b8b;
 	width: 100%;
 	bottom:-38px;
-	padding: 5px 10px 0;
+	padding: 5px 10px 3px;
 }
 ul.category_desc1 li.cate_head {
 	float: left;

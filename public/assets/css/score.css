@@ -1,0 +1,38 @@
+form {
+    width: 250px;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+form p,
+form input[type="submit"] {
+    text-align: center;
+    font-size: 20px;
+}
+
+#wrapper form input[type="submit"] {
+    border: 1px solid #d9d9d9;
+    background-color: #efefef;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+label {
+    color: grey;
+}
+
+.clasificacion {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
+
+label:hover,
+label:hover ~ label {
+    color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+    color: orange;
+}

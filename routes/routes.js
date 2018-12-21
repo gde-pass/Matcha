@@ -7,6 +7,7 @@ let upload_img = require("../utils/upload_img");
 let delete_img = require("../utils/delete_img");
 let display_users = require("../utils/display_users");
 let recherche = require("../utils/recherche");
+let score = require("../utils/score");
 let get_user = require("../utils/get_user");
 let validation = require("../utils/email_validation");
 let jwtUtils = require("../utils/jwt.utils");
@@ -118,6 +119,10 @@ router.get("/recherche", function (req, res) {
 
 router.post("/recherche", function (req, res) {
     recherche(req, res);
+});
+
+router.post("/score", function (req, res) {
+    score(req, res);
 });
 
 router.post("/upload", function (req, res) {
