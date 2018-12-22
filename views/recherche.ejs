@@ -81,27 +81,28 @@
         <input type="checkbox" name="ageBox" value="1" <%= locals.ageChecked == "checked" ? checked = "checked" : "" %>>
         <h4>Age:</h4>
         <div class="extra-controls form-inline">
-            <input type="text" name="age1" class="js-input-from form-control"
-                   value="<%= locals.age1 != null ? locals.age1 : 18 %>"/>
-            <input type="text" name="age2" class="js-input-to form-control"
-                   value="<%= locals.age2 != null ? locals.age2 : 100 %>"/>
+            <input type="number" name="age1" class="js-input-from form-control"
+                   value="<%= locals.age1 != null ? locals.age1 : 18 %>" min="18" max="100"/>
+            <input type="number" name="age2" class="js-input-to form-control"
+                   value="<%= locals.age2 != null ? locals.age2 : 100 %>" min="18" max="100"/>
         </div>
         <input type="checkbox" name="distanceBox"
                value="1" <%= locals.distanceChecked == "checked" ? checked = "checked" : "" %>><h4>Distance:</h4>
         <div class="extra-controls form-inline">
-            <input type="text" name="distance1" class="js-input-from form-control"
-                   value="<%= locals.distance1 != null ? locals.distance1 : 0 %>"/>
-            <input type="text" name="distance2" class="js-input-to form-control"
-                   value="<%= locals.distance2 != null ? locals.distance2 : 50 %>"/>
+            <input type="number" name="distance1" class="js-input-from form-control"
+                   value="<%= locals.distance1 != null ? locals.distance1 : 0 %>" min="0" max="50"/>
+            <input type="number" name="distance2" class="js-input-to form-control"
+                   value="<%= locals.distance2 != null ? locals.distance2 : 50 %>" min="0" max="50"/>
         </div>
-        <input type="checkbox" name="scoreBox" value="1"><h4>Score:</h4>
+        <input type="checkbox" name="scoreBox"
+               value="1" <%= locals.scoreChecked == "checked" ? checked = "checked" : "" %>><h4>Score:</h4>
         <div class="extra-controls form-inline">
-            <input type="text" name="score1" class="js-input-from form-control"
-                   value="<%= locals.score1 != null ? locals.score1 : 0 %>"/>
-            <input type="text" name="score2" class="js-input-to form-control"
-                   value="<%= locals.score2 != null ? locals.score2 : 0 %>"/>
+            <input type="number" name="score1" class="js-input-from form-control"
+                   value="<%= locals.score1 != null ? locals.score1 : 0 %>" min="0" max="5"/>
+            <input type="number" name="score2" class="js-input-to form-control"
+                   value="<%= locals.score2 != null ? locals.score2 : 5 %>" min="0" max="5"/>
         </div>
-        <h4>Tag:</h4>
+        <h4>#Tag:</h4>
         <div class="extra-controls form-inline">
             <input type="text" name="tag" class="js-input-from form-control"
                    value="<%= locals.tag != null ? locals.tag : "" %>"/>
@@ -124,19 +125,21 @@
                                 <h4><span class="m_3"><%= locals.users[i][0].username %></span></h4>
                                 <img src="<%= locals.users[i][0].profil_img != 0 ? `assets/img/${locals.users[i][0].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
                                      class="img-responsive" alt="" style="width: 100%;">
-                                <ul class="category_desc">
-                                    <li class="cate_head">Mettre score</li>
-                                    <li class="cate_right">
-                                        <ul class="list1">
-                                            <li><i class="heart"> </i></li>
-                                            <li><i class="heart"> </i></li>
-                                            <li><i class="heart"> </i></li>
-                                        </ul>
-                                    </li>
+                                <ul class="category_desc1">
+                                    <% if(locals.users[i][0].score != 0){ %>
+                                        <li class="cate_head">Score:
+                                            <% for(let j = 0; j < locals.users[i][0].score; j++){ %>
+                                                <label style="color: #fff;">&#9733;</label>
+                                            <% } %>
+                                        </li>
+                                    <% }else{ %>
+                                        <li class="cate_head" style="height: 30px">No score</li>
+                                    <% } %>
                                     <div class="clearfix"></div>
                                 </ul>
-                                <h5>Full Profile</h5>
                             </a></div>
+                        <br>
+                        <br>
                     </div>
                     <% }; %>
                     <div class="clearfix"></div>
@@ -151,19 +154,21 @@
                                 <h4><span class="m_3"><%= locals.suggestion[i].username %></span></h4>
                                 <img src="<%= locals.suggestion[i].profil_img != 0 ? `assets/img/${locals.suggestion[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
                                      class="img-responsive" alt="" style="width: 100%">
-                                <ul class="category_desc">
-                                    <li class="cate_head">Mettre score</li>
-                                    <li class="cate_right">
-                                        <ul class="list1">
-                                            <li><i class="heart"> </i></li>
-                                            <li><i class="heart"> </i></li>
-                                            <li><i class="heart"> </i></li>
-                                        </ul>
-                                    </li>
+                                <ul class="category_desc1">
+                                    <% if(locals.users[i].score != 0){ %>
+                                        <li class="cate_head">Score:
+                                            <% for(let j = 0; j < locals.users[i].score; j++){ %>
+                                                <label style="color: #fff;">&#9733;</label>
+                                            <% } %>
+                                        </li>
+                                    <% }else{ %>
+                                        <li class="cate_head" style="height: 30px">No score</li>
+                                    <% } %>
                                     <div class="clearfix"></div>
                                 </ul>
-                                <h5>Full Profile</h5>
                             </a></div>
+                        <br>
+                        <br>
                     </div>
                     <% }; %>
                     <div class="clearfix"></div>
@@ -179,19 +184,21 @@
                                 <h4><span class="m_3"><%= locals.users[i].username %></span></h4>
                                 <img src="<%= locals.users[i].profil_img != 0 ? `assets/img/${locals.users[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
                                      class="img-responsive" alt="" style="width: 100%;">
-                                <ul class="category_desc">
-                                    <li class="cate_head">Mettre score</li>
-                                    <li class="cate_right">
-                                        <ul class="list1">
-                                            <li><i class="heart"> </i></li>
-                                            <li><i class="heart"> </i></li>
-                                            <li><i class="heart"> </i></li>
-                                        </ul>
-                                    </li>
+                                <ul class="category_desc1">
+                                    <% if(locals.users[i].score != 0){ %>
+                                        <li class="cate_head">Score:
+                                            <% for(let j = 0; j < locals.users[i].score; j++){ %>
+                                                <label style="color: #fff;">&#9733;</label>
+                                            <% } %>
+                                        </li>
+                                    <% }else{ %>
+                                        <li class="cate_head" style="height: 30px">No score</li>
+                                    <% } %>
                                     <div class="clearfix"></div>
                                 </ul>
-                                <h5>Full Profile</h5>
                             </a></div>
+                        <br>
+                        <br>
                     </div>
                     <% }; %>
                     <div class="clearfix"></div>
@@ -206,19 +213,21 @@
                                 <h4><span class="m_3"><%= locals.suggestion[i].username %></span></h4>
                                 <img src="<%= locals.suggestion[i].profil_img != 0 ? `assets/img/${locals.suggestion[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
                                      class="img-responsive" alt="" style="width: 100%">
-                                <ul class="category_desc">
-                                    <li class="cate_head">Mettre score</li>
-                                    <li class="cate_right">
-                                        <ul class="list1">
-                                            <li><i class="heart"> </i></li>
-                                            <li><i class="heart"> </i></li>
-                                            <li><i class="heart"> </i></li>
-                                        </ul>
-                                    </li>
+                                <ul class="category_desc1">
+                                    <% if(locals.users[i].score != 0){ %>
+                                        <li class="cate_head">Score:
+                                            <% for(let j = 0; j < locals.users[i].score; j++){ %>
+                                                <label style="color: #fff;">&#9733;</label>
+                                            <% } %>
+                                        </li>
+                                    <% }else{ %>
+                                        <li class="cate_head" style="height: 30px">No score</li>
+                                    <% } %>
                                     <div class="clearfix"></div>
                                 </ul>
-                                <h5>Full Profile</h5>
                             </a></div>
+                        <br>
+                        <br>
                     </div>
                     <% }; %>
                     <div class="clearfix"></div>

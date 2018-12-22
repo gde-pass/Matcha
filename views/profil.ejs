@@ -173,19 +173,18 @@
                                     <h4><span class="m_3"><%= locals.users_that_liked_you[i].username %></span></h4>
                                     <img src="<%= locals.users_that_liked_you[i].profil_img != 0 ? `assets/img/${locals.users_that_liked_you[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
                                          class="img-responsive" alt="" style="width: 100%">
-                                    <br>
-                                    <ul class="category_desc">
-                                        <li class="cate_head">Mettre score</li>
-                                        <li class="cate_right">
-                                            <ul class="list1">
-                                                <li><i class="heart"> </i></li>
-                                                <li><i class="heart"> </i></li>
-                                                <li><i class="heart"> </i></li>
-                                            </ul>
-                                        </li>
+                                    <ul class="category_desc1">
+                                        <% if(locals.users_that_liked_you[i].score != 0){ %>
+                                            <li class="cate_head">Score:
+                                                <% for(let j = 0; j < locals.users_that_liked_you[i].score; j++){ %>
+                                                    <label style="color: #fff;">&#9733;</label>
+                                                <% } %>
+                                            </li>
+                                        <% }else{ %>
+                                            <li class="cate_head" style="height: 30px">No score</li>
+                                        <% } %>
                                         <div class="clearfix"></div>
                                     </ul>
-                                    <h5>Full Profile</h5>
                                 </a></div>
                         </div>
                         <% }; %>

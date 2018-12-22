@@ -10,27 +10,6 @@ let findIfLiked = require('./find_If_liked');
 let like;
 let asLikedYou;
 let check = 0;
-let score = 0;
-
-function findScore(user, cb) {
-    let tabscore = [];
-    let sql = "SELECT score FROM score WHERE user_that_is_scored = ?";
-    conn.query(sql, user, function (err, resu) {
-        if (err) throw err;
-        else {
-            resu.forEach(function (elem) {
-                tabscore.push(elem.score)
-            })
-            var sum = tabscore.reduce(add, 0);
-
-            function add(a, b) {
-                return a + b;
-            }
-
-            cb(null, sum / tabscore.length)
-        }
-    })
-}
 
 function findNbEtoile(user, cb) {
     let sql = "SELECT score FROM score WHERE user_that_is_scored = ?";
@@ -83,14 +62,6 @@ function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@#!@#!@
                     findNbEtoile(results[0].user_id, function (err, etoiles) {
                         check = etoiles;
                     })
-                    findScore(results[0].user_id, function (err, sumScore) {
-                        if (isNaN(sumScore))
-                            score = 0;
-                        else
-                            score = sumScore;
-                    })
-
-
                     findIfLiked(req, res, data, url, function (err, liked) {
                         if (err) {
 
@@ -109,7 +80,6 @@ function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@#!@#!@
                             connected: connected,
                             user: results[0],
                             etoiles: check,
-                            score: score,
                             files_img: images,
                             like: like,
                             match: match,

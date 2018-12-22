@@ -13,6 +13,7 @@ async function dbInitTableUser(conn) {
         "  `checked` BOOLEAN NOT NULL DEFAULT FALSE," +
         "  `latitude` real DEFAULT 0," +
         "  `longitude` real DEFAULT 0," +
+        "  `score` int(5) DEFAULT 0," +
         "  PRIMARY KEY (user_id)," +
         "  UNIQUE INDEX (email)" +
         ") ENGINE = InnoDB;";

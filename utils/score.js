@@ -3,6 +3,27 @@ let jwtUtils = require("./jwt.utils");
 let replace = require("str-replace");
 let get_user = require("./get_user");
 
+function findScore(user, cb) {
+    let tabscore = [];
+    let sql = "SELECT score FROM score WHERE user_that_is_scored = ?";
+    conn.query(sql, user, function (err, resu) {
+        if (err) throw err;
+        else {
+            resu.forEach(function (elem) {
+                tabscore.push(elem.score)
+            })
+            var sum = tabscore.reduce(add, 0);
+
+            function add(a, b) {
+                return a + b;
+            }
+
+            cb(null, sum / tabscore.length)
+        }
+    })
+}
+
+let scor = 0;
 function score(req, res) {
     let data = jwtUtils.getUserID(req.cookies.token);
     if (data.type < 0 || data.type !== "login" || data.email < 0) {
@@ -21,7 +42,19 @@ function score(req, res) {
                 conn.query(sql, [etoiles, target_id, data.Id], function (err, result) {
                     if (err) console.log("error de score");
                     else {
-                        get_user(req, res, true, target_username)
+                        findScore(target_id, function (err, sumScore) {
+                            if (isNaN(sumScore))
+                                scor = 0;
+                            else
+                                scor = sumScore;
+                            let sql = "UPDATE Users SET score = ? WHERE user_id = ?";
+                            conn.query(sql, [scor, target_id], function (err, resu) {
+                                if (err) console.log("error score");
+                                else {
+                                    get_user(req, res, true, target_username)
+                                }
+                            })
+                        })
                     }
                 })
             }

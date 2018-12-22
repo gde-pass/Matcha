@@ -73,9 +73,9 @@
                     <img src="<%= locals.user.profil_img != 0 ? `assets/img/${locals.user.profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
                          class="img-responsive" alt="" style="width: 100%">
                     <ul class="category_desc1">
-                        <% if(locals.score != 0){ %>
+                        <% if(locals.user.score != 0){ %>
                         <li class="cate_head">Score:
-                            <% for(let i = 0; i < locals.score; i++){ %>
+                            <% for(let i = 0; i < locals.user.score; i++){ %>
                                 <label style="color: #fff;">&#9733;</label>
                             <% } %>
                         </li>
