@@ -109,6 +109,9 @@ router.post("/upload_img", function (req, res) {
     upload_img(req, res);
 });
 
+router.get("/nojs", function (req, res) {
+    res.render('nojs');
+});
 
 router.use(function (req, res) {
     res.render("404");

@@ -10,8 +10,6 @@ function hideURLbar() {
     window.scrollTo(0, 1);
 }
 
-// $('form').submit(false);
-
 
 function updateTextDistance(val) {
     document.getElementById('distanceText').innerHTML = "Distance: " + val + " (Km)";
@@ -69,7 +67,6 @@ function checkTagsPattern(value) {
  * @return {boolean}
  */
 function checkBioPattern(value) {
-    //const bioRegex = new RegExp("");
 
     if (value.length < 50 || value.length > 500) {
         return (false);
@@ -82,10 +79,10 @@ function checkBioPattern(value) {
 /**
  * @return {boolean}
  */
-function checkSexPattern(value) {
-    const sexRegex = new RegExp("^([OFM])$");
+function checkGenderPattern(value) {
+    const genderRegex = new RegExp("^(Female|Male)$");
 
-    if (value.length !== 1 || !value.match(sexRegex)) {
+    if (!value.match(genderRegex)) {
         return (false);
     } else {
         return (true);
@@ -96,9 +93,9 @@ function checkSexPattern(value) {
  * @return {boolean}
  */
 function checkSexOrientationPattern(value) {
-    const sexOrientationRegex = new RegExp("^(Ho|He|Bi)$");
+    const sexOrientationRegex = new RegExp("^(Homosexual|Heterosexual|Bisexual)$");
 
-    if (value.length !== 2 || !value.match(sexOrientationRegex)) {
+    if (!value.match(sexOrientationRegex)) {
         return (false);
     } else {
         return (true);
@@ -306,7 +303,7 @@ document.getElementById("save").addEventListener("click", function () {
     let first_name = document.getElementById("first_name").value;
     let last_name = document.getElementById("last_name").value;
     let username = document.getElementById("username").value;
-    let sex = document.getElementById("sex").value;
+    let gender = document.getElementById("gender").value;
     let orientation = document.getElementById("orientation").value;
     let age = document.getElementById("age").value;
     let email = document.getElementById("email").value;
@@ -354,7 +351,7 @@ document.getElementById("save").addEventListener("click", function () {
             title: "WTF ?",
             html: "Don't try to glitch bro",
         });
-    } else if (sex.length !== 0 && !checkSexPattern(sex)) {
+    } else if (gender.length !== 0 && !checkGenderPattern(gender)) {
         swal({
             type: "error",
             title: "WTF ?",
@@ -388,7 +385,7 @@ document.getElementById("save").addEventListener("click", function () {
             title: "Invalid age",
             html: "Your age must be between <b>18</b> and <b>100</b> years old."
         });
-    } else if (!checkPasswordPattern(password)) {
+    } else if (password.length !== 0 && !checkPasswordPattern(password)) {
         document.getElementById("password").style.borderColor = "red";
         document.getElementById("password").style.borderStyle = "inset";
         swal({
@@ -396,7 +393,7 @@ document.getElementById("save").addEventListener("click", function () {
             title: "Your password is not valid",
             html: "Your password must contain between <b>6</b> and <b>20 characters</b> with a <b>number</b>, a <b>capital</b> and <b>minimal</b> letter"
         });
-    } else if (!checkPasswordMatch(password, password2)) {
+    } else if (password2.length !== 0 && !checkPasswordMatch(password, password2)) {
         document.getElementById("password2").style.borderColor = "red";
         document.getElementById("password2").style.borderStyle = "inset";
         swal({
@@ -407,8 +404,9 @@ document.getElementById("save").addEventListener("click", function () {
         socket.emit("parametre", {
             first_name: first_name,
             last_name: last_name,
+            username: username,
             email: email,
-            sex: sex,
+            gender: gender,
             orientation: orientation,
             age: age,
             tags: tags,
@@ -416,6 +414,7 @@ document.getElementById("save").addEventListener("click", function () {
             bio: bio,
             password: password,
             password2: password2,
+            cookie: Cookies.get("token"),
         });
     }
 });
@@ -431,4 +430,21 @@ socket.on("focusOutEmailSignUpFalse", function (email) {
     });
 
 });
+
+socket.on("settingsUpdateTrue", function () {
+    swal({
+        type: "success",
+        title: "Well done !",
+        text: "Your settings have been successfully updated !"
+    });
+});
+
+socket.on("settingsUpdateFalse", function () {
+    swal({
+        type: "error",
+        title: "Oops ...",
+        text: "A error occurred !"
+    });
+});
+
 // ============ /SOCKET EVENTS =============

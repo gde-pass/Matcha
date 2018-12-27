@@ -1,6 +1,7 @@
 "use strict";
+const util = require("util");
 
-function dbInitTableUser(conn) {
+async function dbInitTableUser(conn) {
 
     const sql = "CREATE TABLE IF NOT EXISTS Users (" +
         "  `user_id` INT UNSIGNED  NOT NULL AUTO_INCREMENT," +
@@ -15,29 +16,34 @@ function dbInitTableUser(conn) {
         "  PRIMARY KEY (user_id)," +
         "  UNIQUE INDEX (email)" +
         ") ENGINE = InnoDB;";
-
-    conn.query(sql, function (err) {
-        if (err) throw err;
-    });
+    conn.query = util.promisify(conn.query);
+    try {
+        await conn.query(sql);
+    } catch (error) {
+        throw error;
+    }
 }
 
-function dbInitTableSettings(conn) {
+async function dbInitTableSettings(conn) {
 
-    const sql2 = "CREATE TABLE IF NOT EXISTS Settings (" +
+    const sql = "CREATE TABLE IF NOT EXISTS Settings (" +
         "    `user_id` INT UNSIGNED NOT NULL AUTO_INCREMENT," +
-        "    `orientation` CHAR(2)," +
-        "    `sex` VARCHAR (1)," +
+        "    `orientation` VARCHAR(12) DEFAULT 'Bisexual' NOT NULL," +
+        "    `gender` VARCHAR (6)," +
         "    `bio` TEXT (500)," +
         "    `tags` VARCHAR(255)," +
-        "    `distance` TINYINT UNSIGNED," +
-        "    `age` TINYINT UNSIGNED," +
+        "    `distance` TINYINT UNSIGNED DEFAULT 50 NOT NULL," +
+        "    `age` TINYINT UNSIGNED DEFAULT 18 NOT NULL," +
         "    PRIMARY KEY(user_id)," +
         "    FOREIGN KEY(user_id) REFERENCES Users(user_id)" +
         ") ENGINE = InnoDB;";
-
-    conn.query(sql2, function (err) {
-        if (err) throw err;
-    });
+  
+    conn.query = util.promisify(conn.query);
+    try {
+        await conn.query(sql);
+    } catch (error) {
+        throw error;
+    }
 }
 
 function dbInitTableUseronline(conn) {
@@ -73,17 +79,16 @@ function dbInitTableMessages(conn) {
     });
 }
 
-function dbInitTables(conn, hostSQL, portSQL) {
+async function dbInitTables(conn, hostSQL, portSQL) {
 
-    conn.query("SELECT 1", function (err) {
+    conn.query("SELECT 1", async function (err) {
         if (err) throw err;
         console.log("Connected to the server mysql at http://%s:%s !", hostSQL, portSQL);
 
-        dbInitTableUser(conn);
-        dbInitTableSettings(conn);
-        dbInitTableUseronline(conn);
-        dbInitTableMessages(conn);
-
+       await dbInitTableUser(conn);
+       await dbInitTableSettings(conn);
+       dbInitTableUseronline(conn);
+       dbInitTableMessages(conn);
     });
 }
 

@@ -2,6 +2,10 @@
 <html>
 <head>
 
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=/nojs"/>
+    </noscript>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/style.css" rel='stylesheet' type='text/css'/>
@@ -108,7 +112,7 @@
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label>
-                                <h4>Sex</h4>
+                                <h4>Gender</h4>
                             </label>
                         </div>
                     </div>
@@ -158,7 +162,6 @@
                 <div class="tab-pane" id="settings">
                     <h2></h2>
                     <hr>
-                    <form class="form" action="#" method="post" id="registrationForm">
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="first_name"><h4>First name</h4></label>
@@ -194,21 +197,20 @@
                                 <select id="orientation" class="dropdown" tabindex="10"
                                         data-settings='{"wrapperClass":"metro1"}'>
                                     <option value="">Select</option>
-                                    <option value="He">Heterosexual</option>
-                                    <option value="Ho">Homosexual</option>
-                                    <option value="Bi">Bisexual</option>
+                                    <option value="Heterosexual">Heterosexual</option>
+                                    <option value="Homosexual">Homosexual</option>
+                                    <option value="Bisexual">Bisexual</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="sex"><h4>Sex</h4></label>
-                                <select id="sex" class="dropdown" tabindex="10"
+                                <label for="gender"><h4>Gender</h4></label>
+                                <select id="gender" class="dropdown" tabindex="10"
                                         data-settings='{"wrapperClass":"metro1"}'>
                                     <option value="">Select</option>
-                                    <option value="O">Other</option>
-                                    <option value="F">Female</option>
-                                    <option value="M">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
                                 </select>
                             </div>
                         </div>
@@ -228,7 +230,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="distance"><h4 id="distanceText">Distance <%= locals.distance %> (Km)</h4>
+                                <label for="distance"><h4 id="distanceText">Distance: <%= locals.distance %> (Km)</h4>
                                 </label>
                                 <input type="range" class="form-control" id="distance" value="<%= locals.distance %>"
                                        min="5" max="50" step="5"
@@ -238,7 +240,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
-                                <label for="age"><h4 id="ageText">Age</h4></label>
+                                <label for="age"><h4 id="ageText">Age: <%= locals.age %> </h4></label>
                                 <input type="range" min="18" max="100" class="form-control" name="age" id="age"
                                        value="<%= locals.age %>" title="Enter your age."
                                        onchange="updateTextAge(this.value);">
@@ -248,14 +250,14 @@
                             <div class="col-xs-6">
                                 <label for="password"><h4>Password *</h4></label>
                                 <input type="password" class="form-control" name="password" id="password"
-                                       placeholder="******" title="Enter your password." required>
+                                       placeholder="******" title="Enter your password.">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-6">
                                 <label for="password2"><h4>Verify *</h4></label>
                                 <input type="password" class="form-control" name="password2" id="password2"
-                                       placeholder="******" title="Confirm your password." required>
+                                       placeholder="******" title="Confirm your password.">
                             </div>
                         </div>
                         <div class="form-group">
@@ -268,7 +270,6 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -284,10 +285,10 @@
 </div>
 
 <script src="http://localhost:8080/socket.io/socket.io.js" language="JavaScript"></script>
-<!--<script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>-->
+<script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>
 <script src="/node_modules/js-cookie/src/js.cookie.js" language="JavaScript"></script>
-<!--<script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js" language="JavaScript"></script>-->
-<!--<script src="/assets/js/jquery.easydropdown.js" language="JavaScript"></script>-->
+<script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js" language="JavaScript"></script>
+<script src="/assets/js/jquery.easydropdown.js" language="JavaScript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" language="JavaScript"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" language="JavaScript"></script>
 <script src="/assets/js/profil.js" language="JavaScript"></script>
