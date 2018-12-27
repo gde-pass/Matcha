@@ -3,6 +3,7 @@ const express = require("express");
 
 const router = express.Router();
 let profil = require("../utils/profil");
+let chat = require("../utils/chat");
 let upload_profil = require("../utils/upload_profil");
 let upload_img = require("../utils/upload_img");
 let display_users = require("../utils/display_users");
@@ -43,6 +44,16 @@ router.get("/single", function (req, res) {
         get_user(req, res, false)
     }else {
         get_user(req, res, true)
+    }
+});
+
+router.get("/chat", function (req, res) {
+    if(typeof req.cookies.token === "undefined") {
+        res.render('index',{
+            connected : false
+        });
+    }else {
+        chat(req, res);
     }
 });
 
