@@ -22,7 +22,7 @@ module.exports = function(io)
 		req.cookie = cookie.parse(req.headers.cookie);
 		// console.log('cookie id: ' , req.headers.cookie);
             if (req.cookie.token) {
-    		dataToken = jwtUtils.getUserID(req.cookie.token)
+                dataToken = jwtUtils.getUserID(req.cookie.token);
             socket.data = {
                 user_id: dataToken.Id,
                 username: dataToken.username,
@@ -53,11 +53,11 @@ module.exports = function(io)
                 socket.emit("loginActivatedError");
             } else {
                 let sqlUpdate = "UPDATE Users SET latitude=?, longitude=? WHERE email=?;";
-                db.query(sqlUpdate, [data.lat, data.lng, data.email], function (error, results, fields) {
+                db.query(sqlUpdate, [data.lat, data.lng, data.email], function (error,) {
                     if (error) throw error;
                 });
                 let sql = "SELECT * FROM Users WHERE email=?;";
-                db.query(sql, [data.email], function (error, results, fields) {
+                db.query(sql, [data.email], function (error, results) {
                     if (error) throw error;
                     let token = jwtUtils.generateTokenForUser(results[0], "login");
                     // distance(15,token);
@@ -75,7 +75,7 @@ module.exports = function(io)
         socket.on("location", function (data) {
             let dist = geolib.getDistance(
                 {latitude: data.lat, longitude: data.lng},
-                {latitude: "48.896614", longitude: "2.3522219000000177"}, 100)
+                {latitude: "48.896614", longitude: "2.3522219000000177"}, 100);
             console.log(dist / 1000 + "km");
         });
 
@@ -107,7 +107,7 @@ module.exports = function(io)
                 };
             if (await dbmessage.InsertMessage(params)){
                   io.to(socket.id).emit('chat', data);
-                  if ( await SocketO.CheckConv(params) == true){
+                if (await SocketO.CheckConv(params) === true) {
                  // PRIVATE MESSAGE---------------------------------------------//
           			io.to(gparams.socketid).emit('chat_rep', data);
                   }else {
@@ -145,8 +145,8 @@ module.exports = function(io)
                     db.query(sqldisconnect,['N','0',dataToken.Id], function (error) {
                         if (error) throw error;
                     });
-                };
-            };
+                }
+            }
         console.log('socket '+this.id+' disconnect');
         });
 
