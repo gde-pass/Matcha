@@ -1,8 +1,8 @@
 "use strict";
 const validator = require("validator");
+const cookie = require("cookie");
 const db = require("../database/database");
 const jwtUtils = require("../utils/jwt.utils");
-const distance = require("../utils/distance");
 const dbUser = require("../database/user.js");
 const check = require("../database/check_validity.js");
 const sendMail = require('../utils/sendMail');
@@ -10,15 +10,13 @@ const geolib = require('geolib');
 const SocketO = require("../database/socketsOnline.js");
 const dbmessage = require("../database/message.js");
 
-var cookie = require('cookie');
-var cookieParser = require('cookie-parser');
+let dataToken = [];
 
-var dataToken = [];
 module.exports = function(io)
 {
     io.on("connection", function (socket)
     {
-        var req = socket.request;
+        let req = socket.request;
 
 		if (req.headers.cookie) {
 		req.cookie = cookie.parse(req.headers.cookie);
