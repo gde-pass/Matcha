@@ -16,7 +16,7 @@ services:
     container_name: phpmyadmin
     restart: always
     ports:
-    - "8080:80"
+      - "6060:60"
     links:
     - database
     environment:
