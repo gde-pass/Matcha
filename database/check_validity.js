@@ -21,6 +21,8 @@ function checkSettingsUpdate(data) {
         (data.tags.length !== 0 && !checkTagsPattern(data.tags)) ||
         (data.distance.length !== 0 && !checkDistancePattern(data.distance)) ||
         (data.age.length !== 0 && !checkAgePattern(data.age)) ||
+        (data.ageRangeMin.length !== 0 && !checkAgePattern(data.ageRangeMin)) ||
+        (data.ageRangeMax !== 0 && !checkAgePattern(data.ageRangeMax)) ||
         (data.password.length !== 0 && !checkPasswordPattern(data.password)) ||
         (data.password2.length !== 0 && !checkPasswordMatch(data.password, data.password2))) {
         return (false);

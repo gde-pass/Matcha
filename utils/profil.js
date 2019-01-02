@@ -49,6 +49,8 @@ function profil(req,res){
                             bio: results[0].bio,
                             tags: results[0].tags,
                             distance: results[0].distance,
+                            ageRangeMax: results[0].ageRangeMax,
+                            ageRangeMin: results[0].ageRangeMin,
                             connected: true,
                             profil_img: profil_img,
                             files_img: images,

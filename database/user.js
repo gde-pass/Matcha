@@ -18,6 +18,30 @@ async function dbPasswordUpdate(password, id) {
     }
 }
 
+async function dbAgeRangeMinUpdate(ageRangeMin, id) {
+
+    let sql = "UPDATE `Settings` SET `ageRangeMin` = ? WHERE `user_id` = ?;";
+    db.query = util.promisify(db.query);
+
+    try {
+        await db.query(sql, [ageRangeMin, id]);
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function dbAgeRangeMaxUpdate(ageRangeMax, id) {
+
+    let sql = "UPDATE `Settings` SET `ageRangeMax` = ? WHERE `user_id` = ?;";
+    db.query = util.promisify(db.query);
+
+    try {
+        await db.query(sql, [ageRangeMax, id]);
+    } catch (error) {
+        throw error;
+    }
+}
+
 async function dbAgeUpdate(age, id) {
 
     let sql = "UPDATE `Settings` SET `age` = ? WHERE `user_id` = ?;";
@@ -175,6 +199,12 @@ async function dbSettingsUpdate(data) {
     }
     if (data.password.length !== 0) {
         await dbPasswordUpdate(data.password, id);
+    }
+    if (data.ageRangeMin.length !== 0) {
+        await dbAgeRangeMinUpdate(data.ageRangeMin, id);
+    }
+    if (data.ageRangeMax.length !== 0) {
+        await dbAgeRangeMaxUpdate(data.ageRangeMax, id);
     }
 }
 

@@ -34,6 +34,8 @@ async function dbInitTableSettings(conn) {
         "    `tags` VARCHAR(255)," +
         "    `distance` TINYINT UNSIGNED DEFAULT 50 NOT NULL," +
         "    `age` TINYINT UNSIGNED DEFAULT 18 NOT NULL," +
+        "    `ageRangeMin` TINYINT UNSIGNED DEFAULT 18 NOT NULL," +
+        "    `ageRangeMax` TINYINT UNSIGNED DEFAULT 100 NOT NULL," +
         "    PRIMARY KEY(user_id)," +
         "    FOREIGN KEY(user_id) REFERENCES Users(user_id)" +
         ") ENGINE = InnoDB;";

@@ -16,9 +16,18 @@ function updateTextDistance(val) {
 }
 
 function updateTextAge(val) {
-    document.getElementById('ageText').innerHTML = "Age: " + val + " ans";
+    document.getElementById('ageText').innerHTML = "Age: " + val;
 }
 
+function updateTextAgeRangeMin(val) {
+    document.getElementById('ageTextRangeMin').innerHTML = "Age Range Minimal: " + val;
+    document.getElementById('ageRangeMax').min = val;
+}
+
+function updateTextAgeRangeMax(val) {
+    document.getElementById('ageTextRangeMax').innerHTML = "Age Range Maximal: " + val;
+    document.getElementById('ageRangeMin').max = val;
+}
 
 // ============ /FRONT EVENTS ===========
 
@@ -312,6 +321,8 @@ document.getElementById("save").addEventListener("click", function () {
     let bio = document.getElementById("bio").value;
     let password = document.getElementById("password").value;
     let password2 = document.getElementById("password2").value;
+    let ageRangeMin = document.getElementById("ageRangeMin").value;
+    let ageRangeMax = document.getElementById("ageRangeMax").value;
 
     if (first_name.length !== 0 && !checkName(first_name)) {
         document.getElementById("first_name").style.borderColor = "red";
@@ -400,6 +411,24 @@ document.getElementById("save").addEventListener("click", function () {
             type: "error",
             title: "Your passwords do not match !"
         });
+    } else if (!checkAgePattern(ageRangeMin)) {
+        swal({
+            type: "error",
+            title: "Your age-range-minimal field have to be between 18 and 100 !"
+        });
+
+    } else if (!checkAgePattern(ageRangeMax)) {
+        swal({
+            type: "error",
+            title: "Your age-range-maximal field have to be between 18 and 100 !"
+        });
+
+    } else if (ageRangeMin < ageRangeMin) {
+        swal({
+            type: "warning",
+            title: "Your minimal range field have a bigger value than the maximal range field ... are you dumb ? "
+        });
+
     } else {
         socket.emit("parametre", {
             first_name: first_name,
@@ -414,6 +443,8 @@ document.getElementById("save").addEventListener("click", function () {
             bio: bio,
             password: password,
             password2: password2,
+            ageRangeMin: ageRangeMin,
+            ageRangeMax: ageRangeMax,
             cookie: Cookies.get("token"),
         });
     }
