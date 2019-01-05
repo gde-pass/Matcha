@@ -60,23 +60,13 @@ module.exports = function(io)
                 db.query(sql, [data.email], function (error, results) {
                     if (error) throw error;
                     let token = jwtUtils.generateTokenForUser(results[0], "login");
-                    // distance(15,token);
-                    // console.log(distance(15,token));
                     socket.emit("tokenLogin", token);
-
-                    let sqlOnline = "INSERT INTO Useronline (user_id, username, online, socketid, in_conv) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE user_id= ?;";
-                    db.query(sqlOnline,[results[0].user_id,results[0].username, 'Y', socket.id, results[0].user_id, 0], function (error) {
-                        if (error) throw error;
-                    });
+                    // let sqlOnline = "INSERT INTO Useronline (user_id, username, online, socketid, in_conv) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE user_id= ?;";
+                    // db.query(sqlOnline,[results[0].user_id,results[0].username, 'Y', socket.id, results[0].user_id, 0], function (error) {
+                    //     if (error) throw error;
+                    // });
             })
         }
-        });
-
-        socket.on("location", function (data) {
-            let dist = geolib.getDistance(
-                {latitude: data.lat, longitude: data.lng},
-                {latitude: "48.896614", longitude: "2.3522219000000177"}, 100);
-            console.log(dist / 1000 + "km");
         });
 
         socket.on("parametre", async function (data) {
@@ -87,6 +77,21 @@ module.exports = function(io)
                 socket.emit("settingsUpdateTrue");
             }
         });
+
+        socket.on("forgot", async function (data) {
+            let token = jwtUtils.generateTokenForUser(data, "reset");
+            sendMail(data.email, token, "reset");
+            io.sockets.emit('forgotSend', data);
+        });
+
+        socket.on("reset", async function (data) {
+            if (await check.checkReset(data) === false) {
+                socket.emit("ResetError");
+            } else {
+                socket.emit("ResetSuccess");
+            }
+        });
+
         socket.on("focusOutEmailSignUp", async function (email) {
             if (validator.isEmail(email) && !validator.isEmpty(email) &&
                 validator.isLowercase(email) && check.checkEmailPattern(email)) {

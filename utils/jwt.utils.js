@@ -1,8 +1,10 @@
 let jwt = require("jsonwebtoken");
 const JWT_SIGN_SECRET ="CleSecretePourLeMatchaJaiPasDideeDeCleSecretAlorsJeMetCa";
+const empty = require("is-empty");
 
 module.exports ={
     generateTokenForUser: function (userData, type) {
+        console.log(userData);
         return jwt.sign({
                 type: type,
                 email: userData.email,
@@ -16,9 +18,6 @@ module.exports ={
                 expiresIn: "6h"
             })
     },
-    parseAutorization: function (authorization) {
-        return (authorization != null) ? authorization.replace("Bearer ", "") : null;
-    },
     getUserID: function (authorization) {
         var data = {
             email : -1,
@@ -27,8 +26,9 @@ module.exports ={
             last_name: -1,
             username: -1,
             Id: -1,
+            exp: -1,
         };
-        let token = module.exports.parseAutorization(authorization);
+        let token = authorization;
         if(token != null){
             try{
                 let jwtToken = jwt.verify(token, JWT_SIGN_SECRET);
@@ -48,7 +48,7 @@ module.exports ={
                     }
                 }
             }catch(err){
-
+//todo error handeling
             }
         }
         return data;
