@@ -39,7 +39,7 @@ function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@#!@#!@
             url = replace.all("/single?").from(url).with("");
         let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id WHERE `username` = ?";
         conn.query(sql, url, function (errors, results, fields) {
-            if (errors)  return (res.status(500).end());
+            if (errors) return (res.status(500).send(error.sqlMessage));
             glob(`*/assets/images/${results[0].username}${results[0].user_id}img*`, function (err, files_img) {
                 if (empty(files_img)) {
                     files_img = "";
@@ -50,7 +50,7 @@ function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@#!@#!@
                 }
                 let sql = "SELECT * FROM matchs WHERE user1_id = ?";
                 conn.query(sql, data.Id, function (err, resu) {
-                    if (err) return (res.status(500).end());
+                    if (err) return (res.status(500).send(error.sqlMessage));
                     var filtered = resu[0].users_you_liked.split(',').filter(function (value) {
                         if (value == results[0].user_id)
                             return (true)

@@ -7,7 +7,6 @@ const glob = require('glob');
 const path = require('path');
 
 function chat(req,res){
-
     let data = jwtUtils.getUserID(req.cookies.token);
     if (data.email < 0) {
         res.render('index');
@@ -17,7 +16,7 @@ function chat(req,res){
     }else {
         let sql = "SELECT * FROM Users WHERE email=?";
         conn.query(sql, [data.email], function (error, results, fields) {
-            if (error) return (res.status(500).end());
+            if (error) return (res.status(500).send(error.sqlMessage));
             if (empty(results)) {
                 res.render('index');
             } else {
@@ -34,7 +33,7 @@ function chat(req,res){
                     }
                     let sql2 = "SELECT * FROM Users WHERE user_id IN (SELECT user_id FROM Useronline WHERE online= ?)";
                     conn.query(sql2,['Y'], function (error, results, fields) {
-                        if (error) return (res.status(500).end());
+                        if (error) return (res.status(500).send(error.sqlMessage));
                         let friend = results;
                     res.render('chat', {
                         first_name: data.first_name,

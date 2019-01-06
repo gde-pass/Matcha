@@ -63,9 +63,7 @@ router.get("/single", function (req, res) {
 
 router.get("/chat", function (req, res) {
     if(typeof req.cookies.token === "undefined") {
-        res.render('index',{
-            connected : false
-        });
+        display_users(req, res, false);
     }else {
         chat(req, res);
     }
