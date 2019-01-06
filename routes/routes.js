@@ -23,8 +23,7 @@ router.get("/", function (req, res) {
 });
 
 router.get("/login", function (req, res) {
-    let check =
-        jwtUtils.getUserID(req.cookies.token);
+    let check = jwtUtils.getUserID(req.cookies.token);
 
     if (check.exp < Date.now() / 1000) {
         res.clearCookie("token");

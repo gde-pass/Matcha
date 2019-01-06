@@ -15,9 +15,9 @@ function chat(req,res){
     if (data.type < 0 || data.type != "login") {
         res.render('index');
     }else {
-        let sql = "SELECT * FROM Users WHERE email=?";//todo avec le token
+        let sql = "SELECT * FROM Users WHERE email=?";
         conn.query(sql, [data.email], function (error, results, fields) {
-            if (error) throw error;
+            if (error) return (res.status(500).end());
             if (empty(results)) {
                 res.render('index');
             } else {
@@ -26,7 +26,6 @@ function chat(req,res){
                     if(empty(profil_img))
                         profil_img = 'undefined';
                 glob(`*/assets/images/${data.username}${data.Id}img*`, function(err, files_img) {
-                    // var gallery_img = path.basename(files.toString());
                     if(empty(files_img))
                         files_img = 'undefined';
                     var images = [];
@@ -35,9 +34,8 @@ function chat(req,res){
                     }
                     let sql2 = "SELECT * FROM Users WHERE user_id IN (SELECT user_id FROM Useronline WHERE online= ?)";
                     conn.query(sql2,['Y'], function (error, results, fields) {
-                        if (error) throw error;
+                        if (error) return (res.status(500).end());
                         let friend = results;
-                        // console.log('data friend: ', friend[0]);
                     res.render('chat', {
                         first_name: data.first_name,
                         last_name: data.last_name,

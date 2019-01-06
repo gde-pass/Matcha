@@ -28,8 +28,8 @@ async function seed() {
         let email = faker.internet.email();
         let hash = faker.internet.password();
         let user = faker.internet.userName();
-        let latitude = faker.address.latitude();
-        let longitude = faker.address.longitude();
+        let latitude = Math.floor(Math.random() * 50) + 43;
+        let longitude = Math.floor(Math.random() * 8) + (-2);
         let score = Math.floor(Math.random() * 5) + 0;
 
         let gender = faker.name.prefix();

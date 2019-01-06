@@ -21,7 +21,8 @@ async function sortAge(req, res, users, cb) {
             let result = await conn.query(sql, usersScores[i].user);
             tabUsers.push(result)
         } catch (error) {
-            throw error;
+            cb(error, users);
+
         }
     }
     cb(null, tabUsers);

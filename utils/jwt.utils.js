@@ -48,7 +48,7 @@ module.exports ={
                     }
                 }
             }catch(err){
-//todo error handeling
+                // console.log(err)
             }
         }
         return data;

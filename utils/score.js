@@ -7,7 +7,7 @@ function findScore(user, cb) {
     let tabscore = [];
     let sql = "SELECT score FROM score WHERE user_that_is_scored = ?";
     conn.query(sql, user, function (err, resu) {
-        if (err) throw err;
+        if (err) return (res.status(500).end());
         else {
             resu.forEach(function (elem) {
                 tabscore.push(elem.score)
@@ -35,12 +35,12 @@ function score(req, res) {
         let etoiles = req.body.etoile;
         let sql = "SELECT user_id FROM Users WHERE username = ?";
         conn.query(sql, target_username, function (err, resu) {
-            if (err) console.log("error de score1");
+            if (err) return (res.status(500).end());
             else {
                 let target_id = resu[0].user_id;
                 let sql = "UPDATE score SET score = ?, user_that_is_scored = ? WHERE current_user_id = ?"
                 conn.query(sql, [etoiles, target_id, data.Id], function (err, result) {
-                    if (err) console.log("error de score");
+                    if (err) return (res.status(500).end());
                     else {
                         findScore(target_id, function (err, sumScore) {
                             if (isNaN(sumScore))
@@ -49,7 +49,7 @@ function score(req, res) {
                                 scor = sumScore;
                             let sql = "UPDATE Users SET score = ? WHERE user_id = ?";
                             conn.query(sql, [scor, target_id], function (err, resu) {
-                                if (err) console.log("error score");
+                                if (err) return (res.status(500).end());
                                 else {
                                     get_user(req, res, true, target_username)
                                 }

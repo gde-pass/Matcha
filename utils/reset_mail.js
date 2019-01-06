@@ -4,8 +4,9 @@ let conn = require("../database/database");
 const bcrypt = require("bcrypt-nodejs");
 
 function reset(token, password) {
+    console.log("=========================================")
     let data = jwtUtils.getUserID(token);
-    if (data.email < 0) {
+    if (data.email != 0) {
         console.log("FAIL")
         // window.location.href = 'http://0.0.0.0:8080/login?token'; //todo rediriger vers la page login avec un message derreur
     }
@@ -15,7 +16,7 @@ function reset(token, password) {
     } else {
         let sqlCheck = 'SELECT * FROM Users WHERE email=?';
         conn.query(sqlCheck, [data.email], function (error, results, fields) {
-            if (error) throw error;
+            if (error) return (res.status(500).end());
             else if (empty(results)) {
                 console.log("FAIL")
                 // window.location.href = 'http://0.0.0.0:8080/login?token';//todo rediriger vers la page login avec un message derreur
@@ -23,7 +24,7 @@ function reset(token, password) {
                 let hash = bcrypt.hashSync(password);
                 let sqlReset = 'UPDATE Users SET password=? WHERE email=?';
                 conn.query(sqlReset, [hash, data.email], function (error, results, fields) {
-                    if (error) throw error;
+                    if (error) return (res.status(500).end());
                     else if (empty(results)) {
                         console.log("FAIL")
                         // window.location.href = 'http://0.0.0.0:8080/login?token';//todo rediriger vers la page login avec un message derreur

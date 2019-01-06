@@ -18,7 +18,7 @@ function email_validation(req, res, token) {
     }else {
         let sqlCheck = 'SELECT * FROM Users WHERE email=?';
         conn.query(sqlCheck, [data.email], function (error, results, fields) {
-            if (error) throw error;
+            if (error)  return (res.status(500).end());
             else if (empty(results)) {
                 res.render('validation', {
                     error: "There are no users for ths Token"
@@ -31,7 +31,7 @@ function email_validation(req, res, token) {
             } else {
                 let sqlValidate = 'UPDATE Users SET checked=? WHERE email=?';
                 conn.query(sqlValidate, [1, data.email], function (error, results, fields) {
-                    if (error) throw error;
+                    if (error)  return (res.status(500).end());
                     else if (empty(results)) {
                         res.render('validation', {
                             error: "There are no users for ths Token"

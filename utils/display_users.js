@@ -36,7 +36,7 @@ function display_users(req, res, connected) {
     } else {
         let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id";
         conn.query(sql, function (errors, results, fields) {
-            if (errors) throw errors;
+            if (errors) return (res.status(500).end());
             for (let k = 0; k < results.length; k++) {
                 if (results[k].email == data.email) {
                     if (results[k].orientation != null && results[k].gender != null)
@@ -108,7 +108,7 @@ function display_users(req, res, connected) {
                 });
                 sortDistance(userLat, userLng, users, function (err, sortedByDistance) {
                     if (err) {
-                        //todo error handling
+                        console.log(err)
                     } else {
                         res.render('index', {
                             connected: connected,

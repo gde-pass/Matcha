@@ -23,7 +23,7 @@ function profil(req,res){
         } else {
             let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id WHERE `email` = ?";//todo avec le token
             conn.query(sql, [data.email], function (error, results) {
-                if (error) throw error;
+                if (error) return (res.status(500).end());
                 if (empty(results)) {
                     display_users(req, res, false);
                 } else {
@@ -40,14 +40,14 @@ function profil(req,res){
                             }
                             let sql = "SELECT * FROM matchs WHERE user1_id = ?";
                             conn.query(sql, data.Id, function (err, resu) {
-                                if (error) throw error;
+                                if (error) return (res.status(500).end());
                                 else {
                                     users_that_liked_you = (resu[0].users_that_liked_you.split(','))
                                     users_that_liked_you.shift();
 
                                     let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id";
                                     conn.query(sql, function (err, resu) {
-                                        if (err) throw err;
+                                        if (err) return (res.status(500).end());
                                         else {
                                             users = resu.filter(usr => {
                                                 let check = false
