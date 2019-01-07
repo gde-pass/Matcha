@@ -27,6 +27,9 @@ for(var i= 0; i < contact.length; i++){
         contact2[index].classList.add('active')
     });
 };
+if (Userto.innerText != undefined){
+    socket.emit('getmessage', Userto.innerText);
+}
 
 btn.addEventListener('click', function () {
     console.log("click");

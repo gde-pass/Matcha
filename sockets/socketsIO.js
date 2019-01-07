@@ -34,13 +34,13 @@ module.exports = function(io)
                 });
             }
         }
-      
+
         socket.on("register", async function (data) {
             if (await check.checkNewUser(data, db)) {
                 dbUser.dbInsertNewUser(data);
                 let token = jwtUtils.generateTokenForUser(data, "validation");
                 socket.emit("tokenValidation", token);
-                sendMail(data.email, token);
+                sendMail(data.email, token, "validation");
             } else {
                 socket.emit("registerError");
             }

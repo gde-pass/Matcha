@@ -68,7 +68,7 @@
             <button id="like_btn" class="btn1 btn-1 btn1-1b" type="submit"><%= locals.like %></button>
         <% } %>
         <% if(locals.match == true){ %>
-            <button id="like_btn" class="btn1 btn-1 btn1-1b" type="submit">Discuter</button>
+            <a href="./chat?<%= locals.user.username %>"><button id="like_btn" class="btn1 btn-1 btn1-1b" type="submit">Discuter</button></a>
         <% } %>
         <div class="col-md-8 profile_left">
             <div class="lsidebar span_1_of_profile">
@@ -166,6 +166,7 @@
         <div class='clearfix'></div>
     </div>
 </div>
+<script src="http://localhost:8080/socket.io/socket.io.js" language="JavaScript"></script>
 <script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>
 <script src="/assets/js/single.js" language="JavaScript"></script>
 <script src="/assets/js/jquery.flexisel.js" language="JavaScript"></script>

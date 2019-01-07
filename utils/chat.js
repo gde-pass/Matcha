@@ -14,6 +14,8 @@ function chat(req,res){
     if (data.type < 0 || data.type != "login") {
         res.render('index');
     }else {
+        let url = req.url;
+        url = replace.all("/chat?").from(url).with("");
         let sql = "SELECT * FROM Users WHERE email=?";
         conn.query(sql, [data.email], function (error, results, fields) {
             if (error) return (res.status(500).send(error.sqlMessage));
@@ -44,6 +46,7 @@ function chat(req,res){
                         files_img : images,
                         connected: true,
                         friend: friend,
+                        link: url
                     });
                     })
                 });
