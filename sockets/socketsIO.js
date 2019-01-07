@@ -20,7 +20,6 @@ module.exports = function(io)
 
 		if (req.headers.cookie) {
 		req.cookie = cookie.parse(req.headers.cookie);
-		// console.log('cookie id: ' , req.headers.cookie);
             if (req.cookie.token) {
                 dataToken = jwtUtils.getUserID(req.cookie.token);
             socket.data = {
@@ -34,7 +33,7 @@ module.exports = function(io)
                 });
             }
         }
-      
+
         socket.on("register", async function (data) {
             if (await check.checkNewUser(data, db)) {
                 dbUser.dbInsertNewUser(data);
@@ -64,8 +63,8 @@ module.exports = function(io)
                     // console.log(distance(15,token));
                     socket.emit("tokenLogin", token);
 
-                    let sqlOnline = "INSERT INTO Useronline (user_id, username, online, socketid, in_conv) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE user_id= ?;";
-                    db.query(sqlOnline,[results[0].user_id,results[0].username, 'Y', socket.id, results[0].user_id, 0], function (error) {
+                    let sqlOnline = "INSERT INTO Useronline (user_id, username, online, socketid, in_conv) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE user_id= ?";
+                    db.query(sqlOnline,[results[0].user_id,results[0].username, 'Y', socket.id, 0, results[0].user_id], function (error) {
                         if (error) throw error;
                     });
             })
