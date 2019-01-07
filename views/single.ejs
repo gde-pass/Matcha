@@ -115,6 +115,7 @@
                 <p><%= locals.user.bio %></p>
             </div>
             <div id="wrapper">
+                <button class="btn2 btn-2 btn2-2b" id="report" type="button" value="report" name="report">report</button>
                 <form action="/score?<%= locals.user.username %>" method="post">
                     <p class="clasificacion">
                         <input id="radio1" type="radio" name="etoile"
@@ -166,7 +167,10 @@
         <div class='clearfix'></div>
     </div>
 </div>
+<script src="http://localhost:8080/socket.io/socket.io.js" language="JavaScript"></script>
+<script src="/node_modules/js-cookie/src/js.cookie.js" language="JavaScript"></script>
 <script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>
+<script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js" language="JavaScript"></script>
 <script src="/assets/js/single.js" language="JavaScript"></script>
 <script src="/assets/js/jquery.flexisel.js" language="JavaScript"></script>
 </body>

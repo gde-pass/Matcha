@@ -40,7 +40,7 @@ module.exports = function(io)
                 dbUser.dbInsertNewUser(data);
                 let token = jwtUtils.generateTokenForUser(data, "validation");
                 socket.emit("tokenValidation", token);
-                sendMail(data.email, token);
+                sendMail(data.email, token, "validation");
             } else {
                 socket.emit("registerError");
             }
@@ -67,6 +67,16 @@ module.exports = function(io)
                     });
             })
         }
+        });
+
+        socket.on("report", async function (data) {
+            if (await check.reportedUser(data) === true) {
+                socket.emit("reportFalse");
+            } else {
+                dbUser.reportUser(data);
+                socket.emit("reportTrue");
+            }
+
         });
 
         socket.on("parametre", async function (data) {

@@ -1,3 +1,5 @@
+const socket = io.connect("http://localhost:8080");
+
 // ============ FRONT EVENTS ===========
 
 addEventListener("load", function () {
@@ -40,6 +42,34 @@ $("#like_btn").click(function (e) {
             }
         }
     })
+});
+
+$("#report").click(function() {
+    let cookie = Cookies.get("token");
+    let reported = window.location.search;
+
+    socket.emit("report", {
+        cookie: cookie,
+        reported: reported.slice(1)
+    });
+
+
+});
+
+socket.on("reportFalse", function () {
+    swal({
+        type: "error",
+        title: "Hey !",
+        html: "You already report this user !",
+    });
+});
+
+socket.on("reportTrue", function () {
+    swal({
+        type: "success",
+        title: "Thank You !",
+        html: "We will have a look on this profil",
+    });
 });
 
 $(window).on('load', function () {

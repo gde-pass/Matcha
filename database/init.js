@@ -51,6 +51,8 @@ async function dbInitTableSettings(conn) {
     }
 }
 
+
+
 async function dbInitTableMatch(conn) {
 
     const sql = "CREATE TABLE IF NOT EXISTS matchs (" +
@@ -118,6 +120,23 @@ function dbInitTableMessages(conn) {
     });
 }
 
+async function dbInitTableReports(conn) {
+
+    const sql = "CREATE TABLE IF NOT EXISTS Reports (" +
+        "    `report_id` INT UNSIGNED NOT NULL AUTO_INCREMENT," +
+        "    `reported` VARCHAR(15) NOT NULL," +
+        "    `reporter` VARCHAR(15) NOT NULL," +
+        "    PRIMARY KEY(report_id)" +
+        ") ENGINE = InnoDB;";
+
+    conn.query = util.promisify(conn.query);
+    try {
+        await conn.query(sql);
+    } catch (error) {
+        throw error;
+    }
+}
+
 async function dbInitTables(conn, hostSQL, portSQL) {
 
     conn.query("SELECT 1", async function (err) {
@@ -130,6 +149,7 @@ async function dbInitTables(conn, hostSQL, portSQL) {
        dbInitTableMessages(conn);
        await dbInitTableMatch(conn);
        await dbInitTableScore(conn);
+       await dbInitTableReports(conn);
     });
 }
 

@@ -329,6 +329,27 @@ async function checkActivatedUser(data) {
     }
 }
 
+
+/**
+ * @return {boolean}
+ */
+async function reportedUser(data) {
+
+    let sql = "SELECT * FROM `Reports` WHERE `reported` = ? AND `reporter` = ?;";
+    db.query = util.promisify(db.query);
+
+    try {
+        let result = await db.query(sql, [data.reported, jwtUtils.getUserID(data.cookie).username]);
+        if (result[0]) {
+            return (true);
+        } else {
+            return (false);
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     checkEmailValidity: checkEmailValidity,
     checkEmailPattern: checkEmailPattern,
@@ -337,4 +358,5 @@ module.exports = {
     checkActivatedUser: checkActivatedUser,
     checkSettingsUpdate: checkSettingsUpdate,
     checkReset: checkReset,
+    reportedUser: reportedUser
 };
