@@ -162,6 +162,30 @@ async function dbFirstNameUpdate(first_name, id) {
     }
 }
 
+async function dbLongitudeUpdate(longitude, id) {
+
+    let sql = "UPDATE `Users` SET `longitude` = ? WHERE `user_id` = ?;";
+    db.query = util.promisify(db.query);
+
+    try {
+        await db.query(sql, [longitude, id])
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function dbLatitudeUpdate(latitude, id) {
+
+    let sql = "UPDATE `Users` SET `latitude` = ? WHERE `user_id` = ?;";
+    db.query = util.promisify(db.query);
+
+    try {
+        await db.query(sql, [latitude, id])
+    } catch (error) {
+        throw error;
+    }
+}
+
 
 async function dbSettingsUpdate(data) {
 
@@ -205,6 +229,12 @@ async function dbSettingsUpdate(data) {
     }
     if (data.ageRangeMax.length !== 0) {
         await dbAgeRangeMaxUpdate(data.ageRangeMax, id);
+    }
+    if (data.longitude.length !== 0) {
+        await dbLongitudeUpdate(data.longitude, id);
+    }
+    if (data.latitude.length !== 0) {
+        await dbLatitudeUpdate(data.latitude, id);
     }
 }
 

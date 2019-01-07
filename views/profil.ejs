@@ -321,6 +321,26 @@
                     </div>
 
                     <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="latitude"><h4 id="latitudeText">Latitude: <%= locals.latitude %></h4>
+                            </label>
+                            <input type="range" class="form-control" name="latitude" id="latitude"
+                                   value="<%= locals.latitude %>" min="-90" max="90" step="0.0000001" pattern="^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$"
+                                   onchange="updateTextLatitude(this.value);">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="longitude"><h4 id="longitudeText">Longitude: <%= locals.longitude %></h4>
+                            </label>
+                            <input type="range" class="form-control" name="longitude" id="longitude"
+                                   value="<%= locals.longitude %>" min="-180" max="180" step="0.0000001" pattern="^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$"
+                                   onchange="updateTextLongitude(this.value);">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <div class="col-xs-12">
                             <br>
                             <button id="save" class="btn btn-lg btn-success" type="submit"><i

@@ -29,10 +29,42 @@ function updateTextAgeRangeMax(val) {
     document.getElementById('ageRangeMin').max = val;
 }
 
+function updateTextLongitude(val) {
+    document.getElementById('longitudeText').innerHTML = "Longitude: " + val;
+}
+
+function updateTextLatitude(val) {
+    document.getElementById('latitudeText').innerHTML = "Latitude: " + val;
+}
 // ============ /FRONT EVENTS ===========
 
 // ============ CHECK FUNCTIONS ===========
 
+
+
+/**
+ * @return {boolean}
+ */
+function checkLatitude(value) {
+
+    if (value < -90 || value > 90 || isNaN(value)) {
+        return (false);
+    } else {
+        return (true);
+    }
+}
+
+/**
+ * @return {boolean}
+ */
+function checkLongitude(value) {
+
+    if (value < -180 || value > 180 || isNaN(value)) {
+        return (false);
+    } else {
+        return (true);
+    }
+}
 
 /**
  * @return {boolean}
@@ -323,6 +355,8 @@ document.getElementById("save").addEventListener("click", function () {
     let password2 = document.getElementById("password2").value;
     let ageRangeMin = document.getElementById("ageRangeMin").value;
     let ageRangeMax = document.getElementById("ageRangeMax").value;
+    let latitude = document.getElementById("latitude").value;
+    let longitude = document.getElementById("longitude").value;
 
     if (first_name.length !== 0 && !checkName(first_name)) {
         document.getElementById("first_name").style.borderColor = "red";
@@ -429,6 +463,18 @@ document.getElementById("save").addEventListener("click", function () {
             title: "Your minimal range field have a bigger value than the maximal range field ... are you dumb ? "
         });
 
+    } else if (!checkLatitude(latitude)) {
+        swal({
+            type: "error",
+            title: "Your latitude field have strange value ... "
+        });
+
+    } else if (!checkLongitude(longitude)) {
+        swal({
+            type: "error",
+            title: "Your longitude field have strange value ... "
+        });
+
     } else {
         socket.emit("parametre", {
             first_name: first_name,
@@ -445,6 +491,8 @@ document.getElementById("save").addEventListener("click", function () {
             password2: password2,
             ageRangeMin: ageRangeMin,
             ageRangeMax: ageRangeMax,
+            latitude: latitude,
+            longitude: longitude,
             cookie: Cookies.get("token"),
         });
     }

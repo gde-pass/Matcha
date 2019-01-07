@@ -26,6 +26,8 @@ function checkSettingsUpdate(data) {
         (data.ageRangeMin.length !== 0 && !checkAgePattern(data.ageRangeMin)) ||
         (data.ageRangeMax !== 0 && !checkAgePattern(data.ageRangeMax)) ||
         (data.password.length !== 0 && !checkPasswordPattern(data.password)) ||
+        (data.longitude.length !== 0 && !checkLongitude(data.longitude)) ||
+        (data.latitude.length !== 0 && !checkLatitude(data.latitude)) ||
         (data.password2.length !== 0 && !checkPasswordMatch(data.password, data.password2))) {
         return (false);
     } else {
@@ -35,6 +37,33 @@ function checkSettingsUpdate(data) {
 
 // ============= /SETTINGS =============
 
+/**
+ * @return {boolean}
+ */
+function checkLatitude(value) {
+
+    if (value < -90 || value > 90 || isNaN(value)) {
+        return (false);
+    } else {
+        return (true);
+    }
+}
+
+/**
+ * @return {boolean}
+ */
+function checkLongitude(value) {
+
+    if (value < -180 || value > 180 || isNaN(value)) {
+        return (false);
+    } else {
+        return (true);
+    }
+}
+
+/**
+ * @return {boolean}
+ */
 function checkAgePattern(value) {
 
     if (value < 18 || value > 100 || isNaN(value)) {
