@@ -1,0 +1,73 @@
+<html>
+<head>
+
+    <title>Matcha | forgot password</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href="/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <link href="/assets/css/style.css" rel='stylesheet' type='text/css'/>
+
+</head>
+<body>
+<div class="header">
+    <div class='container'>
+        <div class="header_left">
+            <img src="/assets/images/rate.png" alt=""/>
+        </div>
+        <div class="logo">
+            <a href="/"><img src="/assets/images/logo.png" alt=""/>
+                <span>Matcha</span>
+            </a>
+        </div>
+        <div class="header_right">
+            <ul class="header_user_info">
+                <a class="login" href="/login">
+                    <li class="user_desc"><span class="m_1">Already user ? </span>Login</li>
+                    <i class="user"> </i>
+                    <div class="clearfix"></div>
+                </a>
+                <div class="clearfix"></div>
+            </ul>
+            <a href="/register" class="btn1 btn-1 btn1-1b">Sign Up</a>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="profile_banner">
+    <div class="container">
+        <h3>Reset password</h3>
+    </div>
+</div>
+<div class='profiles'>
+    <div class="container">
+        <div class="account_grid">
+            <div class="col-md-6 login-right">
+                <h3>Reset your password</h3>
+                <p>Please enter your new password.</p>
+                <div>
+                    <span>New password<label>*</label></span>
+                    <input id="reset_password" type="password">
+                </div>
+                <br/>
+                <input id="resetButton" type="submit" value="Reset">
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="container">
+        <div class="copy wow fadeInUp" data-wow-delay="0.4s">
+            <p>&copy; 2018 Matcha</p>
+        </div>
+        <div class='clearfix'></div>
+    </div>
+</div>
+</body>
+<script src="http://localhost:8080/socket.io/socket.io.js" language="JavaScript"></script>
+<script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>
+<script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js" language="JavaScript"></script>
+<script src="/node_modules/js-cookie/src/js.cookie.js" language="JavaScript"></script>
+<script src="/assets/js/reset.js" language="JavaScript"></script>
+</html>
