@@ -1,0 +1,340 @@
+/* Page Styles */
+
+.container_notif {
+    position: relative;
+    /* position: absolute; */
+    /* top: 50%; */
+    left: 8%;
+    /* margin-right: -50%; */
+    /* -webkit-transform: translate(-50%, -50%); */
+    /* transform: translate(-50%, -50%); */
+    /* text-align: center; */
+}
+
+/* button {
+    display: block;
+    padding: 1em 2em;
+    outline: none;
+    font-weight: 600;
+    border: none;
+    color: #fff;
+    background-color: #3498db;
+    border: 1px solid #1f74ac;
+    border-radius: 0.3em;
+    margin-top: 4em;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2487c9;
+} */
+
+/* Notifications */
+
+.notification {
+    display: inline-block;
+    position: relative;
+    padding: 0.6em;
+    background: #d26d8d;
+    border-radius: 0.2em;
+    font-size: 1.3em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.notification::before,
+.notification::after {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.notification::before {
+    display: block;
+    content: "\f0f3";
+    font-family: "FontAwesome";
+    transform-origin: top center;
+}
+
+.notification::after {
+    font-family: Arial;
+    font-size: 0.7em;
+    font-weight: 700;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    padding: 5px 8px;
+    line-height: 100%;
+    border: 2px #fff solid;
+    border-radius: 60px;
+    background: #3498db;
+    opacity: 0;
+    content: attr(data-count);
+    opacity: 0;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    transition: transform, opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+    text-decoration: none;
+}
+
+.notification.notify::before {
+    -webkit-animation: ring 1.5s ease;
+    animation: ring 1.5s ease;
+}
+
+.notification.show-count::after {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+.notif_box{
+    opacity: 0;
+    position: absolute;
+    background-color: white;
+    border: 0px solid black;
+    left: 50%;
+    width: 20%;
+    /* z-index: 0; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.on{
+    opacity: 1;
+}
+.notif_box ul {
+    padding: 0px;
+    margin-bottom: 0;
+}
+.inside{
+
+    border: 0.5px solid black;
+    padding : 10px ;
+}
+
+.unread{
+
+    background-color: #80808054;
+}
+
+@-webkit-keyframes ring {
+    0% {
+        -webkit-transform: rotate(35deg);
+    }
+    12.5% {
+        -webkit-transform: rotate(-30deg);
+    }
+    25% {
+        -webkit-transform: rotate(25deg);
+    }
+    37.5% {
+        -webkit-transform: rotate(-20deg);
+    }
+    50% {
+        -webkit-transform: rotate(15deg);
+    }
+    62.5% {
+        -webkit-transform: rotate(-10deg);
+    }
+    75% {
+        -webkit-transform: rotate(5deg);
+    }
+    100% {
+        -webkit-transform: rotate(0deg);
+    }
+}
+
+@keyframes ring {
+    0% {
+        -webkit-transform: rotate(35deg);
+        transform: rotate(35deg);
+    }
+    12.5% {
+        -webkit-transform: rotate(-30deg);
+        transform: rotate(-30deg);
+    }
+    25% {
+        -webkit-transform: rotate(25deg);
+        transform: rotate(25deg);
+    }
+    37.5% {
+        -webkit-transform: rotate(-20deg);
+        transform: rotate(-20deg);
+    }
+    50% {
+        -webkit-transform: rotate(15deg);
+        transform: rotate(15deg);
+    }
+    62.5% {
+        -webkit-transform: rotate(-10deg);
+        transform: rotate(-10deg);
+    }
+    75% {
+        -webkit-transform: rotate(5deg);
+        transform: rotate(5deg);
+    }
+    100% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}
+
+
+/*
+@hilite: #fed24d;
+@hilite2: #ebb629;
+@primary: #007fff; */
+
+
+
+
+/* .contain {
+  width: 500px;
+  margin: 0 auto;
+  position: relative;
+  padding: 20px;
+}
+.notificationicon {
+  height: 44px;
+  position: absolute;
+  top: 20px;
+  left: 170px;
+  &:hover {
+    background: rgba(0,0,0,.5);
+    i {
+    color: #fff;
+    }
+  }
+  &.on {
+    i {
+    color: #ddd;
+    }
+  }
+}
+.notifications {
+    z-index: 1;
+
+  max-width: 300px;
+  width: 300px;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 0px;
+  box-shadow: 0px 0px 20px #666;
+  position: absolute;
+  opacity:1;
+  top: 65px;
+  transition: .2s;
+  opacity: 1;
+  left: 100px;
+  &:before {
+    content: '';
+    height: 10px;
+    width: 10px;
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: 140px;
+    border: 10px solid #fff;
+    border-color: transparent transparent #fff transparent;
+  }
+  &.open {
+    opacity: 1;
+    transition:.2s;
+  }
+  li {
+  padding: 5px;
+    list-style-type: none;
+  &.titlebar {
+  border-bottom: 1px solid #ccc;
+  color: #666;
+  font-size: 12px;
+  cursor: inherit;
+  padding: 2px 5px;
+  &:hover {
+  background: #fff;
+  }
+  .settings {
+  float: right;
+  cursor: pointer;
+  }
+  }
+  &.seeall {
+  text-align: center;
+  font-size: 12px;
+  min-height: 30px;
+  text-transform: uppercase;
+  position: relative;
+  border-top: 1px solid #ccc;
+  a {
+  background: #f5f5f5;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  color: @primary;
+  padding-top: 8px;
+  }
+  }
+  }
+  .notifbox {
+  max-height: 300px;
+  overflow: auto;
+  li {
+  color: #666;
+  a { color: #666;}
+  &.unread {
+  background: lighten(@primary, 45%);
+  }
+  &.notif {
+  min-height: 70px;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  &:last-child {
+  border-bottom: none;
+  }
+  .imageblock {
+  width: 70px;
+  position: absolute;
+  left: 5px;
+  .notifimage {
+  height: 60px;
+  }
+  }
+  .messageblock {
+  width: 200px;
+  position: relative;
+  left: 70px;
+  font-size: 12px;
+  .message {
+  a {
+  color: @primary;
+  }
+  }
+  .messageaction {
+  min-height: 30px;
+  margin-bottom: 5px;
+  .button {
+  font-weight: normal;
+  text-transform: uppercase;
+  &.success, &.alert {
+  color: #fff;
+  }
+
+  }
+  }
+  .messageinfo {
+  font-size: 10px;
+  color: #999;
+  }
+  }
+  }
+  }
+  }
+}
+.badge {
+position: absolute;
+top: 30px;
+right: -20px;
+} */
