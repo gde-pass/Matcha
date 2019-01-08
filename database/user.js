@@ -252,6 +252,19 @@ async function dbSelectIdUserByMail(email) {
     }
 }
 
+async function dbSelectIdUserByUsername(username) {
+
+    let sql = "SELECT `user_id` FROM `Users` WHERE `username` = ?;";
+    db.query = util.promisify(db.query);
+
+    try {
+        let result = await db.query(sql, [username]);
+        return (result[0].user_id);
+    } catch (error) {
+        throw error;
+    }
+}
+
 async function dbInitUserDefaultSettings(newUser) {
 
     let id = await dbSelectIdUserByMail(newUser.email);
@@ -291,4 +304,5 @@ async function dbInsertNewUser(newUser) {
 module.exports = {
     dbInsertNewUser: dbInsertNewUser,
     dbSettingsUpdate: dbSettingsUpdate,
+    dbSelectIdUserByUsername: dbSelectIdUserByUsername
 };

@@ -8,10 +8,12 @@
     <!--</noscript>-->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href="/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/style.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/gallery.css" rel='stylesheet' type='text/css'/>
+    <link href="/assets/css/notif.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/score.css" rel='stylesheet' type='text/css'/>
 
 </head>
@@ -51,7 +53,23 @@
                 <a href="logout" class="btn1 btn-1 btn1-1b">Logout</a>
             </div>
         <%}%>
-        <div class="clearfix"></div>
+        <div class="clearfix">
+
+            <!--  TEST NOTIF ---------------------------->
+
+            <div class="container_notif">
+                <!-- <a href="#" class="button notificationicon on"><div class="notification"></div></a> -->
+                <a href="#"><div class="notification"></div></a>
+                    <!-- <button>Increment Notifications</button> -->
+            </div>
+            <div class="notif_box">
+                <ul>
+                    <li class="inside">M.x a visité votre profile</li>
+                    <li class="inside unread">Mme.y vous a liké</li>
+                </ul>
+            </div>
+            <!--  TEST NOTIF ---------------------------->
+        </div>
     </div>
 </div>
 <div class="profile_banner">
@@ -91,7 +109,7 @@
             </div>
 
             <div class="cont span_2_of_profile">
-                <h4><a href="#"><%= locals.user.first_name + " " + locals.user.last_name%></a></h4>
+                <h4><a href=""><%= locals.user.first_name + " " + locals.user.last_name%></a></h4>
                 <table class="profile-fields">
                     <tbody>
                     <tr>
@@ -169,6 +187,7 @@
 <script src="http://localhost:8080/socket.io/socket.io.js" language="JavaScript"></script>
 <script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>
 <script src="/assets/js/single.js" language="JavaScript"></script>
+<script src="/assets/js/notif.js" language="JavaScript"></script>
 <script src="/assets/js/jquery.flexisel.js" language="JavaScript"></script>
 </body>
 </html>

@@ -20,7 +20,7 @@ module.exports = function(io)
 
 		if (req.headers.cookie) {
 		req.cookie = cookie.parse(req.headers.cookie);
-		// console.log('cookie id: ' , req.headers.cookie);
+		console.log('cookie id: ' , req.headers.cookie);
             if (req.cookie.token) {
                 dataToken = jwtUtils.getUserID(req.cookie.token);
             socket.data = {
@@ -28,6 +28,7 @@ module.exports = function(io)
                 username: dataToken.username,
                 email: dataToken.email
             };
+            console.log('DATA : ', socket.data);
             let sqlSetSocket = "UPDATE Useronline SET socketid= ?, online=? , in_conv=? WHERE user_id= ?";
                 db.query(sqlSetSocket, [socket.id, 'Y', 0, dataToken.Id], function (error) {
                     if (error)throw error;
@@ -112,11 +113,13 @@ module.exports = function(io)
                 };
             if (await dbmessage.InsertMessage(params)){
                   io.to(socket.id).emit('chat', data);
+                  io.to(gparams.socketid).emit('notification_box');
                 if (await SocketO.CheckConv(params) === true) {
                  // PRIVATE MESSAGE---------------------------------------------//
           			io.to(gparams.socketid).emit('chat_rep', data);
                   }else {
                     io.to(gparams.socketid).emit('notifnew', socket.data.username);
+
                   }
             }else {
                 console.log('error insert db message');
@@ -139,6 +142,17 @@ module.exports = function(io)
 		socket.on('typing', function (data) {
 			socket.broadcast.emit('typing', data);
 		});
+
+        socket.on('create_notif', async function (data) {
+            let gparams = await SocketO.Getparams(data.user);
+            let niu = await dbUser.dbSelectIdUserByUsername(data.user);
+            let cnotif = "INSERT INTO Notifications (from_user_id, to_user_id, type, unread, date_n) VALUES( ?, ?, ?, ?, NOW())";
+            db.query(cnotif, [socket.data.user_id, niu, 1, data.type], function (error) {
+                if (error) throw error;
+                io.to(gparams.socketid).emit('notification_box');
+            });
+        });
+
 
         socket.on('disconnect', function() {
     		if (req.headers.cookie) {

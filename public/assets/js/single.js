@@ -1,3 +1,5 @@
+const socket = io.connect("http://localhost:8080");
+var   like = document.querySelector("#like_btn");
 // ============ FRONT EVENTS ===========
 
 addEventListener("load", function () {
@@ -96,3 +98,27 @@ $(window).on('load', function () {
 });
 
 // ============ /FRONT EVENTS ===========
+
+// ============ /SOCKET EVENTS ===========
+
+like.addEventListener('click' , function(){
+    var url = window.location.href;
+    var lastPart = url.split("?").pop();
+    console.log('word :', lastPart );
+    socket.emit('create_notif', {
+        user: lastPart,
+        type: 1
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+// ============ /SOCKET EVENTS ===========

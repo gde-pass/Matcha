@@ -6,10 +6,12 @@ var message = document.getElementById('message'),
   	btn = document.getElementById('send'),
   	output = document.getElementById('output'),
   	feedback = document.getElementById('feedback'),
-    img = document.getElementById('profilimg').src,
+    // img = document.getElementById('profilimg').src,
     Userto = document.getElementById('Userto'),
-    contact2 = document.getElementsByClassName('contact');
-    contact = document.getElementsByClassName('meta');
+    contact2 = document.getElementsByClassName('contact'),
+    contact = document.getElementsByClassName('meta'),
+    el = document.querySelector('.notification');
+
     // console.log(document.getElementsByClassName('meta')[0]);
 //emit EVENTS
 
@@ -36,7 +38,7 @@ btn.addEventListener('click', function () {
 	socket.emit('chat', {
 		message: message.value,
         to: Userto.innerHTML,
-        img: img
+        // img: img
 	});
 });
 

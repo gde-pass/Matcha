@@ -18,6 +18,8 @@
 <link href="/assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <link href="/assets/css/chat.css" rel='stylesheet' type='text/css'/>
 <link href="/assets/css/style.css" rel='stylesheet' type='text/css' />
+<link href="/assets/css/notif.css" rel='stylesheet' type='text/css'/>
+
 
 
 </head>
@@ -57,7 +59,23 @@
                 <a href="logout" class="btn1 btn-1 btn1-1b">Logout</a>
             </div>
         <% } %>
-        <div class="clearfix"></div>
+        <div class="clearfix">
+
+            <!--  TEST NOTIF ---------------------------->
+
+            <div class="container_notif">
+                <!-- <a href="#" class="button notificationicon on"><div class="notification"></div></a> -->
+                <a href="#"><div class="notification"></div></a>
+                    <!-- <button>Increment Notifications</button> -->
+            </div>
+            <div class="notif_box">
+                <ul>
+                    <li class="inside">M.x a visité votre profile</li>
+                    <li class="inside unread">Mme.y vous a liké</li>
+                </ul>
+            </div>
+            <!--  TEST NOTIF ---------------------------->
+        </div>
     </div>
 </div>
 <div class="profile_banner">
@@ -98,16 +116,6 @@
 		</div>
 		<div id="contacts">
 			<ul>
-				<!-- <li class="contact">
-					<div class="wrap">
-						<span class="contact-status"></span>
-						<img src="http://emilcarlsson.se/assets/jonathansidwell.png" alt="" />
-						<div class="meta">
-							<p class="name">Jonathan Sidwell</p>
-							<p class="preview"><span>You:</span> That's bullshit. This deal is solid.</p>
-						</div>
-					</div>
-				</li> -->
                 <% for(res of friend) { %>
                     <li  class="contact">
                        <div  class="wrap">
@@ -163,5 +171,7 @@
 <script src="http://localhost:8080/socket.io/socket.io.js" language="JavaScript"></script>
 <script src="/assets/js/chat.js" language="JavaScript"></script>
 <script src="/assets/js/chat2.js" language="JavaScript"></script>
+<script src="/assets/js/notif.js" language="JavaScript"></script>
+
 
 </body></html>

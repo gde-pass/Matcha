@@ -9,11 +9,14 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/style.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/flexslider.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/animate.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/score.css" rel='stylesheet' type='text/css'/>
+    <link href="/assets/css/notif.css" rel='stylesheet' type='text/css'/>
+
 
 </head>
 <body>
@@ -52,7 +55,22 @@
                 <a href="logout" class="btn1 btn-1 btn1-1b">Logout</a>
             </div>
         <%}%>
-        <div class="clearfix"></div>
+        <div class="clearfix">
+            <!--  TEST NOTIF ---------------------------->
+
+            <div class="container_notif">
+                <!-- <a href="#" class="button notificationicon on"><div class="notification"></div></a> -->
+                <a href="#"><div class="notification"></div></a>
+                    <!-- <button>Increment Notifications</button> -->
+            </div>
+            <div class="notif_box">
+                <ul>
+                    <li class="inside">M.x a visité votre profile</li>
+                    <li class="inside unread">Mme.y vous a liké</li>
+                </ul>
+            </div>
+            <!--  TEST NOTIF ---------------------------->
+        </div>
     </div>
 </div>
 <div class="banner wow bounceInRight" data-wow-delay="0.4s">
@@ -150,13 +168,15 @@
     </div>
 </div>
 
-
+<script src="http://localhost:8080/socket.io/socket.io.js" language="JavaScript"></script>
 <script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>
 <script src="/assets/js/jquery.easydropdown.js" language="JavaScript"></script>
 <script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js" language="JavaScript"></script>
 <script defer src="/node_modules/flexslider/jquery.flexslider-min.js" language="JavaScript"></script>
 <script src="/node_modules/wowjs/dist/wow.min.js" language="JavaScript"></script>
 <script src="/assets/js/index.js" language="JavaScript"></script>
+<script src="/assets/js/notif.js" language="JavaScript"></script>
+
 
 </body>
-</html>		
+</html>
