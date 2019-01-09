@@ -303,8 +303,24 @@ async function reportUser(data) {
     }
 }
 
+async function visiteUser(data) {
+
+    let sql = "INSERT INTO `Visites` (`username`,`visiteur`) VALUES (?, ?)";
+
+    let visiteur = jwtUtils.getUserID(data.token).username;
+
+    db.query = util.promisify(db.query);
+
+    try {
+        await db.query(sql, [data.username, visiteur]);
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     dbInsertNewUser: dbInsertNewUser,
     dbSettingsUpdate: dbSettingsUpdate,
     reportUser: reportUser,
+    visiteUser: visiteUser,
 };

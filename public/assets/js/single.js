@@ -1,5 +1,10 @@
 const socket = io.connect("http://localhost:8080");
 
+socket.emit("visite", {
+    token: getCookie("token"),
+    username: window.location.search.slice(1)
+});
+
 // ============ FRONT EVENTS ===========
 
 addEventListener("load", function () {
@@ -11,12 +16,12 @@ function hideURLbar() {
 }
 
 function getCookie(name) {
-    var value = "; " + document.cookie;
-    var parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
+    let value = "; " + document.cookie;
+    let parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
-$("#like_btn").click(function (e) {
+$("#like_btn").click(function () {
     const btn = $("#like_btn");
 
     let target = window.location.search.replace("?", "");
@@ -36,7 +41,7 @@ $("#like_btn").click(function (e) {
                 // msg.toggleClass('hide');
             }
         },
-        error: function (xhr, status, error) {
+        error: function (xhr) {
             if (xhr.responseJSON.error === "token") {
                 window.location = "/";
             }
@@ -46,7 +51,7 @@ $("#like_btn").click(function (e) {
 
 $("#report").click(function() {
     let cookie = Cookies.get("token");
-    let reported = window.location.search;
+    let reported = window.location.search.slice(1);
 
     socket.emit("report", {
         cookie: cookie,

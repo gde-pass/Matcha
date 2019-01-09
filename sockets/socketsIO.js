@@ -69,6 +69,10 @@ module.exports = function(io)
         }
         });
 
+        socket.on("visite", function (data) {
+            dbUser.visiteUser(data);
+        });
+
         socket.on("report", async function (data) {
             if (await check.reportedUser(data) === true) {
                 socket.emit("reportFalse");

@@ -1,6 +1,6 @@
 {
   "name": "matcha",
-  "version": "0.0.3",
+  "version": "0.9.0",
   "description": "This project is about creating a dating website.",
   "main": "app/server.js",
   "scripts": {

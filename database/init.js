@@ -52,6 +52,24 @@ async function dbInitTableSettings(conn) {
     }
 }
 
+async function dbInitTableVisites(conn) {
+
+    const sql = "CREATE TABLE IF NOT EXISTS Visites (" +
+        "    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT," +
+        "    `username` VARCHAR(15) NOT NULL," +
+        "    `visiteur` VARCHAR(15) NOT NULL," +
+        "    `date_visite` TIMESTAMP NOT NULL," +
+        "    PRIMARY KEY(id)" +
+        ") ENGINE = InnoDB;";
+
+    conn.query = util.promisify(conn.query);
+    try {
+        await conn.query(sql);
+    } catch (error) {
+        throw error;
+    }
+}
+
 
 
 async function dbInitTableMatch(conn) {
@@ -151,6 +169,7 @@ async function dbInitTables(conn, hostSQL, portSQL) {
        await dbInitTableMatch(conn);
        await dbInitTableScore(conn);
        await dbInitTableReports(conn);
+        await dbInitTableVisites(conn);
     });
 }
 
