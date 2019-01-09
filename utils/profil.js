@@ -8,9 +8,9 @@ const path = require("path");
 
 let display_users = require("../utils/display_users");
 let users_that_liked_you = [];
+let users_that_have_visited_your_profil = [];
 
-
-function profil(req,res){
+function profil(req, res) {
     let users = [];
     let check = jwtUtils.getUserID(req.cookies.token);
     if (check.exp < Date.now() / 1000) {
