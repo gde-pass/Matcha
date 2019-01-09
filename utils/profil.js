@@ -1,10 +1,10 @@
 "use strict";
-let empty = require('is-empty');
-let conn = require('../database/database');
+let empty = require("is-empty");
+let conn = require("../database/database");
 let jwtUtils = require("./jwt.utils");
 let replace = require("str-replace");
-const glob = require('glob');
-const path = require('path');
+const glob = require("glob");
+const path = require("path");
 
 let display_users = require("../utils/display_users");
 let users_that_liked_you = [];
@@ -52,12 +52,12 @@ function profil(req,res){
                                             users = resu.filter(usr => {
                                                 let check = false
                                                 users_that_liked_you.forEach(liked => {
-                                                    if (usr.user_id == parseInt(liked)) {
+                                                    if (usr.user_id === parseInt(liked)) {
                                                         check = true
                                                     }
-                                                })
+                                                });
                                                 return (check)
-                                            })
+                                            });
                                             res.render('profil', {
                                                 first_name: results[0].first_name,
                                                 last_name: results[0].last_name,
