@@ -82,6 +82,10 @@ module.exports = function(io)
         socket.on("parametre", async function (data) {
             if (await check.checkSettingsUpdate(data) === false) {
                 socket.emit("settingsUpdateFalse");
+            } else if (await check.checkEmailValidity(data.email, db) === false) {
+                socket.emit("settingsUpdateFalse");
+            } else if (await check.checkUsernameValidity(data.username, db) === false) {
+                socket.emit("settingsUpdateFalse");
             } else {
                 await dbUser.dbSettingsUpdate(data);
                 socket.emit("settingsUpdateTrue");
@@ -108,6 +112,15 @@ module.exports = function(io)
 
                 if (await check.checkEmailValidity(email, db) === false) {
                     socket.emit("focusOutEmailSignUpFalse", email);
+                }
+            }
+        });
+
+        socket.on("focusOutUsernameSignUp", async function (username) {
+            if (!validator.isEmpty(username) && check.checkUserPattern(username)) {
+
+                if (await check.checkUsernameValidity(username, db) === false) {
+                    socket.emit("focusOutUsernameSignUpFalse", username);
                 }
             }
         });

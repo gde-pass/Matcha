@@ -229,6 +229,27 @@ async function checkEmailValidity(email, pool) {
 /**
  * @return {boolean}
  */
+async function checkUsernameValidity(username, pool) {
+
+    let sql = "SELECT `username` FROM Users WHERE `username`= ?;";
+
+    pool.query = util.promisify(pool.query);
+    try {
+        let result = await pool.query(sql, [username]);
+        if (result.length > 0) {
+            return (false);
+        } else {
+            return (true);
+        }
+    } catch (error) {
+        throw error;
+    }
+
+}
+
+/**
+ * @return {boolean}
+ */
 async function checkNewUser(newUser, pool) {
 
     if (checkEmailPattern(newUser.email) && await checkEmailValidity(newUser.email, pool) &&
@@ -352,11 +373,13 @@ async function reportedUser(data) {
 
 module.exports = {
     checkEmailValidity: checkEmailValidity,
+    checkUsernameValidity: checkUsernameValidity,
     checkEmailPattern: checkEmailPattern,
     checkNewUser: checkNewUser,
     checkLoginUser: checkLoginUser,
     checkActivatedUser: checkActivatedUser,
     checkSettingsUpdate: checkSettingsUpdate,
     checkReset: checkReset,
-    reportedUser: reportedUser
+    reportedUser: reportedUser,
+    checkUserPattern: checkUserPattern,
 };
