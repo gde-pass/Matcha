@@ -123,6 +123,7 @@ function dbInitTableNotifications(conn) {
     const sql5 = "CREATE TABLE IF NOT EXISTS Notifications (" +
         "    `notif_id` INT UNSIGNED NOT NULL AUTO_INCREMENT," +
         "    `from_user_id` INT ," +
+        "    `from_username` VARCHAR(15) ," +
         "    `to_user_id` INT," +
         "    `type` INT," +
         "    `unread` INT," +

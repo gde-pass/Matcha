@@ -34,12 +34,18 @@ if (Userto.innerText != undefined){
 }
 
 btn.addEventListener('click', function () {
+    var url = window.location.href;
+    var lastPart = url.split("?").pop();
     console.log("click");
 	socket.emit('chat', {
 		message: message.value,
         to: Userto.innerHTML,
         // img: img
 	});
+    socket.emit('create_notif', {
+        user: lastPart,
+        type: 2
+    });
 });
 
 message.addEventListener('keypress', function () {

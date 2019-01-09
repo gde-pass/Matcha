@@ -113,7 +113,7 @@ module.exports = function(io)
                 };
             if (await dbmessage.InsertMessage(params)){
                   io.to(socket.id).emit('chat', data);
-                  io.to(gparams.socketid).emit('notification_box');
+                  // io.to(gparams.socketid).emit('notification_box');
                 if (await SocketO.CheckConv(params) === true) {
                  // PRIVATE MESSAGE---------------------------------------------//
           			io.to(gparams.socketid).emit('chat_rep', data);
@@ -149,8 +149,8 @@ module.exports = function(io)
             console.log('USERNAME : ', data);
             let gparams = await SocketO.Getparams(data.user);
             let niu = await dbUser.dbSelectIdUserByUsername(data.user);
-            let cnotif = "INSERT INTO Notifications (from_user_id, to_user_id, type, unread, date_n) VALUES( ?, ?, ?, ?, NOW())";
-            db.query(cnotif, [socket.data.user_id, niu, 1, data.type], function (error) {
+            let cnotif = "INSERT INTO Notifications (from_user_id, from_username, to_user_id, type, unread, date_n) VALUES( ?, ?, ?, ?, ?, NOW())";
+            db.query(cnotif, [socket.data.user_id, socket.data.username, niu, data.type, 1], function (error) {
                 if (error) throw error;
                 io.to(gparams.socketid).emit('notification_box');
             });
@@ -173,7 +173,13 @@ module.exports = function(io)
             });
         })
 
-
+        socket.on('getnotif', function () {
+            let getnotif = "SELECT * , DATE_FORMAT(date_n , '%d/%m/%Y %H:%i:%s') AS date FROM Notifications WHERE to_user_id=? ORDER BY notif_id DESC";
+            db.query(getnotif, [socket.data.user_id], function (error, results) {
+                if (error) throw error;
+                socket.emit('getnotif', results);
+            });
+        });
 
 
 

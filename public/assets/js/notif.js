@@ -1,11 +1,13 @@
-var el = document.querySelector('.notification');
-var box = document.querySelector('.notif_box');
+var el = document.querySelector('.notification'),
+    box = document.querySelector('.notif_box'),
+    output_notif = document.getElementById('output_notif');
 
 //--------------------- JAVASCRIPT EVENT/EMIT---------------------------------------------
 
 el.addEventListener('click', function(){
     box.classList.toggle('on');
     socket.emit('read');
+    socket.emit('getnotif');
 });
 
 // ---------------SOCKET EVENT------------------------------
@@ -42,3 +44,15 @@ socket.on('read', function () {
     el.setAttribute('data-count', 0);
     el.classList.remove('show-count');
 })
+
+socket.on('getnotif',function (data) {
+    console.log('notif data', data);
+    output_notif.innerHTML = "";
+    for(var i=0;i<data.length;i++){
+        if(data[i].type == 1){
+            output_notif.innerHTML += '<li class="inside">' + data[i].from_username + ' a liké votre profile <p class="dateformat">(' + data[i].date + ')</p></li>';
+        }else if (data[i].type == 2) {
+            output_notif.innerHTML += '<li class="inside">' + data[i].from_username + ' vous a envoyé un <a class="font_not" href="./chat?' + data[i].from_username + '">message</a> <p class="dateformat">(' + data[i].date + ')</p></li>';
+        }
+    }
+});

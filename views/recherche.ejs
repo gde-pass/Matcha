@@ -4,9 +4,11 @@
     <title>Matcha | Login</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href="/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/style.css" rel='stylesheet' type='text/css'/>
+    <link href="/assets/css/notif.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/sliders.css" rel='stylesheet' type='text/css'/>
 
 </head>
@@ -46,7 +48,21 @@
                 <a href="logout" class="btn1 btn-1 btn1-1b">Logout</a>
             </div>
         <% } %>
-        <div class="clearfix"></div>
+        <div class="clearfix">
+            <!--  TEST NOTIF ---------------------------->
+
+            <div class="container_notif">
+                <!-- <a href="#" class="button notificationicon on"><div class="notification"></div></a> -->
+                <div class="notification"></div>
+                    <!-- <button>Increment Notifications</button> -->
+            </div>
+            <div class="notif_box">
+                <ul id="output_notif">
+
+                </ul>
+            </div>
+            <!--  TEST NOTIF ---------------------------->
+        </div>
     </div>
 </div>
 <div class="profile_banner">
@@ -260,4 +276,5 @@
 <script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>
 <script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js" language="JavaScript"></script>
 <script src="/node_modules/js-cookie/src/js.cookie.js" language="JavaScript"></script>
+<script src="/assets/js/notif.js" language="JavaScript"></script>
 </html>

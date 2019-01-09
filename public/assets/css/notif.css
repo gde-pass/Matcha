@@ -94,11 +94,14 @@ button:hover {
     position: absolute;
     background-color: white;
     border: 0px solid black;
-    left: 50%;
+    left: 56%;
     width: 20%;
-    /* z-index: 0; */
+    height: 193px;
+    max-width: 20%;
+    z-index: 1;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .on{
@@ -118,6 +121,19 @@ button:hover {
 
     background-color: #80808054;
 }
+
+.dateformat{
+    color: grey;
+    margin: 2px;
+}
+
+.font_not{
+    font-weight: bold;
+    color: #d26d8d;
+    padding: 2px;
+    text-decoration: none;
+}
+
 
 @-webkit-keyframes ring {
     0% {
