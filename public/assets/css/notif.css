@@ -39,6 +39,7 @@ button:hover {
     border-radius: 0.2em;
     font-size: 1.3em;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 
 .notification::before,

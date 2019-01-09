@@ -20,7 +20,7 @@ module.exports = function(io)
 
 		if (req.headers.cookie) {
 		req.cookie = cookie.parse(req.headers.cookie);
-		console.log('cookie id: ' , req.headers.cookie);
+		// console.log('cookie id: ' , req.headers.cookie);
             if (req.cookie.token) {
                 dataToken = jwtUtils.getUserID(req.cookie.token);
             socket.data = {
@@ -28,7 +28,7 @@ module.exports = function(io)
                 username: dataToken.username,
                 email: dataToken.email
             };
-            console.log('DATA : ', socket.data);
+            // console.log('DATA : ', socket.data);
             let sqlSetSocket = "UPDATE Useronline SET socketid= ?, online=? , in_conv=? WHERE user_id= ?";
                 db.query(sqlSetSocket, [socket.id, 'Y', 0, dataToken.Id], function (error) {
                     if (error)throw error;
@@ -143,7 +143,10 @@ module.exports = function(io)
 			socket.broadcast.emit('typing', data);
 		});
 
+
+        //SOCKET EVENT NOTIF --------------------------------------//
         socket.on('create_notif', async function (data) {
+            console.log('USERNAME : ', data);
             let gparams = await SocketO.Getparams(data.user);
             let niu = await dbUser.dbSelectIdUserByUsername(data.user);
             let cnotif = "INSERT INTO Notifications (from_user_id, to_user_id, type, unread, date_n) VALUES( ?, ?, ?, ?, NOW())";
@@ -152,6 +155,26 @@ module.exports = function(io)
                 io.to(gparams.socketid).emit('notification_box');
             });
         });
+
+        socket.on('unread', async function () {
+            let getunread = "SELECT COUNT (*) AS nb FROM Notifications WHERE to_user_id=? AND unread=?";
+            db.query(getunread, [socket.data.user_id, 1], function (error, results) {
+                if (error) throw error;
+                console.log('Nombre de UNREAD: ', results[0].nb);
+                socket.emit('getunread', results[0].nb);
+            });
+        });
+
+        socket.on('read', async function () {
+            let upread = "UPDATE Notifications SET unread = REPLACE(unread, ?, ?) WHERE to_user_id=?";
+            db.query(upread, [ 1, 0, socket.data.user_id], function (error, results) {
+                if (error) throw error;
+                socket.emit('read');
+            });
+        })
+
+
+
 
 
         socket.on('disconnect', function() {

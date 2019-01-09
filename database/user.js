@@ -254,7 +254,7 @@ async function dbSelectIdUserByMail(email) {
 
 async function dbSelectIdUserByUsername(username) {
 
-    let sql = "SELECT `user_id` FROM `Users` WHERE `username` = ?;";
+    let sql = "SELECT `user_id` FROM `Users` WHERE `username` = ?";
     db.query = util.promisify(db.query);
 
     try {
