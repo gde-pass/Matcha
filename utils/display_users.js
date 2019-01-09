@@ -1,8 +1,10 @@
-"use strict"
+
 let conn = require('../database/database');
 const geolib = require('geolib');
 let jwtUtils = require("./jwt.utils");
 let sortDistance = require("./sort_distance")
+let empty = require('is-empty');
+var global = require("global")
 
 let userLat;
 let userLng;
@@ -14,8 +16,8 @@ let age;
 let ageMin;
 let ageMax;
 let isFull = true;
-let found_user = null;
-
+let usersSorted = [];
+let suggestionSorted = [];
 function findTag(tagVoulu) {
     let found = 0;
     tags.forEach(function (elem) {
@@ -28,35 +30,16 @@ function findTag(tagVoulu) {
     return (found);
 }
 
-async function findIfBloqued(req, res, my_Id,users){
-    let filtered;
-    filtered = await users.filter(async elem => {
-        let sql = "SELECT bloqued_by FROM users_bloquer WHERE user_id =?"
-        await conn.query(sql,elem.user_id , async function (errors, results) {
-            if (errors) return (res.status(500).send(error.sqlMessage));
-            else{
-                let bloqued_id = results[0].bloqued_by.split(',');
-                await bloqued_id.forEach(value => {
-                     if(parseInt(value) == my_Id) {
-                         found_user = elem;
-                         return (true)
-                     }else return (false)
-                })
-            }
-        })
-    })
-    if(found_user != null) {
-         filtered = await users.filter(elem => {
-            if (elem.user_id == found_user.user_id) {
-                return (false);
-            }
-            else
-                return (true)
-        })
-        return (filtered);
-    }else{
-        return (users);
-    }
+function findIfBloqued(req, res, my_Id, users, cb){
+   let sql = "SELECT * FROM users_bloquer WHERE user_id =?";
+   conn.query(sql, my_Id, function(err, results){
+       if (err) conosle.log(err);
+       else if(!empty(results)){
+          cb(null,results)
+       }else{
+           cb(null,users)
+       }
+   })
 }
 function display_users(req, res, connected) {
 
@@ -141,13 +124,43 @@ function display_users(req, res, connected) {
                     if (err) {
                         console.log(err)
                     } else {
-                        let users = await findIfBloqued(req, res, data.Id ,sortedByDistance);
-                        res.render('index', {
-                            connected: connected,
-                            sorted: false,
-                            users: users,
-                            suggestion: suggestion,
-                        })
+                        findIfBloqued(req, res, data.Id ,sortedByDistance, function(err, listOfBloqued){
+                            if (err) {
+                                console.log(err)
+                            }else{
+                                let found = 0;
+                                usersSorted = users.filter(value =>{
+                                    found = 0;
+                                    for(let j=0; j < listOfBloqued.length; j++){
+                                        if(value.user_id == listOfBloqued[j].is_bloqued) found = 1;
+                                    }
+                                    if(found == 1) return false;
+                                    else if(found == 0)return true;
+                                });
+                                findIfBloqued(req, res, data.Id ,suggestion, function(err, listOfBloqued) {
+                                    if (err) {
+                                        console.log(err)
+                                    }else {
+                                       suggestionSorted = suggestion.filter(value => {
+                                            found = 0;
+                                            for (let j = 0; j < listOfBloqued.length; j++) {
+                                                if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
+                                            }
+                                            if (found == 1)return false;
+                                            else if (found == 0) return true;
+                                        });
+                                    }
+                                    if(empty(suggestion)) suggestion = 0;
+                                    if(empty(usersSorted)) usersSorted = 0;
+                                    res.render('index', {
+                                        connected: connected,
+                                        sorted: false,
+                                        users: usersSorted,
+                                        suggestion: suggestionSorted,
+                                    })
+                                });
+                            }
+                        });
                     }
                 })
             } else {

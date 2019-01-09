@@ -25,9 +25,8 @@ function findNbEtoile(user, cb) {
         }
     })
 }
-
 function findIfBloque(req, res, Id, cb){
-    let sql = "SELECT is_bloqued FROM users_bloquer WHERE user_id = ?";
+    let sql = "SELECT is_bloqued FROM list_bloquer WHERE user_id = ?";
     conn.query(sql,Id,function (err, resu) {
         if (err)  return (res.status(500).end());
         else {
@@ -39,6 +38,7 @@ function findIfBloque(req, res, Id, cb){
         }
     })
 }
+
 async function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@#!@#!@#@!#') {
     let data = jwtUtils.getUserID(req.cookies.token);
     if (data.type < 0 || data.type !== "login" || data.email < 0) {
@@ -83,7 +83,7 @@ async function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@
                             asLikedYou = liked;
                         }
                     })
-                    await findIfBloque(req, res, results[0].user_id, function(err, bloqued){
+                    findIfBloque(req, res, results[0].user_id, function(err, bloqued){
                         if (err) {
                             console.log(err)
                         }else
@@ -95,6 +95,7 @@ async function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@
                         }
                         if (results[0].profil_img == 0)
                             like = null;
+                        console.log(results[0])
                         res.render('single', {
                             connected: connected,
                             user: results[0],
