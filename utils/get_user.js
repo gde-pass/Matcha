@@ -9,6 +9,7 @@ let findIfLiked = require('./find_If_liked');
 
 let like;
 let asLikedYou;
+let bloque;
 let check = 0;
 
 function findNbEtoile(user, cb) {
@@ -25,7 +26,20 @@ function findNbEtoile(user, cb) {
     })
 }
 
-function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@#!@#!@#@!#') {
+function findIfBloque(req, res, Id, cb){
+    let sql = "SELECT is_bloqued FROM users_bloquer WHERE user_id = ?";
+    conn.query(sql,Id,function (err, resu) {
+        if (err)  return (res.status(500).end());
+        else {
+            if (resu[0].is_bloqued == 0) {
+                cb(null, "Bloquer")
+            } else {
+                cb(null, "Unblock")
+            }
+        }
+    })
+}
+async function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@#!@#!@#@!#') {
     let data = jwtUtils.getUserID(req.cookies.token);
     if (data.type < 0 || data.type !== "login" || data.email < 0) {
         res.redirect("/");
@@ -49,7 +63,7 @@ function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@#!@#!@
                     images.push(replace.all("public").from(files_img[i]).with(""));
                 }
                 let sql = "SELECT * FROM matchs WHERE user1_id = ?";
-                conn.query(sql, data.Id, function (err, resu) {
+                conn.query(sql, data.Id, async function (err, resu) {
                     if (err) return (res.status(500).send(error.sqlMessage));
                     var filtered = resu[0].users_you_liked.split(',').filter(function (value) {
                         if (value == results[0].user_id)
@@ -69,6 +83,12 @@ function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@#!@#!@
                             asLikedYou = liked;
                         }
                     })
+                    await findIfBloque(req, res, results[0].user_id, function(err, bloqued){
+                        if (err) {
+                            console.log(err)
+                        }else
+                            bloque = bloqued;
+                    })
                     findIfMach(req, res, data, url, function (err, match) {
                         if (err) {
                             console.log(err)
@@ -82,6 +102,7 @@ function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@#!@#!@
                             files_img: images,
                             like: like,
                             match: match,
+                            bloqued : bloque,
                             asLikedYou: asLikedYou
                         })
                     })

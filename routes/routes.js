@@ -129,7 +129,7 @@ router.get("/recherche", function (req, res) {
 });
 
 router.post("/recherche", function (req, res) {
-    recherche(req, res);
+    recherche(req, res, true);
 });
 
 router.post("/score", function (req, res) {

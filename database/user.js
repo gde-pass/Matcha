@@ -272,6 +272,12 @@ async function dbInitUserDefaultSettings(newUser) {
     db.query(sqlscore, [id], function (err) {
         if (err) throw err;
     });
+
+    let sqlbloque = "INSERT INTO `users_bloquer` (`user_id`) VALUES (?)";
+
+    db.query(sqlbloque, [id], function (err) {
+        if (err) throw err;
+    });
 }
 
 async function dbInsertNewUser(newUser) {

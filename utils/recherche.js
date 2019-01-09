@@ -42,7 +42,7 @@ function findTag(tag, tagVoulu) {
     return (found);
 }
 
-function recherche(req, res) {
+function recherche(req, res, connected) {
     let ageBox = req.body.ageBox;
     let age1 = req.body.age1;
     let age2 = req.body.age2;

@@ -51,8 +51,6 @@ async function dbInitTableSettings(conn) {
     }
 }
 
-
-
 async function dbInitTableMatch(conn) {
 
     const sql = "CREATE TABLE IF NOT EXISTS matchs (" +
@@ -77,6 +75,23 @@ async function dbInitTableScore(conn) {
         "    `score` int(11) not null," +
         "    `user_that_is_scored` int(11) not null," +
         "    FOREIGN KEY(current_user_id) REFERENCES Users(user_id)" +
+        ") ENGINE = InnoDB;";
+
+    conn.query = util.promisify(conn.query);
+    try {
+        await conn.query(sql);
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function dbInitTableBloquer(conn) {
+
+    const sql = "CREATE TABLE IF NOT EXISTS users_bloquer (" +
+        "    `user_id` INT UNSIGNED NOT NULL," +
+        "    `is_bloqued` int(1) DEFAULT 0," +
+        "    `bloqued_by` varchar(256) not null," +
+        "    FOREIGN KEY(user_id) REFERENCES Users(user_id)" +
         ") ENGINE = InnoDB;";
 
     conn.query = util.promisify(conn.query);
@@ -149,6 +164,7 @@ async function dbInitTables(conn, hostSQL, portSQL) {
        dbInitTableMessages(conn);
        await dbInitTableMatch(conn);
        await dbInitTableScore(conn);
+       await dbInitTableBloquer(conn);
        await dbInitTableReports(conn);
     });
 }

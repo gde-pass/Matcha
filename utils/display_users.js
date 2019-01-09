@@ -14,6 +14,7 @@ let age;
 let ageMin;
 let ageMax;
 let isFull = true;
+let found_user = null;
 
 function findTag(tagVoulu) {
     let found = 0;
@@ -27,6 +28,36 @@ function findTag(tagVoulu) {
     return (found);
 }
 
+async function findIfBloqued(req, res, my_Id,users){
+    let filtered;
+    filtered = await users.filter(async elem => {
+        let sql = "SELECT bloqued_by FROM users_bloquer WHERE user_id =?"
+        await conn.query(sql,elem.user_id , async function (errors, results) {
+            if (errors) return (res.status(500).send(error.sqlMessage));
+            else{
+                let bloqued_id = results[0].bloqued_by.split(',');
+                await bloqued_id.forEach(value => {
+                     if(parseInt(value) == my_Id) {
+                         found_user = elem;
+                         return (true)
+                     }else return (false)
+                })
+            }
+        })
+    })
+    if(found_user != null) {
+         filtered = await users.filter(elem => {
+            if (elem.user_id == found_user.user_id) {
+                return (false);
+            }
+            else
+                return (true)
+        })
+        return (filtered);
+    }else{
+        return (users);
+    }
+}
 function display_users(req, res, connected) {
 
     let data = jwtUtils.getUserID(req.cookies.token);
@@ -106,14 +137,15 @@ function display_users(req, res, connected) {
                         }
                     }
                 });
-                sortDistance(userLat, userLng, users, function (err, sortedByDistance) {
+                sortDistance(userLat, userLng, users, async function (err, sortedByDistance) {
                     if (err) {
                         console.log(err)
                     } else {
+                        let users = await findIfBloqued(req, res, data.Id ,sortedByDistance);
                         res.render('index', {
                             connected: connected,
                             sorted: false,
-                            users: sortedByDistance,
+                            users: users,
                             suggestion: suggestion,
                         })
                     }

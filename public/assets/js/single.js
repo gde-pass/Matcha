@@ -27,13 +27,37 @@ $("#like_btn").click(function (e) {
         contentType: "application/x-www-form-urlencoded",
         data: {token: getCookie("token"), target: target},
         success: function (data, status, xhr) {
+
             location.reload();
-            if (data.liked) {// todo recupere si matched, if matched donne enlever la class hide
+            if (data.liked) {
                 btn.text("Dislike");
-                // msg.toggleClass('hide');
             } else {
                 btn.text("Like");
-                // msg.toggleClass('hide');
+            }
+        },
+        error: function (xhr, status, error) {
+            if (xhr.responseJSON.error === "token") {
+                window.location = "/";
+            }
+        }
+    })
+});
+
+$("#bloque_btn").click(function (e) {
+    const btn = $("#bloque_btn");
+
+    let target = window.location.search.replace("?", "");
+    $.ajax({
+        url: "/api/single/toggle_bloque",
+        type: "POST",
+        contentType: "application/x-www-form-urlencoded",
+        data: {token: getCookie("token"), target: target},
+        success: function (data, status, xhr) {
+            // location.reload();
+            if (data.bloqued) {
+                btn.text("Unblock");
+            } else {
+                btn.text("Bloquer");
             }
         },
         error: function (xhr, status, error) {
@@ -73,6 +97,7 @@ socket.on("reportTrue", function () {
 });
 
 $(window).on('load', function () {
+
     $("#flexiselDemo1").flexisel({
         visibleItems: 3,
         animationSpeed: 1000,
