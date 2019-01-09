@@ -366,13 +366,25 @@
                     </div>
                 </div>
                 <div class="tab-pane" id="visits">
+                    <%= locals.users_that_have_visited_your_profil[0].username %>
+                    <%= locals.users_that_have_visited_your_profil[0].visiteur %>
+
+                    <%= locals.users_that_have_visited_your_profil[1].username %>
+                    <%= locals.users_that_have_visited_your_profil[1].visiteur %>
+
+                    <%= locals.users_that_have_visited_your_profil[2].username %>
+                    <%= locals.users_that_have_visited_your_profil[2].visiteur %>
+
+
+                    <!--todo: Iterer le tableau avec les infirmations recu -->
+
                     <div class="table-users">
                         <div class="headerr">Users</div>
 
                         <table cellspacing="0">
                             <tr>
                                 <th>Picture</th>
-                                <th>Name</th>
+                                <th>Username</th>
                                 <th>Age</th>
                                 <th>Distance</th>
                                 <th width="230">Bio</th>

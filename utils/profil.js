@@ -58,24 +58,34 @@ function profil(req, res) {
                                                 });
                                                 return (check)
                                             });
-                                            res.render('profil', {
-                                                first_name: results[0].first_name,
-                                                last_name: results[0].last_name,
-                                                username: results[0].username,
-                                                email: results[0].email,
-                                                age: results[0].age,
-                                                sex: results[0].gender,
-                                                orientation: results[0].orientation,
-                                                bio: results[0].bio,
-                                                tags: results[0].tags,
-                                                distance: results[0].distance,
-                                                longitude: results[0].longitude,
-                                                latitude: results[0].latitude,
-                                                connected: true,
-                                                profil_img: profil_img,
-                                                files_img: images,
-                                                users_that_liked_you: users
+                                            let sql = "SELECT * FROM `Visites` WHERE `username` = ?";
+                                            conn.query(sql, [results[0].username], function (err, resu) {
+                                                if (error) return (res.status(500).send(err.sqlMessage));
+                                                else if (!empty(resu)) {
+                                                    users_that_have_visited_your_profil = resu;
+                                                    console.log(users_that_have_visited_your_profil);
+                                                    res.render('profil', {
+                                                        first_name: results[0].first_name,
+                                                        last_name: results[0].last_name,
+                                                        username: results[0].username,
+                                                        email: results[0].email,
+                                                        age: results[0].age,
+                                                        sex: results[0].gender,
+                                                        orientation: results[0].orientation,
+                                                        bio: results[0].bio,
+                                                        tags: results[0].tags,
+                                                        distance: results[0].distance,
+                                                        longitude: results[0].longitude,
+                                                        latitude: results[0].latitude,
+                                                        connected: true,
+                                                        profil_img: profil_img,
+                                                        files_img: images,
+                                                        users_that_liked_you: users,
+                                                        users_that_have_visited_your_profil: users_that_have_visited_your_profil
+                                                    });
+                                                }
                                             });
+
                                         }
                                     })
                                 }
