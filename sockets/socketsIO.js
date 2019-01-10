@@ -9,6 +9,10 @@ const sendMail = require('../utils/sendMail');
 const geolib = require('geolib');
 const SocketO = require("../database/socketsOnline.js");
 const dbmessage = require("../database/message.js");
+const notif = require("../database/db_notif.js");
+const dbmatch = require("../database/db_matchs.js");
+const findIfMatch = require('../utils/find_If_matched');
+
 
 let dataToken = [];
 
@@ -146,21 +150,52 @@ module.exports = function(io)
 
         //SOCKET EVENT NOTIF --------------------------------------//
         socket.on('create_notif', async function (data) {
-            console.log('USERNAME : ', data);
+            let niu2 = ","; //c'est mooooooche !!!
+            // console.log('USERNAME : ', data);
             let gparams = await SocketO.Getparams(data.user);
             let niu = await dbUser.dbSelectIdUserByUsername(data.user);
-            let cnotif = "INSERT INTO Notifications (from_user_id, from_username, to_user_id, type, unread, date_n) VALUES( ?, ?, ?, ?, ?, NOW())";
-            db.query(cnotif, [socket.data.user_id, socket.data.username, niu, data.type, 1], function (error) {
-                if (error) throw error;
+                niu2 += await dbUser.dbSelectIdUserByUsername(data.user);
+            if ((data.type == 1 && data.like == "Like")) {
+                notif.CreateNotif(socket, data, niu);
                 io.to(gparams.socketid).emit('notification_box');
-            });
+                if (await dbmatch.WasMatch(socket, niu2) == true) {
+                    data.type = 3;
+                    notif.CreateNotif(socket, data, niu);
+                    notif.CreateNotifMatch(socket, data, niu);
+                    io.to(gparams.socketid).emit('notification_box');
+                    io.to(socket.id).emit('notification_box');
+                }
+            }else if (data.type == 2) {
+                notif.CreateNotif(socket, data, niu);
+                io.to(gparams.socketid).emit('notification_box');
+            }else if (data.type == 1 && await dbmatch.WasMatch(socket, niu2) == true){
+                    data.type = 4;
+                    notif.CreateNotif(socket, data, niu);
+                    io.to(gparams.socketid).emit('notification_box');
+            }
+
+            // notif.CreateNotif(socket, data, niu);
+            // let cnotif = "INSERT INTO Notifications (from_user_id, from_username, to_user_id, type, unread, date_n) VALUES( ?, ?, ?, ?, ?, NOW())";
+            // db.query(cnotif, [socket.data.user_id, socket.data.username, niu, data.type, 1], function (error) {
+            // if (error) throw error;
+
+            // if(data.type == 3 && await notif.AlreadyNotif(socket, data, niu) == false){
+            //     // console.log('etape type 3!!!');
+            //     notif.CreateNotif(socket, data, niu);
+            //     notif.CreateNotifMatch(socket, data, niu);
+            //     io.to(gparams.socketid).emit('notification_box');
+            //     io.to(socket.id).emit('notification_box');
+            // }
+            // else{
+            //     io.to(gparams.socketid).emit('notification_box');
+            // }
         });
 
         socket.on('unread', async function () {
             let getunread = "SELECT COUNT (*) AS nb FROM Notifications WHERE to_user_id=? AND unread=?";
             db.query(getunread, [socket.data.user_id, 1], function (error, results) {
                 if (error) throw error;
-                console.log('Nombre de UNREAD: ', results[0].nb);
+                // console.log('Nombre de UNREAD: ', results[0].nb);
                 socket.emit('getunread', results[0].nb);
             });
         });

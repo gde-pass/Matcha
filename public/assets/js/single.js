@@ -1,5 +1,5 @@
 const socket = io.connect("http://localhost:8080");
-var   like = document.querySelector("#like_btn");
+var   like = document.querySelector("#like_btn")
 // ============ FRONT EVENTS ===========
 
 addEventListener("load", function () {
@@ -107,7 +107,8 @@ like.addEventListener('click' , function(){
     console.log('word :', lastPart );
     socket.emit('create_notif', {
         user: lastPart,
-        type: 1
+        type: 1,
+        like:like.innerHTML
     });
 });
 

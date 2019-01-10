@@ -9,8 +9,8 @@ async function Getparams(data, callback) {
     db.query = util.promisify(db.query);
     try {
         let result = await db.query(sqlsend,[data]);
-        console.log('IN', result.length);
-        console.log('IN', result);
+        // console.log('IN', result.length);
+        // console.log('IN', result);
 		if (result.length == 0) {
             return (false);
         } else {
@@ -34,7 +34,7 @@ async function CheckConv(params){
     db.query = util.promisify(db.query);
     try {
         let result = await db.query(checksql,[params.to_user_id]);
-        console.log('IN 22', result.length);
+        // console.log('IN 22', result.length);
         if (result[0].in_conv == params.from_user_id) {
             return (true);
         } else {

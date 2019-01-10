@@ -10,6 +10,7 @@ router.post("/single/toggle_like", function (req, res) {
 
     function alreadyLiked(tab, compare) {
         let result = tab.filter(ret => { //regarde si jai deja liker cette utilisateur ou non
+
             if (ret.trim() == compare.toString().trim())
                 return (true);
             else
