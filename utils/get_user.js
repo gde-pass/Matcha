@@ -57,60 +57,64 @@ async function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@
             let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id WHERE `username` = ?";
             conn.query(sql, url, function (errors, results, fields) {
                 if (errors) return (res.status(500).send(error.sqlMessage));
-                glob(`*/assets/images/${results[0].username}${results[0].user_id}img*`, function (err, files_img) {
-                    if (empty(files_img)) {
-                        files_img = "";
-                    }
-                    var images = [];
-                    for (let i = 0; i < files_img.length; i++) {
-                        images.push(replace.all("public").from(files_img[i]).with(""));
-                    }
-                    let sql = "SELECT * FROM matchs WHERE user1_id = ?";
-                    conn.query(sql, data.Id, async function (err, resu) {
-                        if (err) return (res.status(500).send(error.sqlMessage));
-                        var filtered = resu[0].users_you_liked.split(',').filter(function (value) {
-                            if (value == results[0].user_id)
-                                return (true)
-                        });
-                        if (filtered == results[0].user_id) {
-                            like = "Dislike";
-                        } else
-                            like = "Like";
-                        findNbEtoile(results[0].user_id, function (err, etoiles) {
-                            check = etoiles;
-                        })
-                        findIfLiked(req, res, data, url, function (err, liked) {
-                            if (err) {
-                                console.log(err)
-                            } else {
-                                asLikedYou = liked;
-                            }
-                        })
-                        findIfBloque(req, res, results[0].user_id, function (err, bloqued) {
-                            if (err) {
-                                console.log(err)
+                if (!empty(results)) {
+                    glob(`*/assets/images/${results[0].username}${results[0].user_id}img*`, function (err, files_img) {
+                        if (empty(files_img)) {
+                            files_img = "";
+                        }
+                        var images = [];
+                        for (let i = 0; i < files_img.length; i++) {
+                            images.push(replace.all("public").from(files_img[i]).with(""));
+                        }
+                        let sql = "SELECT * FROM matchs WHERE user1_id = ?";
+                        conn.query(sql, data.Id, async function (err, resu) {
+                            if (err) return (res.status(500).send(error.sqlMessage));
+                            var filtered = resu[0].users_you_liked.split(',').filter(function (value) {
+                                if (value == results[0].user_id)
+                                    return (true)
+                            });
+                            if (filtered == results[0].user_id) {
+                                like = "Dislike";
                             } else
-                                bloque = bloqued;
-                        })
-                        findIfMach(req, res, data, url, function (err, match) {
-                            if (err) {
-                                console.log(err)
-                            }
-                            if (results[0].profil_img == 0)
-                                like = null;
-                            res.render('single', {
-                                connected: connected,
-                                user: results[0],
-                                etoiles: check,
-                                files_img: images,
-                                like: like,
-                                match: match,
-                                bloqued: bloque,
-                                asLikedYou: asLikedYou
+                                like = "Like";
+                            findNbEtoile(results[0].user_id, function (err, etoiles) {
+                                check = etoiles;
                             })
-                        })
-                    });
-                })
+                            findIfLiked(req, res, data, url, function (err, liked) {
+                                if (err) {
+                                    console.log(err)
+                                } else {
+                                    asLikedYou = liked;
+                                }
+                            })
+                            findIfBloque(req, res, results[0].user_id, function (err, bloqued) {
+                                if (err) {
+                                    console.log(err)
+                                } else
+                                    bloque = bloqued;
+                            })
+                            findIfMach(req, res, data, url, function (err, match) {
+                                if (err) {
+                                    console.log(err)
+                                }
+                                if (results[0].profil_img == 0)
+                                    like = null;
+                                res.render('single', {
+                                    connected: connected,
+                                    user: results[0],
+                                    etoiles: check,
+                                    files_img: images,
+                                    like: like,
+                                    match: match,
+                                    bloqued: bloque,
+                                    asLikedYou: asLikedYou
+                                })
+                            })
+                        });
+                    })
+                }else{
+                    res.redirect('/');
+                }
             })
         }
     }
