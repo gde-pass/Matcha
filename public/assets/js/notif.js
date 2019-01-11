@@ -62,7 +62,7 @@ socket.on('getnotif',function (data) {
     output_notif.innerHTML = "";
     for(var i=0;i<data.length;i++){
         if(data[i].type == 1){
-            output_notif.innerHTML += '<li class="inside">' + data[i].from_username + ' a liké votre profile <p class="dateformat">(' + data[i].date + ')</p></li>';
+            output_notif.innerHTML += '<li class="inside"><a class="font_not" href="./single?' + data[i].from_username + '">' + data[i].from_username + '</a> a liké votre profile <p class="dateformat">(' + data[i].date + ')</p></li>';
         }else if (data[i].type == 2) {
             output_notif.innerHTML += '<li class="inside">' + data[i].from_username + ' vous a envoyé un <a class="font_not" href="./chat?' + data[i].from_username + '">message</a> <p class="dateformat">(' + data[i].date + ')</p></li>';
         }else if (data[i].type == 3) {

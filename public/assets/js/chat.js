@@ -37,15 +37,17 @@ btn.addEventListener('click', function () {
     var url = window.location.href;
     var lastPart = url.split("?").pop();
     console.log("click");
-	socket.emit('chat', {
-		message: message.value,
-        to: Userto.innerHTML,
-        // img: img
-	});
-    socket.emit('create_notif', {
-        user: lastPart,
-        type: 2
-    });
+    if (message.value) {
+        socket.emit('chat', {
+        	message: message.value,
+            to: Userto.innerHTML,
+            // img: img
+        });
+        socket.emit('create_notif', {
+            user: lastPart,
+            type: 2
+        });
+    }
 });
 
 message.addEventListener('keypress', function () {
@@ -88,6 +90,13 @@ socket.on('chat_rep', function (data) {
 	feedback.innerHTML = "";
     output.innerHTML += '<li class="replies"><img src="" alt="" /><p>' + data.message + '</p></li>';
     $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);
+});
+
+socket.on('chatnomatch', function (data) {
+    feedback.innerHTML = "";
+	output.innerHTML += '<li class="sent nomatch"><img src="' + data.img + '" alt="" /><p>Vous ne matché pas avec cette personne</p></li>';
+    $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);
+    $('.message-input input').val(null);
 });
 
 socket.on('typing', function (data) {

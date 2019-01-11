@@ -110,23 +110,27 @@ module.exports = function(io)
         //SOCKET EVENT CHAT--------------------------------------//
 		socket.on('chat', async function (data) {
             let gparams = await SocketO.Getparams(data.to);
+            let niu2 = ","; //c'est mooooooche !!!
+                niu2 += await dbUser.dbSelectIdUserByUsername(data.to);
             let params = {
                 from_user_id: socket.data.user_id,
                 to_user_id: gparams.user_id,
                 message: data.message
                 };
-            if (await dbmessage.InsertMessage(params)){
-                  io.to(socket.id).emit('chat', data);
-                  // io.to(gparams.socketid).emit('notification_box');
-                if (await SocketO.CheckConv(params) === true) {
-                 // PRIVATE MESSAGE---------------------------------------------//
-          			io.to(gparams.socketid).emit('chat_rep', data);
-                  }else {
-                    io.to(gparams.socketid).emit('notifnew', socket.data.username);
-
-                  }
+            if (await dbmatch.IsMatch(socket, niu2) == true ) {
+                if (await dbmessage.InsertMessage(params)){
+                      io.to(socket.id).emit('chat', data);
+                    if (await SocketO.CheckConv(params) === true) {
+                     // PRIVATE MESSAGE---------------------------------------------//
+              			io.to(gparams.socketid).emit('chat_rep', data);
+                      }else {
+                        io.to(gparams.socketid).emit('notifnew', socket.data.username);
+                      }
+                }else {
+                    console.log('error insert db message');
+                }
             }else {
-                console.log('error insert db message');
+                io.to(socket.id).emit('chatnomatch', data);
             }
         });
 
@@ -151,7 +155,6 @@ module.exports = function(io)
         //SOCKET EVENT NOTIF --------------------------------------//
         socket.on('create_notif', async function (data) {
             let niu2 = ","; //c'est mooooooche !!!
-            // console.log('USERNAME : ', data);
             let gparams = await SocketO.Getparams(data.user);
             let niu = await dbUser.dbSelectIdUserByUsername(data.user);
                 niu2 += await dbUser.dbSelectIdUserByUsername(data.user);
@@ -166,36 +169,21 @@ module.exports = function(io)
                     io.to(socket.id).emit('notification_box');
                 }
             }else if (data.type == 2) {
-                notif.CreateNotif(socket, data, niu);
-                io.to(gparams.socketid).emit('notification_box');
+                if (await dbmatch.IsMatch(socket, niu2) == true ) {
+                    notif.CreateNotif(socket, data, niu);
+                    io.to(gparams.socketid).emit('notification_box');
+                }
             }else if (data.type == 1 && await dbmatch.WasMatch(socket, niu2) == true){
                     data.type = 4;
                     notif.CreateNotif(socket, data, niu);
                     io.to(gparams.socketid).emit('notification_box');
             }
-
-            // notif.CreateNotif(socket, data, niu);
-            // let cnotif = "INSERT INTO Notifications (from_user_id, from_username, to_user_id, type, unread, date_n) VALUES( ?, ?, ?, ?, ?, NOW())";
-            // db.query(cnotif, [socket.data.user_id, socket.data.username, niu, data.type, 1], function (error) {
-            // if (error) throw error;
-
-            // if(data.type == 3 && await notif.AlreadyNotif(socket, data, niu) == false){
-            //     // console.log('etape type 3!!!');
-            //     notif.CreateNotif(socket, data, niu);
-            //     notif.CreateNotifMatch(socket, data, niu);
-            //     io.to(gparams.socketid).emit('notification_box');
-            //     io.to(socket.id).emit('notification_box');
-            // }
-            // else{
-            //     io.to(gparams.socketid).emit('notification_box');
-            // }
         });
 
         socket.on('unread', async function () {
             let getunread = "SELECT COUNT (*) AS nb FROM Notifications WHERE to_user_id=? AND unread=?";
             db.query(getunread, [socket.data.user_id, 1], function (error, results) {
                 if (error) throw error;
-                // console.log('Nombre de UNREAD: ', results[0].nb);
                 socket.emit('getunread', results[0].nb);
             });
         });
