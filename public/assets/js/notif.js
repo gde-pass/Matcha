@@ -59,7 +59,7 @@ socket.on('read', function () {
 
 socket.on('getnotif',function (data) {
     console.log('notif data', data);
-    output_notif.innerHTML = "";
+    output_notif.innerHTML = "<li class='inside title'>NOTIFICATIONS</li>";
     for(var i=0;i<data.length;i++){
         if(data[i].type == 1){
             output_notif.innerHTML += '<li class="inside"><a class="font_not" href="./single?' + data[i].from_username + '">' + data[i].from_username + '</a> a liké votre profile <p class="dateformat">(' + data[i].date + ')</p></li>';

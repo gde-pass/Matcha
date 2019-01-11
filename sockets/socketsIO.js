@@ -1,5 +1,6 @@
 "use strict";
 const validator = require("validator");
+// const sanitizeHtml = require("sanitize-html");
 const cookie = require("cookie");
 const db = require("../database/database");
 const jwtUtils = require("../utils/jwt.utils");
@@ -109,6 +110,11 @@ module.exports = function(io)
 
         //SOCKET EVENT CHAT--------------------------------------//
 		socket.on('chat', async function (data) {
+            // data.message = sanitizeHtml(data.message, {
+            //                   allowedTags: false,
+            //                   allowedAttributes: false,
+            //                 });
+            // console.log('CLEAN : ', clean_mess);
             let gparams = await SocketO.Getparams(data.to);
             let niu2 = ","; //c'est mooooooche !!!
                 niu2 += await dbUser.dbSelectIdUserByUsername(data.to);
