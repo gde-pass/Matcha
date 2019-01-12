@@ -42,3 +42,19 @@ ul {
 #photo-gallery {
     width: 100%;
 }
+
+#photos1 {
+   position: relative;
+    bottom: 150px;
+    float: right;
+}
+
+#photos1 img {
+    width: 30%;
+    float: left;
+    display: block;
+    margin: 2px;
+}
+/*#photo-aff{*/
+    /*width:100%;*/
+/*}*/
