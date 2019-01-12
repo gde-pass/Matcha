@@ -12,16 +12,6 @@ el.addEventListener('click', function(){
     socket.emit('getnotif');
 });
 
-// if(match_success){
-//     if(match_success.classList.contains("alert-success")){
-//         var url = window.location.href;
-//         var lastPart = url.split("?").pop();
-//         socket.emit('create_notif', {
-//             user: lastPart,
-//             type: 3
-//         });
-//     }
-// }
 // ---------------SOCKET EVENT------------------------------
 
 // ------------ EMIT---------------
