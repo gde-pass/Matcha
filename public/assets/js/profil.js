@@ -249,6 +249,7 @@ document.getElementById("email").addEventListener("focusout", function () {
     if (this.value.length !== 0 && !checkEmailPattern(this.value)) {
         this.style.borderColor = "red";
         this.style.borderStyle = "inset";
+        socket.emit("focusOutEmailSignUp", this.value);
     } else if (this.value.length !== 0 && checkEmailPattern(this.value)) {
         this.style.borderColor = "green";
         this.style.borderStyle = "solid";
@@ -265,9 +266,11 @@ document.getElementById("username").addEventListener("focusout", function () {
     if (this.value.length !== 0 && !checkUserPattern(this.value)) {
         this.style.borderColor = "red";
         this.style.borderStyle = "inset";
+        socket.emit("focusOutUsernameSignUp", this.value);
     } else if (this.value.length !== 0 && checkUserPattern(this.value)) {
         this.style.borderColor = "green";
         this.style.borderStyle = "solid";
+        socket.emit("focusOutUsernameSignUp", this.value);
     } else {
         this.style.borderColor = "#ccc";
         this.style.borderStyle = "solid";
@@ -506,6 +509,18 @@ socket.on("focusOutEmailSignUpFalse", function (email) {
         type: "error",
         title: "Email already existed",
         text: email + " is already taken !"
+    });
+
+});
+
+socket.on("focusOutUsernameSignUpFalse", function (username) {
+    document.getElementById("username").style.borderColor = "red";
+    document.getElementById("username").style.borderStyle = "inset";
+
+    swal({
+        type: "error",
+        title: "Username already existed",
+        text: username + " is already taken !"
     });
 
 });

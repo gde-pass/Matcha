@@ -20,7 +20,6 @@ module.exports = function(io)
 
 		if (req.headers.cookie) {
 		req.cookie = cookie.parse(req.headers.cookie);
-		// console.log('cookie id: ' , req.headers.cookie);
             if (req.cookie.token) {
                 dataToken = jwtUtils.getUserID(req.cookie.token);
             socket.data = {
@@ -34,7 +33,7 @@ module.exports = function(io)
                 });
             }
         }
-      
+
         socket.on("register", async function (data) {
             if (await check.checkNewUser(data, db)) {
                 dbUser.dbInsertNewUser(data);
@@ -69,6 +68,10 @@ module.exports = function(io)
         }
         });
 
+        socket.on("visite", function (data) {
+            dbUser.visiteUser(data);
+        });
+
         socket.on("report", async function (data) {
             if (await check.reportedUser(data) === true) {
                 socket.emit("reportFalse");
@@ -81,6 +84,10 @@ module.exports = function(io)
 
         socket.on("parametre", async function (data) {
             if (await check.checkSettingsUpdate(data) === false) {
+                socket.emit("settingsUpdateFalse");
+            } else if (await check.checkEmailValidity(data.email, db) === false) {
+                socket.emit("settingsUpdateFalse");
+            } else if (await check.checkUsernameValidity(data.username, db) === false) {
                 socket.emit("settingsUpdateFalse");
             } else {
                 await dbUser.dbSettingsUpdate(data);
@@ -108,6 +115,15 @@ module.exports = function(io)
 
                 if (await check.checkEmailValidity(email, db) === false) {
                     socket.emit("focusOutEmailSignUpFalse", email);
+                }
+            }
+        });
+
+        socket.on("focusOutUsernameSignUp", async function (username) {
+            if (!validator.isEmpty(username) && check.checkUserPattern(username)) {
+
+                if (await check.checkUsernameValidity(username, db) === false) {
+                    socket.emit("focusOutUsernameSignUpFalse", username);
                 }
             }
         });
