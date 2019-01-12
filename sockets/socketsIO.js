@@ -66,10 +66,11 @@ module.exports = function(io)
                     if (error) throw error;
                     let token = jwtUtils.generateTokenForUser(results[0], "login");
                     socket.emit("tokenLogin", token);
-                    let sqlOnline = "INSERT INTO Useronline (user_id, username, online, socketid, in_conv) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE user_id= ?";
-                    db.query(sqlOnline,[results[0].user_id,results[0].username, 'Y', socket.id, 0, results[0].user_id], function (error) {
-                        if (error) throw error;
-                    });
+                    // let sqlOnline = "INSERT INTO Useronline (user_id, username, online, socketid, in_conv) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE user_id= ?";
+                    // db.query(sqlOnline,[results[0].user_id,results[0].username, 'Y', socket.id, 0, results[0].user_id], function (error) {
+                    //     if (error) throw error;
+                    //
+                    // });
             })
         }
         });
@@ -236,8 +237,6 @@ module.exports = function(io)
             });
         });
 
-
-
         socket.on('disconnect', function() {
     		if (req.headers.cookie) {
         		req.cookie = cookie.parse(req.headers.cookie);
@@ -252,7 +251,5 @@ module.exports = function(io)
             }
         console.log('socket '+this.id+' disconnect');
         });
-
-
     });
 };

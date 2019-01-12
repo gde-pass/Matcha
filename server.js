@@ -19,7 +19,7 @@ const api = require("./routes/api");
 //------VARIABLE GLOBALE-------------------------------------------------------------------------------------
 const app = express();
 const portAPP = 8080;
-const hostAPP = "0.0.0.0";
+const hostAPP = "localhost";
 
 initDb.dbInitTables(db, "192.168.99.100", 3306);
 //----VIEW ENGINE--------------------------------------------------------------------------------------------

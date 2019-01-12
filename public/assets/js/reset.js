@@ -45,13 +45,13 @@ document.getElementById("resetButton").addEventListener("click", function () {
 });
 
 socket.on("ResetSuccess", function (token) {
-    window.location.href = 'http://0.0.0.0:8080/login?success';
+    window.location.href = 'http://localhost:8080/login?success';
 });
 
 socket.on("ResetError", function (token) {
-    window.location.href = 'http://0.0.0.0:8080/login?token';
+    window.location.href = 'http://localhost:8080/login?token';
 });
 
 socket.on("resetOK", function (data) {
-    window.location.href = 'http://0.0.0.0:8080/login?email';
+    window.location.href = 'http://localhost:8080/login?email';
 });

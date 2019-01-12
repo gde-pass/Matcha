@@ -46,6 +46,6 @@ document.getElementById("forgotButton").addEventListener("click", function () {
 
 socket.on("forgotSend", function (token) {
     Cookies.set('token', token, {expires: 7});
-    window.location.href = 'http://0.0.0.0:8080/login?reset';
+    window.location.href = 'http://localhost:8080/login?reset';
 
 });

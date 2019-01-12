@@ -120,7 +120,21 @@ async function dbInitTableBloquer(conn) {
         throw error;
     }
 }
+async function dbInitTableListBloquer(conn) {
 
+    const sql = "CREATE TABLE IF NOT EXISTS list_bloquer (" +
+        "    `user_id` INT(10) UNSIGNED NOT NULL," +
+        "    `is_bloqued` int(1) DEFAULT 0," +
+        "    FOREIGN KEY(user_id) REFERENCES Users(user_id)" +
+        ") ENGINE = InnoDB;";
+
+    conn.query = util.promisify(conn.query);
+    try {
+        await conn.query(sql);
+    } catch (error) {
+        throw error;
+    }
+}
 function dbInitTableUseronline(conn) {
 
     const sql3 = "CREATE TABLE IF NOT EXISTS Useronline (" +
@@ -171,9 +185,8 @@ function dbInitTableNotifications(conn) {
     conn.query(sql5, function (err) {
         if (err) throw err;
     });
-
+}
 async function dbInitTableReports(conn) {
-
     const sql = "CREATE TABLE IF NOT EXISTS Reports (" +
         "    `report_id` INT UNSIGNED NOT NULL AUTO_INCREMENT," +
         "    `reported` VARCHAR(15) NOT NULL," +
@@ -204,7 +217,8 @@ async function dbInitTables(conn, hostSQL, portSQL) {
        dbInitTableNotifications(conn);
        await dbInitTableBloquer(conn);
        await dbInitTableReports(conn);
-        await dbInitTableVisites(conn);
+       await dbInitTableVisites(conn);
+       await dbInitTableListBloquer(conn);
     });
 }
 
