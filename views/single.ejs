@@ -65,10 +65,10 @@
             <div class="alert alert-success"><%= "You have matched" %></div>
         <% } %>
         <% if(locals.like != null){ %>
-            <button id="like_btn" class="btn1 btn-1 btn1-1b" type="submit"><%= locals.like %></button>
+            <button id="like_btn" class="btn2 btn-2 btn2-2b" type="submit"><%= locals.like %></button>
         <% } %>
         <% if(locals.match == true){ %>
-            <button id="like_btn" class="btn1 btn-1 btn1-1b" type="submit">Discuter</button>
+            <button id="like_btn" class="btn2 btn-2 btn2-2b" type="submit">Discuter</button>
         <% } %>
         <div class="col-md-8 profile_left">
             <div class="lsidebar span_1_of_profile">
@@ -91,12 +91,12 @@
             </div>
 
             <div class="cont span_2_of_profile">
-                <h4><a href="#"><%= locals.user.first_name + " " + locals.user.last_name%></a></h4>
+                <h4><%= locals.user.first_name + " " + locals.user.last_name%></h4>
                 <table class="profile-fields">
                     <tbody>
                     <tr>
                         <th>Gender</th>
-                        <td><%= locals.user.sex %></td>
+                        <td><%= locals.user.gender %></td>
                     </tr>
                     <tr>
                         <th>Age</th>
@@ -116,6 +116,7 @@
             </div>
             <div id="wrapper">
                 <button class="btn2 btn-2 btn2-2b" id="report" type="button" value="report" name="report">report</button>
+                <button id="bloque_btn" class="btn2 btn-2 btn2-2b" type="submit"><%=locals.bloqued%></button>
                 <form action="/score?<%= locals.user.username %>" method="post">
                     <p class="clasificacion">
                         <input id="radio1" type="radio" name="etoile"

@@ -1904,7 +1904,7 @@ div.register-bottom-grid {
 /* Style the button and place it in the middle of the contai/image */
 .contai .btn {
 	display: block;
-	opacity: 1;
+	opacity: 0;
 	position: absolute;
 	top: 50%;
 	left: 15%;
