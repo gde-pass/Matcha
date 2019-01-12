@@ -20,7 +20,6 @@ module.exports = function(io)
 
 		if (req.headers.cookie) {
 		req.cookie = cookie.parse(req.headers.cookie);
-		// console.log('cookie id: ' , req.headers.cookie);
             if (req.cookie.token) {
                 dataToken = jwtUtils.getUserID(req.cookie.token);
             socket.data = {
@@ -34,7 +33,7 @@ module.exports = function(io)
                 });
             }
         }
-      
+
         socket.on("register", async function (data) {
             if (await check.checkNewUser(data, db)) {
                 dbUser.dbInsertNewUser(data);
