@@ -399,7 +399,7 @@
                             <% for(let i = 0; i < locals.users_that_have_visited_your_profil.length; i++) { %>
                                 <tr>
                                     <td>
-                                        <a href="http://0.0.0.0:8080/single?<%= locals.users_that_have_visited_your_profil[i].visiteur %>"> <%= locals.users_that_have_visited_your_profil[i].visiteur %> </a>
+                                        <a href="http://localhost:8080/single?<%= locals.users_that_have_visited_your_profil[i].visiteur %>"> <%= locals.users_that_have_visited_your_profil[i].visiteur %> </a>
                                     </td>
                                     <td><%= locals.users_that_have_visited_your_profil[i].date_visite %></td>
                                 </tr>
