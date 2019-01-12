@@ -285,6 +285,18 @@ async function dbInitUserDefaultSettings(newUser) {
     db.query(sqlscore, [id], function (err) {
         if (err) throw err;
     });
+
+    let sqlbloque = "INSERT INTO `list_bloquer` (`user_id`) VALUES (?)";
+
+    db.query(sqlbloque, [id], function (err) {
+        if (err) throw err;
+    });
+
+    let sqlbloque2 = "INSERT INTO `users_bloquer` (`user_id`) VALUES (?)";
+
+    db.query(sqlbloque2, [id], function (err) {
+        if (err) throw err;
+    });
 }
 
 async function dbInsertNewUser(newUser) {
@@ -301,8 +313,40 @@ async function dbInsertNewUser(newUser) {
     }
 }
 
+async function reportUser(data) {
+
+    let sql = "INSERT INTO `Reports` (`reported`,`reporter`) VALUES (?, ?)";
+    let reported = data.reported;
+    let reporter = jwtUtils.getUserID(data.cookie).username;
+
+    db.query = util.promisify(db.query);
+
+    try {
+        await db.query(sql, [reported, reporter]);
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function visiteUser(data) {
+
+    let sql = "INSERT INTO `Visites` (`username`,`visiteur`) VALUES (?, ?)";
+
+    let visiteur = jwtUtils.getUserID(data.token).username;
+
+    db.query = util.promisify(db.query);
+
+    try {
+        await db.query(sql, [data.username, visiteur]);
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     dbInsertNewUser: dbInsertNewUser,
     dbSettingsUpdate: dbSettingsUpdate,
-    dbSelectIdUserByUsername: dbSelectIdUserByUsername
+    dbSelectIdUserByUsername: dbSelectIdUserByUsername,
+    reportUser: reportUser,
+    visiteUser: visiteUser,
 };

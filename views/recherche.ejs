@@ -140,14 +140,14 @@
                 <div class="box1">
                     <% for (let i = 0; i < locals.users.length; i++) { /*locals.files_img.forEach(function(el, index){ */ %>
                     <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.4s">
-                        <div class="grid_4"><a href="single?<%= locals.users[i][0].username %>">
-                                <h4><span class="m_3"><%= locals.users[i][0].username %></span></h4>
-                                <img src="<%= locals.users[i][0].profil_img != 0 ? `assets/img/${locals.users[i][0].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                        <div class="grid_4"><a href="single?<%= locals.users[i].username %>">
+                                <h4><span class="m_3"><%= locals.users[i].username %></span></h4>
+                                <img src="<%= locals.users[i].profil_img != 0 ? `assets/img/${locals.users[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
                                      class="img-responsive" alt="" style="width: 100%;">
                                 <ul class="category_desc1">
-                                    <% if(locals.users[i][0].score != 0){ %>
+                                    <% if(locals.users[i].score != 0){ %>
                                         <li class="cate_head">Score:
-                                            <% for(let j = 0; j < locals.users[i][0].score; j++){ %>
+                                            <% for(let j = 0; j < locals.users[i].score; j++){ %>
                                                 <label style="color: #fff;">&#9733;</label>
                                             <% } %>
                                         </li>

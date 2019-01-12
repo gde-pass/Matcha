@@ -3,9 +3,9 @@
 <head>
     <title>Matcha | Single</title>
 
-    <!--<noscript>-->
-        <!--<meta http-equiv="refresh" content="0; url=/nojs"/>-->
-    <!--</noscript>-->
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=/nojs"/>
+    </noscript>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
@@ -82,7 +82,7 @@
             <div class="alert alert-success"><%= "You have matched" %></div>
         <% } %>
         <% if(locals.like != null){ %>
-            <button id="like_btn" class="btn1 btn-1 btn1-1b" type="submit"><%= locals.like %></button>
+            <button id="like_btn" class="btn2 btn-2 btn2-2b" type="submit"><%= locals.like %></button>
         <% } %>
         <% if(locals.match == true){ %>
             <a href="./chat?<%= locals.user.username %>"><button id="like_btn" class="btn1 btn-1 btn1-1b" type="submit">Discuter</button></a>
@@ -108,12 +108,12 @@
             </div>
 
             <div class="cont span_2_of_profile">
-                <h4><a href=""><%= locals.user.first_name + " " + locals.user.last_name%></a></h4>
+                <h4><%= locals.user.first_name + " " + locals.user.last_name%></h4>
                 <table class="profile-fields">
                     <tbody>
                     <tr>
                         <th>Gender</th>
-                        <td><%= locals.user.sex %></td>
+                        <td><%= locals.user.gender %></td>
                     </tr>
                     <tr>
                         <th>Age</th>
@@ -132,6 +132,8 @@
                 <p><%= locals.user.bio %></p>
             </div>
             <div id="wrapper">
+                <button class="btn2 btn-2 btn2-2b" id="report" type="button" value="report" name="report">report</button>
+                <button id="bloque_btn" class="btn2 btn-2 btn2-2b" type="submit"><%=locals.bloqued%></button>
                 <form action="/score?<%= locals.user.username %>" method="post">
                     <p class="clasificacion">
                         <input id="radio1" type="radio" name="etoile"
@@ -184,7 +186,9 @@
     </div>
 </div>
 <script src="http://localhost:8080/socket.io/socket.io.js" language="JavaScript"></script>
+<script src="/node_modules/js-cookie/src/js.cookie.js" language="JavaScript"></script>
 <script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>
+<script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js" language="JavaScript"></script>
 <script src="/assets/js/single.js" language="JavaScript"></script>
 <script src="/assets/js/notif.js" language="JavaScript"></script>
 <script src="/assets/js/jquery.flexisel.js" language="JavaScript"></script>

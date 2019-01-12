@@ -15,7 +15,8 @@ async function dbInitTableUser(conn) {
         "  `longitude` real DEFAULT 0," +
         "  `score` int(5) DEFAULT 0," +
         "  PRIMARY KEY (user_id)," +
-        "  UNIQUE INDEX (email)" +
+        "  UNIQUE INDEX (email)," +
+        "  UNIQUE INDEX (username)" +
         ") ENGINE = InnoDB;";
     conn.query = util.promisify(conn.query);
     try {
@@ -41,6 +42,24 @@ async function dbInitTableSettings(conn) {
         "    `profil_img` VARCHAR(256) DEFAULT 0," +
         "    PRIMARY KEY(user_id)," +
         "    FOREIGN KEY(user_id) REFERENCES Users(user_id)" +
+        ") ENGINE = InnoDB;";
+
+    conn.query = util.promisify(conn.query);
+    try {
+        await conn.query(sql);
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function dbInitTableVisites(conn) {
+
+    const sql = "CREATE TABLE IF NOT EXISTS Visites (" +
+        "    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT," +
+        "    `username` VARCHAR(15) NOT NULL," +
+        "    `visiteur` VARCHAR(15) NOT NULL," +
+        "    `date_visite` TIMESTAMP NOT NULL," +
+        "    PRIMARY KEY(id)" +
         ") ENGINE = InnoDB;";
 
     conn.query = util.promisify(conn.query);
@@ -85,6 +104,23 @@ async function dbInitTableScore(conn) {
     }
 }
 
+async function dbInitTableBloquer(conn) {
+
+    const sql = "CREATE TABLE IF NOT EXISTS users_bloquer (" +
+        "    `user_id` INT UNSIGNED NOT NULL," +
+        "    `is_bloqued` int(1) DEFAULT 0," +
+        "    `bloqued_by` varchar(256) not null," +
+        "    FOREIGN KEY(user_id) REFERENCES Users(user_id)" +
+        ") ENGINE = InnoDB;";
+
+    conn.query = util.promisify(conn.query);
+    try {
+        await conn.query(sql);
+    } catch (error) {
+        throw error;
+    }
+}
+
 function dbInitTableUseronline(conn) {
 
     const sql3 = "CREATE TABLE IF NOT EXISTS Useronline (" +
@@ -118,6 +154,7 @@ function dbInitTableMessages(conn) {
     });
 }
 
+
 function dbInitTableNotifications(conn) {
 
     const sql5 = "CREATE TABLE IF NOT EXISTS Notifications (" +
@@ -134,6 +171,22 @@ function dbInitTableNotifications(conn) {
     conn.query(sql5, function (err) {
         if (err) throw err;
     });
+
+async function dbInitTableReports(conn) {
+
+    const sql = "CREATE TABLE IF NOT EXISTS Reports (" +
+        "    `report_id` INT UNSIGNED NOT NULL AUTO_INCREMENT," +
+        "    `reported` VARCHAR(15) NOT NULL," +
+        "    `reporter` VARCHAR(15) NOT NULL," +
+        "    PRIMARY KEY(report_id)" +
+        ") ENGINE = InnoDB;";
+
+    conn.query = util.promisify(conn.query);
+    try {
+        await conn.query(sql);
+    } catch (error) {
+        throw error;
+    }
 }
 
 async function dbInitTables(conn, hostSQL, portSQL) {
@@ -149,6 +202,9 @@ async function dbInitTables(conn, hostSQL, portSQL) {
        await dbInitTableMatch(conn);
        await dbInitTableScore(conn);
        dbInitTableNotifications(conn);
+       await dbInitTableBloquer(conn);
+       await dbInitTableReports(conn);
+        await dbInitTableVisites(conn);
     });
 }
 

@@ -1,5 +1,12 @@
 const socket = io.connect("http://localhost:8080");
-var   like = document.querySelector("#like_btn")
+
+var   like = document.querySelector("#like_btn");
+
+socket.emit("visite", {
+    token: getCookie("token"),
+    username: window.location.search.slice(1)
+});
+
 // ============ FRONT EVENTS ===========
 
 addEventListener("load", function () {
@@ -11,12 +18,12 @@ function hideURLbar() {
 }
 
 function getCookie(name) {
-    var value = "; " + document.cookie;
-    var parts = value.split("; " + name + "=");
-    if (parts.length == 2) return parts.pop().split(";").shift();
+    let value = "; " + document.cookie;
+    let parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
-$("#like_btn").click(function (e) {
+$("#like_btn").click(function () {
     const btn = $("#like_btn");
 
     let target = window.location.search.replace("?", "");
@@ -27,13 +34,12 @@ $("#like_btn").click(function (e) {
         contentType: "application/x-www-form-urlencoded",
         data: {token: getCookie("token"), target: target},
         success: function (data, status, xhr) {
+
             location.reload();
-            if (data.liked) {// todo recupere si matched, if matched donne enlever la class hide
+            if (data.liked) {
                 btn.text("Dislike");
-                // msg.toggleClass('hide');
             } else {
                 btn.text("Like");
-                // msg.toggleClass('hide');
             }
         },
         error: function (xhr, status, error) {
@@ -44,7 +50,61 @@ $("#like_btn").click(function (e) {
     })
 });
 
+$("#bloque_btn").click(function (e) {
+    const btn = $("#bloque_btn");
+
+    let target = window.location.search.replace("?", "");
+    $.ajax({
+        url: "/api/single/toggle_bloque",
+        type: "POST",
+        contentType: "application/x-www-form-urlencoded",
+        data: {token: getCookie("token"), target: target},
+        success: function (data, status, xhr) {
+            // location.reload();
+            if (data.bloqued) {
+                btn.text("Unblock");
+            } else {
+                btn.text("Bloquer");
+            }
+        },
+        error: function (xhr) {
+            if (xhr.responseJSON.error === "token") {
+                window.location = "/";
+            }
+        }
+    })
+});
+
+$("#report").click(function() {
+    let cookie = Cookies.get("token");
+    let reported = window.location.search.slice(1);
+
+    socket.emit("report", {
+        cookie: cookie,
+        reported: reported.slice(1)
+    });
+
+
+});
+
+socket.on("reportFalse", function () {
+    swal({
+        type: "error",
+        title: "Hey !",
+        html: "You already report this user !",
+    });
+});
+
+socket.on("reportTrue", function () {
+    swal({
+        type: "success",
+        title: "Thank You !",
+        html: "We will have a look on this profil",
+    });
+});
+
 $(window).on('load', function () {
+
     $("#flexiselDemo1").flexisel({
         visibleItems: 3,
         animationSpeed: 1000,
@@ -99,6 +159,7 @@ $(window).on('load', function () {
 
 // ============ /FRONT EVENTS ===========
 
+
 // ============ /SOCKET EVENTS ===========
 
 like.addEventListener('click' , function(){
@@ -123,3 +184,4 @@ like.addEventListener('click' , function(){
 
 
 // ============ /SOCKET EVENTS ===========
+

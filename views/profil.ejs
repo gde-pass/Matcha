@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="/node_modules/bootstrap-slider/dist/css/bootstrap-slider.min.css" rel='stylesheet' type='text/css'/>
+    <link href="/assets/css/profil.css" rel='stylesheet' type='text/css'/>
     <script src="/assets/js/gallery.js" language="JavaScript"></script>
 
 </head>
@@ -114,6 +115,7 @@
                 <li><a data-toggle="tab" href="#settings">Parametres</a></li>
                 <li><a data-toggle="tab" href="#gallery">Gallery</a></li>
                 <li><a data-toggle="tab" href="#users">Users that have liked your profil</a></li>
+                <li><a data-toggle="tab" href="#visits">Users that have visited your profil</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="home">
@@ -242,7 +244,8 @@
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label for="email"><h4>Email</h4></label>
-                            <input type="email" class="form-control" name="email" id="email"
+                            <input type="email" class="form-control" style="text-transform:lowercase" name="email"
+                                   id="email"
                                    placeholder="<%= locals.email %>" title="Enter your email.">
                         </div>
                     </div>
@@ -279,8 +282,18 @@
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label for="tags"><h4>Tags</h4></label>
-                            <input type="text" class="form-control" id="tags" placeholder="<%= locals.tags %>"
+                            <input type="text" list="browsers" class="form-control" id="tags"
+                                   placeholder="<%= locals.tags %>"
                                    title="Choose your tags">
+                            <datalist id="browsers">
+                                <option value="#chien ">
+                                <option value="#chat ">
+                                <option value="#bigCock ">
+                                <option value="#foodLover ">
+                                <option value="#travel ">
+                                <option value="#sport ">
+                                <option value="#aventure ">
+                            </datalist>
                         </div>
                     </div>
                     <div class="form-group">
@@ -303,16 +316,20 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-6">
+                            <form>
                             <label for="password"><h4>Password *</h4></label>
                             <input type="password" class="form-control" name="password" id="password"
-                                   placeholder="******" title="Enter your password.">
+                                   placeholder="******" title="Enter your password." autocomplete="on">
+                            </form>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-6">
+                            <form>
                             <label for="password2"><h4>Verify *</h4></label>
                             <input type="password" class="form-control" name="password2" id="password2"
-                                   placeholder="******" title="Confirm your password.">
+                                   placeholder="******" title="Confirm your password." autocomplete="on">
+                            </form>
                         </div>
                     </div>
 
@@ -358,15 +375,37 @@
                         </div>
                     </div>
 
+
                     <div class="form-group">
                         <div class="col-xs-12">
                             <br>
                             <button id="save" class="btn btn-lg btn-success" type="submit"><i
                                         class="glyphicon glyphicon-ok-sign"></i> Save
                             </button>
-                            <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset
-                            </button>
                         </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="visits">
+
+                    <div class="table-users">
+                        <div class="headerr">Users</div>
+
+                        <table cellspacing="0">
+                            <tr>
+                                <th>Username</th>
+                                <th>Date Visite</th>
+                            </tr>
+
+                            <% for(let i = 0; i < locals.users_that_have_visited_your_profil.length; i++) { %>
+                                <tr>
+                                    <td>
+                                        <a href="http://0.0.0.0:8080/single?<%= locals.users_that_have_visited_your_profil[i].visiteur %>"> <%= locals.users_that_have_visited_your_profil[i].visiteur %> </a>
+                                    </td>
+                                    <td><%= locals.users_that_have_visited_your_profil[i].date_visite %></td>
+                                </tr>
+
+                            <% } %>
+                        </table>
                     </div>
                 </div>
             </div>

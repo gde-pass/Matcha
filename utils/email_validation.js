@@ -11,7 +11,7 @@ function email_validation(req, res, token) {
             error: "Token is not valid"
         })
     }
-    else if (data.type < 0 || data.type != "validation") {
+    else if (data.type < 0 || data.type !== "validation") {
         res.render('validation', {
             error: "Token is not valid"
         })
@@ -24,7 +24,7 @@ function email_validation(req, res, token) {
                     error: "There are no users for ths Token"
                 })
             }
-            else if (results[0].checked == 1) {
+            else if (results[0].checked === 1) {
                 res.render('validation', {
                     success: "Your account is already activated"
                 })

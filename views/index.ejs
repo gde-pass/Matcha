@@ -125,9 +125,9 @@
                                 <img src="<%= locals.suggestion[i].profil_img != 0 ? `assets/img/${locals.suggestion[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
                                      class="img-responsive" alt="" style="width: 100%">
                                 <ul class="category_desc1">
-                                    <% if(locals.users[i].score != 0){ %>
+                                    <% if(locals.suggestion[i].score != 0){ %>
                                         <li class="cate_head">Score:
-                                            <% for(let j = 0; j < locals.users[i].score; j++){ %>
+                                            <% for(let j = 0; j < locals.suggestion[i].score; j++){ %>
                                                 <label style="color: #fff;">&#9733;</label>
                                             <% } %>
                                         </li>

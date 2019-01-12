@@ -134,6 +134,7 @@ document.getElementById("sign_up_user").addEventListener("focusout", function ()
     if (checkUserPattern(this.value)) {
         this.style.borderColor = "green";
         this.style.borderStyle = "solid";
+        socket.emit("focusOutUsernameSignUp", this.value);
     }
     else {
         this.style.borderColor = "red";
@@ -256,6 +257,18 @@ socket.on("focusOutEmailSignUpFalse", function (email) {
         type: "error",
         title: "Email already existed",
         text: email + " is already taken !"
+    });
+
+});
+
+socket.on("focusOutUsernameSignUpFalse", function (username) {
+    document.getElementById("sign_up_user").style.borderColor = "red";
+    document.getElementById("sign_up_user").style.borderStyle = "inset";
+
+    swal({
+        type: "error",
+        title: "Username already existed",
+        text: username + " is already taken !"
     });
 
 });
