@@ -13,6 +13,7 @@
     <link href="/assets/css/style.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/flexslider.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/animate.css" rel='stylesheet' type='text/css'/>
+    <link href="/assets/css/score.css" rel='stylesheet' type='text/css'/>
 
 </head>
 <body>
@@ -64,58 +65,74 @@
 </div>
 <div class="content_bottom">
     <div class="container">
-        <div class="box1">
-            <% for (let i = 0; i < locals.users.length; i++) { /*locals.files_img.forEach(function(el, index){ */%>
-            <div class="col-md-4 wow fadeInLeft" data-wow-delay="0.4s">
-                <div class="grid_4"><a href="single?<%= locals.users[i].username%>">
-                        <h4><span class="m_3"><%= locals.users[i].username%></span></h4>
-                        <img src="<%= `assets/img/${locals.users[i].username}${locals.users[i].user_id}profil.jpg`%>" class="img-responsive" alt=""/>
-                        <img src="<%= `assets/img/${locals.users[i].username}${locals.users[i].user_id}profil.jpeg`%>" class="img-responsive" alt=""/>
-                        <ul class="category_desc">
-                            <li class="cate_head">Mettre score</li>
-                            <li class="cate_right">
-                                <ul class="list1">
-                                    <li><i class="heart"> </i></li>
-                                    <li><i class="heart"> </i></li>
-                                    <li><i class="heart"> </i></li>
-                                    <li><i class="heart"> </i></li>
+        <% if(locals.users != 1){ %>
+            <a href="recherche">
+                <button class="btn1 btn-1 btn1-1b" style="float: right">recherche</button>
+            </a>
+            <fieldset>
+                <legend>Les utilsateurs fait pour vous:</legend>
+                <div class="box1">
+                    <% for (let i = 0; i < locals.users.length; i++) { /*locals.files_img.forEach(function(el, index){ */%>
+                    <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.4s">
+                        <div class="grid_4"><a href="single?<%= locals.users[i].username%>">
+                                <h4><span class="m_3"><%= locals.users[i].username%></span></h4>
+                                <img src="<%= locals.users[i].profil_img != 0 ? `assets/img/${locals.users[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                                     class="img-responsive" alt="" style="width: 100%;">
+                                <ul class="category_desc1">
+                                    <% if(locals.users[i].score != 0){ %>
+                                        <li class="cate_head">Score:
+                                            <% for(let j = 0; j < locals.users[i].score; j++){ %>
+                                                <label style="color: #fff;">&#9733;</label>
+                                            <% } %>
+                                        </li>
+                                    <% }else{ %>
+                                        <li class="cate_head" style="height: 30px">No score</li>
+                                    <% } %>
+                                    <div class="clearfix"></div>
                                 </ul>
-                            </li>
-                            <div class="clearfix"></div>
-                        </ul>
-                        <h5>Full Profile</h5>
-                    </a></div>
-            </div>
-            <% };%>
-            <div class="clearfix"></div>
-        </div>
-        <div class='span1'>
-            <select class="dropdown" tabindex="10" data-settings='{"wrapperClass":"metro1"}'>
-                <option value="0">More Profiles</option>
-                <option value="1">Tincidunt</option>
-                <option value="2">Magna</option>
-                <option value="3">Lectores</option>
-                <option value="4">Insitam</option>
-                <option value="5">Claritatem</option>
-                <option value="5"></option>
-                <option value="5"></option>
-            </select>
-        </div>
+                            </a></div>
+                        <br>
+                        <br>
+                    </div>
+                    <% }; %>
+                    <div class="clearfix"></div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Nos suggestion pour vous:</legend>
+                <div class="box1">
+                    <% for (let i = 0; i < locals.suggestion.length; i++) { /*locals.files_img.forEach(function(el, index){ */ %>
+                    <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.4s">
+                        <div class="grid_4"><a href="single?<%= locals.suggestion[i].username %>">
+                                <h4><span class="m_3"><%= locals.suggestion[i].username %></span></h4>
+                                <img src="<%= locals.suggestion[i].profil_img != 0 ? `assets/img/${locals.suggestion[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                                     class="img-responsive" alt="" style="width: 100%">
+                                <ul class="category_desc1">
+                                    <% if(locals.users[i].score != 0){ %>
+                                        <li class="cate_head">Score:
+                                            <% for(let j = 0; j < locals.users[i].score; j++){ %>
+                                                <label style="color: #fff;">&#9733;</label>
+                                            <% } %>
+                                        </li>
+                                    <% }else{ %>
+                                        <li class="cate_head" style="height: 30px">No score</li>
+                                    <% } %>
+                                    <div class="clearfix"></div>
+                                </ul>
+                            </a></div>
+                    </div>
+                    <% }; %>
+                    <div class="clearfix"></div>
+                </div>
+            </fieldset>
+        <% }else{ %>
+            <a href="profil"><h1>Please fill in your parameters to discover the love of your life</h1>
+                <button class="btn1 btn-1 btn1-1b" style="margin-left: 35%;margin-right: 25%;">Fill my parameters
+                </button>
+            </a>
+        <% } %>
         <div class='clearfix'></div>
-        <div class="search wow bounceInUp" data-wow-delay="0.4s">
-            <h3>Looking for someone ? </h3>
-            <form>
-		 <span>
-		   <div class="search-box">
-		   	<i class="search-icon"> </i>
-		    <input type="text" value="Type something here..." onfocus="this.value = '';"
-                   onblur="if (this.value == '') {this.value = 'Type something here...';}">
-		   </div>
-		   <input name="submit" type="submit" id="submit" value="Search">
-		 </span>
-                <div class="clearfix"></div>
-            </form>
-        </div>
+
     </div>
 </div>
 <div class="footer">

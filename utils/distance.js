@@ -14,7 +14,7 @@ function distance(distance, token){
     }else {
         let sql = "SELECT * FROM Users WHERE email=?";//todo avec le token
         conn.query(sql, [data.email], function (error, results, fields) {
-            if (error) throw error;
+            if (error)  return (res.status(500).end());
             if (empty(results)) {
                 console.log('erreur probleme dans distance.js');
                 // res.render('index');

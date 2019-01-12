@@ -162,6 +162,30 @@ async function dbFirstNameUpdate(first_name, id) {
     }
 }
 
+async function dbLongitudeUpdate(longitude, id) {
+
+    let sql = "UPDATE `Users` SET `longitude` = ? WHERE `user_id` = ?;";
+    db.query = util.promisify(db.query);
+
+    try {
+        await db.query(sql, [longitude, id])
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function dbLatitudeUpdate(latitude, id) {
+
+    let sql = "UPDATE `Users` SET `latitude` = ? WHERE `user_id` = ?;";
+    db.query = util.promisify(db.query);
+
+    try {
+        await db.query(sql, [latitude, id])
+    } catch (error) {
+        throw error;
+    }
+}
+
 
 async function dbSettingsUpdate(data) {
 
@@ -206,6 +230,12 @@ async function dbSettingsUpdate(data) {
     if (data.ageRangeMax.length !== 0) {
         await dbAgeRangeMaxUpdate(data.ageRangeMax, id);
     }
+    if (data.longitude.length !== 0) {
+        await dbLongitudeUpdate(data.longitude, id);
+    }
+    if (data.latitude.length !== 0) {
+        await dbLatitudeUpdate(data.latitude, id);
+    }
 }
 
 
@@ -230,6 +260,18 @@ async function dbInitUserDefaultSettings(newUser) {
     db.query(sql, [id], function (err) {
         if (err) throw err;
     });
+
+    let sqlmatch = "INSERT INTO `matchs` (`user1_id`) VALUES (?)";
+
+    db.query(sqlmatch, [id], function (err) {
+        if (err) throw err;
+    });
+
+    let sqlscore = "INSERT INTO `score` (`current_user_id`) VALUES (?)";
+
+    db.query(sqlscore, [id], function (err) {
+        if (err) throw err;
+    });
 }
 
 async function dbInsertNewUser(newUser) {
@@ -246,7 +288,39 @@ async function dbInsertNewUser(newUser) {
     }
 }
 
+async function reportUser(data) {
+
+    let sql = "INSERT INTO `Reports` (`reported`,`reporter`) VALUES (?, ?)";
+    let reported = data.reported;
+    let reporter = jwtUtils.getUserID(data.cookie).username;
+
+    db.query = util.promisify(db.query);
+
+    try {
+        await db.query(sql, [reported, reporter]);
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function visiteUser(data) {
+
+    let sql = "INSERT INTO `Visites` (`username`,`visiteur`) VALUES (?, ?)";
+
+    let visiteur = jwtUtils.getUserID(data.token).username;
+
+    db.query = util.promisify(db.query);
+
+    try {
+        await db.query(sql, [data.username, visiteur]);
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     dbInsertNewUser: dbInsertNewUser,
     dbSettingsUpdate: dbSettingsUpdate,
+    reportUser: reportUser,
+    visiteUser: visiteUser,
 };

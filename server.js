@@ -12,8 +12,9 @@ const cookieParser = require('cookie-parser');
 const index = require('./routes/routes');
 const initDb = require("./database/init.js");
 const db = require("./database/database");
-const profil = require('./utils/profil');
-const upload = require('./utils/upload_profil');
+// const profil = require('./utils/profil');
+// const upload = require('./utils/upload_profil');
+const api = require("./routes/api");
 
 //------VARIABLE GLOBALE-------------------------------------------------------------------------------------
 const app = express();
@@ -53,7 +54,11 @@ const io = require("socket.io").listen(app.listen(portAPP, hostAPP, function (er
     console.log("Matcha is running at http://%s:%s !", hostAPP, portAPP);
 }));
 //-----ROUTE-------------------------------------------------------------------------------------------------
+app.use('/api', api);
 app.use('/', index);
-app.use('/profil', profil);
-app.use('/upload', upload);
+app.use(function (req, res) {
+    res.render("404");
+});
+// app.use('/profil', profil);
+// app.use('/upload', upload);
 require("./sockets/socketsIO")(io);

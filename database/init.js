@@ -13,8 +13,10 @@ async function dbInitTableUser(conn) {
         "  `checked` BOOLEAN NOT NULL DEFAULT FALSE," +
         "  `latitude` real DEFAULT 0," +
         "  `longitude` real DEFAULT 0," +
+        "  `score` int(5) DEFAULT 0," +
         "  PRIMARY KEY (user_id)," +
-        "  UNIQUE INDEX (email)" +
+        "  UNIQUE INDEX (email)," +
+        "  UNIQUE INDEX (username)" +
         ") ENGINE = InnoDB;";
     conn.query = util.promisify(conn.query);
     try {
@@ -23,6 +25,7 @@ async function dbInitTableUser(conn) {
         throw error;
     }
 }
+
 
 async function dbInitTableSettings(conn) {
 
@@ -36,10 +39,65 @@ async function dbInitTableSettings(conn) {
         "    `age` TINYINT UNSIGNED DEFAULT 18 NOT NULL," +
         "    `ageRangeMin` TINYINT UNSIGNED DEFAULT 18 NOT NULL," +
         "    `ageRangeMax` TINYINT UNSIGNED DEFAULT 100 NOT NULL," +
+        "    `profil_img` VARCHAR(256) DEFAULT 0," +
         "    PRIMARY KEY(user_id)," +
         "    FOREIGN KEY(user_id) REFERENCES Users(user_id)" +
         ") ENGINE = InnoDB;";
   
+    conn.query = util.promisify(conn.query);
+    try {
+        await conn.query(sql);
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function dbInitTableVisites(conn) {
+
+    const sql = "CREATE TABLE IF NOT EXISTS Visites (" +
+        "    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT," +
+        "    `username` VARCHAR(15) NOT NULL," +
+        "    `visiteur` VARCHAR(15) NOT NULL," +
+        "    `date_visite` TIMESTAMP NOT NULL," +
+        "    PRIMARY KEY(id)" +
+        ") ENGINE = InnoDB;";
+
+    conn.query = util.promisify(conn.query);
+    try {
+        await conn.query(sql);
+    } catch (error) {
+        throw error;
+    }
+}
+
+
+
+async function dbInitTableMatch(conn) {
+
+    const sql = "CREATE TABLE IF NOT EXISTS matchs (" +
+        "    `user1_id` INT UNSIGNED NOT NULL," +
+        "    `users_you_liked` varchar(100) not null," +
+        "    `users_that_liked_you` varchar(100) not null," +
+        "    FOREIGN KEY(user1_id) REFERENCES Users(user_id)" +
+        ") ENGINE = InnoDB;";
+
+    conn.query = util.promisify(conn.query);
+    try {
+        await conn.query(sql);
+    } catch (error) {
+        throw error;
+    }
+}
+
+async function dbInitTableScore(conn) {
+
+    const sql = "CREATE TABLE IF NOT EXISTS score (" +
+        "    `current_user_id` INT UNSIGNED NOT NULL," +
+        "    `score` int(11) not null," +
+        "    `user_that_is_scored` int(11) not null," +
+        "    FOREIGN KEY(current_user_id) REFERENCES Users(user_id)" +
+        ") ENGINE = InnoDB;";
+
     conn.query = util.promisify(conn.query);
     try {
         await conn.query(sql);
@@ -81,6 +139,23 @@ function dbInitTableMessages(conn) {
     });
 }
 
+async function dbInitTableReports(conn) {
+
+    const sql = "CREATE TABLE IF NOT EXISTS Reports (" +
+        "    `report_id` INT UNSIGNED NOT NULL AUTO_INCREMENT," +
+        "    `reported` VARCHAR(15) NOT NULL," +
+        "    `reporter` VARCHAR(15) NOT NULL," +
+        "    PRIMARY KEY(report_id)" +
+        ") ENGINE = InnoDB;";
+
+    conn.query = util.promisify(conn.query);
+    try {
+        await conn.query(sql);
+    } catch (error) {
+        throw error;
+    }
+}
+
 async function dbInitTables(conn, hostSQL, portSQL) {
 
     conn.query("SELECT 1", async function (err) {
@@ -91,6 +166,10 @@ async function dbInitTables(conn, hostSQL, portSQL) {
        await dbInitTableSettings(conn);
        dbInitTableUseronline(conn);
        dbInitTableMessages(conn);
+       await dbInitTableMatch(conn);
+       await dbInitTableScore(conn);
+       await dbInitTableReports(conn);
+        await dbInitTableVisites(conn);
     });
 }
 

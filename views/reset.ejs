@@ -1,11 +1,7 @@
 <html>
 <head>
 
-    <title>Matcha | Login</title>
-
-    <noscript>
-        <meta http-equiv="refresh" content="0; url=/nojs"/>
-    </noscript>
+    <title>Matcha | forgot password</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
@@ -40,40 +36,21 @@
 </div>
 <div class="profile_banner">
     <div class="container">
-        <h3>Login</h3>
+        <h3>Reset password</h3>
     </div>
 </div>
 <div class='profiles'>
     <div class="container">
         <div class="account_grid">
-            <%if (locals.error){%>
-            <div class="alert alert-danger"><%=locals.error%></div>
-            <%}%>
-            <%if (locals.success){%>
-            <div class="alert alert-success"><%=locals.success%></div>
-            <%}%>
-            <div class="col-md-6 login-left">
-                <h3>NEW CUSTOMERS</h3>
-                <p>By creating an account with our store, you will be able to move through the checkout process faster,
-                   store multiple shipping addresses, view and track your orders in your account and more.</p>
-                <a class="acount-btn" href="/register">Create an Account</a>
-            </div>
             <div class="col-md-6 login-right">
-                <h3>REGISTERED CUSTOMERS</h3>
-                <p>If you have an account with us, please log in.</p>
-
-                <form>
-                    <div>
-                        <span>Email Address<label>*</label></span>
-                        <input id="login_email" type="text">
-                    </div>
-                    <div>
-                        <span>Password<label>*</label></span>
-                        <input id="login_password" type="password">
-                    </div>
-                    <a class="forgot" href="/forgot">Forgot Your Password?</a>
-                    <input id="loginButton" type="submit" value="Login">
-                </form>
+                <h3>Reset your password</h3>
+                <p>Please enter your new password.</p>
+                <div>
+                    <span>New password<label>*</label></span>
+                    <input id="reset_password" type="password">
+                </div>
+                <br/>
+                <input id="resetButton" type="submit" value="Reset">
             </div>
             <div class="clearfix"></div>
         </div>
@@ -84,12 +61,6 @@
         <div class="copy wow fadeInUp" data-wow-delay="0.4s">
             <p>&copy; 2018 Matcha</p>
         </div>
-        <div class="social wow fadeInRight" data-wow-delay="0.4s">
-            <ul class="footer_social">
-                <li><a href="#"> <i class="fb"> </i> </a></li>
-                <li><a href="#"> <i class="tw"> </i> </a></li>
-            </ul>
-        </div>
         <div class='clearfix'></div>
     </div>
 </div>
@@ -98,5 +69,5 @@
 <script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>
 <script src="/node_modules/sweetalert2/dist/sweetalert2.all.min.js" language="JavaScript"></script>
 <script src="/node_modules/js-cookie/src/js.cookie.js" language="JavaScript"></script>
-<script src="/assets/js/login.js" language="JavaScript"></script>
+<script src="/assets/js/reset.js" language="JavaScript"></script>
 </html>

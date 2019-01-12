@@ -1,17 +1,23 @@
 const multer = require('multer');
 const path = require('path');
 let jwtUtils = require("./jwt.utils");
+const glob = require('glob');
 
 function up_img(req,res,file) {
-
     let data = jwtUtils.getUserID(req.cookies.token);
     if (data.email < 0) {
         res.render('profil');
-    }
-    if (data.type < 0 || data.type != "login") {
+    } else if (data.type < 0 || data.type != "login") {
         res.render('profil');
     }
     else {
+        function checkFileNb(file, callback) {
+            glob(`*/assets/images/${data.username}${data.Id}img*`, function (err, files) {
+                if (files.length >= 5) {
+                    callback('Error: To many images! 4 images max');
+                }
+            });
+        }
         const storage = multer.diskStorage({
             destination: './public/assets/images/',
             filename: function (req, file, callback) {
@@ -22,9 +28,10 @@ function up_img(req,res,file) {
 
         const upload = multer({
             storage: storage,
-            limits: {fileSize: 1000000},
+            limits: {fileSize: 1000000000},
             fileFilter: function (req, file, callback) {
                 checkFileType(file, callback);
+                checkFileNb(file, callback);
             }
         }).single('upload'); // on peut mettre "Array()" pour uploade plusieur image
 
@@ -42,9 +49,7 @@ function up_img(req,res,file) {
 
         upload(req, res, (err) => {
             if (err) {
-                res.render('profil', {
-                    msg: err
-                });
+                res.send(err); //todo trouver comment envoyer se message a l'HTML
             }
             else {
                 if (req.file == undefined) {

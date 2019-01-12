@@ -1,8 +1,10 @@
 "use strict";
+let jwtUtils = require("../utils/jwt.utils");
 const validator = require("validator");
 const util = require("util");
 const bcrypt = require("bcrypt-nodejs");
 const db = require("./database");
+const empty = require("is-empty");
 
 
 // ============= SETTINGS =============
@@ -24,6 +26,8 @@ function checkSettingsUpdate(data) {
         (data.ageRangeMin.length !== 0 && !checkAgePattern(data.ageRangeMin)) ||
         (data.ageRangeMax !== 0 && !checkAgePattern(data.ageRangeMax)) ||
         (data.password.length !== 0 && !checkPasswordPattern(data.password)) ||
+        (data.longitude.length !== 0 && !checkLongitude(data.longitude)) ||
+        (data.latitude.length !== 0 && !checkLatitude(data.latitude)) ||
         (data.password2.length !== 0 && !checkPasswordMatch(data.password, data.password2))) {
         return (false);
     } else {
@@ -33,6 +37,33 @@ function checkSettingsUpdate(data) {
 
 // ============= /SETTINGS =============
 
+/**
+ * @return {boolean}
+ */
+function checkLatitude(value) {
+
+    if (value < -90 || value > 90 || isNaN(value)) {
+        return (false);
+    } else {
+        return (true);
+    }
+}
+
+/**
+ * @return {boolean}
+ */
+function checkLongitude(value) {
+
+    if (value < -180 || value > 180 || isNaN(value)) {
+        return (false);
+    } else {
+        return (true);
+    }
+}
+
+/**
+ * @return {boolean}
+ */
 function checkAgePattern(value) {
 
     if (value < 18 || value > 100 || isNaN(value)) {
@@ -198,6 +229,27 @@ async function checkEmailValidity(email, pool) {
 /**
  * @return {boolean}
  */
+async function checkUsernameValidity(username, pool) {
+
+    let sql = "SELECT `username` FROM Users WHERE `username`= ?;";
+
+    pool.query = util.promisify(pool.query);
+    try {
+        let result = await pool.query(sql, [username]);
+        if (result.length > 0) {
+            return (false);
+        } else {
+            return (true);
+        }
+    } catch (error) {
+        throw error;
+    }
+
+}
+
+/**
+ * @return {boolean}
+ */
 async function checkNewUser(newUser, pool) {
 
     if (checkEmailPattern(newUser.email) && await checkEmailValidity(newUser.email, pool) &&
@@ -239,6 +291,49 @@ async function checkLoginUser(user) {
 /**
  * @return {boolean}
  */
+async function checkReset(user) {
+    if (!checkPasswordPattern(user.password)) {
+        return (false);
+    } else {
+        let data = jwtUtils.getUserID(user.token);
+        if (data.email < 0) {
+            return (false)
+        }
+        else if (data.type < 0 || data.type != "reset") {
+            return (false)
+        }
+        let sql = 'SELECT * FROM Users WHERE email=?';
+        db.query = util.promisify(db.query);
+
+        try {
+            let result = await db.query(sql, [data.email]);
+            if (!empty(result[0])) {
+                let hash = bcrypt.hashSync(user.password);
+                let sqlReset = 'UPDATE Users SET password=? WHERE email=?';
+                db.query = util.promisify(db.query);
+                console.log(data.email);
+                try {
+                    let result = await db.query(sqlReset, [hash, data.email]);
+                    if (!empty(result)) {
+                        return (true)
+                    } else {
+                        return (false)
+                    }
+                } catch (error) {
+                    throw error;
+                }
+            } else {
+                return (false)
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+}
+
+/**
+ * @return {boolean}
+ */
 async function checkActivatedUser(data) {
 
     let sql = "SELECT `checked` FROM `Users` WHERE `email` = ?;";
@@ -255,11 +350,36 @@ async function checkActivatedUser(data) {
     }
 }
 
+
+/**
+ * @return {boolean}
+ */
+async function reportedUser(data) {
+
+    let sql = "SELECT * FROM `Reports` WHERE `reported` = ? AND `reporter` = ?;";
+    db.query = util.promisify(db.query);
+
+    try {
+        let result = await db.query(sql, [data.reported, jwtUtils.getUserID(data.cookie).username]);
+        if (result[0]) {
+            return (true);
+        } else {
+            return (false);
+        }
+    } catch (error) {
+        throw error;
+    }
+}
+
 module.exports = {
     checkEmailValidity: checkEmailValidity,
+    checkUsernameValidity: checkUsernameValidity,
     checkEmailPattern: checkEmailPattern,
     checkNewUser: checkNewUser,
     checkLoginUser: checkLoginUser,
     checkActivatedUser: checkActivatedUser,
     checkSettingsUpdate: checkSettingsUpdate,
+    checkReset: checkReset,
+    reportedUser: reportedUser,
+    checkUserPattern: checkUserPattern,
 };

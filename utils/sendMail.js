@@ -1,6 +1,6 @@
 let nodemailer = require ('nodemailer');
 
-function sendMail(email, token) {
+function sendMail(email, token, path) {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         secure: false,
@@ -18,12 +18,12 @@ function sendMail(email, token) {
         form: "matcha",
         to: email,
         subject: 'activate your account',
-        text: `Please click on this link to activate your account "http://localhost:8080/validation/${token}"`
+        text: `Please click on this link to activate your account "http://localhost:8080/${path}/${token}"`
     };
 
     transporter.sendMail(mailOption, (error) => {
         if (error) {
-            throw error;
+            console.log(error);
         }
     });
 }

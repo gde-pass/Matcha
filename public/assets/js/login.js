@@ -19,7 +19,29 @@ if (window.location.search === '?email') {
         text: "Good job ! You just receive a email with a activation link please check your maibox."
     });
 }
+if (window.location.search === '?reset') {
+    swal({
+        type: "success",
+        title: "Confirmation email",
+        text: "You just receive a email with link the reset your password please check your maibox."
+    });
+}
 
+if (window.location.search === '?token') {
+    swal({
+        type: "error",
+        title: "Invalid token",
+        text: "Your token is not valide."
+    });
+}
+
+if (window.location.search === '?success') {
+    swal({
+        type: "success",
+        title: "Reset password",
+        text: "Your password as been changed with success."
+    });
+}
 // ============ /FRONT EVENTS ===========
 
 // =========== CHECK FUNCTIONS ===========
@@ -92,23 +114,14 @@ document.getElementById("loginButton").addEventListener("click", function () {
         socket.emit("login", {
             email: email,
             password: password,
-            lat: 48.8566,
-            lng: 2.3522
+            lat: lat,
+            lng: lgn
         });
     }
 
     if (checkEmailPattern(email) && checkPasswordPattern(password)) {
         navigator.geolocation.getCurrentPosition(function (position) {
             location(position.coords.latitude, position.coords.longitude)
-            // var lat = position.coords.latitude;
-            // var lng = position.coords.longitude;
-            //             // $.get( "https://maps.googleapis.com/maps/api/geocode/json?latlng="+ position.coords.latitude + "," + position.coords.longitude +"&key=AIzaSyD9oJ7wV_M2Q1U-xcU71D-SSEiPHqiozIE", function(data) {
-            //             //     console.log(data);
-            //             // })
-            //todo pour augmenter de 5km au nord il faut faire +0.040191 a a latitude pareil pour aller a l'est mais sur la longitude
-            //todo donc toute les personnes  qui sont entre lat/lgn + 0.04191 * (distance souhaiter) et lat/lgn +  0.04191 * (distance souhaiter) dans un perimetre de 0.04191 * (distance souhaiter)
-            //todo si les lat/lng des personne sont compris entre + 0.04191 * (distance souhaiter) et - 0.04191 * (distance souhaiter) on peut les voir
-
         }, function (err) {
             $.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyD9oJ7wV_M2Q1U-xcU71D-SSEiPHqiozIE", (res) => {
                 location(res.location.lat, res.location.lng)
@@ -134,7 +147,7 @@ document.getElementById("loginButton").addEventListener("click", function () {
 // ============ SOCKET EVENTS =============
 socket.on("tokenLogin", function (token) {
     Cookies.set('token', token, {expires: 7});
-    window.location = "/";
+    window.location = "profil";
 
 });
 

@@ -13,7 +13,8 @@
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link href="/node_modules/bootstrap-slider/dist/css/bootstrap-slider.min.css" rel='stylesheet' type='text/css'/>
-
+    <link href="/assets/css/profil.css" rel='stylesheet' type='text/css'/>
+    <script src="/assets/js/gallery.js" language="JavaScript"></script>
 
 </head>
 <body>
@@ -95,46 +96,48 @@
                 <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
                 <li><a data-toggle="tab" href="#settings">Parametres</a></li>
                 <li><a data-toggle="tab" href="#gallery">Gallery</a></li>
+                <li><a data-toggle="tab" href="#users">Users that have liked your profil</a></li>
+                <li><a data-toggle="tab" href="#visits">Users that have visited your profil</a></li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="home">
                     <hr>
                     <div class="form-group">
                         <div class="col-xs-6">
-                            <label><h4><%= locals.first_name + " " + locals.last_name %></h4></label>
+                            <label><h4>Name: <%= locals.first_name + " " + locals.last_name %></h4></label>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-6">
-                            <label><h4><%= locals.username %></h4></label>
+                            <label><h4>Username: <%= locals.username %></h4></label>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label>
-                                <h4>Gender</h4>
+                                <h4>Gender: <%= locals.sex %></h4>
                             </label>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-6">
-                            <label><h4>Age</h4></label>
+                            <label><h4>Age: <%= locals.age %></h4></label>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-6">
-                            <label><h4>Sexual orientation</h4></label>
+                            <label><h4>Sexual orientation: <%= locals.orientation %></h4></label>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-6">
-                            <label><h4>Bio</h4></label>
+                            <label><h4>Bio: <%= locals.bio %></h4></label>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-xs-6">
-                            <label><h4>Tags</h4></label>
+                            <label><h4>Tags: <%= locals.tags %></h4></label>
                         </div>
                     </div>
                     <hr>
@@ -143,9 +146,18 @@
                     <div id="photos">
                         <ul id="photo-gallery">
                             <li>
-                                <% for (let i = 0; i < locals.files_img.length; i++) { /*locals.files_img.forEach(function(el, index){ */%>
-                                <img src="<%= locals.files_img[i] != 'undefined' ? `${locals.files_img[i]}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>">
-                                <% };%>
+                                <% if(locals.files_img != ""){ %>
+                                    <% for (let i = 0; i < locals.files_img.length; i++) { /*locals.files_img.forEach(function(el, index){ */%>
+                                    <form action="/delete_img" method="post">
+                                        <div class="contai">
+                                            <img class="gallery" id="gallery_img"
+                                                 src="<%= locals.files_img[i] != 'undefined' ? `${locals.files_img[i]}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                                                 alt="">
+                                            <input name="img_to_del" type="hidden" value="<%= locals.files_img[i] %>">
+                                            <button class="btn" type="submit">Delete</button>
+                                        </div>
+                                    </form>
+                                <% }}; %>
                             </li>
                         </ul>
                     </div>
@@ -159,6 +171,32 @@
                         </div>
                         <button name="sub_upload" class="btn btn-primary" type="submit" value="submit">Submit</button>
                     </form>
+                </div><!--/tab-pane-->
+                <div class="tab-pane" id="users">
+                    <div class="box1">
+                        <% for (let i = 0; i < locals.users_that_liked_you.length; i++) { /*locals.files_img.forEach(function(el, index){ */ %>
+                        <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.4s">
+                            <div class="grid_4"><a href="single?<%= locals.users_that_liked_you[i].username %>">
+                                    <h4><span class="m_3"><%= locals.users_that_liked_you[i].username %></span></h4>
+                                    <img src="<%= locals.users_that_liked_you[i].profil_img != 0 ? `assets/img/${locals.users_that_liked_you[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
+                                         class="img-responsive" alt="" style="width: 100%">
+                                    <ul class="category_desc1">
+                                        <% if(locals.users_that_liked_you[i].score != 0){ %>
+                                            <li class="cate_head">Score:
+                                                <% for(let j = 0; j < locals.users_that_liked_you[i].score; j++){ %>
+                                                    <label style="color: #fff;">&#9733;</label>
+                                                <% } %>
+                                            </li>
+                                        <% }else{ %>
+                                            <li class="cate_head" style="height: 30px">No score</li>
+                                        <% } %>
+                                        <div class="clearfix"></div>
+                                    </ul>
+                                </a></div>
+                        </div>
+                        <% }; %>
+                        <div class="clearfix"></div>
+                    </div>
                 </div><!--/tab-pane-->
                 <div class="tab-pane" id="settings">
                     <h2></h2>
@@ -188,7 +226,8 @@
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label for="email"><h4>Email</h4></label>
-                            <input type="email" class="form-control" name="email" id="email"
+                            <input type="email" class="form-control" style="text-transform:lowercase" name="email"
+                                   id="email"
                                    placeholder="<%= locals.email %>" title="Enter your email.">
                         </div>
                     </div>
@@ -225,8 +264,18 @@
                     <div class="form-group">
                         <div class="col-xs-6">
                             <label for="tags"><h4>Tags</h4></label>
-                            <input type="text" class="form-control" id="tags" placeholder="<%= locals.tags %>"
+                            <input type="text" list="browsers" class="form-control" id="tags"
+                                   placeholder="<%= locals.tags %>"
                                    title="Choose your tags">
+                            <datalist id="browsers">
+                                <option value="#chien ">
+                                <option value="#chat ">
+                                <option value="#bigCock ">
+                                <option value="#foodLover ">
+                                <option value="#travel ">
+                                <option value="#sport ">
+                                <option value="#aventure ">
+                            </datalist>
                         </div>
                     </div>
                     <div class="form-group">
@@ -285,6 +334,27 @@
                     </div>
 
                     <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="latitude"><h4 id="latitudeText">Latitude: <%= locals.latitude %></h4>
+                            </label>
+                            <input type="range" class="form-control" name="latitude" id="latitude"
+                                   value="<%= locals.latitude %>" min="-90" max="90" step="0.0000001" pattern="^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,6})?))$"
+                                   onchange="updateTextLatitude(this.value);">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <label for="longitude"><h4 id="longitudeText">Longitude: <%= locals.longitude %></h4>
+                            </label>
+                            <input type="range" class="form-control" name="longitude" id="longitude"
+                                   value="<%= locals.longitude %>" min="-180" max="180" step="0.0000001" pattern="^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,6})?))$"
+                                   onchange="updateTextLongitude(this.value);">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
                         <div class="col-xs-12">
                             <br>
                             <button id="save" class="btn btn-lg btn-success" type="submit"><i
@@ -293,6 +363,29 @@
                             <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset
                             </button>
                         </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="visits">
+
+                    <div class="table-users">
+                        <div class="headerr">Users</div>
+
+                        <table cellspacing="0">
+                            <tr>
+                                <th>Username</th>
+                                <th>Date Visite</th>
+                            </tr>
+
+                            <% for(let i = 0; i < locals.users_that_have_visited_your_profil.length; i++) { %>
+                                <tr>
+                                    <td>
+                                        <a href="http://0.0.0.0:8080/single?<%= locals.users_that_have_visited_your_profil[i].visiteur %>"> <%= locals.users_that_have_visited_your_profil[i].visiteur %> </a>
+                                    </td>
+                                    <td><%= locals.users_that_have_visited_your_profil[i].date_visite %></td>
+                                </tr>
+
+                            <% } %>
+                        </table>
                     </div>
                 </div>
             </div>
