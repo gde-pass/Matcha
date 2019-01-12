@@ -1,5 +1,6 @@
 "use strict";
 const validator = require("validator");
+// const sanitizeHtml = require("sanitize-html");
 const cookie = require("cookie");
 const db = require("../database/database");
 const jwtUtils = require("../utils/jwt.utils");
@@ -9,6 +10,10 @@ const sendMail = require('../utils/sendMail');
 const geolib = require('geolib');
 const SocketO = require("../database/socketsOnline.js");
 const dbmessage = require("../database/message.js");
+const notif = require("../database/db_notif.js");
+const dbmatch = require("../database/db_matchs.js");
+const findIfMatch = require('../utils/find_If_matched');
+
 
 let dataToken = [];
 
@@ -27,6 +32,7 @@ module.exports = function(io)
                 username: dataToken.username,
                 email: dataToken.email
             };
+            // console.log('DATA : ', socket.data);
             let sqlSetSocket = "UPDATE Useronline SET socketid= ?, online=? , in_conv=? WHERE user_id= ?";
                 db.query(sqlSetSocket, [socket.id, 'Y', 0, dataToken.Id], function (error) {
                     if (error)throw error;
@@ -130,22 +136,33 @@ module.exports = function(io)
 
         //SOCKET EVENT CHAT--------------------------------------//
 		socket.on('chat', async function (data) {
+            // data.message = sanitizeHtml(data.message, {
+            //                   allowedTags: false,
+            //                   allowedAttributes: false,
+            //                 });
+            // console.log('CLEAN : ', clean_mess);
             let gparams = await SocketO.Getparams(data.to);
+            let niu2 = ","; //c'est mooooooche !!!
+                niu2 += await dbUser.dbSelectIdUserByUsername(data.to);
             let params = {
                 from_user_id: socket.data.user_id,
                 to_user_id: gparams.user_id,
                 message: data.message
                 };
-            if (await dbmessage.InsertMessage(params)){
-                  io.to(socket.id).emit('chat', data);
-                if (await SocketO.CheckConv(params) === true) {
-                 // PRIVATE MESSAGE---------------------------------------------//
-          			io.to(gparams.socketid).emit('chat_rep', data);
-                  }else {
-                    io.to(gparams.socketid).emit('notifnew', socket.data.username);
-                  }
+            if (await dbmatch.IsMatch(socket, niu2) == true ) {
+                if (await dbmessage.InsertMessage(params)){
+                      io.to(socket.id).emit('chat', data);
+                    if (await SocketO.CheckConv(params) === true) {
+                     // PRIVATE MESSAGE---------------------------------------------//
+              			io.to(gparams.socketid).emit('chat_rep', data);
+                      }else {
+                        io.to(gparams.socketid).emit('notifnew', socket.data.username);
+                      }
+                }else {
+                    console.log('error insert db message');
+                }
             }else {
-                console.log('error insert db message');
+                io.to(socket.id).emit('chatnomatch', data);
             }
         });
 
@@ -165,6 +182,61 @@ module.exports = function(io)
 		socket.on('typing', function (data) {
 			socket.broadcast.emit('typing', data);
 		});
+
+
+        //SOCKET EVENT NOTIF --------------------------------------//
+        socket.on('create_notif', async function (data) {
+            let niu2 = ","; //c'est mooooooche !!!
+            let gparams = await SocketO.Getparams(data.user);
+            let niu = await dbUser.dbSelectIdUserByUsername(data.user);
+                niu2 += await dbUser.dbSelectIdUserByUsername(data.user);
+            if ((data.type == 1 && data.like == "Like")) {
+                notif.CreateNotif(socket, data, niu);
+                io.to(gparams.socketid).emit('notification_box');
+                if (await dbmatch.WasMatch(socket, niu2) == true) {
+                    data.type = 3;
+                    notif.CreateNotif(socket, data, niu);
+                    notif.CreateNotifMatch(socket, data, niu);
+                    io.to(gparams.socketid).emit('notification_box');
+                    io.to(socket.id).emit('notification_box');
+                }
+            }else if (data.type == 2) {
+                if (await dbmatch.IsMatch(socket, niu2) == true ) {
+                    notif.CreateNotif(socket, data, niu);
+                    io.to(gparams.socketid).emit('notification_box');
+                }
+            }else if (data.type == 1 && await dbmatch.WasMatch(socket, niu2) == true){
+                    data.type = 4;
+                    notif.CreateNotif(socket, data, niu);
+                    io.to(gparams.socketid).emit('notification_box');
+            }
+        });
+
+        socket.on('unread', async function () {
+            let getunread = "SELECT COUNT (*) AS nb FROM Notifications WHERE to_user_id=? AND unread=?";
+            db.query(getunread, [socket.data.user_id, 1], function (error, results) {
+                if (error) throw error;
+                socket.emit('getunread', results[0].nb);
+            });
+        });
+
+        socket.on('read', async function () {
+            let upread = "UPDATE Notifications SET unread = REPLACE(unread, ?, ?) WHERE to_user_id=?";
+            db.query(upread, [ 1, 0, socket.data.user_id], function (error, results) {
+                if (error) throw error;
+                socket.emit('read');
+            });
+        })
+
+        socket.on('getnotif', function () {
+            let getnotif = "SELECT * , DATE_FORMAT(date_n , '%d/%m/%Y %H:%i:%s') AS date FROM Notifications WHERE to_user_id=? ORDER BY notif_id DESC";
+            db.query(getnotif, [socket.data.user_id], function (error, results) {
+                if (error) throw error;
+                socket.emit('getnotif', results);
+            });
+        });
+
+
 
         socket.on('disconnect', function() {
     		if (req.headers.cookie) {

@@ -414,8 +414,8 @@ document.getElementById("save").addEventListener("click", function () {
             html: "Your bio must contain between <b>50</b> and <b>500</b> characters."
         });
     } else if (tags.length !== 0 && !checkTagsPattern(tags)) {
-        document.getElementById("bio").style.borderColor = "red";
-        document.getElementById("bio").style.borderStyle = "inset";
+        document.getElementById("tags").style.borderColor = "red";
+        document.getElementById("tags").style.borderStyle = "inset";
         swal({
             type: "error",
             title: "Invalid tags",

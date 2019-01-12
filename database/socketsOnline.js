@@ -33,6 +33,7 @@ async function CheckConv(params){
     db.query = util.promisify(db.query);
     try {
         let result = await db.query(checksql,[params.to_user_id]);
+
         if (result[0].in_conv == params.from_user_id) {
             return (true);
         } else {

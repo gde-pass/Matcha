@@ -6,10 +6,12 @@ var message = document.getElementById('message'),
   	btn = document.getElementById('send'),
   	output = document.getElementById('output'),
   	feedback = document.getElementById('feedback'),
-    img = document.getElementById('profilimg').src,
+    // img = document.getElementById('profilimg').src,
     Userto = document.getElementById('Userto'),
-    contact2 = document.getElementsByClassName('contact');
-    contact = document.getElementsByClassName('meta');
+    contact2 = document.getElementsByClassName('contact'),
+    contact = document.getElementsByClassName('meta'),
+    el = document.querySelector('.notification');
+
     // console.log(document.getElementsByClassName('meta')[0]);
 //emit EVENTS
 
@@ -27,14 +29,25 @@ for(var i= 0; i < contact.length; i++){
         contact2[index].classList.add('active')
     });
 };
+if (Userto.innerText != undefined){
+    socket.emit('getmessage', Userto.innerText);
+}
 
 btn.addEventListener('click', function () {
+    var url = window.location.href;
+    var lastPart = url.split("?").pop();
     console.log("click");
-	socket.emit('chat', {
-		message: message.value,
-        to: Userto.innerHTML,
-        img: img
-	});
+    if (message.value) {
+        socket.emit('chat', {
+        	message: message.value,
+            to: Userto.innerHTML,
+            // img: img
+        });
+        socket.emit('create_notif', {
+            user: lastPart,
+            type: 2
+        });
+    }
 });
 
 message.addEventListener('keypress', function () {
@@ -77,6 +90,13 @@ socket.on('chat_rep', function (data) {
 	feedback.innerHTML = "";
     output.innerHTML += '<li class="replies"><img src="" alt="" /><p>' + data.message + '</p></li>';
     $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);
+});
+
+socket.on('chatnomatch', function (data) {
+    feedback.innerHTML = "";
+	output.innerHTML += '<li class="sent nomatch"><img src="' + data.img + '" alt="" /><p>Vous ne matché pas avec cette personne</p></li>';
+    $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);
+    $('.message-input input').val(null);
 });
 
 socket.on('typing', function (data) {

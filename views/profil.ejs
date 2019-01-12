@@ -10,8 +10,10 @@
     <link href="/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/style.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/gallery.css" rel='stylesheet' type='text/css'/>
+    <link href="/assets/css/notif.css" rel='stylesheet' type='text/css'/>
     <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="/node_modules/bootstrap-slider/dist/css/bootstrap-slider.min.css" rel='stylesheet' type='text/css'/>
     <link href="/assets/css/profil.css" rel='stylesheet' type='text/css'/>
     <script src="/assets/js/gallery.js" language="JavaScript"></script>
@@ -43,6 +45,7 @@
         <% }else{ %>
             <div class="header_right">
                 <ul class="header_user_info">
+
                     <a class="login" href="profil">
                         <li class="user_desc">Manage your account</li>
                         <i class="user"> </i>
@@ -53,7 +56,22 @@
                 <a href="logout" class="btn1 btn-1 btn1-1b">Logout</a>
             </div>
         <% } %>
-        <div class="clearfix"></div>
+        <div class="clearfix">
+            <!--  TEST NOTIF ---------------------------->
+
+            <div class="container_notif">
+                <!-- <a href="#" class="button notificationicon on"><div class="notification"></div></a> -->
+                <div class="notification"></div>
+                    <!-- <button>Increment Notifications</button> -->
+            </div>
+            <div class="notif_box">
+                <ul id="output_notif">
+
+                </ul>
+            </div>
+            <!--  TEST NOTIF ---------------------------->
+
+        </div>
     </div>
 </div>
 <div class="profile_banner">
@@ -411,6 +429,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" language="JavaScript"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" language="JavaScript"></script>
 <script src="/assets/js/profil.js" language="JavaScript"></script>
+<script src="/assets/js/notif.js" language="JavaScript"></script>
 <script src="/node_modules/jquery/dist/jquery.min.js" language="JavaScript"></script>
 <script src="/assets/js/gallery.js" language="JavaScript"></script>
 <script src="/node_modules/bootstrap-slider/dist/bootstrap-slider.min.js" language="JavaScript"></script>

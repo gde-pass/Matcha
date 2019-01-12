@@ -43,7 +43,7 @@ async function dbInitTableSettings(conn) {
         "    PRIMARY KEY(user_id)," +
         "    FOREIGN KEY(user_id) REFERENCES Users(user_id)" +
         ") ENGINE = InnoDB;";
-  
+
     conn.query = util.promisify(conn.query);
     try {
         await conn.query(sql);
@@ -154,6 +154,24 @@ function dbInitTableMessages(conn) {
     });
 }
 
+
+function dbInitTableNotifications(conn) {
+
+    const sql5 = "CREATE TABLE IF NOT EXISTS Notifications (" +
+        "    `notif_id` INT UNSIGNED NOT NULL AUTO_INCREMENT," +
+        "    `from_user_id` INT ," +
+        "    `from_username` VARCHAR(15) ," +
+        "    `to_user_id` INT," +
+        "    `type` INT," +
+        "    `unread` INT," +
+        "    `date_n` DATETIME," +
+        "    PRIMARY KEY(notif_id)" +
+        ") ENGINE = InnoDB;";
+
+    conn.query(sql5, function (err) {
+        if (err) throw err;
+    });
+
 async function dbInitTableReports(conn) {
 
     const sql = "CREATE TABLE IF NOT EXISTS Reports (" +
@@ -183,6 +201,7 @@ async function dbInitTables(conn, hostSQL, portSQL) {
        dbInitTableMessages(conn);
        await dbInitTableMatch(conn);
        await dbInitTableScore(conn);
+       dbInitTableNotifications(conn);
        await dbInitTableBloquer(conn);
        await dbInitTableReports(conn);
         await dbInitTableVisites(conn);

@@ -1,4 +1,5 @@
 // ============ FRONT EVENTS ===========
+const socket = io.connect("http://localhost:8080");
 
 new WOW().init();
 
