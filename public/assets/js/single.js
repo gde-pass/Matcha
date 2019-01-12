@@ -2,10 +2,7 @@ const socket = io.connect("http://localhost:8080");
 
 var   like = document.querySelector("#like_btn");
 
-socket.emit("visite", {
-    token: getCookie("token"),
-    username: window.location.search.slice(1)
-});
+
 
 // ============ FRONT EVENTS ===========
 
@@ -173,7 +170,10 @@ like.addEventListener('click' , function(){
     });
 });
 
-
+socket.emit("visite", {
+    token: getCookie("token"),
+    username: window.location.search.slice(1)
+});
 
 
 
@@ -184,4 +184,3 @@ like.addEventListener('click' , function(){
 
 
 // ============ /SOCKET EVENTS ===========
-
