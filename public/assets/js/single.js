@@ -158,18 +158,18 @@ $(window).on('load', function () {
 
 
 // ============ /SOCKET EVENTS ===========
-
-like.addEventListener('click' , function(){
-    var url = window.location.href;
-    var lastPart = url.split("?").pop();
-    console.log('word :', lastPart );
-    socket.emit('create_notif', {
-        user: lastPart,
-        type: 1,
-        like:like.innerHTML
+if(like){
+    like.addEventListener('click' , function(){
+        var url = window.location.href;
+        var lastPart = url.split("?").pop();
+        console.log('word :', lastPart );
+        socket.emit('create_notif', {
+            user: lastPart,
+            type: 1,
+            like:like.innerHTML
+        });
     });
-});
-
+};
 socket.emit("visite", {
     token: getCookie("token"),
     username: window.location.search.slice(1),

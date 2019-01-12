@@ -539,6 +539,8 @@ body {
 }
 #frame .content .contact-profile p {
   float: left;
+  margin-left: 1.1em;
+  font-weight: bold;
 }
 #frame .content .contact-profile .social-media {
   float: right;
