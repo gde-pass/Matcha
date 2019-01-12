@@ -172,7 +172,8 @@ like.addEventListener('click' , function(){
 
 socket.emit("visite", {
     token: getCookie("token"),
-    username: window.location.search.slice(1)
+    username: window.location.search.slice(1),
+    type: 5
 });
 
 

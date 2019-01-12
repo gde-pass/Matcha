@@ -74,8 +74,12 @@ module.exports = function(io)
         }
         });
 
-        socket.on("visite", function (data) {
+        socket.on("visite", async function (data) {
+            let gparams = await SocketO.Getparams(data.username);
+            let niu = await dbUser.dbSelectIdUserByUsername(data.username);
             dbUser.visiteUser(data);
+            notif.CreateNotif(socket, data, niu);
+            io.to(gparams.socketid).emit('notification_box');
         });
 
         socket.on("report", async function (data) {

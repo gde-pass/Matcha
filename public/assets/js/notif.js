@@ -59,6 +59,8 @@ socket.on('getnotif',function (data) {
             output_notif.innerHTML += '<li class="inside"> Vous avez match avec <a class="font_not" href="./single?' + data[i].from_username + '">' + data[i].from_username + '</a> <p class="dateformat">(' + data[i].date + ')</p></li>';
         }else if (data[i].type == 4) {
             output_notif.innerHTML += '<li class="inside"><a class="font_not" href="./single?' + data[i].from_username + '">' + data[i].from_username + '</a> ne vous like plus , donc fin du game ! NEXT ! <p class="dateformat">(' + data[i].date + ')</p></li>';
+        }else if (data[i].type == 5) {
+            output_notif.innerHTML += '<li class="inside"><a class="font_not" href="./single?' + data[i].from_username + '">' + data[i].from_username + '</a> a visité votre profile <p class="dateformat">(' + data[i].date + ')</p></li>';
         }
     }
 });
