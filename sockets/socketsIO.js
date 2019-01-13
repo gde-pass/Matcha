@@ -245,8 +245,8 @@ module.exports = function(io)
                 if (req.cookie.token) {
             		dataToken = jwtUtils.getUserID(req.cookie.token);
 
-                    let sqldisconnect = "UPDATE Useronline SET online= ?, socketid= ? WHERE user_id= ?";
-                    db.query(sqldisconnect,['N','0',dataToken.Id], function (error) {
+                    let sqldisconnect = "UPDATE Useronline SET online= ?, socketid= ? , last_connection= NOW() WHERE user_id= ?";
+                    db.query(sqldisconnect,['N','0', dataToken.Id], function (error) {
                         if (error) throw error;
                     });
                 }

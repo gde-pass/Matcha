@@ -54,9 +54,10 @@ async function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@
         if (url == data.username) {
             res.redirect('/');
         } else {
-            let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id WHERE `username` = ?";
+            let sql = "SELECT * , DATE_FORMAT(last_connection , '%d/%m/%Y %H:%i:%s') AS date FROM Users INNER JOIN Settings ON Settings.user_id = Users.user_id INNER JOIN Useronline ON Useronline.user_id = Users.user_id WHERE Users.username = ?";
+            // let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id JOIN WHERE `username` = ?";
             conn.query(sql, url, function (errors, results, fields) {
-                if (errors) return (res.status(500).send(error.sqlMessage));
+                if (errors) return (res.status(500).send(errors.sqlMessage));
                 if (!empty(results)) {
                     glob(`*/assets/images/${results[0].username}${results[0].user_id}img*`, function (err, files_img) {
                         if (empty(files_img)) {
@@ -107,7 +108,9 @@ async function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@
                                     like: like,
                                     match: match,
                                     bloqued: bloque,
-                                    asLikedYou: asLikedYou
+                                    asLikedYou: asLikedYou,
+                                    status: results[0].online,
+                                    last_c: results[0].date
                                 })
                             })
                         });
