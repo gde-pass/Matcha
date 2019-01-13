@@ -498,6 +498,7 @@ document.getElementById("save").addEventListener("click", function () {
             longitude: longitude,
             cookie: Cookies.get("token"),
         });
+        Cookies.remove("token");
     }
 });
 
@@ -531,6 +532,8 @@ socket.on("settingsUpdateTrue", function () {
         title: "Well done !",
         text: "Your settings have been successfully updated !"
     });
+
+    window.location.href = "http://0.0.0.0:8080/";
 });
 
 socket.on("settingsUpdateFalse", function () {
