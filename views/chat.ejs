@@ -116,18 +116,16 @@
 		</div>
 		<div id="contacts">
 			<ul>
-                <% for(res of friend) { %>
                     <li  class="contact">
                        <div  class="wrap">
                            <span class="contact-status online"></span>
                            <img id="profilimg" src="" alt="" />
                            <div class="meta">
-                               <p class="name"><%= res.username %></p>
+                               <p class="name"><%= locals.link%></p>
                                <p class="preview"></p>
                            </div>
                        </div>
                    </li>
-                   <% } %>
 			</ul>
 		</div>
 		<div id="bottom-bar">

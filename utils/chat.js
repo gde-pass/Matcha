@@ -30,10 +30,6 @@ function chat(req,res){
                             var profil_img = path.basename(files_profil.toString());
                             if(empty(profil_img))
                                 profil_img = 'undefined';
-                            let sql2 = "SELECT username FROM Users LEFT JOIN matchs ON Users.user_id = REPLACE(matchs.users_you_liked, ',', '') WHERE matchs.user1_id =? AND matchs.users_you_liked = matchs.users_that_liked_you";
-                            conn.query(sql2,[data.Id], function (error, results, fields) {
-                                if (error) return (res.status(500).send(error.sqlMessage));
-                                let friend = results;
                             res.render('chat', {
                                 first_name: data.first_name,
                                 last_name: data.last_name,
@@ -41,12 +37,10 @@ function chat(req,res){
                                 Id: data.Id,
                                 profil_img : profil_img,
                                 connected: true,
-                                friend: friend,
                                 link: url,
                                 bloquer: bloquer
                             });
                             })
-                        });
                 });
             }
         });
