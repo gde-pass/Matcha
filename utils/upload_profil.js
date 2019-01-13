@@ -69,7 +69,7 @@ function up(req,res,file) {
                     // res.render('profil',{
                     //     msg: 'Error: No file selected'
                     // });
-                    res.end('Error: No file selected'); //todo trouver comment envoyer se message a l'HTML
+                    res.send('Error: No file selected'); //todo trouver comment envoyer se message a l'HTML
                 } else {
                     let sql = "UPDATE `Settings` SET `profil_img` = ? WHERE `user_id` = ?;";
                     conn.query = util.promisify(conn.query);

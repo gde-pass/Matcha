@@ -56,7 +56,7 @@ function up_img(req,res,file) {
                     // res.render('profil',{
                     //     msg: 'Error: No file selected'
                     // });
-                    res.end('Error: No file selected'); //todo trouver comment envoyer se message a l'HTML
+                    res.send('Error: No file selected'); //todo trouver comment envoyer se message a l'HTML
                 } else {
                     res.redirect("profil");
                 }

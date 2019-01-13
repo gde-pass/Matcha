@@ -124,7 +124,7 @@ async function dbInitTableListBloquer(conn) {
 
     const sql = "CREATE TABLE IF NOT EXISTS list_bloquer (" +
         "    `user_id` INT(10) UNSIGNED NOT NULL," +
-        "    `is_bloqued` int(1) DEFAULT 0," +
+        "    `is_bloqued` int(11) DEFAULT 0," +
         "    FOREIGN KEY(user_id) REFERENCES Users(user_id)" +
         ") ENGINE = InnoDB;";
 
