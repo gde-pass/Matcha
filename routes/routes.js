@@ -106,10 +106,10 @@ router.post("/delete_img", function (req, res) {
 
 router.get("/logout", function (req, res) {
     if(typeof req.cookies.token === "undefined") {
-        display_users(req, res, false);
+        res.render('login');
     }else {
         res.clearCookie("token");
-        display_users(req, res, false);
+        res.render('login');
     }
 });
 

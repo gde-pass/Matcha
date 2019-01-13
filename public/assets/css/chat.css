@@ -683,6 +683,20 @@ body {
   color: #f5f5f5;
   /* border-radius: 0px 0px 22px; */
 }
+/* #frame .content .message-input .wrap input.disabled {
+  disabled: disabled;
+} */
+#frame .content .message-input .wrap button.bloquer {
+  float: right;
+  border: none;
+  width: 50px;
+  padding: 12px 0;
+  cursor: not-allowed;
+  background: #32465a;
+  color: #f5f5f5;
+  disabled: disabled;
+  /* border-radius: 0px 0px 22px; */
+}
 @media screen and (max-width: 735px) {
   #frame .content .message-input .wrap button {
     padding: 16px 0;
