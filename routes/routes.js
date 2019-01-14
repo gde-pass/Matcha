@@ -109,7 +109,8 @@ router.get("/logout", function (req, res) {
         display_users(req, res, false);
     }else {
         res.clearCookie("token");
-        display_users(req, res, false);
+        res.redirect('/');
+        // display_users(req, res, false);
     }
 });
 
