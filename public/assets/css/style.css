@@ -1924,3 +1924,11 @@ div.register-bottom-grid {
 	color: white;
 	transition: all ease 0.8s;
 }
+
+p.status.on::after{
+	content: " \f111";
+	color: #2ca22c;
+	font-family: "FontAwesome";
+	transform-origin: top center;
+
+}

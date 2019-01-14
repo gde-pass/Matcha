@@ -343,10 +343,27 @@ async function visiteUser(data) {
     }
 }
 
+async function userBlock(socket, niu){
+    let reqsql = "SELECT * FROM users_bloquer WHERE user_id=? AND is_bloqued=?";
+    db.query = util.promisify(db.query);
+    try {
+        let result = await db.query(reqsql,[niu, socket.data.user_id]);
+        // console.log('RES MATCH OR NOT :' ,result);
+        if (result.length == 0) {
+            return (false);
+        } else {
+            return (true);
+        }
+    } catch (error) {
+        throw error;
+    }
+};
+
 module.exports = {
     dbInsertNewUser: dbInsertNewUser,
     dbSettingsUpdate: dbSettingsUpdate,
     dbSelectIdUserByUsername: dbSelectIdUserByUsername,
     reportUser: reportUser,
     visiteUser: visiteUser,
+    userBlock: userBlock
 };

@@ -108,7 +108,11 @@
             </div>
 
             <div class="cont span_2_of_profile">
-                <h4><%= locals.user.first_name + " " + locals.user.last_name%></h4>
+                <% if(locals.status == 'Y'){ %>
+                <h4><%= locals.user.first_name + " " + locals.user.last_name%> <p class="status on">ONLINE</p></h4>
+                <% }else{ %>
+                <h4><%= locals.user.first_name + " " + locals.user.last_name%> <p class="status">dernière connexion : <%= locals.last_c %></p></h4>
+                <% } %>
                 <table class="profile-fields">
                     <tbody>
                     <tr>

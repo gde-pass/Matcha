@@ -99,6 +99,13 @@ socket.on('chatnomatch', function (data) {
     $('.message-input input').val(null);
 });
 
+socket.on('chatblock', function (data) {
+    feedback.innerHTML = "";
+	output.innerHTML += '<li class="sent nomatch"><img src="' + data.img + '" alt="" /><p>Cette personne vous a bloqué !</p></li>';
+    $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);
+    $('.message-input input').val(null);
+});
+
 socket.on('typing', function (data) {
     feedback.innerHTML = data;
     $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);

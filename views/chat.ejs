@@ -116,18 +116,16 @@
 		</div>
 		<div id="contacts">
 			<ul>
-                <% for(res of friend) { %>
                     <li  class="contact">
                        <div  class="wrap">
                            <span class="contact-status online"></span>
                            <img id="profilimg" src="" alt="" />
                            <div class="meta">
-                               <p class="name"><%= res.username %></p>
+                               <p class="name"><%= locals.link%></p>
                                <p class="preview"></p>
                            </div>
                        </div>
                    </li>
-                   <% } %>
 			</ul>
 		</div>
 		<div id="bottom-bar">
@@ -151,10 +149,18 @@
 		</div>
 		<div class="message-input">
 			<div class="wrap">
-			<input type="text" placeholder="Write your message..." id="message"/>
+            <% if(locals.bloquer == 1){ %>
+			<input type="text" placeholder="L'utilisateur vous a bloqué" id="message" disabled/>
+            <% }else { %>
+            <input type="text" placeholder="Write your message..." id="message"/>
+            <% } %>
 			<i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-			<button id="send" class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-			</div>
+            <% if(locals.bloquer == 1){ %>
+			<button id="send" class="submit bloquer" disabled><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+            <% }else { %>
+            <button id="send" class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+            <% } %>
+            </div>
 		</div>
 	</div>
 </div>
