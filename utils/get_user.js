@@ -96,11 +96,15 @@ async function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@
         if (url == data.username) {
             res.redirect('/');
         } else {
+
             let sql = "SELECT * , DATE_FORMAT(last_connection , '%d/%m/%Y %H:%i:%s') AS date FROM Users INNER JOIN Settings ON Settings.user_id = Users.user_id INNER JOIN Useronline ON Useronline.user_id = Users.user_id WHERE Users.username = ?";
             // let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id JOIN WHERE `username` = ?";
             conn.query(sql, url, function (errors, results, fields) {
                 if (errors) return (res.status(500).send(errors.sqlMessage));
+                console.log("=====================================")
+
                 if (!empty(results)) {
+
                     glob(`*/assets/images/${results[0].username}${results[0].user_id}img*`, function (err, files_img) {
                         if (empty(files_img)) {
                             files_img = "";
@@ -109,6 +113,7 @@ async function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@
                         for (let i = 0; i < files_img.length; i++) {
                             images.push(replace.all("public").from(files_img[i]).with(""));
                         }
+
                         let sql = "SELECT * FROM matchs WHERE user1_id = ?";
                         conn.query(sql, data.Id, async function (err, resu) {
                             if (err) return (res.status(500).send(error.sqlMessage));

@@ -21,26 +21,26 @@ function chat(req,res){
                 res.redirect('/');
             } else {
                 let reqsql = "SELECT * FROM users_bloquer WHERE user_id=? AND is_bloqued=?";
-                conn.query(reqsql,[results[0].user_id, data.Id], function (error, results2, fields) {
+                conn.query(reqsql, [results[0].user_id, data.Id], function (error, results2, fields) {
                     if (error) return (res.status(500).send(error.sqlMessage));
-                            if(!empty(results2)){
-                                bloquer = 1;
-                            }
-                        glob(`*/assets/img/${data.Id}profil*`, function(err, files_profil) {
-                            var profil_img = path.basename(files_profil.toString());
-                            if(empty(profil_img))
-                                profil_img = 'undefined';
-                            res.render('chat', {
-                                first_name: data.first_name,
-                                last_name: data.last_name,
-                                username: data.username,
-                                Id: data.Id,
-                                profil_img : profil_img,
-                                connected: true,
-                                link: url,
-                                bloquer: bloquer
-                            });
-                            })
+                    if (!empty(results2)) {
+                        bloquer = 1;
+                    }
+                    glob(`*/assets/img/${data.Id}profil*`, function (err, files_profil) {
+                        var profil_img = path.basename(files_profil.toString());
+                        if (empty(profil_img))
+                            profil_img = 'undefined';
+                        res.render('chat', {
+                            first_name: data.first_name,
+                            last_name: data.last_name,
+                            username: data.username,
+                            Id: data.Id,
+                            profil_img: profil_img,
+                            connected: true,
+                            link: url,
+                            bloquer: bloquer
+                        });
+                    })
                 });
             }
         });
