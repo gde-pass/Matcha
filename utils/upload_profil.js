@@ -27,9 +27,9 @@ function up(req,res,file) {
         const storage = multer.diskStorage({
             destination: './public/assets/img/',
             filename: function (req, file, callback) {
-                callback(null, data.username + data.Id + 'profil' + path.extname(file.originalname))//todo faire en sorte que le nom de limage sois relier a 'ID de la personne pour que l'on puisse la retrouver
+                callback(null,  data.Id + 'profil' + path.extname(file.originalname))//todo faire en sorte que le nom de limage sois relier a 'ID de la personne pour que l'on puisse la retrouver
                 // callback(null, data.username + data.Id + 'profil' +'-' + Date.now() + path.extname(file.originalname))//todo faire en sorte que le nom de limage sois relier a 'ID de la personne pour que l'on puisse la retrouver
-                file_name = data.username + data.Id + 'profil' + path.extname(file.originalname);
+                file_name = data.Id + 'profil' + path.extname(file.originalname);
             }
         });
 
@@ -46,7 +46,7 @@ function up(req,res,file) {
             const extName = fileTypes.test(path.extname(file.originalname).toLowerCase());
             const mimeType = fileTypes.test(file.mimetype);
             //function pour supprimer l'image de profil precedente
-            glob(`*/assets/img/${data.username}${data.Id}profil*`,{"ignore":[`public/assets/img/${data.username}${data.Id}profil${path.extname(file.originalname)}`]}, function(err, files) {
+            glob(`*/assets/img/${data.Id}profil*`,{"ignore":[`public/assets/img/${data.Id}profil${path.extname(file.originalname)}`]}, function(err, files) {
                 var fileName = path.basename(files.toString());
                 if (fileName) {
                     fs.unlinkSync(`./public/assets/img/${fileName}`);

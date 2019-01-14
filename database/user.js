@@ -188,7 +188,6 @@ async function dbLatitudeUpdate(latitude, id) {
 
 
 async function dbSettingsUpdate(data) {
-
     let id = await dbSelectIdUserByMail(jwtUtils.getUserID(data.cookie).email);
 
     if (data.first_name.length !== 0) {

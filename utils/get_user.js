@@ -6,11 +6,22 @@ const glob = require('glob');
 let jwtUtils = require("./jwt.utils");
 let findIfMach = require('./find_If_matched');
 let findIfLiked = require('./find_If_liked');
-
+let score1 = require('./score');
 let like;
 let asLikedYou;
 let bloque;
 let check = 0;
+
+function findScore(req, res, user, cb) {
+    let sql = "SELECT score FROM Users WHERE user_id = ?";
+    conn.query(sql, user, function (err, resu) {
+        if (err) return (res.status(500).end());
+        else {
+            // console.log(resu[0].score);
+            cb(null, resu[0].score)
+        }
+    })
+}
 
 function findNbEtoile(user, cb) {
     let sql = "SELECT score FROM score WHERE user_that_is_scored = ?";
@@ -36,6 +47,37 @@ function findIfBloque(req, res, Id, cb){
                 cb(null, "Unblock")
             }
         }
+    })
+}
+
+function cal_score(req, res, ID, username){
+    let scor = 0;
+    let sql = "SELECT users_that_liked_you FROM matchs WHERE user1_id=?";
+    conn.query(sql,ID, function (err, result) {
+        if(err) return (res.send(err.sqlMessage));
+        let tab = result[0].users_that_liked_you.split(',');
+        let nbLikes = tab.length;
+        let sql = "SELECT * FROM Visites WHERE username =?";
+        conn.query(sql, username, function (err, resu) {
+            if(err) return (res.send(err.sqlMessage));
+            let nbVisite = resu.length;
+            let score = (nbLikes /nbVisite) * 5;
+            findScore(req, res, ID, function (err, sumScore) {
+                if (isNaN(sumScore))
+                    scor = 0;
+                else
+                    if(sumScore != 1 && score !=Infinity) {
+                        scor = (sumScore + score) / 2;
+                        let sql = "UPDATE Users SET score = ? WHERE user_id = ?";
+                        conn.query(sql, [scor, ID], function (err, resul) {
+                            if (err) return (res.status(500).send(err.sqlMessage));
+                            else {
+                                return true;
+                            }
+                        })
+                    }
+            })
+        })
     })
 }
 
@@ -78,22 +120,23 @@ async function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@
                                 like = "Dislike";
                             } else
                                 like = "Like";
+                            cal_score(req, res,results[0].user_id, url);
                             findNbEtoile(results[0].user_id, function (err, etoiles) {
                                 check = etoiles;
-                            })
+                            });
                             findIfLiked(req, res, data, url, function (err, liked) {
                                 if (err) {
                                     console.log(err)
                                 } else {
                                     asLikedYou = liked;
                                 }
-                            })
+                            });
                             findIfBloque(req, res, results[0].user_id, function (err, bloqued) {
                                 if (err) {
                                     console.log(err)
                                 } else
                                     bloque = bloqued;
-                            })
+                            });
                             findIfMach(req, res, data, url, function (err, match) {
                                 if (err) {
                                     console.log(err)

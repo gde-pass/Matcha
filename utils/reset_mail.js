@@ -4,7 +4,6 @@ let conn = require("../database/database");
 const bcrypt = require("bcrypt-nodejs");
 
 function reset(token, password) {
-    console.log("=========================================");
     let data = jwtUtils.getUserID(token);
     if (data.email !== 0) {
         console.log("FAIL")

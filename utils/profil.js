@@ -27,11 +27,11 @@ function profil(req, res) {
                 if (empty(results)) {
                     display_users(req, res, false);
                 } else {
-                    glob(`*/assets/img/${data.username}${data.Id}profil*`, function (err, files_profil) {
+                    glob(`*/assets/img/${data.Id}profil*`, function (err, files_profil) {
                         let profil_img = path.basename(files_profil.toString());
                         if (empty(profil_img))
                             profil_img = 'undefined';
-                        glob(`*/assets/images/${data.username}${data.Id}img*`, function (err, files_img) {
+                        glob(`*/assets/images/${data.Id}img*`, function (err, files_img) {
                             if (empty(files_img))
                                 files_img = "";
                             let images = [];

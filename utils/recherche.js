@@ -138,221 +138,245 @@ function recherche(req, res, connected) {
                     }
                 });
                 if (ageBox == 1) {
-                    sortAge(req, res, users, function (err, sortedByAge) {
+                    findIfBloqued(req, res, data.Id, users, function (err, listOfBloqued) {
                         if (err) {
                             console.log(err)
-                        } else{
-                            findIfBloqued(req, res, data.Id ,sortedByAge, function(err, listOfBloqued){
-                                if (err) {
-                                    console.log(err)
-                                }else{
-                                    let found = 0;
-                                    usersSorted = users.filter(value =>{
-                                        found = 0;
-                                        for(let j=0; j < listOfBloqued.length; j++){
-                                            if(value.user_id == listOfBloqued[j].is_bloqued) found = 1;
-                                        }
-                                        if(found == 1) return false;
-                                        else if(found == 0)return true;
-                                    });
-                                    if(!empty(suggestion)) {
-                                        findIfBloqued(req, res, data.Id, suggestion, function (err, listOfBloqued) {
-                                            if (err) {
-                                                console.log(err)
-                                            } else {
-                                                suggestionSorted = suggestion.filter(value => {
-                                                    found = 0;
-                                                    for (let j = 0; j < listOfBloqued.length; j++) {
-                                                        if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
-                                                    }
-                                                    if (found == 1) return false;
-                                                    else if (found == 0) return true;
-                                                });
+                        } else {
+                            let found = 0;
+                            usersSorted = users.filter(value => {
+                                found = 0;
+                                for (let j = 0; j < listOfBloqued.length; j++) {
+                                    if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
+                                }
+                                if (found == 1) return false;
+                                else if (found == 0) return true;
+                            });
+                            if (!empty(suggestion)) {
+                                findIfBloqued(req, res, data.Id, suggestion, function (err, listOfBloqued) {
+                                    if (err) {
+                                        console.log(err)
+                                    } else {
+                                        suggestionSorted = suggestion.filter(value => {
+                                            found = 0;
+                                            for (let j = 0; j < listOfBloqued.length; j++) {
+                                                if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
                                             }
+                                            if (found == 1) return false;
+                                            else if (found == 0) return true;
                                         });
                                     }
-                                    if(empty(suggestion)) suggestion = 0;
-                                    if(empty(usersSorted)) usersSorted = 0;
-                                    res.render('recherche', {
-                                        connected: connected,
-                                        sorted: true,
-                                        ageChecked: "checked",
-                                        users: usersSorted,
-                                        suggestion: suggestionSorted,
-                                        tag: tag,
-                                        age1: age1,
-                                        age2: age2,
-                                        distance1: distance1,
-                                        distance2: distance2,
-                                        score1: score1,
-                                        score2: score2
+                                });
+                            }
+                            sortAge(req, res, usersSorted, function (err, sortedByAge) {
+                                if (err) {
+                                    console.log(err)
+                                } else {
+                                    sortAge(req, res, suggestionSorted, function (err, suggestionAge) {
+                                        if (err) {
+                                            console.log(err)
+                                        } else {
+                                            if (empty(suggestionAge)) suggestionAge = 0;
+                                            if (empty(sortedByAge)) sortedByAge = 0;
+                                            res.render('recherche', {
+                                                connected: connected,
+                                                sorted: true,
+                                                ageChecked: "checked",
+                                                users: sortedByAge,
+                                                suggestion: suggestionAge,
+                                                tag: tag,
+                                                age1: age1,
+                                                age2: age2,
+                                                distance1: distance1,
+                                                distance2: distance2,
+                                                score1: score1,
+                                                score2: score2
+                                            })
+                                        }
                                     })
                                 }
-                            });
+                            })
                         }
-                    })
+                    });
                 } else if (distanceBox == 1) {
-                    sortDistance(userLat, userLng, users, function (err, sortedByDistance) {
+                    findIfBloqued(req, res, data.Id, users, function (err, listOfBloqued) {
                         if (err) {
                             console.log(err)
-                        }  else{
-                            findIfBloqued(req, res, data.Id ,sortedByDistance, function(err, listOfBloqued){
-                                if (err) {
-                                    console.log(err)
-                                }else{
-                                    let found = 0;
-                                    usersSorted = users.filter(value =>{
-                                        found = 0;
-                                        for(let j=0; j < listOfBloqued.length; j++){
-                                            if(value.user_id == listOfBloqued[j].is_bloqued) found = 1;
-                                        }
-                                        if(found == 1) return false;
-                                        else if(found == 0)return true;
-                                    });
-                                    if(!empty(suggestion)) {
-                                        findIfBloqued(req, res, data.Id, suggestion, function (err, listOfBloqued) {
-                                            if (err) {
-                                                console.log(err)
-                                            } else {
-                                                suggestionSorted = suggestion.filter(value => {
-                                                    found = 0;
-                                                    for (let j = 0; j < listOfBloqued.length; j++) {
-                                                        if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
-                                                    }
-                                                    if (found == 1) return false;
-                                                    else if (found == 0) return true;
-                                                });
+                        } else {
+                            let found = 0;
+                            usersSorted = users.filter(value => {
+                                found = 0;
+                                for (let j = 0; j < listOfBloqued.length; j++) {
+                                    if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
+                                }
+                                if (found == 1) return false;
+                                else if (found == 0) return true;
+                            });
+                            if (!empty(suggestion)) {
+                                findIfBloqued(req, res, data.Id, suggestion, function (err, listOfBloqued) {
+                                    if (err) {
+                                        console.log(err)
+                                    } else {
+                                        suggestionSorted = suggestion.filter(value => {
+                                            found = 0;
+                                            for (let j = 0; j < listOfBloqued.length; j++) {
+                                                if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
                                             }
+                                            if (found == 1) return false;
+                                            else if (found == 0) return true;
                                         });
                                     }
-                                    if(empty(suggestion)) suggestion = 0;
-                                    if(empty(usersSorted)) usersSorted = 0;
-                                    res.render('recherche', {
-                                        connected: connected,
-                                        sorted: false,
-                                        distanceChecked: "checked",
-                                        users: usersSorted,
-                                        suggestion: suggestionSorted,
-                                        tag: tag,
-                                        age1: age1,
-                                        age2: age2,
-                                        distance1: distance1,
-                                        distance2: distance2,
-                                        score1: score1,
-                                        score2: score2
+                                });
+                            }
+                            sortDistance(userLat, userLng, usersSorted, function (err, sortedByDistance) {
+                                if (err) {
+                                    console.log(err)
+                                } else {
+                                    sortDistance(userLat, userLng, suggestionSorted, function (err, suggestionDistance) {
+                                        if (err) {
+                                            console.log(err)
+                                        } else {
+                                            if (empty(suggestionDistance)) suggestionDistance = 0;
+                                            if (empty(sortedByDistance)) sortedByDistance = 0;
+                                            res.render('recherche', {
+                                                connected: connected,
+                                                sorted: false,
+                                                distanceChecked: "checked",
+                                                users: sortedByDistance,
+                                                suggestion: suggestionDistance,
+                                                tag: tag,
+                                                age1: age1,
+                                                age2: age2,
+                                                distance1: distance1,
+                                                distance2: distance2,
+                                                score1: score1,
+                                                score2: score2
+                                            })
+                                        }
                                     })
                                 }
-                            });
+                            })
                         }
-                    })
+                    });
                 } else if (scoreBox == 1) {
-                    sortScore(req, res, users, function (err, sortedScore) {
+                    findIfBloqued(req, res, data.Id, users, function (err, listOfBloqued) {
                         if (err) {
                             console.log(err)
-                        } else{
-                            findIfBloqued(req, res, data.Id ,sortedScore, function(err, listOfBloqued){
-                                if (err) {
-                                    console.log(err)
-                                }else{
-                                    let found = 0;
-                                    usersSorted = users.filter(value =>{
-                                        found = 0;
-                                        for(let j=0; j < listOfBloqued.length; j++){
-                                            if(value.user_id == listOfBloqued[j].is_bloqued) found = 1;
-                                        }
-                                        if(found == 1) return false;
-                                        else if(found == 0)return true;
-                                    });
-                                    if(!empty(suggestion)) {
-                                        findIfBloqued(req, res, data.Id, suggestion, function (err, listOfBloqued) {
-                                            if (err) {
-                                                console.log(err)
-                                            } else {
-                                                suggestionSorted = suggestion.filter(value => {
-                                                    found = 0;
-                                                    for (let j = 0; j < listOfBloqued.length; j++) {
-                                                        if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
-                                                    }
-                                                    if (found == 1) return false;
-                                                    else if (found == 0) return true;
-                                                });
+                        } else {
+                            let found = 0;
+                            usersSorted = users.filter(value => {
+                                found = 0;
+                                for (let j = 0; j < listOfBloqued.length; j++) {
+                                    if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
+                                }
+                                if (found == 1) return false;
+                                else if (found == 0) return true;
+                            });
+                            if (!empty(suggestion)) {
+                                findIfBloqued(req, res, data.Id, suggestion, function (err, listOfBloqued) {
+                                    if (err) {
+                                        console.log(err)
+                                    } else {
+                                        suggestionSorted = suggestion.filter(value => {
+                                            found = 0;
+                                            for (let j = 0; j < listOfBloqued.length; j++) {
+                                                if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
                                             }
+                                            if (found == 1) return false;
+                                            else if (found == 0) return true;
                                         });
                                     }
-                                    if(empty(suggestion)) suggestion = 0;
-                                    if(empty(usersSorted)) usersSorted = 0;
-                                    res.render('recherche', {
-                                        connected: connected,
-                                        sorted: true,
-                                        scoreChecked: "checked",
-                                        users: usersSorted,
-                                        suggestion: suggestionSorted,
-                                        tag: tag,
-                                        age1: age1,
-                                        age2: age2,
-                                        distance1: distance1,
-                                        distance2: distance2,
-                                        score1: score1,
-                                        score2: score2
+                                });
+                            }
+                            sortScore(req, res, usersSorted, function (err, sortedScore) {
+                                if (err) {
+                                    console.log(err)
+                                } else {
+                                    sortScore(req, res, suggestionSorted, function (err, suggestionScore) {
+                                        if (err) {
+                                            console.log(err)
+                                        } else {
+                                            if (empty(suggestionScore)) suggestionScore = 0;
+                                            if (empty(sortedScore)) sortedScore = 0;
+                                            res.render('recherche', {
+                                                connected: connected,
+                                                sorted: true,
+                                                scoreChecked: "checked",
+                                                users: sortedScore,
+                                                suggestion: suggestionScore,
+                                                tag: tag,
+                                                age1: age1,
+                                                age2: age2,
+                                                distance1: distance1,
+                                                distance2: distance2,
+                                                score1: score1,
+                                                score2: score2
+                                            })
+                                        }
                                     })
                                 }
-                            });
+                            })
                         }
-                    })
-                }
-                else {
-                    sortDistance(userLat, userLng, users, function (err, sortedByDistance) {
+                    });
+                } else {
+
+                    findIfBloqued(req, res, data.Id, users, function (err, listOfBloqued) {
                         if (err) {
                             console.log(err)
-                        } else{
-                            findIfBloqued(req, res, data.Id ,sortedByDistance, function(err, listOfBloqued){
-                                if (err) {
-                                    console.log(err)
-                                }else{
-                                    let found = 0;
-                                    usersSorted = users.filter(value =>{
-                                        found = 0;
-                                        for(let j=0; j < listOfBloqued.length; j++){
-                                            if(value.user_id == listOfBloqued[j].is_bloqued) found = 1;
-                                        }
-                                        if(found == 1) return false;
-                                        else if(found == 0)return true;
-                                    });
-                                    if(!empty(suggestion)) {
-                                        findIfBloqued(req, res, data.Id, suggestion, function (err, listOfBloqued) {
-                                            if (err) {
-                                                console.log(err)
-                                            } else {
-                                                suggestionSorted = suggestion.filter(value => {
-                                                    found = 0;
-                                                    for (let j = 0; j < listOfBloqued.length; j++) {
-                                                        if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
-                                                    }
-                                                    if (found == 1) return false;
-                                                    else if (found == 0) return true;
-                                                });
+                        } else {
+                            let found = 0;
+                            usersSorted = users.filter(value => {
+                                found = 0;
+                                for (let j = 0; j < listOfBloqued.length; j++) {
+                                    if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
+                                }
+                                if (found == 1) return false;
+                                else if (found == 0) return true;
+                            });
+                            if (!empty(suggestion)) {
+                                findIfBloqued(req, res, data.Id, suggestion, function (err, listOfBloqued) {
+                                    if (err) {
+                                        console.log(err)
+                                    } else {
+                                        suggestionSorted = suggestion.filter(value => {
+                                            found = 0;
+                                            for (let j = 0; j < listOfBloqued.length; j++) {
+                                                if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
                                             }
+                                            if (found == 1) return false;
+                                            else if (found == 0) return true;
                                         });
                                     }
-                                    if(empty(suggestion)) suggestion = 0;
-                                    if(empty(usersSorted)) usersSorted = 0;
-                                    res.render('recherche', {
-                                        connected: true,
-                                        sorted: false,
-                                        users: usersSorted,
-                                        suggestion: suggestionSorted,
-                                        tag: tag,
-                                        age1: age1,
-                                        age2: age2,
-                                        distance1: distance1,
-                                        distance2: distance2,
-                                        score1: score1,
-                                        score2: score2
+                                });
+                            }
+                            sortDistance(userLat, userLng, usersSorted, function (err, sortedByDistance) {
+                                if (err) {
+                                    console.log(err)
+                                } else {
+                                    sortDistance(userLat, userLng, suggestionSorted, function (err, suggestionDistance) {
+                                        if (err) {
+                                            console.log(err)
+                                        } else {
+                                            if (empty(suggestionDistance)) suggestionDistance = 0;
+                                            if (empty(sortedByDistance)) sortedByDistance = 0;
+                                            res.render('recherche', {
+                                                connected: true,
+                                                sorted: false,
+                                                users: sortedByDistance,
+                                                suggestion: suggestionDistance,
+                                                tag: tag,
+                                                age1: age1,
+                                                age2: age2,
+                                                distance1: distance1,
+                                                distance2: distance2,
+                                                score1: score1,
+                                                score2: score2
+                                            })
+                                        }
                                     })
                                 }
-                            });
+                            })
                         }
-                    })
+                    });
                 }
             } else {
                 res.render('recherche', {
