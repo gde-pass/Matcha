@@ -296,6 +296,13 @@ async function dbInitUserDefaultSettings(newUser) {
     db.query(sqlbloque2, [id], function (err) {
         if (err) throw err;
     });
+
+
+    let sqlonligne = "INSERT INTO `Useronline` (`user_id`) VALUES (?)";
+
+    db.query(sqlonligne, [id], function (err) {
+        if (err) throw err;
+    });
 }
 
 async function dbInsertNewUser(newUser) {

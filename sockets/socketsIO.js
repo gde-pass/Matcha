@@ -103,6 +103,8 @@ module.exports = function(io)
                 socket.emit("settingsUpdateFalse");
             } else {
                 await dbUser.dbSettingsUpdate(data);
+                let id_user = await dbUser.dbSelectIdUserByUsername(data.username);
+                await SocketO.useronlineUpdate(data.username, id_user);
                 socket.emit("settingsUpdateTrue");
             }
         });

@@ -22,7 +22,7 @@ function chat(req,res){
                 res.redirect('/');
             } else {
                 let reqsql = "SELECT * FROM users_bloquer WHERE user_id=? AND is_bloqued=?";
-                conn.query(reqsql,[results[0].user_id, data.Id], function (error, results2, fields) {
+                conn.query(reqsql, [results[0].user_id, data.Id], function (error, results2, fields) {
                     if (error) return (res.status(500).send(error.sqlMessage));
                             if(!empty(results2)){
                                 bloquer = 1;

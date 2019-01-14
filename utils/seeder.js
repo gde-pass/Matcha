@@ -69,7 +69,6 @@ async function seed() {
             throw error;
         }
         bar1.increment(1);
-
         i++
 
     }

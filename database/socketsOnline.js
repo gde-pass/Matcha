@@ -44,9 +44,21 @@ async function CheckConv(params){
     }
 };
 
+async function useronlineUpdate(username, user_id) {
+	let sql = "UPDATE Useronline SET username=? WHERE user_id= ?";
+    db.query = util.promisify(db.query);
+
+    try {
+        await db.query(sql, [username, user_id]);
+    } catch (error) {
+        throw error;
+    }
+}
+
 
 module.exports = {
 	Getparams: Getparams,
 	SetConv: SetConv,
-	CheckConv: CheckConv
+	CheckConv: CheckConv,
+	useronlineUpdate: useronlineUpdate
 };
