@@ -118,7 +118,11 @@
 			<ul>
                     <li  class="contact">
                        <div  class="wrap">
-                           <span class="contact-status online"></span>
+                           <% if (locals.status == 'Y'){ %>
+                               <span class="contact-status online"></span>
+                           <% }else{ %>
+                                <span class="contact-status busy"></span>
+                            <% } %>
                            <img id="profilimg" src="" alt="" />
                            <div class="meta">
                                <p class="name"><%= locals.link%></p>

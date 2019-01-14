@@ -33,8 +33,8 @@ module.exports = function(io)
                 email: dataToken.email
             };
             // console.log('DATA : ', socket.data);
-            let sqlSetSocket = "UPDATE Useronline SET socketid= ?, online=? , in_conv=? WHERE user_id= ?";
-                db.query(sqlSetSocket, [socket.id, 'Y', 0, dataToken.Id], function (error) {
+            let sqlSetSocket = "UPDATE Useronline SET socketid= ?, online=?, in_conv=?, username=? WHERE user_id= ?";
+                db.query(sqlSetSocket, [socket.id, 'Y', 0, dataToken.username, dataToken.Id], function (error) {
                     if (error)throw error;
                 });
             }
