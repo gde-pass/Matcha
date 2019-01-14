@@ -26,7 +26,7 @@ function chat(req,res){
                             if(!empty(results2)){
                                 bloquer = 1;
                             }
-                        glob(`*/assets/img/${data.username}${data.Id}profil*`, function(err, files_profil) {
+                        glob(`*/assets/img/${data.Id}profil*`, function(err, files_profil) {
                             var profil_img = path.basename(files_profil.toString());
                             if(empty(profil_img))
                                 profil_img = 'undefined';

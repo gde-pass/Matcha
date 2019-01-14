@@ -12,7 +12,7 @@ function up_img(req,res,file) {
     }
     else {
         function checkFileNb(file, callback) {
-            glob(`*/assets/images/${data.username}${data.Id}img*`, function (err, files) {
+            glob(`*/assets/images/${data.Id}img*`, function (err, files) {
                 if (files.length >= 5) {
                     callback('Error: To many images! 4 images max');
                 }
@@ -21,7 +21,7 @@ function up_img(req,res,file) {
         const storage = multer.diskStorage({
             destination: './public/assets/images/',
             filename: function (req, file, callback) {
-                callback(null, data.username + data.Id + 'img' + "-" + Date.now() + path.extname(file.originalname))//todo faire en sorte que le nom de limage sois relier a 'ID de la personne pour que l'on puisse la retrouver
+                callback(null,data.Id + 'img' + "-" + Date.now() + path.extname(file.originalname))//todo faire en sorte que le nom de limage sois relier a 'ID de la personne pour que l'on puisse la retrouver
                 // callback(null, data.username + data.Id + 'profil' +'-' + Date.now() + path.extname(file.originalname))//todo faire en sorte que le nom de limage sois relier a 'ID de la personne pour que l'on puisse la retrouver
             }
         });

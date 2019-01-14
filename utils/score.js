@@ -11,20 +11,19 @@ function findScore(user, cb) {
         else {
             resu.forEach(function (elem) {
                 tabscore.push(elem.score)
-            })
+            });
             var sum = tabscore.reduce(add, 0);
 
             function add(a, b) {
                 return a + b;
             }
-
             cb(null, sum / tabscore.length)
         }
     })
 }
 
 let scor = 0;
-function score(req, res) {
+function score(req, res, pertinance) {
     let data = jwtUtils.getUserID(req.cookies.token);
     if (data.type < 0 || data.type !== "login" || data.email < 0) {
         console.log("You must be logged in to access this site")
@@ -38,7 +37,7 @@ function score(req, res) {
             if (err) return (res.status(500).send(error.sqlMessage));
             else {
                 let target_id = resu[0].user_id;
-                let sql = "UPDATE score SET score = ?, user_that_is_scored = ? WHERE current_user_id = ?"
+                let sql = "UPDATE score SET score = ?, user_that_is_scored = ? WHERE current_user_id = ?";
                 conn.query(sql, [etoiles, target_id, data.Id], function (err, result) {
                     if (err) return (res.status(500).send(error.sqlMessage));
                     else {

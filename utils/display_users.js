@@ -120,49 +120,56 @@ function display_users(req, res, connected) {
                         }
                     }
                 });
-                sortDistance(userLat, userLng, users, async function (err, sortedByDistance) {
+
+                findIfBloqued(req, res, data.Id, users, function (err, listOfBloqued) {
                     if (err) {
                         console.log(err)
                     } else {
-                        findIfBloqued(req, res, data.Id ,sortedByDistance, function(err, listOfBloqued){
+                        let found = 0;
+                        usersSorted = users.filter(value => {
+                            found = 0;
+                            for (let j = 0; j < listOfBloqued.length; j++) {
+                                if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
+                            }
+                            if (found == 1) return false;
+                            else if (found == 0) return true;
+                        });
+                        findIfBloqued(req, res, data.Id, suggestion, function (err, listOfBloqued) {
                             if (err) {
                                 console.log(err)
-                            }else{
-                                let found = 0;
-                                usersSorted = users.filter(value =>{
+                            } else {
+                                suggestionSorted = suggestion.filter(value => {
                                     found = 0;
-                                    for(let j=0; j < listOfBloqued.length; j++){
-                                        if(value.user_id == listOfBloqued[j].is_bloqued) found = 1;
+                                    for (let j = 0; j < listOfBloqued.length; j++) {
+                                        if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
                                     }
-                                    if(found == 1) return false;
-                                    else if(found == 0)return true;
-                                });
-                                findIfBloqued(req, res, data.Id ,suggestion, function(err, listOfBloqued) {
-                                    if (err) {
-                                        console.log(err)
-                                    }else {
-                                       suggestionSorted = suggestion.filter(value => {
-                                            found = 0;
-                                            for (let j = 0; j < listOfBloqued.length; j++) {
-                                                if (value.user_id == listOfBloqued[j].is_bloqued) found = 1;
-                                            }
-                                            if (found == 1)return false;
-                                            else if (found == 0) return true;
-                                        });
-                                    }
-                                    if(empty(suggestion)) suggestion = 0;
-                                    if(empty(usersSorted)) usersSorted = 0;
-                                    res.render('index', {
-                                        connected: connected,
-                                        sorted: false,
-                                        users: usersSorted,
-                                        suggestion: suggestionSorted,
-                                    })
+                                    if (found == 1) return false;
+                                    else if (found == 0) return true;
                                 });
                             }
+                            sortDistance(userLat, userLng, usersSorted, async function (err, sortedByDistance) {
+                                if (err) {
+                                    console.log(err)
+                                } else {
+                                    sortDistance(userLat, userLng, suggestionSorted, async function (err, suggestionDistance) {
+                                        if (err) {
+                                            console.log(err)
+                                        } else {
+                                            if (empty(suggestionDistance)) suggestionDistance = 0;
+                                            if (empty(sortedByDistance)) sortedByDistance = 0;
+                                            res.render('index', {
+                                                connected: connected,
+                                                sorted: false,
+                                                users: sortedByDistance,
+                                                suggestion: suggestionDistance,
+                                            })
+                                        }
+                                    })
+                                }
+                            })
                         });
                     }
-                })
+                });
             } else {
                 res.render('index', {
                     connected: connected,

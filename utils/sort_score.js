@@ -1,6 +1,5 @@
 let conn = require('../database/database');
 
-
 async function sortAge(req, res, users, cb) {
     let usersScores = [];
     let tabUsers = [];
@@ -11,10 +10,8 @@ async function sortAge(req, res, users, cb) {
         })
     })
     usersScores.sort(function (a, b) {
-        return b - a
+        return b.score - a.score
     });
-    console.log(usersScores)
-
     for (let i = 0; i < usersScores.length; i++) {
         let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id WHERE Users.user_id = ?";
         try {

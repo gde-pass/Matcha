@@ -12,7 +12,6 @@ async function sortAge(req, res, users, cb) {
     usersAges.sort(function (a, b) {
         return a.age - b.age
     });
-    console.log(usersAges[0].user)
 
     for (let i = 0; i < usersAges.length; i++) {
         let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id WHERE Users.user_id = ?";
