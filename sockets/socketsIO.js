@@ -225,7 +225,7 @@ module.exports = function(io)
 
         socket.on('unread', async function () {
             let getunread = "SELECT COUNT (*) AS nb FROM Notifications WHERE to_user_id=? AND unread=?";
-            db.query(getunread, [socket.data.user_id, 1], function (error, results) {
+            await db.query(getunread, [socket.data.user_id, 1], function (error, results) {
                 if (error) throw error;
                 socket.emit('getunread', results[0].nb);
             });
