@@ -77,9 +77,11 @@ module.exports = function(io)
         socket.on("visite", async function (data) {
             let gparams = await SocketO.Getparams(data.username);
             let niu = await dbUser.dbSelectIdUserByUsername(data.username);
-            dbUser.visiteUser(data);
-            notif.CreateNotif(socket, data, niu);
-            io.to(gparams.socketid).emit('notification_box');
+            if (await dbUser.userBlock(socket, niu) == false) {
+                dbUser.visiteUser(data);
+                notif.CreateNotif(socket, data, niu);
+                io.to(gparams.socketid).emit('notification_box');
+            }
         });
 
         socket.on("report", async function (data) {
@@ -152,20 +154,24 @@ module.exports = function(io)
                 to_user_id: gparams.user_id,
                 message: data.message
                 };
-            if (await dbmatch.IsMatch(socket, niu2) == true ) {
-                if (await dbmessage.InsertMessage(params)){
-                      io.to(socket.id).emit('chat', data);
-                    if (await SocketO.CheckConv(params) === true) {
+            if (await dbUser.userBlock(socket, gparams.user_id) == false) {
+                if (await dbmatch.IsMatch(socket, niu2) == true ) {
+                    if (await dbmessage.InsertMessage(params)){
+                        io.to(socket.id).emit('chat', data);
+                        if (await SocketO.CheckConv(params) === true) {
                      // PRIVATE MESSAGE---------------------------------------------//
-              			io.to(gparams.socketid).emit('chat_rep', data);
-                      }else {
-                        io.to(gparams.socketid).emit('notifnew', socket.data.username);
-                      }
+              			    io.to(gparams.socketid).emit('chat_rep', data);
+                        }else {
+                            io.to(gparams.socketid).emit('notifnew', socket.data.username);
+                        }
+                    }else {
+                        console.log('error insert db message');
+                    }
                 }else {
-                    console.log('error insert db message');
+                    io.to(socket.id).emit('chatnomatch', data);
                 }
             }else {
-                io.to(socket.id).emit('chatnomatch', data);
+                io.to(socket.id).emit('chatblock', data);
             }
         });
 
@@ -193,26 +199,28 @@ module.exports = function(io)
             let gparams = await SocketO.Getparams(data.user);
             let niu = await dbUser.dbSelectIdUserByUsername(data.user);
                 niu2 += await dbUser.dbSelectIdUserByUsername(data.user);
-            if ((data.type == 1 && data.like == "Like")) {
-                notif.CreateNotif(socket, data, niu);
-                io.to(gparams.socketid).emit('notification_box');
-                if (await dbmatch.WasMatch(socket, niu2) == true) {
-                    data.type = 3;
-                    notif.CreateNotif(socket, data, niu);
-                    notif.CreateNotifMatch(socket, data, niu);
-                    io.to(gparams.socketid).emit('notification_box');
-                    io.to(socket.id).emit('notification_box');
+                if (await dbUser.userBlock(socket, niu) == false) {
+                    if ((data.type == 1 && data.like == "Like")) {
+                        notif.CreateNotif(socket, data, niu);
+                        io.to(gparams.socketid).emit('notification_box');
+                        if (await dbmatch.WasMatch(socket, niu2) == true) {
+                            data.type = 3;
+                            notif.CreateNotif(socket, data, niu);
+                            notif.CreateNotifMatch(socket, data, niu);
+                            io.to(gparams.socketid).emit('notification_box');
+                            io.to(socket.id).emit('notification_box');
+                        }
+                    }else if (data.type == 2) {
+                        if (await dbmatch.IsMatch(socket, niu2) == true ) {
+                            notif.CreateNotif(socket, data, niu);
+                            io.to(gparams.socketid).emit('notification_box');
+                        }
+                    }else if (data.type == 1 && await dbmatch.WasMatch(socket, niu2) == true){
+                        data.type = 4;
+                        notif.CreateNotif(socket, data, niu);
+                        io.to(gparams.socketid).emit('notification_box');
+                    }
                 }
-            }else if (data.type == 2) {
-                if (await dbmatch.IsMatch(socket, niu2) == true ) {
-                    notif.CreateNotif(socket, data, niu);
-                    io.to(gparams.socketid).emit('notification_box');
-                }
-            }else if (data.type == 1 && await dbmatch.WasMatch(socket, niu2) == true){
-                    data.type = 4;
-                    notif.CreateNotif(socket, data, niu);
-                    io.to(gparams.socketid).emit('notification_box');
-            }
         });
 
         socket.on('unread', async function () {
