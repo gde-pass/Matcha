@@ -26,7 +26,7 @@ let scor = 0;
 function score(req, res, pertinance) {
     let data = jwtUtils.getUserID(req.cookies.token);
     if (data.type < 0 || data.type !== "login" || data.email < 0) {
-        console.log("You must be logged in to access this site")
+        // console.log("You must be logged in to access this site")
         res.render('login')
     } else {
         let url = req.url;

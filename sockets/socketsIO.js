@@ -1,5 +1,4 @@
 "use strict";
-const validator = require("validator");
 const sanitizeHtml = require("sanitize-html");
 const cookie = require("cookie");
 const db = require("../database/database");
@@ -7,12 +6,10 @@ const jwtUtils = require("../utils/jwt.utils");
 const dbUser = require("../database/user.js");
 const check = require("../database/check_validity.js");
 const sendMail = require('../utils/sendMail');
-const geolib = require('geolib');
 const SocketO = require("../database/socketsOnline.js");
 const dbmessage = require("../database/message.js");
 const notif = require("../database/db_notif.js");
 const dbmatch = require("../database/db_matchs.js");
-const findIfMatch = require('../utils/find_If_matched');
 
 
 let dataToken = [];
@@ -81,13 +78,14 @@ module.exports = function(io)
         });
 
         socket.on("report", async function (data) {
-            if (await check.reportedUser(data) === true) {
-                socket.emit("reportFalse");
-            } else {
-                dbUser.reportUser(data);
-                socket.emit("reportTrue");
+            if(data !== undefined) {
+                if (await check.reportedUser(data) === true) {
+                    socket.emit("reportFalse");
+                } else {
+                    dbUser.reportUser(data);
+                    socket.emit("reportTrue");
+                }
             }
-
         });
 
         socket.on("parametre", async function (data) {
@@ -98,10 +96,11 @@ module.exports = function(io)
             } else if (await check.checkUsernameValidity(data.username, db) === false) {
                 socket.emit("settingsUpdateFalse");
             } else {
-                await dbUser.dbSettingsUpdate(data);
-                let id_user = await dbUser.dbSelectIdUserByUsername(data.username);
-                await SocketO.useronlineUpdate(data.username, id_user);
                 socket.emit("settingsUpdateTrue");
+                await dbUser.dbSettingsUpdate(data);
+                //let id_user = await dbUser.dbSelectIdUserByUsername(data.username); //todo @KANDEOL ici tu fais une query avec username mais si il a pas rempli le champ bah tu fais une query sur undef et ça crash
+                //await SocketO.useronlineUpdate(data.username, id_user);
+
             }
         });
 
@@ -120,20 +119,23 @@ module.exports = function(io)
         });
 
         socket.on("focusOutEmailSignUp", async function (email) {
-            if (validator.isEmail(email) && !validator.isEmpty(email) &&
-                validator.isLowercase(email) && check.checkEmailPattern(email)) {
-
-                if (await check.checkEmailValidity(email, db) === false) {
-                    socket.emit("focusOutEmailSignUpFalse", email);
-                }
+            
+          if(email !== null && email !== undefined) {
+            if (check.checkEmailPattern(email)) {
+              if (await check.checkEmailValidity(email, db) === false) {
+                        socket.emit("focusOutEmailSignUpFalse", email);
+              }
             }
+          }
         });
 
         socket.on("focusOutUsernameSignUp", async function (username) {
-            if (!validator.isEmpty(username) && check.checkUserPattern(username)) {
+            if(username !== null  && username !== undefined) {
+                if (check.checkUserPattern(username)) {
 
-                if (await check.checkUsernameValidity(username, db) === false) {
-                    socket.emit("focusOutUsernameSignUpFalse", username);
+                    if (await check.checkUsernameValidity(username, db) === false) {
+                        socket.emit("focusOutUsernameSignUpFalse", username);
+                    }
                 }
             }
         });
@@ -261,6 +263,7 @@ module.exports = function(io)
                         });
                     }
                 }
+            }
         });
     });
 };

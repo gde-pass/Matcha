@@ -16,13 +16,13 @@ function chat(req,res){
         url = replace.all("/chat?").from(url).with("");
         let sql = "SELECT * , DATE_FORMAT(last_connection , '%d/%m/%Y %H:%i:%s') AS date FROM Users INNER JOIN Settings ON Settings.user_id = Users.user_id INNER JOIN Useronline ON Useronline.user_id = Users.user_id WHERE Users.username = ?";
         conn.query(sql, [url], function (error, results, fields) {
-            if (error) return (res.status(500).send(error.sqlMessage));
+            if (error) return (res.send(error.sqlMessage));
             if (empty(results)) {
                 res.redirect('/');
             } else {
                 let reqsql = "SELECT * FROM users_bloquer WHERE user_id=? AND is_bloqued=?";
                 conn.query(reqsql, [results[0].user_id, data.Id], function (error, results2, fields) {
-                    if (error) return (res.status(500).send(error.sqlMessage));
+                    if (error) return (res.send(error.sqlMessage));
                             if(!empty(results2)){
                                 bloquer = 1;
                             }

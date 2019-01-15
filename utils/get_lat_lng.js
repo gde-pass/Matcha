@@ -12,7 +12,7 @@ function findUserLocation(req) {
     } else {
         let sqlUser = "SELECT * FROM Users WHERE email = ?";
         conn.query = (sqlUser, data.email, function (error, res) {
-            if (error)  return (res.status(500).send(error.sqlMessage));
+            if (error)  return (res.send(error.sqlMessage));
             userLat = res[0].latitude;
             userLng = res[0].longitude;
         })

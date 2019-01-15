@@ -1,6 +1,5 @@
 "use strict";
 let jwtUtils = require("../utils/jwt.utils");
-const validator = require("validator");
 const util = require("util");
 const bcrypt = require("bcrypt-nodejs");
 const db = require("./database");
@@ -12,26 +11,56 @@ const empty = require("is-empty");
 /**
  * @return {boolean}
  */
-function checkSettingsUpdate(data) {
-    if ((data.first_name.length !== 0 && !checkName(data.first_name)) ||
-        (data.last_name.length !== 0 && !checkName(data.last_name)) ||
-        (data.username.length !== 0 && !checkUserPattern(data.username)) ||
-        (data.email.length !== 0 && !checkEmailPattern(data.email)) ||
-        (data.orientation.length !== 0 && !checkSexOrientationPattern(data.orientation)) ||
-        (data.gender.length !== 0 && !checkGenderPattern(data.gender)) ||
-        (data.bio.length !== 0 && !checkBioPattern(data.bio)) ||
-        (data.tags.length !== 0 && !checkTagsPattern(data.tags)) ||
-        (data.distance.length !== 0 && !checkDistancePattern(data.distance)) ||
-        (data.age.length !== 0 && !checkAgePattern(data.age)) ||
-        (data.ageRangeMin.length !== 0 && !checkAgePattern(data.ageRangeMin)) ||
-        (data.ageRangeMax !== 0 && !checkAgePattern(data.ageRangeMax)) ||
-        (data.password.length !== 0 && !checkPasswordPattern(data.password)) ||
-        (data.longitude.length !== 0 && !checkLongitude(data.longitude)) ||
-        (data.latitude.length !== 0 && !checkLatitude(data.latitude)) ||
-        (data.password2.length !== 0 && !checkPasswordMatch(data.password, data.password2))) {
+function checkUndefined(data) {
+    if (data.first_name === undefined ||
+        data.last_name === undefined ||
+        data.username === undefined ||
+        data.email === undefined ||
+        data.orientation === undefined ||
+        data.gender === undefined ||
+        data.bio === undefined ||
+        data.tags === undefined ||
+        data.ageRangeMin === undefined ||
+        data.ageRangeMax === undefined ||
+        data.password === undefined ||
+        data.password2 === undefined ||
+        data.longitude === undefined ||
+        data.latitude === undefined ||
+        data.cookie === undefined) {
         return (false);
     } else {
         return (true);
+    }
+}
+
+/**
+ * @return {boolean}
+ */
+async function checkSettingsUpdate(data) {
+
+    if (await checkUndefined(data) === true) {
+        if ((data.first_name.length !== 0 && !checkName(data.first_name)) ||
+            (data.last_name.length !== 0 && !checkName(data.last_name)) ||
+            (data.username.length !== 0 && !checkUserPattern(data.username)) ||
+            (data.email.length !== 0 && !checkEmailPattern(data.email)) ||
+            (data.orientation.length !== 0 && !checkSexOrientationPattern(data.orientation)) ||
+            (data.gender.length !== 0 && !checkGenderPattern(data.gender)) ||
+            (data.bio.length !== 0 && !checkBioPattern(data.bio)) ||
+            (data.tags.length !== 0 && !checkTagsPattern(data.tags)) ||
+            (data.distance.length !== 0 && !checkDistancePattern(data.distance)) ||
+            (data.age.length !== 0 && !checkAgePattern(data.age)) ||
+            (data.ageRangeMin.length !== 0 && !checkAgePattern(data.ageRangeMin)) ||
+            (data.ageRangeMax !== 0 && !checkAgePattern(data.ageRangeMax)) ||
+            (data.password.length !== 0 && !checkPasswordPattern(data.password)) ||
+            (data.longitude.length !== 0 && !checkLongitude(data.longitude)) ||
+            (data.latitude.length !== 0 && !checkLatitude(data.latitude)) ||
+            (data.password2.length !== 0 && !checkPasswordMatch(data.password, data.password2))) {
+            return (false);
+        } else {
+            return (true);
+        }
+    } else {
+        return (false);
     }
 }
 
@@ -92,7 +121,7 @@ function checkDistancePattern(value) {
 function checkTagsPattern(value) {
     const tagsRegex = new RegExp("^(#+[a-zA-Z]{2,20}\\s?){1,10}");
 
-    if (!value.match(tagsRegex)) {
+    if (!String(value).match(tagsRegex)) {
         return (false);
     } else {
         return (true);
@@ -118,7 +147,7 @@ function checkBioPattern(value) {
 function checkGenderPattern(value) {
     const genderRegex = new RegExp("^(Female|Male)$");
 
-    if (!value.match(genderRegex)) {
+    if (!String(value).match(genderRegex)) {
         return (false);
     } else {
         return (true);
@@ -131,7 +160,7 @@ function checkGenderPattern(value) {
 function checkSexOrientationPattern(value) {
     const sexOrientationRegex = new RegExp("^(Homosexual|Heterosexual|Bisexual)$");
 
-    if (!value.match(sexOrientationRegex)) {
+    if (!String(value).match(sexOrientationRegex)) {
         return (false);
     } else {
         return (true);
@@ -142,13 +171,16 @@ function checkSexOrientationPattern(value) {
  * @return {boolean}
  */
 function checkEmailPattern(email) {
-    const emailRegex = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
 
-    if (!email.match(emailRegex) || email.length > 254 || email.length < 3 ||
-        !validator.isEmail(email) || !validator.isLowercase(email)) {
-        return (false);
+    if(email !== undefined && !empty(email)) {
+        const emailRegex = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
+        if (email !== undefined) {
+            if (!email.match(emailRegex) || email.length > 254 || email.length < 3) {
+                return (false);
+            }
+            return (true);
+        }
     }
-    return (true);
 }
 
 /**
@@ -157,8 +189,8 @@ function checkEmailPattern(email) {
 function checkUserPattern(user) {
     const userRegex = new RegExp("^[0-9a-zA-Z]+$");
 
-    if (!user.match(userRegex) || user.length > 15 ||
-        user.length < 2 || !validator.isAlphanumeric(user)) {
+    if (!String(user).match(userRegex) || user.length > 15 ||
+        user.length < 2) {
         return (false);
     }
     return (true);
@@ -168,13 +200,15 @@ function checkUserPattern(user) {
  * @return {boolean}
  */
 function checkName(value) {
-    const NameRegex = new RegExp("^(?=.{2,40}$)[a-zA-Z]+(?:[-'\\s][a-zA-Z]+)*$");
+    if (value !== undefined && !empty(value)) {
+        const NameRegex = new RegExp("^(?=.{2,40}$)[a-zA-Z]+(?:[-'\\s][a-zA-Z]+)*$");
 
-    if (value.length === 0 || value.length > 40 ||
-        value.length < 2 || !value.match(NameRegex)) {
-        return (false);
-    } else {
-        return (true);
+        if (value.length === 0 || value.length > 40 ||
+            value.length < 2 || !String(value).match(NameRegex)) {
+            return (false);
+        } else {
+            return (true);
+        }
     }
 }
 
@@ -183,13 +217,16 @@ function checkName(value) {
  * @return {boolean}
  */
 function checkPasswordPattern(password) {
-    const passwordRegex = new RegExp("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})");
+    if (password !== undefined && !empty(password)) {
+        const passwordRegex = new RegExp("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})");
 
-    if (password.length === 0 || password.length < 6 ||
-        password.length > 20 || !password.match(passwordRegex)) {
-        return (false);
-    } else {
-        return (true);
+        if (password.length === 0 || password.length < 6 ||
+            password.length > 20 || !String(password).match(passwordRegex)) {
+            return (false);
+        } else {
+            return (true);
+
+        }
     }
 }
 
@@ -198,7 +235,7 @@ function checkPasswordPattern(password) {
  */
 function checkPasswordMatch(password1, password2) {
     if (password1 !== password2 || password1.length === 0 ||
-        password2.length === 0 || !validator.equals(password1, password2)) {
+        password2.length === 0) {
         return (false);
     } else {
         return (true);
@@ -292,41 +329,42 @@ async function checkLoginUser(user) {
  * @return {boolean}
  */
 async function checkReset(user) {
-    if (!checkPasswordPattern(user.password)) {
-        return (false);
-    } else {
-        let data = jwtUtils.getUserID(user.token);
-        if (data.email < 0) {
-            return (false)
-        }
-        else if (data.type < 0 || data.type != "reset") {
-            return (false)
-        }
-        let sql = 'SELECT * FROM Users WHERE email=?';
-        db.query = util.promisify(db.query);
-
-        try {
-            let result = await db.query(sql, [data.email]);
-            if (!empty(result[0])) {
-                let hash = bcrypt.hashSync(user.password);
-                let sqlReset = 'UPDATE Users SET password=? WHERE email=?';
-                db.query = util.promisify(db.query);
-                console.log(data.email);
-                try {
-                    let result = await db.query(sqlReset, [hash, data.email]);
-                    if (!empty(result)) {
-                        return (true)
-                    } else {
-                        return (false)
-                    }
-                } catch (error) {
-                    throw error;
-                }
-            } else {
+    if(user !== undefined) {
+        if (!checkPasswordPattern(user.password)) {
+            return (false);
+        } else {
+            let data = jwtUtils.getUserID(user.token);
+            if (data.email < 0) {
                 return (false)
             }
-        } catch (error) {
-            throw error;
+            else if (data.type < 0 || data.type !== "reset") {
+                return (false)
+            }
+            let sql = 'SELECT * FROM Users WHERE email=?';
+            db.query = util.promisify(db.query);
+
+            try {
+                let result = await db.query(sql, [data.email]);
+                if (!empty(result[0])) {
+                    let hash = bcrypt.hashSync(user.password);
+                    let sqlReset = 'UPDATE Users SET password=? WHERE email=?';
+                    db.query = util.promisify(db.query);
+                    try {
+                        let result = await db.query(sqlReset, [hash, data.email]);
+                        if (!empty(result)) {
+                            return (true)
+                        } else {
+                            return (false)
+                        }
+                    } catch (error) {
+                        throw error;
+                    }
+                } else {
+                    return (false)
+                }
+            } catch (error) {
+                throw error;
+            }
         }
     }
 }

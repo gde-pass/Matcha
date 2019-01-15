@@ -103,7 +103,7 @@ router.post("/single/toggle_like", function (req, res) {
                 let sql = "SELECT `user_id` FROM `Users` WHERE `username` = ?;";// selectionne Id de l'utilisateur qui va etre liker
                 conn.query(sql, req.body.target, function (err, result, fields) {
                     if (err) {
-                        return (res.status(500).send(error.sqlMessage));
+                        return (res.send(err.sqlMessage));
                     }
                     else if (!empty(result)) {
                         if (alreadyLiked(matched_id, result[0].user_id) == result[0].user_id) { //si je l'ai deja liker je retire son id du tableau qui contien toute les personne que j'ai aimer
@@ -136,22 +136,22 @@ router.post("/single/toggle_bloque", function (req, res) {
     } else {
         let sql = "SELECT user_id FROM Users WHERE username =?";
         conn.query(sql, req.body.target, function(err, result){
-            if(err) return (res.status(500).send(err.sqlMessage));
+            if(err) return (res.send(err.sqlMessage));
             else{
                 let sql = "SELECT * FROM users_bloquer WHERE user_id = ?";
                 conn.query(sql, data.Id, function(err, results){
-                    if(err) return (res.status(500).send(err.sqlMessage));
+                    if(err) return (res.send(err.sqlMessage));
                     for(let i =0; i < results.length; i++){
                         if(results[i].is_bloqued == result[0].user_id) haveBloqued = 1;
                     }
                     if(haveBloqued == 0){
                         let sql = "INSERT INTO users_bloquer(user_id, is_bloqued) VALUES(?,?)";
                         conn.query(sql,[data.Id, result[0].user_id], function(err, resu){
-                            if(err) return (res.status(500).send(err.sqlMessage));
+                            if(err) return (res.send(err.sqlMessage));
                             else{
                                 let sql = "UPDATE list_bloquer SET is_bloqued =? WHERE user_id=?";
                                 conn.query(sql,[1, result[0].user_id], function(err, resu){
-                                    if(err) return (res.status(500).send(err.sqlMessage));
+                                    if(err) return (res.send(err.sqlMessage));
                                     else{
                                         res.status(200).json({
                                             bloqued: true,
@@ -163,11 +163,11 @@ router.post("/single/toggle_bloque", function (req, res) {
                     }else if(haveBloqued ==1){
                         let sql = "DELETE  FROM users_bloquer WHERE is_bloqued =? AND user_id=?";
                         conn.query(sql,[result[0].user_id, data.Id], function(err, resu) {
-                            if (err) console.log(err.sqlMessage)
+                            if (err) return (res.send(err.sqlMessage));
                             else {
                                 let sql = "UPDATE list_bloquer SET is_bloqued =? WHERE user_id =?";
                                 conn.query(sql, [0, result[0].user_id], function (err, resu) {
-                                    if (err) return (res.status(500).send(err.sqlMessage));
+                                    if (err) return (res.send(err.sqlMessage));
                                     else{
                                         res.status(200).json({
                                                     bloqued: false,
