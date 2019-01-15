@@ -200,14 +200,15 @@ function checkUserPattern(user) {
  * @return {boolean}
  */
 function checkName(value) {
-    if(value !== undefined && !empty(value)) {
+    if (value !== undefined && !empty(value)) {
         const NameRegex = new RegExp("^(?=.{2,40}$)[a-zA-Z]+(?:[-'\\s][a-zA-Z]+)*$");
 
-    if (value.length === 0 || value.length > 40 ||
-        value.length < 2 || !String(value).match(NameRegex)) {
-        return (false);
-    } else {
-        return (true);
+        if (value.length === 0 || value.length > 40 ||
+            value.length < 2 || !String(value).match(NameRegex)) {
+            return (false);
+        } else {
+            return (true);
+        }
     }
 }
 
@@ -216,15 +217,16 @@ function checkName(value) {
  * @return {boolean}
  */
 function checkPasswordPattern(password) {
-    if(password !== undefined && !empty(password)) {
+    if (password !== undefined && !empty(password)) {
         const passwordRegex = new RegExp("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})");
 
-    if (password.length === 0 || password.length < 6 ||
-        password.length > 20 || !String(password).match(passwordRegex)) {
-        return (false);
-    } else {
-        return (true);
+        if (password.length === 0 || password.length < 6 ||
+            password.length > 20 || !String(password).match(passwordRegex)) {
+            return (false);
+        } else {
+            return (true);
 
+        }
     }
 }
 
