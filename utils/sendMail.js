@@ -23,7 +23,7 @@ function sendMail(email, token, path) {
 
     transporter.sendMail(mailOption, (error) => {
         if (error) {
-            console.log(error);
+            // console.log(error);
         }
     });
 }

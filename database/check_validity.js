@@ -309,7 +309,6 @@ async function checkReset(user) {
                 let hash = bcrypt.hashSync(user.password);
                 let sqlReset = 'UPDATE Users SET password=? WHERE email=?';
                 db.query = util.promisify(db.query);
-                console.log(data.email);
                 try {
                     let result = await db.query(sqlReset, [hash, data.email]);
                     if (!empty(result)) {

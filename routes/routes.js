@@ -42,6 +42,7 @@ router.get("/validation/:token", function (req, res) {
 });
 
 router.get("/reset/:token", function (req, res) {
+    console.lo
     res.render('reset');
 });
 

@@ -7,7 +7,6 @@ const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const cookieParser = require('cookie-parser');
 
-
 //-----IMPORT LOCAL------------------------------------------------------------------------------------------
 const index = require('./routes/routes');
 const initDb = require("./database/init.js");

@@ -140,7 +140,7 @@ function recherche(req, res, connected) {
                 if (ageBox == 1) {
                     findIfBloqued(req, res, data.Id, users, function (err, listOfBloqued) {
                         if (err) {
-                            console.log(err)
+                            // console.log(err)
                         } else {
                             let found = 0;
                             usersSorted = users.filter(value => {
@@ -154,7 +154,7 @@ function recherche(req, res, connected) {
                             if (!empty(suggestion)) {
                                 findIfBloqued(req, res, data.Id, suggestion, function (err, listOfBloqued) {
                                     if (err) {
-                                        console.log(err)
+                                        // console.log(err)
                                     } else {
                                         suggestionSorted = suggestion.filter(value => {
                                             found = 0;
@@ -169,11 +169,11 @@ function recherche(req, res, connected) {
                             }
                             sortAge(req, res, usersSorted, function (err, sortedByAge) {
                                 if (err) {
-                                    console.log(err)
+                                    // console.log(err)
                                 } else {
                                     sortAge(req, res, suggestionSorted, function (err, suggestionAge) {
                                         if (err) {
-                                            console.log(err)
+                                            // console.log(err)
                                         } else {
                                             if (empty(suggestionAge)) suggestionAge = 0;
                                             if (empty(sortedByAge)) sortedByAge = 0;
@@ -200,7 +200,7 @@ function recherche(req, res, connected) {
                 } else if (distanceBox == 1) {
                     findIfBloqued(req, res, data.Id, users, function (err, listOfBloqued) {
                         if (err) {
-                            console.log(err)
+                            // console.log(err)
                         } else {
                             let found = 0;
                             usersSorted = users.filter(value => {
@@ -214,7 +214,7 @@ function recherche(req, res, connected) {
                             if (!empty(suggestion)) {
                                 findIfBloqued(req, res, data.Id, suggestion, function (err, listOfBloqued) {
                                     if (err) {
-                                        console.log(err)
+                                        // console.log(err)
                                     } else {
                                         suggestionSorted = suggestion.filter(value => {
                                             found = 0;
@@ -229,11 +229,11 @@ function recherche(req, res, connected) {
                             }
                             sortDistance(userLat, userLng, usersSorted, function (err, sortedByDistance) {
                                 if (err) {
-                                    console.log(err)
+                                    // console.log(err)
                                 } else {
                                     sortDistance(userLat, userLng, suggestionSorted, function (err, suggestionDistance) {
                                         if (err) {
-                                            console.log(err)
+                                            // console.log(err)
                                         } else {
                                             if (empty(suggestionDistance)) suggestionDistance = 0;
                                             if (empty(sortedByDistance)) sortedByDistance = 0;
@@ -260,7 +260,7 @@ function recherche(req, res, connected) {
                 } else if (scoreBox == 1) {
                     findIfBloqued(req, res, data.Id, users, function (err, listOfBloqued) {
                         if (err) {
-                            console.log(err)
+                            // console.log(err)
                         } else {
                             let found = 0;
                             usersSorted = users.filter(value => {
@@ -274,7 +274,7 @@ function recherche(req, res, connected) {
                             if (!empty(suggestion)) {
                                 findIfBloqued(req, res, data.Id, suggestion, function (err, listOfBloqued) {
                                     if (err) {
-                                        console.log(err)
+                                        // console.log(err)
                                     } else {
                                         suggestionSorted = suggestion.filter(value => {
                                             found = 0;
@@ -289,11 +289,11 @@ function recherche(req, res, connected) {
                             }
                             sortScore(req, res, usersSorted, function (err, sortedScore) {
                                 if (err) {
-                                    console.log(err)
+                                    // console.log(err)
                                 } else {
                                     sortScore(req, res, suggestionSorted, function (err, suggestionScore) {
                                         if (err) {
-                                            console.log(err)
+                                            // console.log(err)
                                         } else {
                                             if (empty(suggestionScore)) suggestionScore = 0;
                                             if (empty(sortedScore)) sortedScore = 0;
@@ -320,7 +320,7 @@ function recherche(req, res, connected) {
                 } else {
                     findIfBloqued(req, res, data.Id, users, function (err, listOfBloqued) {
                         if (err) {
-                            console.log(err)
+                            // console.log(err)
                         } else {
                             let found = 0;
                             usersSorted = users.filter(value => {
@@ -334,7 +334,7 @@ function recherche(req, res, connected) {
                             if (!empty(suggestion)) {
                                 findIfBloqued(req, res, data.Id, suggestion, function (err, listOfBloqued) {
                                     if (err) {
-                                        console.log(err)
+                                        // console.log(err)
                                     } else {
                                         suggestionSorted = suggestion.filter(value => {
                                             found = 0;
@@ -349,11 +349,11 @@ function recherche(req, res, connected) {
                             }
                             sortDistance(userLat, userLng, usersSorted, function (err, sortedByDistance) {
                                 if (err) {
-                                    console.log(err)
+                                    // console.log(err)
                                 } else {
                                     sortDistance(userLat, userLng, suggestionSorted, function (err, suggestionDistance) {
                                         if (err) {
-                                            console.log(err)
+                                            // console.log(err)
                                         } else {
                                             if (empty(suggestionDistance)) suggestionDistance = 0;
                                             if (empty(sortedByDistance)) sortedByDistance = 0;
