@@ -5,7 +5,7 @@ function findIfMatch(req, res, data, target, cb) {
     let sql = "SELECT * FROM matchs WHERE user1_id = ?";//selection toute les personne que moi jai aimé
     conn.query(sql, data.Id, function (err, resu, fi) {
         if (err) {
-            return (res.status(500).send(error.sqlMessage));
+            return (res.send(err.sqlMessage));
         }
         else if (!empty(resu)) {
             user_id = data.Id; //recupère mon id
@@ -15,7 +15,7 @@ function findIfMatch(req, res, data, target, cb) {
             let sql = "SELECT `user_id` FROM `Users` WHERE `username` = ?;";// selectionne Id de l'utilisateur qui va etre liker
             conn.query(sql, target, function (err, result, fields) {
                 if (err) {
-                    return (res.status(500).send(error.sqlMessage));
+                    return (res.send(err.sqlMessage));
                 }
                 else if (!empty(result)) {
                     match1 = users_I_Liked.filter(ret => { //regarde si jai deja liker cette utilisateur ou non

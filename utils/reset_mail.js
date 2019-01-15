@@ -15,7 +15,7 @@ function reset(token, password) {
     } else {
         let sqlCheck = 'SELECT * FROM Users WHERE email=?';
         conn.query(sqlCheck, [data.email], function (error, results) {
-            if (error) return (res.status(500).send(error.sqlMessage));
+            if (error) return (res.send(error.sqlMessage));
             else if (empty(results)) {
                 console.log("FAIL")
                 // window.location.href = 'http://0.0.0.0:8080/login?token';//todo rediriger vers la page login avec un message derreur
@@ -23,7 +23,7 @@ function reset(token, password) {
                 let hash = bcrypt.hashSync(password);
                 let sqlReset = "UPDATE Users SET password=? WHERE email=?";
                 conn.query(sqlReset, [hash, data.email], function (error, results) {
-                    if (error) return (res.status(500).send(error.sqlMessage));
+                    if (error) return (res.send(error.sqlMessage));
                     else if (empty(results)) {
                         console.log("FAIL")
                         // window.location.href = 'http://0.0.0.0:8080/login?token';//todo rediriger vers la page login avec un message derreur
