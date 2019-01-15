@@ -22,7 +22,7 @@ async function dbInitTableUser(conn) {
     try {
         await conn.query(sql);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -48,7 +48,7 @@ async function dbInitTableSettings(conn) {
     try {
         await conn.query(sql);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -66,7 +66,7 @@ async function dbInitTableVisites(conn) {
     try {
         await conn.query(sql);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -83,7 +83,7 @@ async function dbInitTableMatch(conn) {
     try {
         await conn.query(sql);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -100,7 +100,7 @@ async function dbInitTableScore(conn) {
     try {
         await conn.query(sql);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -117,7 +117,7 @@ async function dbInitTableBloquer(conn) {
     try {
         await conn.query(sql);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 async function dbInitTableListBloquer(conn) {
@@ -132,7 +132,7 @@ async function dbInitTableListBloquer(conn) {
     try {
         await conn.query(sql);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 function dbInitTableUseronline(conn) {
@@ -199,7 +199,7 @@ async function dbInitTableReports(conn) {
     try {
         await conn.query(sql);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
