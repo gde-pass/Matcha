@@ -6,17 +6,17 @@ function distance(distance, token){
     let data = jwtUtils.getUserID(token);
     if (data.email < 0) {
         // res.render('index');
-        console.log("fail email")
+        //console.log("fail email")
     }
     if (data.type < 0 || data.type != "login") {
         // res.render('index');
-        console.log("fail login")
+        // console.log("fail login")
     }else {
         let sql = "SELECT * FROM Users WHERE email=?";//todo avec le token
         conn.query(sql, [data.email], function (error, results, fields) {
             if (error)  return (res.send(error.sqlMessage));
             if (empty(results)) {
-                console.log('erreur probleme dans distance.js');
+                // console.log('erreur probleme dans distance.js');
                 // res.render('index');
             } else {
                 let multiplieur = distance / 5;
