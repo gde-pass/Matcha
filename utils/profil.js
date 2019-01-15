@@ -74,6 +74,8 @@ function profil(req, res) {
                                                     distance: results[0].distance,
                                                     longitude: results[0].longitude,
                                                     latitude: results[0].latitude,
+                                                    ageRangeMax: results[0].ageRangeMax,
+                                                    ageRangeMin: results[0].ageRangeMin,
                                                     connected: true,
                                                     profil_img: profil_img,
                                                     files_img: images,
