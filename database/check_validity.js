@@ -1,6 +1,5 @@
 "use strict";
 let jwtUtils = require("../utils/jwt.utils");
-const validator = require("validator");
 const util = require("util");
 const bcrypt = require("bcrypt-nodejs");
 const db = require("./database");
@@ -144,8 +143,7 @@ function checkSexOrientationPattern(value) {
 function checkEmailPattern(email) {
     const emailRegex = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
 
-    if (!email.match(emailRegex) || email.length > 254 || email.length < 3 ||
-        !validator.isEmail(email) || !validator.isLowercase(email)) {
+    if (!email.match(emailRegex) || email.length > 254 || email.length < 3) {
         return (false);
     }
     return (true);
@@ -158,7 +156,7 @@ function checkUserPattern(user) {
     const userRegex = new RegExp("^[0-9a-zA-Z]+$");
 
     if (!user.match(userRegex) || user.length > 15 ||
-        user.length < 2 || !validator.isAlphanumeric(user)) {
+        user.length < 2) {
         return (false);
     }
     return (true);
@@ -198,7 +196,7 @@ function checkPasswordPattern(password) {
  */
 function checkPasswordMatch(password1, password2) {
     if (password1 !== password2 || password1.length === 0 ||
-        password2.length === 0 || !validator.equals(password1, password2)) {
+        password2.length === 0) {
         return (false);
     } else {
         return (true);
@@ -299,7 +297,7 @@ async function checkReset(user) {
         if (data.email < 0) {
             return (false)
         }
-        else if (data.type < 0 || data.type != "reset") {
+        else if (data.type < 0 || data.type !== "reset") {
             return (false)
         }
         let sql = 'SELECT * FROM Users WHERE email=?';
