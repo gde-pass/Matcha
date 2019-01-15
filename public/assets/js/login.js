@@ -42,6 +42,14 @@ if (window.location.search === '?success') {
         text: "Your password as been changed with success."
     });
 }
+
+if (window.location.search === '?updated') {
+    swal({
+        type: "success",
+        title: "Your settings have been updated",
+        text: "Please login to see changes"
+    });
+}
 // ============ /FRONT EVENTS ===========
 
 // =========== CHECK FUNCTIONS ===========
