@@ -15,7 +15,6 @@ function chat(req,res){
         let url = req.url;
         url = replace.all("/chat?").from(url).with("");
         let sql = "SELECT * , DATE_FORMAT(last_connection , '%d/%m/%Y %H:%i:%s') AS date FROM Users INNER JOIN Settings ON Settings.user_id = Users.user_id INNER JOIN Useronline ON Useronline.user_id = Users.user_id WHERE Users.username = ?";
-        // let sql = "SELECT * FROM Users WHERE `username` = ?";
         conn.query(sql, [url], function (error, results, fields) {
             if (error) return (res.status(500).send(error.sqlMessage));
             if (empty(results)) {

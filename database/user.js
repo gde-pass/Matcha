@@ -262,7 +262,6 @@ async function dbSelectIdUserByUsername(username) {
             return (result[0].user_id);
         }
     } catch (error) {
-        throw error;
     }
 };
 
@@ -363,7 +362,6 @@ async function userBlock(socket, niu){
             return (true);
         }
     } catch (error) {
-        throw error;
     }
 };
 
