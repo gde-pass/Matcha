@@ -82,13 +82,14 @@ module.exports = function(io)
         });
 
         socket.on("report", async function (data) {
-            if (await check.reportedUser(data) === true) {
-                socket.emit("reportFalse");
-            } else {
-                dbUser.reportUser(data);
-                socket.emit("reportTrue");
+            if(data !== undefined) {
+                if (await check.reportedUser(data) === true) {
+                    socket.emit("reportFalse");
+                } else {
+                    dbUser.reportUser(data);
+                    socket.emit("reportTrue");
+                }
             }
-
         });
 
         socket.on("parametre", async function (data) {
@@ -122,19 +123,23 @@ module.exports = function(io)
         });
 
         socket.on("focusOutEmailSignUp", async function (email) {
+            
+          if(email !== null && email !== undefined) {
             if (check.checkEmailPattern(email)) {
-
-                if (await check.checkEmailValidity(email, db) === false) {
-                    socket.emit("focusOutEmailSignUpFalse", email);
-                }
+              if (await check.checkEmailValidity(email, db) === false) {
+                        socket.emit("focusOutEmailSignUpFalse", email);
+              }
             }
+          }
         });
 
         socket.on("focusOutUsernameSignUp", async function (username) {
-            if (check.checkUserPattern(username)) {
+            if(username !== null  && username !== undefined) {
+                if (check.checkUserPattern(username)) {
 
-                if (await check.checkUsernameValidity(username, db) === false) {
-                    socket.emit("focusOutUsernameSignUpFalse", username);
+                    if (await check.checkUsernameValidity(username, db) === false) {
+                        socket.emit("focusOutUsernameSignUpFalse", username);
+                    }
                 }
             }
         });

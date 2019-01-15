@@ -171,12 +171,16 @@ function checkSexOrientationPattern(value) {
  * @return {boolean}
  */
 function checkEmailPattern(email) {
-    const emailRegex = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
 
-    if (!String(email).match(emailRegex) || email.length > 254 || email.length < 3) {
-        return (false);
+    if(email !== undefined && !empty(email)) {
+        const emailRegex = new RegExp("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
+        if (email !== undefined) {
+            if (!email.match(emailRegex) || email.length > 254 || email.length < 3) {
+                return (false);
+            }
+            return (true);
+        }
     }
-    return (true);
 }
 
 /**
@@ -196,7 +200,8 @@ function checkUserPattern(user) {
  * @return {boolean}
  */
 function checkName(value) {
-    const NameRegex = new RegExp("^(?=.{2,40}$)[a-zA-Z]+(?:[-'\\s][a-zA-Z]+)*$");
+    if(value !== undefined && !empty(value)) {
+        const NameRegex = new RegExp("^(?=.{2,40}$)[a-zA-Z]+(?:[-'\\s][a-zA-Z]+)*$");
 
     if (value.length === 0 || value.length > 40 ||
         value.length < 2 || !String(value).match(NameRegex)) {
@@ -211,13 +216,15 @@ function checkName(value) {
  * @return {boolean}
  */
 function checkPasswordPattern(password) {
-    const passwordRegex = new RegExp("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})");
+    if(password !== undefined && !empty(password)) {
+        const passwordRegex = new RegExp("((?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})");
 
     if (password.length === 0 || password.length < 6 ||
         password.length > 20 || !String(password).match(passwordRegex)) {
         return (false);
     } else {
         return (true);
+
     }
 }
 
@@ -320,40 +327,42 @@ async function checkLoginUser(user) {
  * @return {boolean}
  */
 async function checkReset(user) {
-    if (!checkPasswordPattern(user.password)) {
-        return (false);
-    } else {
-        let data = jwtUtils.getUserID(user.token);
-        if (data.email < 0) {
-            return (false)
-        }
-        else if (data.type < 0 || data.type !== "reset") {
-            return (false)
-        }
-        let sql = 'SELECT * FROM Users WHERE email=?';
-        db.query = util.promisify(db.query);
-
-        try {
-            let result = await db.query(sql, [data.email]);
-            if (!empty(result[0])) {
-                let hash = bcrypt.hashSync(user.password);
-                let sqlReset = 'UPDATE Users SET password=? WHERE email=?';
-                db.query = util.promisify(db.query);
-                try {
-                    let result = await db.query(sqlReset, [hash, data.email]);
-                    if (!empty(result)) {
-                        return (true)
-                    } else {
-                        return (false)
-                    }
-                } catch (error) {
-                    throw error;
-                }
-            } else {
+    if(user !== undefined) {
+        if (!checkPasswordPattern(user.password)) {
+            return (false);
+        } else {
+            let data = jwtUtils.getUserID(user.token);
+            if (data.email < 0) {
                 return (false)
             }
-        } catch (error) {
-            throw error;
+            else if (data.type < 0 || data.type !== "reset") {
+                return (false)
+            }
+            let sql = 'SELECT * FROM Users WHERE email=?';
+            db.query = util.promisify(db.query);
+
+            try {
+                let result = await db.query(sql, [data.email]);
+                if (!empty(result[0])) {
+                    let hash = bcrypt.hashSync(user.password);
+                    let sqlReset = 'UPDATE Users SET password=? WHERE email=?';
+                    db.query = util.promisify(db.query);
+                    try {
+                        let result = await db.query(sqlReset, [hash, data.email]);
+                        if (!empty(result)) {
+                            return (true)
+                        } else {
+                            return (false)
+                        }
+                    } catch (error) {
+                        throw error;
+                    }
+                } else {
+                    return (false)
+                }
+            } catch (error) {
+                throw error;
+            }
         }
     }
 }
