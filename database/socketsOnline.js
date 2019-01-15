@@ -16,14 +16,14 @@ async function Getparams(data, callback) {
             return (result[0]);
         }
     } catch (error) {
-        // throw error;
+        throw error;
     }
 };
 
 function SetConv(data) {
 	let sqlsetconv = "UPDATE Useronline SET in_conv= ? WHERE user_id= ?";
 	db.query(sqlsetconv,[data.to_user_id.user_id,data.from_user_id], function (error) {
-		// if (error) throw error;
+		if (error) throw error;
 		 return (true);
 	});
 };
@@ -40,7 +40,7 @@ async function CheckConv(params){
             return (false);
         }
     } catch (error) {
-        // throw error;
+        throw error;
     }
 };
 
@@ -51,7 +51,7 @@ async function useronlineUpdate(username, user_id) {
     try {
         await db.query(sql, [username, user_id]);
     } catch (error) {
-        // throw error;
+        throw error;
     }
 }
 

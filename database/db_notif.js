@@ -5,7 +5,7 @@ const util = require("util");
 function CreateNotif(socket, data, niu) {
     let cnotif = "INSERT INTO Notifications (from_user_id, from_username, to_user_id, type, unread, date_n) VALUES( ?, ?, ?, ?, ?, NOW())";
     db.query(cnotif, [socket.data.user_id, socket.data.username, niu, data.type, 1], function (error) {
-        // if (error)throw error;
+        if (error)throw error;
     });
     return (true);
 };
@@ -13,7 +13,7 @@ function CreateNotif(socket, data, niu) {
 function CreateNotifMatch(socket, data, niu) {
     let cnotif = "INSERT INTO Notifications (from_user_id, from_username, to_user_id, type, unread, date_n) VALUES( ?, ?, ?, ?, ?, NOW())";
     db.query(cnotif, [niu, data.user, socket.data.user_id, data.type, 1], function (error) {
-        // if (error)throw error;
+        if (error)throw error;
     });
     return (true);
 };
@@ -29,7 +29,7 @@ async function AlreadyNotif(socket, data, niu){
             return (true);
         }
     } catch (error) {
-        // throw error;
+        throw error;
     }
 };
 
