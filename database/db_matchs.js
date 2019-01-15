@@ -13,7 +13,7 @@ async function WasMatch(socket, niu){
             return (true);
         }
     } catch (error) {
-        throw error;
+        // throw error;
     }
 };
 
@@ -29,7 +29,7 @@ async function IsMatch(socket, niu){
             return (true);
         }
     } catch (error) {
-        throw error;
+        // throw error;
     }
 };
 

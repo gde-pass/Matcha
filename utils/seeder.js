@@ -66,7 +66,7 @@ async function seed() {
             let sql3 = "UPDATE Settings SET orientation=?, gender=?, bio=?, tags=?, distance=?, age=? WHERE user_id=?";
             await conn.query(sql3, [orientation, gender, bio, null, distance, age, result[0].user_id]);
         } catch (error) {
-            throw error;
+            // throw error;
         }
         bar1.increment(1);
         i++

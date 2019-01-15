@@ -15,7 +15,7 @@ async function dbPasswordUpdate(password, id) {
     try {
         await db.query(sql, [hash, id]);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -27,7 +27,7 @@ async function dbAgeRangeMinUpdate(ageRangeMin, id) {
     try {
         await db.query(sql, [ageRangeMin, id]);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -39,7 +39,7 @@ async function dbAgeRangeMaxUpdate(ageRangeMax, id) {
     try {
         await db.query(sql, [ageRangeMax, id]);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -51,7 +51,7 @@ async function dbAgeUpdate(age, id) {
     try {
         await db.query(sql, [age, id]);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -63,7 +63,7 @@ async function dbDistanceUpdate(distance, id) {
     try {
         await db.query(sql, [distance, id]);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -75,7 +75,7 @@ async function dbTagsUpdate(tags, id) {
     try {
         await db.query(sql, [tags, id]);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -87,7 +87,7 @@ async function dbBioUpdate(bio, id) {
     try {
         await db.query(sql, [bio, id]);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -99,7 +99,7 @@ async function dbGenderUpdate(gender, id) {
     try {
         await db.query(sql, [gender, id]);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -111,7 +111,7 @@ async function dbOrientationUpdate(orientation, id) {
     try {
         await db.query(sql, [orientation, id]);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -123,7 +123,7 @@ async function dbEmailUpdate(email, id) {
     try {
         await db.query(sql, [email, id]);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -135,7 +135,7 @@ async function dbUsernameUpdate(username, id) {
     try {
         await db.query(sql, [username, id]);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -147,7 +147,7 @@ async function dbLastNameUpdate(last_name, id) {
     try {
         await db.query(sql, [last_name, id]);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -159,7 +159,7 @@ async function dbFirstNameUpdate(first_name, id) {
     try {
         await db.query(sql, [first_name, id])
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -171,7 +171,7 @@ async function dbLongitudeUpdate(longitude, id) {
     try {
         await db.query(sql, [longitude, id])
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -183,7 +183,7 @@ async function dbLatitudeUpdate(latitude, id) {
     try {
         await db.query(sql, [latitude, id])
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -248,7 +248,7 @@ async function dbSelectIdUserByMail(email) {
         let result = await db.query(sql, [email]);
         return (result[0].user_id);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -261,7 +261,7 @@ async function dbSelectIdUserByUsername(username) {
             let result = await db.query(sql, [username]);
             return (result[0].user_id);
         } catch (error) {
-            throw error;
+            // throw error;
         }
     }
 }
@@ -317,7 +317,7 @@ async function dbInsertNewUser(newUser) {
         await db.query(sql, [newUser.email, newUser.first_name, newUser.last_name, newUser.user, hash]);
         await dbInitUserDefaultSettings(newUser);
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -332,7 +332,7 @@ async function reportUser(data) {
         try {
             await db.query(sql, [reported, reporter]);
         } catch (error) {
-            throw error;
+            // throw error;
         }
     }
 }
@@ -348,7 +348,7 @@ async function visiteUser(data) {
         try {
             await db.query(sql, [data.username, visiteur]);
         } catch (error) {
-            throw error;
+            // throw error;
         }
     }
 }
@@ -365,7 +365,7 @@ async function userBlock(socket, niu){
             return (true);
         }
     } catch (error) {
-        throw error;
+        // throw error;
     }
 };
 

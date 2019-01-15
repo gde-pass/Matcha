@@ -258,7 +258,7 @@ async function checkEmailValidity(email, pool) {
             return (true);
         }
     } catch (error) {
-        throw error;
+        // throw error;
     }
 
 }
@@ -279,7 +279,7 @@ async function checkUsernameValidity(username, pool) {
             return (true);
         }
     } catch (error) {
-        throw error;
+        // throw error;
     }
 
 }
@@ -320,7 +320,7 @@ async function checkLoginUser(user) {
                 return (false);
             }
         } catch (error) {
-            throw error;
+            // throw error;
         }
     }
 }
@@ -357,13 +357,13 @@ async function checkReset(user) {
                             return (false)
                         }
                     } catch (error) {
-                        throw error;
+                        // throw error;
                     }
                 } else {
                     return (false)
                 }
             } catch (error) {
-                throw error;
+                // throw error;
             }
         }
     }
@@ -384,7 +384,7 @@ async function checkActivatedUser(data) {
             return (false);
         }
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 
@@ -405,7 +405,7 @@ async function reportedUser(data) {
             return (false);
         }
     } catch (error) {
-        throw error;
+        // throw error;
     }
 }
 

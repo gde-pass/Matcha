@@ -45,7 +45,7 @@ socket.on('getunread', function (data) {
 socket.on('read', function () {
     el.setAttribute('data-count', 0);
     el.classList.remove('show-count');
-})
+});
 
 socket.on('getnotif',function (data) {
     // console.log('notif data', data);

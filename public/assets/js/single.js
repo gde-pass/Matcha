@@ -57,7 +57,6 @@ $("#bloque_btn").click(function (e) {
         contentType: "application/x-www-form-urlencoded",
         data: {token: getCookie("token"), target: target},
         success: function (data, status, xhr) {
-            // location.reload();
             if (data.bloqued) {
                 btn.text("Unblock");
             } else {
@@ -175,13 +174,5 @@ socket.emit("visite", {
     username: window.location.search.slice(1),
     type: 5
 });
-
-
-
-
-
-
-
-
 
 // ============ /SOCKET EVENTS ===========
