@@ -162,7 +162,7 @@ if(like){
     like.addEventListener('click' , function(){
         var url = window.location.href;
         var lastPart = url.split("?").pop();
-        console.log('word :', lastPart );
+        // console.log('word :', lastPart );
         socket.emit('create_notif', {
             user: lastPart,
             type: 1,

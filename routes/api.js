@@ -163,7 +163,7 @@ router.post("/single/toggle_bloque", function (req, res) {
                     }else if(haveBloqued ==1){
                         let sql = "DELETE  FROM users_bloquer WHERE is_bloqued =? AND user_id=?";
                         conn.query(sql,[result[0].user_id, data.Id], function(err, resu) {
-                            if (err) console.log(err.sqlMessage)
+                            if (err) return (res.send(err.sqlMessage));
                             else {
                                 let sql = "UPDATE list_bloquer SET is_bloqued =? WHERE user_id =?";
                                 conn.query(sql, [0, result[0].user_id], function (err, resu) {

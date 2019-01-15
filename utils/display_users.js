@@ -45,7 +45,7 @@ function display_users(req, res, connected) {
 
     let data = jwtUtils.getUserID(req.cookies.token);
     if (data.type < 0 || data.type !== "login" || data.email < 0) {
-        console.log("You must be logged in to access this site");
+        // console.log("You must be logged in to access this site");
         res.redirect('/login')
     } else {
         let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id";
@@ -123,7 +123,7 @@ function display_users(req, res, connected) {
 
                 findIfBloqued(req, res, data.Id, users, function (err, listOfBloqued) {
                     if (err) {
-                        console.log(err)
+                        // console.log(err)
                     } else {
                         let found = 0;
                         usersSorted = users.filter(value => {
@@ -136,7 +136,7 @@ function display_users(req, res, connected) {
                         });
                         findIfBloqued(req, res, data.Id, suggestion, function (err, listOfBloqued) {
                             if (err) {
-                                console.log(err)
+                                // console.log(err)
                             } else {
                                 suggestionSorted = suggestion.filter(value => {
                                     found = 0;
@@ -149,11 +149,11 @@ function display_users(req, res, connected) {
                             }
                             sortDistance(userLat, userLng, usersSorted, async function (err, sortedByDistance) {
                                 if (err) {
-                                    console.log(err)
+                                    // console.log(err)
                                 } else {
                                     sortDistance(userLat, userLng, suggestionSorted, async function (err, suggestionDistance) {
                                         if (err) {
-                                            console.log(err)
+                                            // console.log(err)
                                         } else {
                                             if (empty(suggestionDistance)) suggestionDistance = 0;
                                             if (empty(sortedByDistance)) sortedByDistance = 0;

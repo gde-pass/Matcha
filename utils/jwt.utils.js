@@ -4,7 +4,6 @@ const empty = require("is-empty");
 
 module.exports ={
     generateTokenForUser: function (userData, type) {
-        console.log(userData);
         return jwt.sign({
                 type: type,
                 email: userData.email,

@@ -128,20 +128,20 @@ async function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@
                             });
                             findIfLiked(req, res, data, url, function (err, liked) {
                                 if (err) {
-                                    console.log(err)
+                                    // console.log(err)
                                 } else {
                                     asLikedYou = liked;
                                 }
                             });
                             findIfBloque(req, res, results[0].user_id, function (err, bloqued) {
                                 if (err) {
-                                    console.log(err)
+                                    // console.log(err)
                                 } else
                                     bloque = bloqued;
                             });
                             findIfMach(req, res, data, url, function (err, match) {
                                 if (err) {
-                                    console.log(err)
+                                    // console.log(err)
                                 }
                                 if (results[0].profil_img == 0)
                                     like = null;
