@@ -119,7 +119,7 @@ module.exports = function(io)
         });
 
         socket.on("focusOutEmailSignUp", async function (email) {
-            
+
           if(email !== null && email !== undefined) {
             if (check.checkEmailPattern(email)) {
               if (await check.checkEmailValidity(email, db) === false) {
@@ -263,7 +263,7 @@ module.exports = function(io)
                         });
                     }
                 }
-            }
+            
         });
     });
 };
