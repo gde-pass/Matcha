@@ -15,7 +15,7 @@ let check = 0;
 function findScore(req, res, user, cb) {
     let sql = "SELECT score FROM Users WHERE user_id = ?";
     conn.query(sql, user, function (err, resu) {
-        if (err) return (res.status(500).end());
+        if (err) return (res.send(err.sqlMessage));
         else {
             // console.log(resu[0].score);
             cb(null, resu[0].score)
@@ -26,7 +26,7 @@ function findScore(req, res, user, cb) {
 function findNbEtoile(user, cb) {
     let sql = "SELECT score FROM score WHERE user_that_is_scored = ?";
     conn.query(sql, user, function (err, resu) {
-        if (err)  return (res.status(500).end());
+        if (err)  return (res.send(err.sqlMessage));
         else {
             if (!empty((resu))) {
                 cb(null, resu[0].score)
@@ -39,7 +39,7 @@ function findNbEtoile(user, cb) {
 function findIfBloque(req, res, Id, cb){
     let sql = "SELECT is_bloqued FROM list_bloquer WHERE user_id = ?";
     conn.query(sql,Id,function (err, resu) {
-        if (err)  return (res.status(500).end());
+        if (err)  return (res.send(err.sqlMessage));
         else {
             if (resu[0].is_bloqued == 0) {
                 cb(null, "Bloquer")
@@ -70,7 +70,7 @@ function cal_score(req, res, ID, username){
                         scor = (sumScore + score) / 2;
                         let sql = "UPDATE Users SET score = ? WHERE user_id = ?";
                         conn.query(sql, [scor, ID], function (err, resul) {
-                            if (err) return (res.status(500).send(err.sqlMessage));
+                            if (err) return (res.send(err.sqlMessage));
                             else {
                                 return true;
                             }
@@ -98,9 +98,9 @@ async function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@
         } else {
 
             let sql = "SELECT * , DATE_FORMAT(last_connection , '%d/%m/%Y %H:%i:%s') AS date FROM Users INNER JOIN Settings ON Settings.user_id = Users.user_id INNER JOIN Useronline ON Useronline.user_id = Users.user_id WHERE Users.username = ?";
-            // let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id JOIN WHERE `username` = ?";
+            // let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id JOIN WHERE username = ?";
             conn.query(sql, url, function (errors, results, fields) {
-                if (errors) return (res.status(500).send(errors.sqlMessage));
+                if (errors) return (res.send(errors.sqlMessage));
                 if (!empty(results)) {
                     glob(`*/assets/images/${results[0].username}${results[0].user_id}img*`, function (err, files_img) {
                         if (empty(files_img)) {
@@ -113,7 +113,7 @@ async function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@
 
                         let sql = "SELECT * FROM matchs WHERE user1_id = ?";
                         conn.query(sql, data.Id, async function (err, resu) {
-                            if (err) return (res.status(500).send(error.sqlMessage));
+                            if (err) return (res.send(err.sqlMessage));
                             var filtered = resu[0].users_you_liked.split(',').filter(function (value) {
                                 if (value == results[0].user_id)
                                     return (true)
@@ -147,6 +147,7 @@ async function get_user(req, res, connected, user = '@2584!@@@##$#@254521685241@
                                     like = null;
                                 res.render('single', {
                                     connected: connected,
+                                    username : url,
                                     user: results[0],
                                     etoiles: check,
                                     files_img: images,

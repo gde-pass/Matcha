@@ -149,7 +149,7 @@ function dbInitTableUseronline(conn) {
         ") ENGINE = InnoDB;";
 
     conn.query(sql3, function (err) {
-        if (err) throw err;
+        // if (err) throw err;
     });
 }
 
@@ -165,7 +165,7 @@ function dbInitTableMessages(conn) {
         ") ENGINE = InnoDB;";
 
     conn.query(sql4, function (err) {
-        if (err) throw err;
+        // if (err) throw err;
     });
 }
 
@@ -184,7 +184,7 @@ function dbInitTableNotifications(conn) {
         ") ENGINE = InnoDB;";
 
     conn.query(sql5, function (err) {
-        if (err) throw err;
+        // if (err) throw err;
     });
 }
 async function dbInitTableReports(conn) {
@@ -206,7 +206,7 @@ async function dbInitTableReports(conn) {
 async function dbInitTables(conn, hostSQL, portSQL) {
 
     conn.query("SELECT 1", async function (err) {
-        if (err) throw err;
+        // if (err) throw err;
         console.log("Connected to the server mysql at http://%s:%s !", hostSQL, portSQL);
 
        await dbInitTableUser(conn);
