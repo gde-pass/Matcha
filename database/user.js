@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt-nodejs");
 const db = require("./database");
 const util = require("util");
 const jwtUtils = require("../utils/jwt.utils");
+const empty = require("is-empty");
 
 async function dbPasswordUpdate(password, id) {
 
@@ -252,15 +253,16 @@ async function dbSelectIdUserByMail(email) {
 }
 
 async function dbSelectIdUserByUsername(username) {
+    if(username !== undefined && !empty(username)) {
+        let sql = "SELECT `user_id` FROM `Users` WHERE `username` = ?";
+        db.query = util.promisify(db.query);
 
-    let sql = "SELECT `user_id` FROM `Users` WHERE `username` = ?";
-    db.query = util.promisify(db.query);
-
-    try {
-        let result = await db.query(sql, [username]);
-        return (result[0].user_id);
-    } catch (error) {
-        throw error;
+        try {
+            let result = await db.query(sql, [username]);
+            return (result[0].user_id);
+        } catch (error) {
+            throw error;
+        }
     }
 }
 
@@ -320,32 +322,34 @@ async function dbInsertNewUser(newUser) {
 }
 
 async function reportUser(data) {
+    if(!empty(data) && data !== undefined && !empty(data.cookie)) {
+        let sql = "INSERT INTO `Reports` (`reported`,`reporter`) VALUES (?, ?)";
+        let reported = data.reported;
+        let reporter = jwtUtils.getUserID(data.cookie).username;
 
-    let sql = "INSERT INTO `Reports` (`reported`,`reporter`) VALUES (?, ?)";
-    let reported = data.reported;
-    let reporter = jwtUtils.getUserID(data.cookie).username;
+        db.query = util.promisify(db.query);
 
-    db.query = util.promisify(db.query);
-
-    try {
-        await db.query(sql, [reported, reporter]);
-    } catch (error) {
-        throw error;
+        try {
+            await db.query(sql, [reported, reporter]);
+        } catch (error) {
+            throw error;
+        }
     }
 }
 
 async function visiteUser(data) {
+    if(!empty(data) && data !== undefined && !empty(data.username)) {
+        let sql = "INSERT INTO `Visites` (`username`,`visiteur`) VALUES (?, ?)";
 
-    let sql = "INSERT INTO `Visites` (`username`,`visiteur`) VALUES (?, ?)";
+        let visiteur = jwtUtils.getUserID(data.token).username;
 
-    let visiteur = jwtUtils.getUserID(data.token).username;
+        db.query = util.promisify(db.query);
 
-    db.query = util.promisify(db.query);
-
-    try {
-        await db.query(sql, [data.username, visiteur]);
-    } catch (error) {
-        throw error;
+        try {
+            await db.query(sql, [data.username, visiteur]);
+        } catch (error) {
+            throw error;
+        }
     }
 }
 
