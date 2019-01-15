@@ -66,7 +66,7 @@ function recherche(req, res, connected) {
     let tag = req.body.tag;
     let data = jwtUtils.getUserID(req.cookies.token);
     if (data.type < 0 || data.type !== "login" || data.email < 0) {
-        console.log('error dans: recherche.js')
+        //console.log('error dans: recherche.js')
     } else {
         let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id";
         conn.query(sql, function (errors, results, fields) {

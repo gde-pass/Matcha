@@ -36,7 +36,7 @@ if (Userto.innerText != undefined){
 btn.addEventListener('click', function () {
     var url = window.location.href;
     var lastPart = url.split("?").pop();
-    console.log("click");
+    //console.log("click");
     if (message.value) {
         socket.emit('chat', {
         	message: message.value,
@@ -51,7 +51,7 @@ btn.addEventListener('click', function () {
 });
 
 message.addEventListener('keypress', function () {
-    console.log("typing");
+    //console.log("typing");
     feedback.value = '<p><em>she/he\'s typing a message...</em></p>';
 	socket.emit('typing', feedback.value);
 })

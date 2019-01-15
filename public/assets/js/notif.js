@@ -26,7 +26,7 @@ socket.on('notification_box', function () {
     el.classList.remove('notify');
     el.offsetWidth = el.offsetWidth;
     el.classList.add('notify');
-    console.log('COUNT :', count);
+    // console.log('COUNT :', count);
     if(count === 0){
         el.classList.add('show-count');
     }
@@ -48,7 +48,7 @@ socket.on('read', function () {
 })
 
 socket.on('getnotif',function (data) {
-    console.log('notif data', data);
+    // console.log('notif data', data);
     output_notif.innerHTML = "<li class='inside title'>NOTIFICATIONS</li>";
     for(var i=0;i<data.length;i++){
         if(data[i].type == 1){

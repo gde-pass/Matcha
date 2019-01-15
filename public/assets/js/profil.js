@@ -533,7 +533,7 @@ socket.on("settingsUpdateTrue", function () {
         text: "Your settings have been successfully updated !"
     });
 
-    window.location.href = "http://localhost:8080/";
+    window.location.href = "http://localhost:8080/login?updated";
 });
 
 socket.on("settingsUpdateFalse", function () {
