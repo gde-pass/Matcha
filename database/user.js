@@ -254,17 +254,21 @@ async function dbSelectIdUserByMail(email) {
 
 async function dbSelectIdUserByUsername(username) {
     if(username !== undefined && !empty(username)) {
-        let sql = "SELECT `user_id` FROM `Users` WHERE `username` = ?";
-        db.query = util.promisify(db.query);
-
-        try {
-            let result = await db.query(sql, [username]);
-            return (result[0].user_id);
-        } catch (error) {
-            // throw error;
-        }
-    }
-}
+      let sql = "SELECT `user_id` FROM `Users` WHERE `username` = ?";
+      db.query = util.promisify(db.query);
+      try {
+          let result = await db.query(sql,[username]);
+      if (result.length == 0) {
+              return (false);
+          } else {
+              return (result[0].user_id);
+          }
+      } catch (error) {
+      }
+  }else {
+      return (false);
+  }
+};
 
 async function dbInitUserDefaultSettings(newUser) {
 
