@@ -29,10 +29,8 @@ module.exports = function(io)
                 username: dataToken.username,
                 email: dataToken.email
             };
-            // console.log('DATA : ', socket.data);
             let sqlSetSocket = "UPDATE Useronline SET socketid= ?, online=?, in_conv=?, username=? WHERE user_id= ?";
                 db.query(sqlSetSocket, [socket.id, 'Y', 0, dataToken.username, dataToken.Id], function (error) {
-                    if (error) return (res.send(error.sqlMessage));
                 });
             }
         }
@@ -56,16 +54,13 @@ module.exports = function(io)
             } else {
                 let sqlUpdate = "UPDATE Users SET latitude=?, longitude=? WHERE email=?;";
                 db.query(sqlUpdate, [data.lat, data.lng, data.email], function (error,) {
-                     if (error) return (res.send(error.sqlMessage));
                 });
                 let sql = "SELECT * FROM Users WHERE email=?;";
                 db.query(sql, [data.email], function (error, results) {
-                     if (error) return (res.send(error.sqlMessage));
                     let token = jwtUtils.generateTokenForUser(results[0], "login");
                     socket.emit("tokenLogin", token);
                     let sqlOnline = "INSERT INTO Useronline (user_id, username, online, socketid, in_conv) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE user_id= ?";
                     db.query(sqlOnline,[results[0].user_id,results[0].username, 'Y', socket.id, 0, results[0].user_id], function (error) {
-                         if (error) return (res.send(error.sqlMessage));
                     });
             })
         }
@@ -102,9 +97,10 @@ module.exports = function(io)
             } else {
                 socket.emit("settingsUpdateTrue");
                 await dbUser.dbSettingsUpdate(data);
-                //let id_user = await dbUser.dbSelectIdUserByUsername(data.username); //todo @KANDEOL ici tu fais une query avec username mais si il a pas rempli le champ bah tu fais une query sur undef et ça crash
-                //await SocketO.useronlineUpdate(data.username, id_user);
-
+                if(data.username){
+                    let id_user = await dbUser.dbSelectIdUserByUsername(data.username);
+                    await SocketO.useronlineUpdate(data.username, id_user);
+                }
             }
         });
 
@@ -123,7 +119,7 @@ module.exports = function(io)
         });
 
         socket.on("focusOutEmailSignUp", async function (email) {
-            
+
           if(email !== null && email !== undefined) {
             if (check.checkEmailPattern(email)) {
               if (await check.checkEmailValidity(email, db) === false) {
@@ -230,7 +226,6 @@ module.exports = function(io)
         socket.on('unread', async function () {
             let getunread = "SELECT COUNT (*) AS nb FROM Notifications WHERE to_user_id=? AND unread=?";
             await db.query(getunread, [socket.data.user_id, 1], function (error, results) {
-                 if (error) return (res.send(error.sqlMessage));
                 socket.emit('getunread', results[0].nb);
             });
         });
@@ -238,7 +233,6 @@ module.exports = function(io)
         socket.on('read', async function () {
             let upread = "UPDATE Notifications SET unread = REPLACE(unread, ?, ?) WHERE to_user_id=?";
             db.query(upread, [ 1, 0, socket.data.user_id], function (error, results) {
-                 if (error) return (res.send(error.sqlMessage));
                 socket.emit('read');
             });
         })
@@ -246,7 +240,6 @@ module.exports = function(io)
         socket.on('getnotif', function () {
             let getnotif = "SELECT * , DATE_FORMAT(date_n , '%d/%m/%Y %H:%i:%s') AS date FROM Notifications WHERE to_user_id=? ORDER BY notif_id DESC";
             db.query(getnotif, [socket.data.user_id], function (error, results) {
-                 if (error) return (res.send(error.sqlMessage));
                 socket.emit('getnotif', results);
             });
         });
@@ -259,7 +252,6 @@ module.exports = function(io)
 
                     let sqldisconnect = "UPDATE Useronline SET online= ?, socketid= ? , last_connection= NOW() WHERE user_id= ?";
                     db.query(sqldisconnect,['N','0', dataToken.Id], function (error) {
-                         if (error) return (res.send(error.sqlMessage));
                     });
                 }
             }
