@@ -141,37 +141,40 @@ module.exports = function(io)
         });
 
         //SOCKET EVENT CHAT--------------------------------------//
-		socket.on('chat', async function (data) {
-            data.message = sanitizeHtml(data.message, {
-                              allowedTags: [],
-                              allowedAttributes: {},
-                            });
-            let gparams = await SocketO.Getparams(data.to);
-            let niu2 = ","; //c'est mooooooche !!!
-                niu2 += await dbUser.dbSelectIdUserByUsername(data.to);
-            let params = {
-                from_user_id: socket.data.user_id,
-                to_user_id: gparams.user_id,
-                message: data.message
-                };
-            if (await dbUser.userBlock(socket, gparams.user_id) == false) {
-                if (await dbmatch.IsMatch(socket, niu2) == true ) {
-                    if (await dbmessage.InsertMessage(params)){
-                        io.to(socket.id).emit('chat', data);
-                        if (await SocketO.CheckConv(params) === true) {
-                     // PRIVATE MESSAGE---------------------------------------------//
-              			    io.to(gparams.socketid).emit('chat_rep', data);
+        socket.on('chat', async function (data) {
+            if(data){
+                data.message = sanitizeHtml(data.message, {
+                                  allowedTags: [],
+                                  allowedAttributes: {},
+                                });
+                let gparams = await SocketO.Getparams(data.to);
+                // let niu2 = ","; //c'est mooooooche !!!
+                    // niu2 += await dbUser.dbSelectIdUserByUsername(data.to);
+                let params = {
+                    from_user_id: socket.data.user_id,
+                    to_user_id: gparams.user_id,
+                    message: data.message
+                    };
+                if (await dbUser.userBlock(socket, gparams.user_id) == false) {
+                    if (await dbmatch.IsMatch(socket, data.to) == true ) {
+                    // if (await dbmatch.IsMatch(socket, niu2) == true ) {
+                        if (await dbmessage.InsertMessage(params)){
+                            io.to(socket.id).emit('chat', data);
+                            if (await SocketO.CheckConv(params) === true) {
+                         // PRIVATE MESSAGE---------------------------------------------//
+                  			    io.to(gparams.socketid).emit('chat_rep', data);
+                            }else {
+                                io.to(gparams.socketid).emit('notifnew', socket.data.username);
+                            }
                         }else {
-                            io.to(gparams.socketid).emit('notifnew', socket.data.username);
+                            console.log('error insert db message');
                         }
                     }else {
-                        //console.log('error insert db message');
+                        io.to(socket.id).emit('chatnomatch', data);
                     }
                 }else {
-                    io.to(socket.id).emit('chatnomatch', data);
+                    io.to(socket.id).emit('chatblock', data);
                 }
-            }else {
-                io.to(socket.id).emit('chatblock', data);
             }
         });
 
@@ -195,15 +198,17 @@ module.exports = function(io)
 
         //SOCKET EVENT NOTIF --------------------------------------//
         socket.on('create_notif', async function (data) {
-            let niu2 = ","; //c'est mooooooche !!!
-            let gparams = await SocketO.Getparams(data.user);
-            let niu = await dbUser.dbSelectIdUserByUsername(data.user);
-                niu2 += await dbUser.dbSelectIdUserByUsername(data.user);
+            if(data){
+                // let niu2 = ","; //c'est mooooooche !!!
+                let gparams = await SocketO.Getparams(data.user);
+                let niu = await dbUser.dbSelectIdUserByUsername(data.user);
+                    // niu2 += await dbUser.dbSelectIdUserByUsername(data.user);
                 if (await dbUser.userBlock(socket, niu) == false) {
                     if ((data.type == 1 && data.like == "Like")) {
                         notif.CreateNotif(socket, data, niu);
                         io.to(gparams.socketid).emit('notification_box');
-                        if (await dbmatch.WasMatch(socket, niu2) == true) {
+                        if (await dbmatch.WasMatch(socket, data.user) == true) {
+                        // if (await dbmatch.WasMatch(socket, niu2) == true) {
                             data.type = 3;
                             notif.CreateNotif(socket, data, niu);
                             notif.CreateNotifMatch(socket, data, niu);
@@ -211,16 +216,19 @@ module.exports = function(io)
                             io.to(socket.id).emit('notification_box');
                         }
                     }else if (data.type == 2) {
-                        if (await dbmatch.IsMatch(socket, niu2) == true ) {
+                        if (await dbmatch.IsMatch(socket, data.user) == true ) {
+                        // if (await dbmatch.IsMatch(socket, niu2) == true ) {
                             notif.CreateNotif(socket, data, niu);
                             io.to(gparams.socketid).emit('notification_box');
                         }
-                    }else if (data.type == 1 && await dbmatch.WasMatch(socket, niu2) == true){
+                    // }else if (data.type == 1 && await dbmatch.WasMatch(socket, niu2) == true){
+                    }else if (data.type == 1 && await dbmatch.WasMatch(socket, data.user) == true){
                         data.type = 4;
                         notif.CreateNotif(socket, data, niu);
                         io.to(gparams.socketid).emit('notification_box');
                     }
                 }
+            }
         });
 
         socket.on('unread', async function () {
