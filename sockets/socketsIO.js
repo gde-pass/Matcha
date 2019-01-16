@@ -263,7 +263,6 @@ module.exports = function(io)
                         });
                     }
                 }
-            
         });
     });
 };
