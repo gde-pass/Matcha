@@ -23,7 +23,7 @@ function findTag(tag, tagVoulu) {
     if (!empty(tag)) {
         tag.split('#').forEach(function (elem) {
             for (let i = 1; i < tagVoulu.length; i++) {
-                if (elem.trim() == tagVoulu[i].trim()) {
+                if (elem.trim().toLowerCase() == tagVoulu[i].trim().toLowerCase()) {
                     found = 1;
                 }
             }
@@ -31,7 +31,7 @@ function findTag(tag, tagVoulu) {
         if (found == 0) {
             tag.split(' ').forEach(function (elem) {
                 for (let i = 1; i < tagVoulu.length; i++) {
-                    if (elem.trim() == tagVoulu[i].trim()) {
+                    if (elem.trim().toLowerCase() == tagVoulu[i].trim().toLowerCase()) {
                         found = 1;
                     }
                 }
@@ -99,7 +99,7 @@ function recherche(req, res, connected) {
                         {latitude: userLat, longitude: userLng},
                         {latitude: res.latitude, longitude: res.longitude}, 100);
                     if (orientation == 'Homosexual') {
-                        if ((dist / 1000) >= distance1 && (dist / 1000) <= distance2 && res.age >= age1 && res.age <= age2 && gender == res.gender && orientation == res.orientation && res.score >= score1 && res.score <= score2) {
+                        if ((dist / 1000) >= distance1 && (dist / 1000) <= distance2 && res.age >= age1 && res.age <= age2 && gender == res.gender && 'Heterosexual' != res.orientation && res.score >= score1 && res.score <= score2) {
                             return (true);
                         }
                     } else if (orientation == 'Bisexual') {
@@ -107,7 +107,7 @@ function recherche(req, res, connected) {
                             return (true);
                         }
                     } else {
-                        if ((dist / 1000) >= distance1 && (dist / 1000) <= distance2 && res.age >= age1 && res.age <= age2 && gender != res.gender && orientation == res.orientation && res.score >= score1 && res.score <= score2) {
+                        if ((dist / 1000) >= distance1 && (dist / 1000) <= distance2 && res.age >= age1 && res.age <= age2 && gender != res.gender && 'Homosexual' != res.orientation && res.score >= score1 && res.score <= score2) {
                             return (true);
                         }
                     }
@@ -120,15 +120,15 @@ function recherche(req, res, connected) {
                         {latitude: res.latitude, longitude: res.longitude}, 100);
                     if (res.tags != null) {
                         if (orientation == 'Homosexual') {
-                            if ((dist / 1000) >= distance1 && (dist / 1000) <= distance2 && res.age >= age1 && res.age <= age2 && gender == res.gender && orientation == res.orientation && findTag(tag, res.tags.split('#')) == 1 && res.score >= score1 && res.score <= score2) {
+                            if ((dist / 1000) >= distance1 && (dist / 1000) <= distance2 && res.age >= age1 && res.age <= age2 && gender == res.gender && 'Heterosexual' != res.orientation && findTag(tag, res.tags.split('#')) == 1 && res.score >= score1 && res.score <= score2) {
                                 return (true);
                             }
-                        } else if (orientation == 'bisexual') {
+                        } else if (orientation == 'Bisexual') {
                             if ((dist / 1000) >= distance1 && (dist / 1000) <= distance2 && res.age >= age1 && res.age <= age2 && findTag(tag, res.tags.split('#')) == 1 && res.score >= score1 && res.score <= score2) {
                                 return (true);
                             }
                         } else {
-                            if ((dist / 1000) < distanceVoulu && gender != res.gender && orientation == res.orientation && findTag(tag, res.tags.split('#')) == 1 && res.score >= score1 && res.score <= score2) {
+                            if ((dist / 1000) < distanceVoulu && gender != res.gender && 'Homosexual' != res.orientation && findTag(tag, res.tags.split('#')) == 1 && res.score >= score1 && res.score <= score2) {
                                 return (true);
                             }
                         }
