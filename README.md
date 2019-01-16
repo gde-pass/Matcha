@@ -190,7 +190,7 @@ of all the forms and upload.
 6. Execute the [docker-compose](https://docs.docker.com/compose/) file in the Docker folder
     
     ```bash
-    docker-compose up -e COMPOSE_TLS_VERSION=TLSv1_2 --build 
+    docker-compose up 
     ```
 
 7. Start the node server locate in `Matcha/app/config/server.js`
