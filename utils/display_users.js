@@ -22,7 +22,7 @@ function findTag(tagVoulu) {
     let found = 0;
     tags.forEach(function (elem) {
         for (let i = 1; i < tagVoulu.length; i++) {
-            if (elem.trim() == tagVoulu[i].trim()) {
+            if (elem.trim().toLowerCase() == tagVoulu[i].trim().toLowerCase()) {
                 found = 1;
             }
         }
@@ -90,7 +90,7 @@ function display_users(req, res, connected) {
                             return (true);
                         }
                     } else {
-                        if ((dist / 1000) < distanceVoulu && res.age >= ageMin && res.age <= ageMax && gender != res.gender && orientation == res.orientation) {
+                        if ((dist / 1000) < distanceVoulu && res.age >= ageMin && res.age <= ageMax && gender != res.gender && 'Homosexual' != res.orientation) {
                             return (true);
                         }
                     }
@@ -106,7 +106,7 @@ function display_users(req, res, connected) {
                             if ((dist / 1000) < distanceVoulu && res.age >= ageMin && res.age <= ageMax && gender == res.gender && orientation == res.orientation && findTag(res.tags.split('#')) == 1) {
                                 return (true);
                             }
-                        } else if (orientation == 'bisexual') {
+                        } else if (orientation == 'Bisexual') {
                             if ((dist / 1000) < distanceVoulu && res.age >= ageMin && res.age <= ageMax && findTag(res.tags.split('#')) == 1) {
                                 return (true);
                             }
@@ -115,7 +115,7 @@ function display_users(req, res, connected) {
                                 return (true);
                             }
                         }
-                        if ((dist / 1000) < distanceVoulu && res.age >= ageMin && res.age <= ageMax && gender != res.gender && orientation == res.orientation && findTag(res.tags.split('#')) == 1) {
+                        if ((dist / 1000) < distanceVoulu && res.age >= ageMin && res.age <= ageMax && gender != res.gender && 'Homosexual' != res.orientation && findTag(res.tags.split('#')) == 1) {
                             return (true);
                         }
                     }
