@@ -191,11 +191,6 @@ module.exports = function(io)
                 socket.emit('getmessage', tmp_res);
 		});
 
-		socket.on('typing', function (data) {
-			socket.broadcast.emit('typing', data);
-		});
-
-
         //SOCKET EVENT NOTIF --------------------------------------//
         socket.on('create_notif', async function (data) {
             if(data){

@@ -50,11 +50,7 @@ btn.addEventListener('click', function () {
     }
 });
 
-message.addEventListener('keypress', function () {
-    //console.log("typing");
-    feedback.value = '<p><em>she/he\'s typing a message...</em></p>';
-	socket.emit('typing', feedback.value);
-})
+
 
 //listen for events
 
@@ -104,9 +100,4 @@ socket.on('chatblock', function (data) {
 	output.innerHTML += '<li class="sent nomatch"><img src="' + data.img + '" alt="" /><p>Cette personne vous a bloqué !</p></li>';
     $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);
     $('.message-input input').val(null);
-});
-
-socket.on('typing', function (data) {
-    feedback.innerHTML = data;
-    $(".messages").animate({ scrollTop: $(".messages")[0].scrollHeight}, 500);
 });
