@@ -22,31 +22,37 @@
     git clone https://github.com/gde-pass/Matcha.git && cd Matcha/Docker
     ```
 
-4. Create and start a docker-machine
+4. Install depedencies
+    
+    ```bash
+    npm install
+    ```
+
+5. Create and start a docker-machine
     
     ```bash
     docker-machine create Matcha && docker-machine start Matcha
     ```
 
-5. Link your environment 
+6. Link your environment 
 
     ```bash
     eval $(docker-machine env Matcha)   
     ```
 
-6. Execute the [docker-compose](https://docs.docker.com/compose/) file in the Docker folder
+7. Execute the [docker-compose](https://docs.docker.com/compose/) file in the Docker folder
     
     ```bash
     docker-compose up 
     ```
 
-7. Start the node server locate in `Matcha/app/config/server.js`
+8. Start the node server locate in `Matcha/app/config/server.js`
 
     ```bash
     node server.js
     ```
 
-8. Here we go ! You can now visit [Matcha](http://127.0.0.1:8080) !
+9. Here we go ! You can now visit [Matcha](http://127.0.0.1:8080) !
 
 ## Difficulty
 
