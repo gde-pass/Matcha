@@ -42,10 +42,9 @@ function findIfBloqued(req, res, my_Id, users, cb){
    })
 }
 function display_users(req, res, connected) {
-
+    isFull = true;
     let data = jwtUtils.getUserID(req.cookies.token);
     if (data.type < 0 || data.type !== "login" || data.email < 0) {
-        // console.log("You must be logged in to access this site");
         res.redirect('/login')
     } else {
         let sql = "SELECT * FROM Users JOIN Settings ON Users.user_id = Settings.user_id";
