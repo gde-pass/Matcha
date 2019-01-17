@@ -124,10 +124,14 @@ router.get("/forgot", function (req, res) {
 });
 
 router.get("/recherche", function (req, res) {
-    res.render('recherche', {
-        connected: true,
-        users: 1
-    });
+    if(typeof req.cookies.token === "undefined") {
+        res.render('login');
+    }else {
+        res.render('recherche', {
+            connected: true,
+            users: 1
+        });
+    }
 });
 
 router.post("/recherche", function (req, res) {

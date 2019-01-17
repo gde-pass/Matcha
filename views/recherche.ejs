@@ -70,27 +70,6 @@
         <h3>Search</h3>
     </div>
 </div>
-<!--<fieldset>-->
-<!--<legend>Params</legend>-->
-<!--<div class="range-slider">-->
-<!--<h4>Age:</h4>-->
-<!--<input name="age" class="range-slider__range" type="range" value="<%= locals.age != null ? locals.age : 18 %>" min="18" max="100">-->
-<!--<span class="range-slider__value">0</span>-->
-<!--</div>-->
-
-<!--<div class="range-slider">-->
-<!--<h4>distance:</h4>-->
-<!--<input name="distance" class="range-slider__range" type="range"  value="<%= locals.distance != null ? locals.distance : 5 %>" min="5" max="50" step="5" >-->
-<!--<span class="range-slider__value">0</span>-->
-<!--</div>-->
-
-<!--<div class="range-slider">-->
-<!--<h4>Score:</h4>-->
-<!--<input name="score" class="range-slider__range" type="range"  value="<%= locals.score != null ? locals.score : 0 %>" min="0" max="500">-->
-<!--<span class="range-slider__value">0</span>-->
-<!--</div>-->
-<!--<button class="btn1 btn-1 btn1-1b"  style="float: right" type="submit">Search</button>-->
-<!--</fieldset>-->
 <form action="recherche" method="post">
 
     <div class="wrapper" style="padding:20px;">
@@ -136,11 +115,11 @@
     <% if(locals.users != 1){ %>
         <% if(locals.sorted == true){ %>
             <fieldset>
-                <legend>Les utilsateurs fait pour vous:</legend>
+                <legend>Les utilisateurs fait pour vous:</legend>
                 <div class="box1">
                     <% for (let i = 0; i < locals.users.length; i++) { /*locals.files_img.forEach(function(el, index){ */ %>
                     <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.4s">
-                        <div class="grid_4"><a href="single?<%= locals.users[i][0].username %>" target="_blank">
+                        <div class="grid_4"><a  href="single?<%= locals.users[i][0].username %>" target="_blank">
                                 <h4><span class="m_3"><%= locals.users[i][0].username %></span></h4>
                                 <img src="<%= locals.users[i][0].profil_img != 0 ? `assets/img/${locals.users[i][0].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
                                      class="img-responsive" alt="" style="width: 100%;">
@@ -169,7 +148,7 @@
                 <div class="box1">
                     <% for (let i = 0; i < locals.suggestion.length; i++) { /*locals.files_img.forEach(function(el, index){ */ %>
                     <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.4s">
-                        <div class="grid_4"><a href="single?<%= locals.suggestion[i].username %>">
+                        <div class="grid_4"><a href="single?<%= locals.suggestion[i].username %>" target="_blank">
                                 <h4><span class="m_3"><%= locals.suggestion[i].username %></span></h4>
                                 <img src="<%= locals.suggestion[i].profil_img != 0 ? `assets/img/${locals.suggestion[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
                                      class="img-responsive" alt="" style="width: 100%">
@@ -199,7 +178,7 @@
                 <div class="box1">
                     <% for (let i = 0; i < locals.users.length; i++) { /*locals.files_img.forEach(function(el, index){ */ %>
                     <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.4s">
-                        <div class="grid_4"><a href="single?<%= locals.users[i].username %>">
+                        <div class="grid_4"><a href="single?<%= locals.users[i].username %>" target="_blank">
                                 <h4><span class="m_3"><%= locals.users[i].username %></span></h4>
                                 <img src="<%= locals.users[i].profil_img != 0 ? `assets/img/${locals.users[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
                                      class="img-responsive" alt="" style="width: 100%;">
@@ -228,7 +207,7 @@
                 <div class="box1">
                     <% for (let i = 0; i < locals.suggestion.length; i++) { /*locals.files_img.forEach(function(el, index){ */ %>
                     <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.4s">
-                        <div class="grid_4"><a href="single?<%= locals.suggestion[i].username %>">
+                        <div class="grid_4"><a href="single?<%= locals.suggestion[i].username %>" target="_blank">
                                 <h4><span class="m_3"><%= locals.suggestion[i].username %></span></h4>
                                 <img src="<%= locals.suggestion[i].profil_img != 0 ? `assets/img/${locals.suggestion[i].profil_img}` : "http://ssl.gstatic.com/accounts/ui/avatar_2x.png" %>"
                                      class="img-responsive" alt="" style="width: 100%">
